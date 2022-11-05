@@ -27,24 +27,27 @@
                 </ul>
             </div>
 
-            <form>
+            <form [formGroup]="registerForm" (ngSubmit)='register()'>
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <input class="form-control" type="text" name="name" placeholder="Username">
+                            <input class="form-control" type="text" name="name" placeholder="Username"formControlName="username">
                         </div>
+                        <div *ngIf="username?.touched && username?.errors?.['required']" class="alert alert-danger">This field is required</div>
                     </div>
                     
                     <div class="col-12">
                         <div class="form-group">
-                            <input class="form-control" type="email" name="name" placeholder="Email">
+                            <input class="form-control" type="email" name="name" placeholder="Email" formControlName="email">
                         </div>
+                        <div *ngIf="email?.touched && email?.errors?.['required']" class="alert alert-danger">This field is required</div>
                     </div>
 
                     <div class="col-12">
                         <div class="form-group">
-                            <input class="form-control" type="password" name="password" placeholder="Password">
+                            <input class="form-control" type="password" name="password" placeholder="Password" formControlName="password">
                         </div>
+                        <div *ngIf="password?.touched && password?.errors?.['required']" class="alert alert-danger">This field is required</div>
                     </div>
 
                     <div class="col-12 text-center">

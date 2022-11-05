@@ -11,15 +11,7 @@
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link">Home <i class='bx bx-plus'></i></a>
-
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a routerLink="/" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Home One</a></li>
-
-                                <li class="nav-item"><a routerLink="/home-two" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Home Two</a></li>
-
-                                <li class="nav-item"><a routerLink="/home-three" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Home Three</a></li>
-                            </ul>
+                            <a href="javascript:void(0)" class="nav-link" routerLink="/">Home <i class='bx bx-plus'></i></a>
                         </li>
 
                         <li class="nav-item">
@@ -113,8 +105,12 @@
                         <a routerLink="/cart"><i class='bx bx-cart'></i></a>
                     </div>
 
-                    <div class="menu-btn">
+                    <!-- <div class="menu-btn">
                         <a href="tel:+11234567890" class="phone-btn"><i class='bx bxs-phone'></i> +1 123 456 7890</a>
+                    </div> -->
+
+                    <div class="menu-btn">
+                        <a routerLink="/sign-in" class="phone-btn">Sign in</a>
                     </div>
                 </div>
             </nav>
