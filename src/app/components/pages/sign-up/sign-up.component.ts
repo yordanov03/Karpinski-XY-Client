@@ -22,7 +22,7 @@ export class SignUpComponent implements OnInit {
   }
 
   register(){
-    return this.authService.register(this.registerForm.value).subscribe(data=> {console.log(data)})
+    return this.authService.register(this.registerForm.value).subscribe();
   }
 
   get username(){

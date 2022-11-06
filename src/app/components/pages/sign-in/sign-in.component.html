@@ -27,18 +27,20 @@
                 </ul>
             </div>
 
-            <form>
+            <form [formGroup]="loginForm"(ngSubmit)='login()'>
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <input class="form-control" type="text" name="name" placeholder="Username or Email">
+                            <input class="form-control" type="text" name="name" placeholder="Username or Email" formControlName="username">
                         </div>
+                        <div *ngIf="username?.touched && username?.errors?.['required']" class="alert alert-danger">This field is required</div>
                     </div>
 
                     <div class="col-12">
                         <div class="form-group">
-                            <input class="form-control" type="password" name="password" placeholder="Password">
+                            <input class="form-control" type="password" name="password" placeholder="Password" formControlName="password">
                         </div>
+                        <div *ngIf="password?.touched && password?.errors?.['required']" class="alert alert-danger">This field is required</div>
                     </div>
 
                     <div class="col-lg-6 col-sm-6 form-condition">

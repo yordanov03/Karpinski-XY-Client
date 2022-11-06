@@ -22,7 +22,6 @@ private registerPath = environment.apiUrl + 'identity/register'
   }
 
   saveToken(token){
-    console.log(token);
     localStorage.setItem('token', token);
   }
 
