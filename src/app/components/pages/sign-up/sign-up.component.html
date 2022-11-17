@@ -34,6 +34,7 @@
                             <input class="form-control" type="text" name="name" placeholder="Username" formControlName="username">
                         </div>
                         <div *ngIf="username?.touched && username?.errors?.['required']" class="alert alert-danger">This field is required</div>
+                        <div *ngIf="username?.touched && username?.errors?.username" class="alert alert-danger">Username is too short</div>
                     </div>
                     
                     <div class="col-12">
@@ -54,15 +55,15 @@
                     <div class="col-12 text-center">
                         <button class="default-btn btn-two sign-btn" type="submit">Sign Up</button>
                     </div>
-                    <br>
-                    <div class="alert alert-warning" *ngIf="registerForm.hasError && isSignUpFailed">
-                        Signup failed!<br />{{ errorMessage }}
-                      </div>
-
-                      <div class="alert alert-success" *ngIf="isSuccessful">
-                        Your registration is successful!
-                      </div>
-
+                    <br/>
+<div>
+    <div class="alert alert-warning" *ngIf="registerForm.hasError && isSignUpFailed">
+        Signup failed! {{ errorMessage }}
+      </div>
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Your registration is successful!
+      </div>
+</div>
                     <div class="col-12">
                         <p class="account-desc">Already have an account? <a routerLink="/sign-in">Sign In</a></p>
                     </div>

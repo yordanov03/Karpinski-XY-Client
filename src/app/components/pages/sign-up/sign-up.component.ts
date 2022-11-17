@@ -17,9 +17,9 @@ export class SignUpComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
-      'username':['', Validators.required],
+      'username':['', [Validators.required, Validators.minLength(3)]],
       'email':['', [Validators.required, Validators.email]],
-      'password':['', Validators.required]
+      'password':['', [Validators.required, Validators.minLength(8)]]
     })
    }
 
@@ -35,8 +35,9 @@ export class SignUpComponent implements OnInit {
           this.isSignUpFailed = false;
         },
         error: err => {
-          this.errorMessage = err.error[0].description;
+          this.errorMessage = err.error;
           this.isSignUpFailed = true;
+          console.log(err)
         }
       }
     )
