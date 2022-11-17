@@ -19,7 +19,10 @@ export class SignUpComponent implements OnInit {
     this.registerForm = this.fb.group({
       'username':['', [Validators.required, Validators.minLength(3)]],
       'email':['', [Validators.required, Validators.email]],
-      'password':['', [Validators.required, Validators.minLength(8)]]
+        'password': ['', [Validators.required, Validators.minLength(4)]],
+        'confirmPassword': ['', Validators.required]
+      // 'password': ['', [Validators.required, Validators.minLength(4)]],
+      // 'confirmPassword': ['', Validators.required],{ validator: this.comparePasswords }
     })
    }
 
@@ -43,6 +46,18 @@ export class SignUpComponent implements OnInit {
     )
   }
 
+  comparePasswords(fb: FormGroup) {
+    let confirmPswrdCtrl = fb.get('confirmPassword');
+    //passwordMismatch
+    //confirmPswrdCtrl.errors={passwordMismatch:true}
+    if (confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors) {
+      if (fb.get('password').value != confirmPswrdCtrl.value)
+        confirmPswrdCtrl.setErrors({ passwordMismatch: true });
+      else
+        confirmPswrdCtrl.setErrors(null);
+    }
+  }
+
   get username(){
     return this.registerForm.get('username');
   }
@@ -53,6 +68,10 @@ export class SignUpComponent implements OnInit {
 
   get password(){
     return this.registerForm.get('password');
+  }
+
+  get confirmPassword(){
+    return this.registerForm.get('confirmPassword');
   }
 
 }

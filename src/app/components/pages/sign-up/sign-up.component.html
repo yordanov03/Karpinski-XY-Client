@@ -34,7 +34,7 @@
                             <input class="form-control" type="text" name="name" placeholder="Username" formControlName="username">
                         </div>
                         <div *ngIf="username?.touched && username?.errors?.['required']" class="alert alert-danger">This field is required</div>
-                        <div *ngIf="username?.touched && username?.errors?.username" class="alert alert-danger">Username is too short</div>
+                        <div *ngIf="username?.touched && username?.errors?.minlength" class="alert alert-danger">Username is too short</div>
                     </div>
                     
                     <div class="col-12">
@@ -50,10 +50,19 @@
                             <input class="form-control" type="password" name="password" placeholder="Password" formControlName="password">
                         </div>
                         <div *ngIf="password?.touched && password?.errors?.['required']" class="alert alert-danger">This field is required</div>
+                        <div *ngIf="password?.touched && password?.errors?.minlength" class="alert alert-danger">Password is too short</div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
+                        </div>
+                        <div *ngIf="confirmPassword?.touched && confirmPassword?.errors?.['required']" class="alert alert-danger">This field is required</div>
+                        <div *ngIf="confirmPassword?.touched && confirmPassword?.errors?.passwordMismatch" class="alert alert-danger">Passwords do not match</div>
                     </div>
 
                     <div class="col-12 text-center">
-                        <button class="default-btn btn-two sign-btn" type="submit">Sign Up</button>
+                        <button class="default-btn btn-two sign-btn" type="submit" [disabled]="!registerForm.valid">Sign Up</button>
                     </div>
                     <br/>
 <div>
