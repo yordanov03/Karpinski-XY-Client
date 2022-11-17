@@ -58,7 +58,7 @@
                             <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
                         </div>
                         <div *ngIf="confirmPassword?.touched && confirmPassword?.errors?.['required']" class="alert alert-danger">This field is required</div>
-                        <div *ngIf="confirmPassword?.touched && confirmPassword?.errors?.passwordMismatch" class="alert alert-danger">Passwords do not match</div>
+                        <div *ngIf="confirmPassword?.touched && confirmPassword?.hasError('matching')" class="alert alert-danger">Passwords do not match</div>
                     </div>
 
                     <div class="col-12 text-center">
