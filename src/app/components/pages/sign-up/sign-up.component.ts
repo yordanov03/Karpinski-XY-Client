@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 import { matchValidator } from 'src/app/shared/password-validator';
 import { AuthService } from '../../../_services/auth.service';
 
@@ -16,7 +15,7 @@ export class SignUpComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
       'username':['', [Validators.required, Validators.minLength(3)]],
       'email':['', [Validators.required, Validators.email]],
@@ -31,23 +30,20 @@ export class SignUpComponent implements OnInit {
   register(){
     return this.authService.register(this.registerForm.value).subscribe(
       (res: any) => {
-        console.log(res)
         if (res.succeeded) {
           this.registerForm.reset();
           this.isSuccessful = true;
-          console.log(res)
+          this.errorMessage = '';
+          setTimeout(() => {
+            this.router.navigate([""])
+          }, 3000);
         } else {
           this.isSignUpFailed = true;
           this.errorMessage = res.errors[0].description
         }
-      },
-      err => {
-        console.log(err);
-        console.log("err")
       }
     );
   }
-
 
   get username(){
     return this.registerForm.get('username');

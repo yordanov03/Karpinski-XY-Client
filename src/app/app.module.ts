@@ -8,8 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PreloaderComponent } from './components/common/preloader/preloader.component';
 import { HomePageOneComponent } from './components/pages/home-page-one/home-page-one.component';
-import { HomePageTwoComponent } from './components/pages/home-page-two/home-page-two.component';
-import { HomePageThreeComponent } from './components/pages/home-page-three/home-page-three.component';
 import { FooterStyleOneComponent } from './components/common/footer-style-one/footer-style-one.component';
 import { NavbarStyleOneComponent } from './components/common/navbar-style-one/navbar-style-one.component';
 import { FooterStyleTwoComponent } from './components/common/footer-style-two/footer-style-two.component';
@@ -41,8 +39,6 @@ import { ContactComponent } from './components/pages/contact/contact.component';
     AppComponent,
     PreloaderComponent,
     HomePageOneComponent,
-    HomePageTwoComponent,
-    HomePageThreeComponent,
     FooterStyleOneComponent,
     NavbarStyleOneComponent,
     FooterStyleTwoComponent,
