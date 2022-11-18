@@ -22,42 +22,49 @@ export class SignUpComponent implements OnInit {
       'email':['', [Validators.required, Validators.email]],
         'password': ['', [Validators.required, Validators.minLength(4), matchValidator('confirmPassword', true)]],
         'confirmPassword': ['', [Validators.required, matchValidator('password')] ]
-      // 'password': ['', [Validators.required, Validators.minLength(4)]],
-      // 'confirmPassword': ['', Validators.required],{ validator: this.comparePasswords }
     })
    }
 
   ngOnInit(): void {
   }
 
+  // register(){
+  //   return this.authService.register(this.registerForm.value).subscribe(
+  //     {
+  //       next: data => {
+  //         console.log(data);
+  //         this.isSuccessful = true;
+  //         this.isSignUpFailed = false;
+  //       },
+  //       error: err => {
+  //         this.errorMessage = err.error;
+  //         this.isSignUpFailed = true;
+  //         console.log(err)
+  //       }
+  //     }
+  //   )
+  // }
+
   register(){
     return this.authService.register(this.registerForm.value).subscribe(
-      {
-        next: data => {
-          console.log(data);
+      (res: any) => {
+        console.log(res)
+        if (res.succeeded) {
+          this.registerForm.reset();
           this.isSuccessful = true;
-          this.isSignUpFailed = false;
-        },
-        error: err => {
-          this.errorMessage = err.error;
+          console.log(res)
+        } else {
           this.isSignUpFailed = true;
-          console.log(err)
+          this.errorMessage = res.errors[0].description
         }
+      },
+      err => {
+        console.log(err);
+        console.log("err")
       }
-    )
+    );
   }
 
-  comparePasswords(fb: FormGroup) {
-    let confirmPswrdCtrl = fb.get('confirmPassword');
-    //passwordMismatch
-    //confirmPswrdCtrl.errors={passwordMismatch:true}
-    if (confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors) {
-      if (fb.get('password').value != confirmPswrdCtrl.value)
-        confirmPswrdCtrl.setErrors({ passwordMismatch: true });
-      else
-        confirmPswrdCtrl.setErrors(null);
-    }
-  }
 
   get username(){
     return this.registerForm.get('username');
