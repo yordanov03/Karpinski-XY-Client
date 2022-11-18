@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { matchValidator } from 'src/app/shared/form-validator';
+import { matchValidator } from 'src/app/shared/password-validator';
 import { AuthService } from '../../../_services/auth.service';
 
 @Component({
@@ -20,30 +20,13 @@ export class SignUpComponent implements OnInit {
     this.registerForm = this.fb.group({
       'username':['', [Validators.required, Validators.minLength(3)]],
       'email':['', [Validators.required, Validators.email]],
-        'password': ['', [Validators.required, Validators.minLength(4), matchValidator('confirmPassword', true)]],
-        'confirmPassword': ['', [Validators.required, matchValidator('password')] ]
+      'password': ['', [Validators.required, Validators.minLength(4), matchValidator('confirmPassword', true)]],
+      'confirmPassword': ['', [Validators.required, matchValidator('password')] ]
     })
    }
 
   ngOnInit(): void {
   }
-
-  // register(){
-  //   return this.authService.register(this.registerForm.value).subscribe(
-  //     {
-  //       next: data => {
-  //         console.log(data);
-  //         this.isSuccessful = true;
-  //         this.isSignUpFailed = false;
-  //       },
-  //       error: err => {
-  //         this.errorMessage = err.error;
-  //         this.isSignUpFailed = true;
-  //         console.log(err)
-  //       }
-  //     }
-  //   )
-  // }
 
   register(){
     return this.authService.register(this.registerForm.value).subscribe(
