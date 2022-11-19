@@ -33,11 +33,13 @@ export class SignUpComponent implements OnInit {
         if (res.succeeded) {
           this.registerForm.reset();
           this.isSuccessful = true;
-          this.errorMessage = '';
+            const errorMessageStyle = document.getElementById("signupfailedErrorBox");
+            errorMessageStyle.style.display = "none"
           setTimeout(() => {
             this.router.navigate([""])
           }, 3000);
         } else {
+          console.log(res)
           this.isSignUpFailed = true;
           this.errorMessage = res.errors[0].description
         }

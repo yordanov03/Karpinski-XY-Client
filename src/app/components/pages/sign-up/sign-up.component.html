@@ -78,7 +78,7 @@
                     </div>
                     <br />
                     <div>
-                        <div class="alert alert-warning" *ngIf="registerForm.hasError && isSignUpFailed">
+                        <div class="alert alert-warning" *ngIf="registerForm.hasError && isSignUpFailed" id="signupfailedErrorBox" >
                             Signup failed! {{ errorMessage }}
                         </div>
                         <div class="alert alert-success" *ngIf="isSuccessful">
