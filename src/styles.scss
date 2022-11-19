@@ -358,6 +358,10 @@ Navbar Area
         position: relative;
         overflow: hidden;
         z-index: 1;
+        margin: {
+            left: 5px;
+            right: 5px;
+        };
 
         i {
             font-size: 22px;

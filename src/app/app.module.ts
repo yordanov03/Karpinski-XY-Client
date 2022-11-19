@@ -8,10 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PreloaderComponent } from './components/common/preloader/preloader.component';
 import { HomePageOneComponent } from './components/pages/home-page-one/home-page-one.component';
-import { FooterStyleOneComponent } from './components/common/footer-style-one/footer-style-one.component';
 import { NavbarStyleOneComponent } from './components/common/navbar-style-one/navbar-style-one.component';
 import { FooterStyleTwoComponent } from './components/common/footer-style-two/footer-style-two.component';
-import { NavbarStyleTwoComponent } from './components/common/navbar-style-two/navbar-style-two.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { PricingComponent } from './components/pages/pricing/pricing.component';
 import { FaqComponent } from './components/pages/faq/faq.component';
@@ -39,10 +37,8 @@ import { ContactComponent } from './components/pages/contact/contact.component';
     AppComponent,
     PreloaderComponent,
     HomePageOneComponent,
-    FooterStyleOneComponent,
     NavbarStyleOneComponent,
     FooterStyleTwoComponent,
-    NavbarStyleTwoComponent,
     AboutComponent,
     PricingComponent,
     FaqComponent,
