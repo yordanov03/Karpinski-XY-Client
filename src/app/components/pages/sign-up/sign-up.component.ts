@@ -31,13 +31,12 @@ export class SignUpComponent implements OnInit {
     return this.authService.register(this.registerForm.value).subscribe(
       (res: any) => {
         if (res.succeeded) {
-          this.registerForm.reset();
           this.isSuccessful = true;
             const errorMessageStyle = document.getElementById("signupfailedErrorBox");
             errorMessageStyle.style.display = "none"
           setTimeout(() => {
             this.router.navigate([""])
-          }, 3000);
+          }, 2000);
         } else {
           console.log(res)
           this.isSignUpFailed = true;
