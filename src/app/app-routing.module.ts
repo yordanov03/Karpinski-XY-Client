@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { AboutComponent } from './components/pages/about/about.component';
-import { PricingComponent } from './components/pages/pricing/pricing.component';
 import { FaqComponent } from './components/pages/faq/faq.component';
-import { DesignerComponent } from './components/pages/designer/designer.component';
-import { TestimonialsComponent } from './components/pages/testimonials/testimonials.component';
 import { ErrorComponent } from './components/pages/error/error.component';
 import { SignInComponent } from './components/pages/sign-in/sign-in.component';
 import { SignUpComponent } from './components/pages/sign-up/sign-up.component';
@@ -26,10 +23,7 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 const routes: Routes = [
     {path: '', component: HomePageComponent},
     {path: 'about', component: AboutComponent},
-    {path: 'pricing', component: PricingComponent},
     {path: 'faq', component: FaqComponent},
-    {path: 'designer', component: DesignerComponent},
-    {path: 'testimonials', component: TestimonialsComponent},
     {path: 'error', component: ErrorComponent},
     {path: 'sign-in', component: SignInComponent},
     {path: 'sign-up', component: SignUpComponent},

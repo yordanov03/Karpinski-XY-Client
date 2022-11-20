@@ -11,10 +11,7 @@ import { HomePageComponent } from './components/pages/home-page/home-page.compon
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { AboutComponent } from './components/pages/about/about.component';
-import { PricingComponent } from './components/pages/pricing/pricing.component';
 import { FaqComponent } from './components/pages/faq/faq.component';
-import { DesignerComponent } from './components/pages/designer/designer.component';
-import { TestimonialsComponent } from './components/pages/testimonials/testimonials.component';
 import { ErrorComponent } from './components/pages/error/error.component';
 import { SignInComponent } from './components/pages/sign-in/sign-in.component';
 import { SignUpComponent } from './components/pages/sign-up/sign-up.component';
@@ -40,10 +37,7 @@ import { ContactComponent } from './components/pages/contact/contact.component';
     NavbarComponent,
     FooterComponent,
     AboutComponent,
-    PricingComponent,
     FaqComponent,
-    DesignerComponent,
-    TestimonialsComponent,
     ErrorComponent,
     SignInComponent,
     SignUpComponent,
