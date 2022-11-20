@@ -7,9 +7,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PreloaderComponent } from './components/common/preloader/preloader.component';
-import { HomePageOneComponent } from './components/pages/home-page-one/home-page-one.component';
-import { NavbarStyleOneComponent } from './components/common/navbar-style-one/navbar-style-one.component';
-import { FooterStyleTwoComponent } from './components/common/footer-style-two/footer-style-two.component';
+import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import { NavbarComponent } from './components/common/navbar/navbar.component';
+import { FooterComponent } from './components/common/footer/footer.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { PricingComponent } from './components/pages/pricing/pricing.component';
 import { FaqComponent } from './components/pages/faq/faq.component';
@@ -36,9 +36,9 @@ import { ContactComponent } from './components/pages/contact/contact.component';
   declarations: [
     AppComponent,
     PreloaderComponent,
-    HomePageOneComponent,
-    NavbarStyleOneComponent,
-    FooterStyleTwoComponent,
+    HomePageComponent,
+    NavbarComponent,
+    FooterComponent,
     AboutComponent,
     PricingComponent,
     FaqComponent,
