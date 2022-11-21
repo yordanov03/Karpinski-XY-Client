@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class SignInComponent implements OnInit {
   loginForm: FormGroup;
   isLoggedIn = false;
+  isLogInSuccessful = false;
   isLoginFailed = false;
   errorMessage = '';
 
@@ -28,8 +29,20 @@ export class SignInComponent implements OnInit {
 
   login(){
     this.authService.login(this.loginForm.value).subscribe(data =>{
-      this.authService.saveToken(data['token'])});
-      this.router.navigate(['/'])
+      console.log(data);
+      this.isLogInSuccessful = true;
+      this.authService.saveToken(data['token']);
+      setTimeout(() => {
+        this.router.navigate([""])
+      }, 2000)
+    },
+      err => {
+        this.isLoginFailed = true;
+        if (err.status == 401)
+          this.errorMessage = "Wrong credentials";
+        else
+          console.log(err);
+      });
   }
   
   get username(){

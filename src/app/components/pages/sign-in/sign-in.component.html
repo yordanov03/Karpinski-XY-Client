@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <input class="form-control" type="text" name="name" placeholder="Username or Email" formControlName="username">
+                            <input class="form-control" type="text" name="name" placeholder="Username" formControlName="username">
                         </div>
                         <div *ngIf="username?.touched && username?.errors?.['required']" class="alert alert-danger">This field is required</div>
                     </div>
@@ -58,8 +58,16 @@
                         <button class="default-btn btn-two sign-btn" type="submit">Sign In Now</button>
                     </div>
 
+                    <div>
+                        <div *ngIf="isLoginFailed" class="alert alert-danger">{{errorMessage}}</div>
+                    </div>
+
+                    <div>
+                        <div *ngIf="isLogInSuccessful" class="alert alert-success">Sign in successful</div>
+                    </div>
+
                     <div class="col-12">
-                        <p class="account-desc">Not a member? <a routerLink="/sign-up">Register</a></p>
+                        <p class="account-desc">Not a registered? <a routerLink="/sign-up">Register</a></p>
                     </div>
                 </div>
             </form>
