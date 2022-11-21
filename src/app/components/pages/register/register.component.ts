@@ -5,11 +5,11 @@ import { matchValidator } from 'src/app/shared/password-validator';
 import { AuthService } from '../../../_services/auth.service';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   isSuccessful = false;
   isSignUpFailed = false;

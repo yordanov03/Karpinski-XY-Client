@@ -5,7 +5,7 @@ import { AboutComponent } from './components/pages/about/about.component';
 import { FaqComponent } from './components/pages/faq/faq.component';
 import { ErrorComponent } from './components/pages/error/error.component';
 import { SignInComponent } from './components/pages/sign-in/sign-in.component';
-import { SignUpComponent } from './components/pages/sign-up/sign-up.component';
+import { RegisterComponent } from './components/pages/register/register.component';
 import { RecoverPasswordComponent } from './components/pages/recover-password/recover-password.component';
 import { TermsConditionsComponent } from './components/pages/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from './components/pages/privacy-policy/privacy-policy.component';
@@ -26,7 +26,7 @@ const routes: Routes = [
     {path: 'faq', component: FaqComponent},
     {path: 'error', component: ErrorComponent},
     {path: 'sign-in', component: SignInComponent},
-    {path: 'sign-up', component: SignUpComponent},
+    {path: 'sign-up', component: RegisterComponent},
     {path: 'recover-password', component: RecoverPasswordComponent},
     {path: 'terms-condition', component: TermsConditionsComponent},
     {path: 'privacy-policy', component: PrivacyPolicyComponent},
