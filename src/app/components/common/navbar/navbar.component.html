@@ -110,12 +110,16 @@
                         <a routerLink="/cart"><i class='bx bx-cart'></i></a>
                     </div>
 
-                    <div class="menu-btn">
+                    <div class="menu-btn"  *ngIf="!(isLoggedIn$ | async)">
                         <a routerLink="/sign-in" class="phone-btn">Sign in</a>
                     </div>
 
-                    <div class="menu-btn">
+                    <div class="menu-btn"*ngIf="!(isLoggedIn$ | async)">
                         <a routerLink="/sign-up" class="phone-btn">Register</a>
+                    </div>
+
+                    <div class="menu-btn"*ngIf="(isLoggedIn$ | async)">
+                        <a>Hello </a>
                     </div>
                 </div>
             </nav>
