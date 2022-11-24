@@ -119,7 +119,11 @@
                     </div>
 
                     <div class="menu-btn"*ngIf="(isLoggedIn$ | async)">
-                        <a>Hello </a>
+                        <a>Hello {{user?.username}}</a>
+                    </div>
+
+                    <div class="menu-btn"(click)="logout($event)" *ngIf="(isLoggedIn$ | async)">
+                        <a class="phone-btn" type="submit">Logout</a>
                     </div>
                 </div>
             </nav>

@@ -9,13 +9,16 @@ import { User } from '../_models/user.model';
 })
 export class AuthService {
 private loggedIn = new BehaviorSubject<boolean>(false);
+private currentUser = new BehaviorSubject<User>(null);
 private loginPath = environment.apiUrl + 'identity/login'
 private registerPath = environment.apiUrl + 'identity/register'
+  router: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,) { }
 
   login(data: Observable<any>){
     var user = new User("bla", "some token")
+    this.currentUser.next(user);
     this.loggedIn.next(true)
     return this.http.post(this.loginPath, data)
   }
@@ -36,11 +39,20 @@ private registerPath = environment.apiUrl + 'identity/register'
     return this.loggedIn.asObservable();
   }
 
+  get loggedinUser(){
+    return this.currentUser.asObservable();
+  }
+
   autoLogin(){
     if(this.getToken()){
-      var user = new User("bla", "some token")
       this.loggedIn.next(true);
     }
+  }
+
+  logout(){
+    this.currentUser.next(null);
+    this.loggedIn.next(false)
+    localStorage.removeItem('token');
   }
 
 }
