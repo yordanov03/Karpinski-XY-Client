@@ -29,9 +29,8 @@ export class SignInComponent implements OnInit {
 
   login(){
     this.authService.login(this.loginForm.value).subscribe(data =>{
-      console.log(data);
       this.isLogInSuccessful = true;
-      this.authService.saveToken(data['token']);
+      this.authService.saveUserInfo(data);
       setTimeout(() => {
         this.router.navigate([""])
       }, 2000)

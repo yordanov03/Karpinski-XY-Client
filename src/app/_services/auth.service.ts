@@ -12,13 +12,13 @@ private loggedIn = new BehaviorSubject<boolean>(false);
 private currentUser = new BehaviorSubject<User>(null);
 private loginPath = environment.apiUrl + 'identity/login'
 private registerPath = environment.apiUrl + 'identity/register'
-  router: any;
+user: User;
 
-  constructor(private http: HttpClient,) { }
+  constructor(private http: HttpClient) { }
 
   login(data: Observable<any>){
-    var user = new User("bla", "some token")
-    this.currentUser.next(user);
+    this.saveUserInfo(data);
+    this.currentUser.next(this.user);
     this.loggedIn.next(true)
     return this.http.post(this.loginPath, data)
   }
@@ -27,12 +27,14 @@ private registerPath = environment.apiUrl + 'identity/register'
     return this.http.post(this.registerPath, data)
   }
 
-  saveToken(token){
-    localStorage.setItem('token', token);
+  saveUserInfo(data){
+    this.user = new User(data['username'], data['token'], data['id'])
+    console.log(this.user)
+    localStorage.setItem('userInfo', JSON.stringify(this.user));
   }
 
-  getToken(){
-    return localStorage.getItem('token');
+  getUserInfo(){
+    return localStorage.getItem('userInfo');
   }
 
   get isLoggedIn(){
@@ -44,15 +46,18 @@ private registerPath = environment.apiUrl + 'identity/register'
   }
 
   autoLogin(){
-    if(this.getToken()){
+    if(this.getUserInfo()){
       this.loggedIn.next(true);
+      var userInfo = JSON.parse(this.getUserInfo())
+      this.user = new User(userInfo['username'], userInfo['token'], userInfo['id'])
+      this.currentUser.next(this.user);
     }
   }
 
   logout(){
     this.currentUser.next(null);
     this.loggedIn.next(false)
-    localStorage.removeItem('token');
+    localStorage.removeItem('userInfo');
   }
 
 }
