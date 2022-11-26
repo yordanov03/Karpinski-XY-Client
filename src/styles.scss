@@ -101,6 +101,15 @@ img {
 .border-radius-5 {
     border-radius: 75px 5px 75px 5px !important;
 }
+
+/*Notification messages styles*/
+.alert-danger{
+    margin-top: 10px;
+}
+
+.alert-success{
+    margin-top: 10px;
+}
 /*Default Btn Style*/
 .default-btn {
     background-color: $main-color;
@@ -358,6 +367,10 @@ Navbar Area
         position: relative;
         overflow: hidden;
         z-index: 1;
+        margin: {
+            left: 5px;
+            right: 5px;
+        };
 
         i {
             font-size: 22px;

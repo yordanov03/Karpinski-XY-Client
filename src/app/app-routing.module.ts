@@ -1,16 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomePageOneComponent } from './components/pages/home-page-one/home-page-one.component';
-import { HomePageTwoComponent } from './components/pages/home-page-two/home-page-two.component';
-import { HomePageThreeComponent } from './components/pages/home-page-three/home-page-three.component';
+import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { AboutComponent } from './components/pages/about/about.component';
-import { PricingComponent } from './components/pages/pricing/pricing.component';
 import { FaqComponent } from './components/pages/faq/faq.component';
-import { DesignerComponent } from './components/pages/designer/designer.component';
-import { TestimonialsComponent } from './components/pages/testimonials/testimonials.component';
 import { ErrorComponent } from './components/pages/error/error.component';
 import { SignInComponent } from './components/pages/sign-in/sign-in.component';
-import { SignUpComponent } from './components/pages/sign-up/sign-up.component';
+import { RegisterComponent } from './components/pages/register/register.component';
 import { RecoverPasswordComponent } from './components/pages/recover-password/recover-password.component';
 import { TermsConditionsComponent } from './components/pages/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from './components/pages/privacy-policy/privacy-policy.component';
@@ -26,17 +21,12 @@ import { BlogDetailsComponent } from './components/pages/blog-details/blog-detai
 import { ContactComponent } from './components/pages/contact/contact.component';
 
 const routes: Routes = [
-    {path: '', component: HomePageOneComponent},
-    {path: 'home-two', component: HomePageTwoComponent},
-    {path: 'home-three', component: HomePageThreeComponent},
+    {path: '', component: HomePageComponent},
     {path: 'about', component: AboutComponent},
-    {path: 'pricing', component: PricingComponent},
     {path: 'faq', component: FaqComponent},
-    {path: 'designer', component: DesignerComponent},
-    {path: 'testimonials', component: TestimonialsComponent},
     {path: 'error', component: ErrorComponent},
     {path: 'sign-in', component: SignInComponent},
-    {path: 'sign-up', component: SignUpComponent},
+    {path: 'sign-up', component: RegisterComponent},
     {path: 'recover-password', component: RecoverPasswordComponent},
     {path: 'terms-condition', component: TermsConditionsComponent},
     {path: 'privacy-policy', component: PrivacyPolicyComponent},

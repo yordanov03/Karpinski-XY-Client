@@ -1,4 +1,4 @@
-<app-navbar-style-one></app-navbar-style-one>
+<app-navbar></app-navbar>
 
 <div class="inner-banner inner-bg2">
     <div class="container">
@@ -27,18 +27,20 @@
                 </ul>
             </div>
 
-            <form>
+            <form [formGroup]="loginForm"(ngSubmit)='login()'>
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <input class="form-control" type="text" name="name" placeholder="Username or Email">
+                            <input class="form-control" type="text" name="name" placeholder="Username" formControlName="username">
                         </div>
+                        <div *ngIf="username?.touched && username?.errors?.['required']" class="alert alert-danger">This field is required</div>
                     </div>
 
                     <div class="col-12">
                         <div class="form-group">
-                            <input class="form-control" type="password" name="password" placeholder="Password">
+                            <input class="form-control" type="password" name="password" placeholder="Password" formControlName="password">
                         </div>
+                        <div *ngIf="password?.touched && password?.errors?.['required']" class="alert alert-danger">This field is required</div>
                     </div>
 
                     <div class="col-lg-6 col-sm-6 form-condition">
@@ -56,8 +58,16 @@
                         <button class="default-btn btn-two sign-btn" type="submit">Sign In Now</button>
                     </div>
 
+                    <div>
+                        <div *ngIf="isLoginFailed" class="alert alert-danger">{{errorMessage}}</div>
+                    </div>
+
+                    <div>
+                        <div *ngIf="isLogInSuccessful" class="alert alert-success">Sign in successful</div>
+                    </div>
+
                     <div class="col-12">
-                        <p class="account-desc">Not a member? <a routerLink="/sign-up">Register</a></p>
+                        <p class="account-desc">Not a registered? <a routerLink="/sign-up">Register</a></p>
                     </div>
                 </div>
             </form>
@@ -65,4 +75,4 @@
     </div>
 </section>
 
-<app-footer-style-two></app-footer-style-two>
+<app-footer></app-footer>

@@ -1,0 +1,95 @@
+<app-navbar></app-navbar>
+<div class="inner-banner inner-bg9">
+    <div class="container">
+        <div class="inner-title">
+            <h3>Sign Up</h3>
+            <ul>
+                <li><a routerLink="/">Home</a></li>
+                <li><i class='bx bxs-chevrons-right'></i></li>
+                <li>Sign Up</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section class="sign-up-area ptb-100">
+    <div class="container">
+        <div class="contact-wrap-form sign-in-width">
+            <div class="scetion-title text-center">
+                <span>Sign Up</span>
+                <h2>Create An Account!</h2>
+                <p>with your social network</p>
+                <ul class="sign-social-icon">
+                    <li><a href="#"><i class='bx bxl-facebook'></i></a></li>
+                    <li><a href="#"><i class='bx bxl-twitter'></i></a></li>
+                    <li><a href="#"><i class='bx bxl-google-plus'></i></a></li>
+                </ul>
+            </div>
+
+            <form [formGroup]="registerForm" (ngSubmit)='register()'>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Username"
+                                formControlName="username">
+                        </div>
+                        <div *ngIf="username?.touched && username?.errors?.['required']" class="alert alert-danger">This
+                            field is required</div>
+                        <div *ngIf="username?.touched && username?.errors?.minlength" class="alert alert-danger">
+                            Username is too short</div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input class="form-control" type="email" name="name" placeholder="Email"
+                                formControlName="email">
+                        </div>
+                        <div *ngIf="email?.touched && email?.errors?.['required']" class="alert alert-danger">This field
+                            is required</div>
+                        <div *ngIf="email?.touched && email?.errors?.email" class="alert alert-danger">Email must be a
+                            valid email address</div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input class="form-control" type="password" name="password" placeholder="Password"
+                                formControlName="password">
+                        </div>
+                        <div *ngIf="password?.touched && password?.errors?.['required']" class="alert alert-danger">This
+                            field is required</div>
+                        <div *ngIf="password?.touched && password?.errors?.minlength" class="alert alert-danger">
+                            Password is too short</div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input class="form-control" type="password" name="confirmPassword"
+                                placeholder="Confirm Password" formControlName="confirmPassword">
+                        </div>
+                        <div *ngIf="confirmPassword?.touched && confirmPassword?.errors?.['required']"
+                            class="alert alert-danger">This field is required</div>
+                        <div *ngIf="confirmPassword?.touched && confirmPassword?.hasError('matching')"
+                            class="alert alert-danger">Passwords do not match</div>
+                    </div>
+
+                    <div class="col-12 text-center">
+                        <button class="default-btn btn-two sign-btn" type="submit" >Register</button>
+                    </div>
+                    <br />
+                    <div>
+                        <div class="alert alert-danger" *ngIf="registerForm.hasError && isSignUpFailed" id="signupfailedErrorBox" >
+                            Registration failed! {{ errorMessage }}
+                        </div>
+                        <div class="alert alert-success" *ngIf="isSuccessful">
+                            Your registration is successful!
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p class="account-desc">Already have an account? <a routerLink="/sign-in">Sign In</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
