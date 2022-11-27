@@ -19,6 +19,7 @@ import { ProductsDetailsComponent } from './components/pages/products-details/pr
 import { BlogComponent } from './components/pages/blog/blog.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
     {path: 'terms-condition', component: TermsConditionsComponent},
     {path: 'privacy-policy', component: PrivacyPolicyComponent},
     {path: 'coming-soon', component: ComingSoonComponent},
+    {path: 'create-painting', component: CreatePaintingComponent},
     {path: 'services', component: ServicesComponent},
     {path: 'service-details', component: ServicesDetailsComponent},
     {path: 'control-panel', component: ControlPanelComponent},

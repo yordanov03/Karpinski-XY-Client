@@ -28,6 +28,7 @@ import { ProductsDetailsComponent } from './components/pages/products-details/pr
 import { BlogComponent } from './components/pages/blog/blog.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ContactComponent } from './components/pages/contact/contact.component';
     ProductsDetailsComponent,
     BlogComponent,
     BlogDetailsComponent,
-    ContactComponent
+    ContactComponent,
+    CreatePaintingComponent
   ],
   imports: [
     BrowserModule,
