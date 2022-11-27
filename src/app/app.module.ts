@@ -21,7 +21,7 @@ import { PrivacyPolicyComponent } from './components/pages/privacy-policy/privac
 import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.component';
 import { ServicesComponent } from './components/pages/services/services.component';
 import { ServicesDetailsComponent } from './components/pages/services-details/services-details.component';
-import { ProductsComponent } from './components/pages/products/products.component';
+import { ControlPanelComponent } from './components/pages/control-panel/control-panel.component';
 import { CartComponent } from './components/pages/cart/cart.component';
 import { CheckoutComponent } from './components/pages/checkout/checkout.component';
 import { ProductsDetailsComponent } from './components/pages/products-details/products-details.component';
@@ -47,7 +47,7 @@ import { ContactComponent } from './components/pages/contact/contact.component';
     ComingSoonComponent,
     ServicesComponent,
     ServicesDetailsComponent,
-    ProductsComponent,
+    ControlPanelComponent,
     CartComponent,
     CheckoutComponent,
     ProductsDetailsComponent,

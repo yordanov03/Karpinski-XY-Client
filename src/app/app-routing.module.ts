@@ -12,7 +12,7 @@ import { PrivacyPolicyComponent } from './components/pages/privacy-policy/privac
 import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.component';
 import { ServicesComponent } from './components/pages/services/services.component';
 import { ServicesDetailsComponent } from './components/pages/services-details/services-details.component';
-import { ProductsComponent } from './components/pages/products/products.component';
+import { ControlPanelComponent } from './components/pages/control-panel/control-panel.component';
 import { CartComponent } from './components/pages/cart/cart.component';
 import { CheckoutComponent } from './components/pages/checkout/checkout.component';
 import { ProductsDetailsComponent } from './components/pages/products-details/products-details.component';
@@ -33,7 +33,7 @@ const routes: Routes = [
     {path: 'coming-soon', component: ComingSoonComponent},
     {path: 'services', component: ServicesComponent},
     {path: 'service-details', component: ServicesDetailsComponent},
-    {path: 'product', component: ProductsComponent},
+    {path: 'control-panel', component: ControlPanelComponent},
     {path: 'cart', component: CartComponent},
     {path: 'checkout', component: CheckoutComponent},
     {path: 'product-details', component: ProductsDetailsComponent},
