@@ -35,7 +35,8 @@
                 "src/assets/css/meanmenu.css",
                 "node_modules/jquery-nice-select/scss/nice-select.scss",
                 "src/styles.scss",
-                "src/responsive.scss"
+                "src/responsive.scss",
+                "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
                 "node_modules/jquery/dist/jquery.min.js",
