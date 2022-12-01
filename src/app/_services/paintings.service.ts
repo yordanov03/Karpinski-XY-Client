@@ -8,7 +8,7 @@ import { Painting } from '../_models/painting,model';
   providedIn: 'root'
 })
 export class PaintingsService {
-  createPaintingPath = environment.apiUrl + 'control-panel'
+  createPaintingPath = environment.apiUrl + 'paintings/create'
 
   constructor(private http: HttpClient) { }
 

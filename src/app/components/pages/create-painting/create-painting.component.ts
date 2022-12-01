@@ -23,8 +23,8 @@ createPaintingForm: FormGroup;
         name:['',Validators.required],
         description:['',Validators.required],
         price:['', Validators.required],
-        size: ['', Validators.required],
-        available:['yes'],
+        dimensions: ['', Validators.required],
+        available:[true],
         imageUpload:['', Validators.required]
       })
      }
@@ -34,9 +34,9 @@ createPaintingForm: FormGroup;
 
 createPainting(){
   console.log(this.createPaintingForm.value)
-  this.submitted = true;
   
   if(this.createPaintingForm.invalid){
+    this.submitted = true;
     this.toasterService.error("Please fill in required fields")
     setTimeout(() => {
       this.submitted = false;
@@ -44,15 +44,30 @@ createPainting(){
     }, 3000);
     return
   }
+
+const formData = new FormData();
+formData.append('imageUpload', this.createPaintingForm.get('imageUpload').value);
+formData.append('name', this.createPaintingForm.get('name').value);
+formData.append('dimensions', this.createPaintingForm.get('dimensions').value);
+formData.append('description', this.createPaintingForm.get('description').value);
+formData.append('price', this.createPaintingForm.get('price').value);
+formData.append('available', this.createPaintingForm.get('available').value);
+console.log(formData)
+
+
 this.paintingsService
-.createPainting(this.createPaintingForm.value)
+.createPainting(formData)
 .subscribe((res:any)=>{
   if(res.succeeded){
-    this.toasterService.success("Paiting has been added successfully!")
+    console.log("da")
+    this.toasterService.success("Painting has been added successfully!")
   }
   else{
+    console.log("nie")
+    this.submitted = true;
     this.toasterService.error(res.errors[0].description)
     this.errorMessage = res.errors[0].description
+    console.log(this.errorMessage)
   }
 })
 
