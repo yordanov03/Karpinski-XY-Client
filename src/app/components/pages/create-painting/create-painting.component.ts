@@ -13,6 +13,7 @@ imageURL: string;
 submitted = false;
 wrongFileFormat = false;
 errorMessage = '';
+
 createPaintingForm: FormGroup;
   constructor(private fb: FormBuilder,
     private paintingsService: PaintingsService,
@@ -20,10 +21,11 @@ createPaintingForm: FormGroup;
 
       this.createPaintingForm = this.fb.group({
         name:['',Validators.required],
+        description:['',Validators.required],
         price:['', Validators.required],
         size: ['', Validators.required],
         available:['yes'],
-        imageUpload:['']
+        imageUpload:['', Validators.required]
       })
      }
 
@@ -35,13 +37,25 @@ createPainting(){
   this.submitted = true;
   
   if(this.createPaintingForm.invalid){
-    this.toasterService.error("All fields are required")
+    this.toasterService.error("Please fill in required fields")
     setTimeout(() => {
       this.submitted = false;
       this.wrongFileFormat = false;
     }, 3000);
     return
   }
+this.paintingsService
+.createPainting(this.createPaintingForm.value)
+.subscribe((res:any)=>{
+  if(res.succeeded){
+    this.toasterService.success("Paiting has been added successfully!")
+  }
+  else{
+    this.toasterService.error(res.errors[0].description)
+    this.errorMessage = res.errors[0].description
+  }
+})
+
 }
 
 onImageChangeFromFile($event:any)
@@ -50,6 +64,7 @@ onImageChangeFromFile($event:any)
         let file = $event.target.files[0];
           if(file.type == "image/jpeg") {
             const file = (event.target as HTMLInputElement).files[0];
+            this.wrongFileFormat = false;
     this.createPaintingForm.patchValue({
       avatar: file
     });
@@ -63,7 +78,6 @@ onImageChangeFromFile($event:any)
           }
           else {
             //call validation
-            console.log("bla")
             this.wrongFileFormat = true;
             this.imageURL = '';
             // this.createPaintingForm.reset();
@@ -90,21 +104,6 @@ onImageChangeFromFile($event:any)
         
 get f(){
   return this.createPaintingForm.controls;
-}
-get name(){
-  return this.createPaintingForm.get('name');
-}
-get price(){
-  return this.createPaintingForm.get('price');
-}
-get size(){
-  return this.createPaintingForm.get('size');
-}
-get available(){
-  return this.createPaintingForm.get('available');
-}
-get imageUpload(){
-  return this.createPaintingForm.get('imageUpload');
 }
 
 }
