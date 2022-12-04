@@ -7,12 +7,12 @@ import { Painting } from '../_models/painting.model';
 @Injectable({
   providedIn: 'root'
 })
-export class PaintingsService {
-  createPaintingPath = environment.apiUrl + 'paintings/create'
+export class UploadService {
+  createPaintingPath = environment.apiUrl + 'upload'
 
   constructor(private http: HttpClient) { }
 
-  createPainting(data): Observable<Painting>{
-    return this.http.post<Painting>(this.createPaintingPath, data);
+  uploadImage(data): Observable<any>{
+    return this.http.post(this.createPaintingPath, data, {reportProgress: true, observe: 'events'});
   }
 }

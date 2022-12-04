@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaintingsService } from 'src/app/_services/paintings.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-painting',
@@ -13,6 +14,9 @@ imageURL: string;
 submitted = false;
 wrongFileFormat = false;
 errorMessage = '';
+response: {dbPath: ''};
+
+@Output() public onUploadFinished = new EventEmitter();
 
 createPaintingForm: FormGroup;
   constructor(private fb: FormBuilder,
@@ -22,10 +26,9 @@ createPaintingForm: FormGroup;
       this.createPaintingForm = this.fb.group({
         name:['',Validators.required],
         description:['',Validators.required],
-        price:['', Validators.required],
+        price:['', [Validators.required, Validators.pattern("^[0-9]*$") ]],
         dimensions: ['', Validators.required],
-        available:[true],
-        imageUpload:['', Validators.required]
+        available:[true]
       })
      }
 
@@ -45,8 +48,9 @@ createPainting(){
     return
   }
 
+
 const formData = new FormData();
-formData.append('imageUpload', this.createPaintingForm.get('imageUpload').value);
+formData.append('file', this.createPaintingForm.get('imageUpload').value);
 formData.append('name', this.createPaintingForm.get('name').value);
 formData.append('dimensions', this.createPaintingForm.get('dimensions').value);
 formData.append('description', this.createPaintingForm.get('description').value);
@@ -58,7 +62,7 @@ console.log(formData)
 this.paintingsService
 .createPainting(formData)
 .subscribe((res:any)=>{
-  if(res.succeeded){
+if(res.succeeded){
     console.log("da")
     this.toasterService.success("Painting has been added successfully!")
   }
@@ -115,6 +119,10 @@ onImageChangeFromFile($event:any)
       this.imageURL = reader.result as string;
     }
     reader.readAsDataURL(file)
+  }
+
+  uploadFinished = (event) => { 
+    this.response = event; 
   }
         
 get f(){

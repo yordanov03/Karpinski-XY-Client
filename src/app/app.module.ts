@@ -33,6 +33,7 @@ import { BlogDetailsComponent } from './components/pages/blog-details/blog-detai
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 import { AuthService } from './_services/auth.service';
+import { UploadPaintingComponent } from './upload-painting/upload-painting.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AuthService } from './_services/auth.service';
     BlogComponent,
     BlogDetailsComponent,
     ContactComponent,
-    CreatePaintingComponent
+    CreatePaintingComponent,
+    UploadPaintingComponent
   ],
   imports: [
     BrowserModule,

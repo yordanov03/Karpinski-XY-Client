@@ -1,0 +1,38 @@
+#imagePreview{
+    max-height: 250px;
+    max-width: 350px;
+    float: right;
+overflow:initial;
+object-position:right;
+right:0%;
+  }
+
+  .upload{
+    position: absolute;
+    font-weight:bold;
+    color:#28a745;
+    // margin-left: 15px;
+    // line-height: 36px;
+    bottom: 92px;
+    right: 630px;
+  }
+
+  #messageUpload{
+    position: absolute;
+    font-weight:bold;
+    color:#28a745;
+    // margin-left: 15px;
+    // line-height: 36px;
+    bottom: 55px;
+    right: 680px;
+  }
+
+  #uploadButton{
+position: absolute;
+    bottom: 90px;
+    right: 700px;
+  }
+
+  div{
+    overflow:inherit ;
+  }
