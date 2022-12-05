@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaintingsService } from 'src/app/_services/paintings.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpEventType } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-painting',
@@ -21,14 +22,16 @@ response: {dbPath: ''};
 createPaintingForm: FormGroup;
   constructor(private fb: FormBuilder,
     private paintingsService: PaintingsService,
-    private toasterService: ToastrService) {
+    private toasterService: ToastrService,
+    private router: Router) {
 
       this.createPaintingForm = this.fb.group({
         name:['',Validators.required],
         description:['',Validators.required],
         price:['', [Validators.required, Validators.pattern("^[0-9]*$") ]],
         dimensions: ['', Validators.required],
-        available:[true]
+        isAvailableToSell:[true],
+        imageURL:['']
       })
      }
 
@@ -36,11 +39,12 @@ createPaintingForm: FormGroup;
   }
 
 createPainting(){
+  this.createPaintingForm.get('imageURL').setValue(this.response.dbPath)
   console.log(this.createPaintingForm.value)
   
   if(this.createPaintingForm.invalid){
     this.submitted = true;
-    this.toasterService.error("Please fill in required fields")
+    this.toasterService.error("Please fill in all fields")
     setTimeout(() => {
       this.submitted = false;
       this.wrongFileFormat = false;
@@ -48,32 +52,17 @@ createPainting(){
     return
   }
 
-
-const formData = new FormData();
-formData.append('file', this.createPaintingForm.get('imageUpload').value);
-formData.append('name', this.createPaintingForm.get('name').value);
-formData.append('dimensions', this.createPaintingForm.get('dimensions').value);
-formData.append('description', this.createPaintingForm.get('description').value);
-formData.append('price', this.createPaintingForm.get('price').value);
-formData.append('available', this.createPaintingForm.get('available').value);
-console.log(formData)
-
-
 this.paintingsService
-.createPainting(formData)
-.subscribe((res:any)=>{
-if(res.succeeded){
-    console.log("da")
-    this.toasterService.success("Painting has been added successfully!")
-  }
-  else{
-    console.log("nie")
-    this.submitted = true;
-    this.toasterService.error(res.errors[0].description)
-    this.errorMessage = res.errors[0].description
-    console.log(this.errorMessage)
-  }
-})
+.createPainting(this.createPaintingForm.value)
+.subscribe(
+  (res:any)=>{
+this.toasterService.success("Success");
+setTimeout(() => {
+  this.router.navigate(['/'])
+}, 3000);
+}
+
+)
 
 }
 
@@ -123,6 +112,7 @@ onImageChangeFromFile($event:any)
 
   uploadFinished = (event) => { 
     this.response = event; 
+    console.log(this.response.dbPath)
   }
         
 get f(){
