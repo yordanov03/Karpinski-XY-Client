@@ -9,7 +9,7 @@ import { Painting } from '../_models/painting.model';
 })
 export class PaintingsService {
   createPaintingPath = environment.apiUrl + 'paintings/create'
-  availablePaintingPath = environment.apiUrl + 'available'
+  availablePaintingPath = environment.apiUrl + 'paintings/available'
 
   constructor(private http: HttpClient) { }
 

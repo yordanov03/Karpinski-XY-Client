@@ -21,19 +21,21 @@
             <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That homeless, won't many of goals thoughts volumes felt.</p>
         </div>
 
-        <div class="row pt-45">
-            <div class="col-lg-4 col-md-6">
+        <div class="row pt-45" >
+            <div class="col-lg-4 col-md-6" *ngFor="let painting of avaialablePaintings">
                 <div class="service-card">
-                    <a routerLink="/service-details"><img src="assets/img/service/service1.jpg" alt="Service Images"></a>
+                    <a routerLink="/service-details"><img src="{{apiUrl}}{{painting.imageUrl}}" alt="Service Images"
+                        style="width:550px; height:520px;"></a>
 
                     <div class="service-content">
-                        <a routerLink="/service-details"><h3>Brand Identy</h3></a>
-                        <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit, sed do eiusmo gd  tempor incididunt ut labore.</p>
-                        <a routerLink="/service-details" class="more-btn"><i class='bx bx-plus'></i></a>
+                        <a routerLink="/service-details"><h3>{{painting.name}}</h3></a>
+                        <p> Dimensions: {{painting.dimensions}}</p>
+                        <p>{{painting.description}}</p>
+                        <a routerLink="/service-details" class="default-btn">Make inquery</a>
                     </div>
                 </div>
             </div>
-
+<!-- 
             <div class="col-lg-4 col-md-6">
                 <div class="service-card">
                     <a routerLink="/service-details"><img src="assets/img/service/service2.jpg" alt="Service Images"></a>
@@ -92,7 +94,7 @@
                         <a routerLink="/service-details" class="more-btn"><i class='bx bx-plus'></i></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
