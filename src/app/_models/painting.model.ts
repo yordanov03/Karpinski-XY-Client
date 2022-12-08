@@ -4,6 +4,6 @@ export class Painting{
     price: string;
     size: string;
     availableToSell: boolean;
-    imagePath: string;
+    imageUrl: string;
     description: string;
 }

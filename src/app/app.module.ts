@@ -22,7 +22,7 @@ import { RecoverPasswordComponent } from './components/pages/recover-password/re
 import { TermsConditionsComponent } from './components/pages/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from './components/pages/privacy-policy/privacy-policy.component';
 import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.component';
-import { ServicesComponent } from './components/pages/services/services.component';
+import { PaintingsComponent } from './components/pages/paintings/paintings.component';
 import { ServicesDetailsComponent } from './components/pages/services-details/services-details.component';
 import { ControlPanelComponent } from './components/pages/control-panel/control-panel.component';
 import { CartComponent } from './components/pages/cart/cart.component';
@@ -51,7 +51,7 @@ import { UploadPaintingComponent } from './upload-painting/upload-painting.compo
     TermsConditionsComponent,
     PrivacyPolicyComponent,
     ComingSoonComponent,
-    ServicesComponent,
+    PaintingsComponent,
     ServicesDetailsComponent,
     ControlPanelComponent,
     CartComponent,
