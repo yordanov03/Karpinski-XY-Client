@@ -10,6 +10,7 @@ import { Painting } from '../_models/painting.model';
 export class PaintingsService {
   createPaintingPath = environment.apiUrl + 'paintings/create'
   availablePaintingPath = environment.apiUrl + 'paintings/available'
+  paintingDetailsPath = environment.apiUrl + 'paintings/'
 
   constructor(private http: HttpClient) { }
 
@@ -19,5 +20,9 @@ export class PaintingsService {
 
   getAvailablePaintings(): Observable<Array<Painting>>{
     return this.http.get<Array<Painting>>(this.availablePaintingPath)
+  }
+
+  getDetails(id): Observable<Painting>{
+    return this.http.get<Painting>(this.paintingDetailsPath + id)
   }
 }
