@@ -15,7 +15,7 @@ import { ServicesDetailsComponent } from './components/pages/services-details/se
 import { ControlPanelComponent } from './components/pages/control-panel/control-panel.component';
 import { CartComponent } from './components/pages/cart/cart.component';
 import { CheckoutComponent } from './components/pages/checkout/checkout.component';
-import { ProductsDetailsComponent } from './components/pages/products-details/products-details.component';
+import { PaintingsDetailsComponent } from './components/pages/paintings-details/paintings-details.component';
 import { BlogComponent } from './components/pages/blog/blog.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
@@ -38,7 +38,7 @@ const routes: Routes = [
     {path: 'control-panel', component: ControlPanelComponent},
     {path: 'cart', component: CartComponent},
     {path: 'checkout', component: CheckoutComponent},
-    {path: 'product-details', component: ProductsDetailsComponent},
+    {path: 'painting-details', component: PaintingsDetailsComponent},
     {path: 'blog', component: BlogComponent},
     {path: 'blog-details', component: BlogDetailsComponent},
     {path: 'contact', component: ContactComponent},
