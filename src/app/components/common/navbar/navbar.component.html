@@ -97,7 +97,7 @@
 
                                 <li class="nav-item"><a routerLink="/product-details" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Product Details</a></li>
 
-                                <li class="nav-item"><a routerLink="/pcontrol-panel" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Control Panel</a></li>
+                                <li class="nav-item"><a routerLink="/control-panel" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Control Panel</a></li>
                             </ul>
                         </li>
 
@@ -113,10 +113,6 @@
 
                         <li class="nav-item"><a routerLink="/contact" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Contact</a></li>
                     </ul>
-
-                    <div class="cart-area">
-                        <a routerLink="/cart"><i class='bx bx-cart'></i></a>
-                    </div>
 
                     <div class="menu-btn"  *ngIf="!(isLoggedIn$ | async)">
                         <a routerLink="/sign-in" class="phone-btn">Sign in</a>

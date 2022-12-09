@@ -24,7 +24,7 @@
         <div class="row pt-45" >
             <div class="col-lg-4 col-md-6" *ngFor="let painting of avaialablePaintings">
                 <div class="service-card">
-                    <a routerLink="/service-details"><img src="{{apiUrl}}{{painting.imageUrl}}" alt="Service Images"
+                    <a routerLink="/paintings-details/{{painting.id}}"><img src="{{apiUrl}}{{painting.imageUrl}}" alt="Service Images"
                         style="width:550px; height:520px;"></a>
 
                     <div class="service-content">

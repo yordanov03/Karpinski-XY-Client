@@ -38,7 +38,7 @@ const routes: Routes = [
     {path: 'control-panel', component: ControlPanelComponent},
     {path: 'cart', component: CartComponent},
     {path: 'checkout', component: CheckoutComponent},
-    {path: 'painting-details', component: PaintingsDetailsComponent},
+    {path: 'paintings-details/:id', component: PaintingsDetailsComponent},
     {path: 'blog', component: BlogComponent},
     {path: 'blog-details', component: BlogDetailsComponent},
     {path: 'contact', component: ContactComponent},
