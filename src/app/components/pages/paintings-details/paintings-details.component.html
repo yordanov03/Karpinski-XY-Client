@@ -26,7 +26,7 @@
                 <div class="product-desc">
                     <h3>{{painting?.name}}</h3>
 
-                    <p>{{painting?.description}}</p>
+                    <p>{{painting?.shortDescription}}</p>
     
                     <div class="product-share">
                         <ul>
@@ -60,9 +60,9 @@
                                         <div class="tabs_item">
                                             <div class="product-detls-tab-content">
                                                 <ul class="additional-information">
-                                                    <li><span>Technique:</span>12</li>
-                                                    <li><span>Year:</span>Business</li>
-                                                    <li><span>Size:</span> Large, Medium</li>
+                                                    <li><span>Technique:</span>{{painting?.technique}}</li>
+                                                    <li><span>Year:</span>{{painting?.year}}</li>
+                                                    <li><span>Size:</span> {{painting?.dimensions}}</li>
                                                     <li><span>Tag:</span>Book Cover</li>
                                                 </ul>
                                             </div>
