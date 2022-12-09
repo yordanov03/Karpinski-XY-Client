@@ -23,17 +23,29 @@
                                 placeholder="Name of the painting" formControlName="name">
                         </div>
                         <div *ngIf="f.name?.touched && f.name?.errors?.['required'] || submitted"
-                            class="alert alert-danger">This
-                            field is required</div>
+                            class="alert alert-danger">
+                            This field is required
+                        </div>
 
                         <div class="form-group">
-                            <textarea class="form-control" row=3 name="description" id="description"
+                            <textarea class="form-control" row=3 name="description" id="shortDescription"
+                                class="form-control" placeholder="Short description of the painting"
+                                formControlName="shortDescription">
+                            </textarea>
+                        </div>
+                        <div *ngIf="f.shortDescription?.touched && f.shortDescription?.errors?.['required'] || submitted"
+                            class="alert alert-danger">This field is required
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" row=8 name="description" id="description"
                                 class="form-control" placeholder="Description of the painting"
-                                formControlName="description"></textarea>
+                                formControlName="description">
+                            </textarea>
                         </div>
                         <div *ngIf="f.description?.touched && f.description?.errors?.['required'] || submitted"
-                            class="alert alert-danger">This
-                            field is required</div>
+                            class="alert alert-danger">This field is required
+                        </div>
 
 
                         <div class="form-group">
@@ -41,19 +53,37 @@
                                 formControlName="price">
                         </div>
                         <div *ngIf="f.price?.touched && f.price?.errors?.['required'] || submitted"
-                            class="alert alert-danger">This
-                            field is required</div>
-                            <div *ngIf="f.price.errors?.pattern" class="alert alert-danger">Only numbers are allowed!</div>
+                            class="alert alert-danger">This field is required
+                        </div>
+                        <div *ngIf="f.price.errors?.pattern" class="alert alert-danger">Only numbers are allowed!</div>
 
                         <div class="form-group">
                             <input type="text" name="size" id="dimensions" class="form-control" placeholder="Dimensions"
                                 formControlName="dimensions">
                         </div>
                         <div *ngIf="f.dimensions?.touched && f.dimensions?.errors?.['required'] || submitted"
-                            class="alert alert-danger">This
-                            field is required</div>
+                            class="alert alert-danger">This field is required
+                        </div>
 
+                        <div class="form-group">
+                            <input type="text" name="size" id="technique" class="form-control" placeholder="Technique"
+                                formControlName="technique">
+                        </div>
+                        <div *ngIf="f.technique?.touched && f.technique?.errors?.['required'] || submitted"
+                            class="alert alert-danger">This field is required
+                        </div>
 
+                        <div class="form-group">
+                            <input type="text" name="year" id="year" class="form-control" required placeholder="Year"
+                                formControlName="year">
+                        </div>
+                        <div *ngIf="f.year?.touched && f.year?.errors?.['required'] || submitted"
+                            class="alert alert-danger">
+                            This field is required
+                        </div>
+                        <div *ngIf="f.year.errors?.pattern" class="alert alert-danger">
+                            Only numbers are allowed!
+                        </div>
                         <div class="form-group">
                             <label>Is it available for sale</label>
                             <div class="form-check-label">

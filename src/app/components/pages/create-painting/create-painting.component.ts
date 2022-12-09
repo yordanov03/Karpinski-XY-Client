@@ -31,7 +31,10 @@ createPaintingForm: FormGroup;
         price:['', [Validators.required, Validators.pattern("^[0-9]*$") ]],
         dimensions: ['', Validators.required],
         isAvailableToSell:[true],
-        imageURL:['']
+        imageURL:[''],
+        year:['', [Validators.required, Validators.pattern("^[0-9]*$") ]],
+        shortDescription:['',Validators.required],
+        technique:['',Validators.required],
       })
      }
 
