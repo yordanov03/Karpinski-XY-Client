@@ -31,6 +31,11 @@
                         <a routerLink="/service-details"><h3>{{painting.name}}</h3></a>
                         <p> Dimensions: {{painting.dimensions}}</p>
                         <p>{{painting.description}}</p>
+
+                    <p *ngIf="!(isLoggedIn$ | async)">
+                        <i class='bi bi-pencil' id="pencilbutton" type="button"></i>
+                        <i class='bi bi-trash3' id="trashbutton" type="button"></i>
+                    </p>
                         <a routerLink="/service-details" class="default-btn">Make inquery</a>
                     </div>
                 </div>
