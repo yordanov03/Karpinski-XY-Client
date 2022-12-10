@@ -37,7 +37,8 @@
                 "node_modules/jquery-nice-select/scss/nice-select.scss",
                 "src/styles.scss",
                 "src/responsive.scss",
-                "node_modules/ngx-toastr/toastr.css"
+                "node_modules/ngx-toastr/toastr.css",
+                "node_modules/sweetalert2/src/sweetalert2.scss"
             ],
             "scripts": [
                 "node_modules/jquery/dist/jquery.min.js",
@@ -48,6 +49,7 @@
                 "node_modules/jquery-nice-select/js/jquery.nice-select.min.js",
                 "node_modules/wowjs/dist/wow.js",
                 "src/assets/js/custom.js"
+                
             ],
             "vendorChunk": true,
             "extractLicenses": false,

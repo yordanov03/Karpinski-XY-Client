@@ -33,8 +33,8 @@
                         <p>{{painting.description}}</p>
 
                     <p *ngIf="!(isLoggedIn$ | async)">
+                        <i class='bi bi-trash3' id="trashbutton" type="button" (click)="onDeleteClick(painting.id)"></i>
                         <i class='bi bi-pencil' id="pencilbutton" type="button"></i>
-                        <i class='bi bi-trash3' id="trashbutton" type="button"></i>
                     </p>
                         <a routerLink="/service-details" class="default-btn">Make inquery</a>
                     </div>

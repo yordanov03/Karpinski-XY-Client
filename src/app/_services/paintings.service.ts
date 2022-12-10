@@ -11,6 +11,7 @@ export class PaintingsService {
   createPaintingPath = environment.apiUrl + 'paintings/create'
   availablePaintingPath = environment.apiUrl + 'paintings/available'
   paintingDetailsPath = environment.apiUrl + 'paintings/'
+  deletePaintingPath = environment.apiUrl + 'paintings/'
 
   constructor(private http: HttpClient) { }
 
@@ -24,5 +25,9 @@ export class PaintingsService {
 
   getDetails(id): Observable<Painting>{
     return this.http.get<Painting>(this.paintingDetailsPath + id)
+  }
+
+  deletePainting(id){
+    return this.http.delete(this.deletePaintingPath + id);
   }
 }
