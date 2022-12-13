@@ -24,13 +24,19 @@
         <div class="row pt-45" >
             <div class="col-lg-4 col-md-6" *ngFor="let painting of avaialablePaintings">
                 <div class="service-card">
-                    <a routerLink="/service-details"><img src="{{apiUrl}}{{painting.imageUrl}}" alt="Service Images"
+                    <a routerLink="/paintings-details/{{painting.id}}"><img src="{{apiUrl}}{{painting.imageUrl}}" alt="Service Images"
                         style="width:550px; height:520px;"></a>
 
                     <div class="service-content">
                         <a routerLink="/service-details"><h3>{{painting.name}}</h3></a>
-                        <p> Dimensions: {{painting.dimensions}}</p>
                         <p>{{painting.description}}</p>
+                        <p> Dimensions: {{painting.dimensions}}</p>
+                        <p *ngIf="!(isLoggedIn$ | async)">Price: {{painting.price}}</p>
+
+                    <p *ngIf="!(isLoggedIn$ | async)">
+                        <i class='bi bi-trash3' id="trashbutton" type="button" (click)="onDeleteClick(painting.id)"></i>
+                        <i class='bi bi-pencil' id="pencilbutton" type="button" (click)="onEditPainting(painting.id)"></i>
+                    </p>
                         <a routerLink="/service-details" class="default-btn">Make inquery</a>
                     </div>
                 </div>

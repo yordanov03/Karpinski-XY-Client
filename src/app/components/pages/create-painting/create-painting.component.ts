@@ -31,16 +31,19 @@ createPaintingForm: FormGroup;
         price:['', [Validators.required, Validators.pattern("^[0-9]*$") ]],
         dimensions: ['', Validators.required],
         isAvailableToSell:[true],
-        imageURL:['']
+        imageURL:[''],
+        year:['', [Validators.required, Validators.pattern("^[0-9]*$") ]],
+        shortDescription:['',Validators.required],
+        technique:['',Validators.required],
       })
      }
 
   ngOnInit(): void {
+    this.paintingsService.isInCreationMode = true
   }
 
 createPainting(){
   this.createPaintingForm.get('imageURL').setValue(this.response.dbPath)
-  console.log(this.createPaintingForm.value)
   
   if(this.createPaintingForm.invalid){
     this.submitted = true;

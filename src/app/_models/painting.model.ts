@@ -2,8 +2,11 @@ export class Painting{
     id: string;
     name: string;
     price: string;
-    size: string;
-    availableToSell: boolean;
+    dimensions: string;
+    isAvailableToSell: boolean;
     imageUrl: string;
     description: string;
+    shortDescription: string;
+    year: number;
+    technique: string;
 }
