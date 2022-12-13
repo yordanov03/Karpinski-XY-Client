@@ -3,11 +3,11 @@
 <div class="inner-banner inner-bg8">
     <div class="container">
         <div class="inner-title">
-            <h3>Services</h3>
+            <h3>Paintings</h3>
             <ul>
                 <li><a routerLink="/">Home</a></li>
                 <li><i class='bx bxs-chevrons-right'></i></li>
-                <li>Services</li>
+                <li>Paintings</li>
             </ul>
         </div>
     </div>
@@ -16,24 +16,32 @@
 <section class="service-area pt-100 pb-70">
     <div class="container">
         <div class="scetion-title text-center">
-            <span>Services</span>
+            <span>Paintings</span>
             <h2>Dizo Provide Good Quality Printing Services</h2>
             <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That homeless, won't many of goals thoughts volumes felt.</p>
         </div>
 
-        <div class="row pt-45">
-            <div class="col-lg-4 col-md-6">
+        <div class="row pt-45" >
+            <div class="col-lg-4 col-md-6" *ngFor="let painting of avaialablePaintings">
                 <div class="service-card">
-                    <a routerLink="/service-details"><img src="assets/img/service/service1.jpg" alt="Service Images"></a>
+                    <a routerLink="/paintings-details/{{painting.id}}"><img src="{{apiUrl}}{{painting.imageUrl}}" alt="Service Images"
+                        style="width:550px; height:520px;"></a>
 
                     <div class="service-content">
-                        <a routerLink="/service-details"><h3>Brand Identy</h3></a>
-                        <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit, sed do eiusmo gd  tempor incididunt ut labore.</p>
-                        <a routerLink="/service-details" class="more-btn"><i class='bx bx-plus'></i></a>
+                        <a routerLink="/service-details"><h3>{{painting.name}}</h3></a>
+                        <p>{{painting.description}}</p>
+                        <p> Dimensions: {{painting.dimensions}}</p>
+                        <p *ngIf="!(isLoggedIn$ | async)">Price: {{painting.price}}</p>
+
+                    <p *ngIf="!(isLoggedIn$ | async)">
+                        <i class='bi bi-trash3' id="trashbutton" type="button" (click)="onDeleteClick(painting.id)"></i>
+                        <i class='bi bi-pencil' id="pencilbutton" type="button" (click)="onEditPainting(painting.id)"></i>
+                    </p>
+                        <a routerLink="/service-details" class="default-btn">Make inquery</a>
                     </div>
                 </div>
             </div>
-
+<!-- 
             <div class="col-lg-4 col-md-6">
                 <div class="service-card">
                     <a routerLink="/service-details"><img src="assets/img/service/service2.jpg" alt="Service Images"></a>
@@ -92,7 +100,7 @@
                         <a routerLink="/service-details" class="more-btn"><i class='bx bx-plus'></i></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

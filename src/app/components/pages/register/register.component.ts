@@ -38,7 +38,6 @@ export class RegisterComponent implements OnInit {
             this.router.navigate([""])
           }, 2000);
         } else {
-          console.log(res)
           this.isSignUpFailed = true;
           this.errorMessage = res.errors[0].description
         }

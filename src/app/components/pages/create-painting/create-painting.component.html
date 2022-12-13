@@ -1,0 +1,134 @@
+<app-navbar></app-navbar>
+
+<div class="inner-banner inner-bg7">
+    <div class="container">
+        <div class="inner-title">
+            <h3>Create Painting</h3>
+            <ul>
+                <li><a routerLink="/">Home</a></li>
+                <li><i class='bx bxs-chevrons-right'></i></li>
+                <li>Create Painting</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="contact-wrap pt-45">
+        <div class="contact-wrap-form">
+            <form [formGroup]="createPaintingForm" (ngSubmit)="createPainting()" id="createPainting">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-4">
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" class="form-control"
+                                placeholder="Name of the painting" formControlName="name">
+                        </div>
+                        <div *ngIf="f.name?.touched && f.name?.errors?.['required'] || submitted"
+                            class="alert alert-danger">
+                            This field is required
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" row=3 name="description" id="shortDescription"
+                                class="form-control" placeholder="Short description of the painting"
+                                formControlName="shortDescription">
+                            </textarea>
+                        </div>
+                        <div *ngIf="f.shortDescription?.touched && f.shortDescription?.errors?.['required'] || submitted"
+                            class="alert alert-danger">This field is required
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" row=8 name="description" id="description"
+                                class="form-control" placeholder="Description of the painting"
+                                formControlName="description">
+                            </textarea>
+                        </div>
+                        <div *ngIf="f.description?.touched && f.description?.errors?.['required'] || submitted"
+                            class="alert alert-danger">This field is required
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="text" name="price" id="price" class="form-control" required placeholder="Price"
+                                formControlName="price">
+                        </div>
+                        <div *ngIf="f.price?.touched && f.price?.errors?.['required'] || submitted"
+                            class="alert alert-danger">This field is required
+                        </div>
+                        <div *ngIf="f.price.errors?.pattern" class="alert alert-danger">Only numbers are allowed!</div>
+
+                        <div class="form-group">
+                            <input type="text" name="size" id="dimensions" class="form-control" placeholder="Dimensions"
+                                formControlName="dimensions">
+                        </div>
+                        <div *ngIf="f.dimensions?.touched && f.dimensions?.errors?.['required'] || submitted"
+                            class="alert alert-danger">This field is required
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="size" id="technique" class="form-control" placeholder="Technique"
+                                formControlName="technique">
+                        </div>
+                        <div *ngIf="f.technique?.touched && f.technique?.errors?.['required'] || submitted"
+                            class="alert alert-danger">This field is required
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="year" id="year" class="form-control" required placeholder="Year"
+                                formControlName="year">
+                        </div>
+                        <div *ngIf="f.year?.touched && f.year?.errors?.['required'] || submitted"
+                            class="alert alert-danger">
+                            This field is required
+                        </div>
+                        <div *ngIf="f.year.errors?.pattern" class="alert alert-danger">
+                            Only numbers are allowed!
+                        </div>
+                        <div class="form-group">
+                            <label>Is it available for sale</label>
+                            <div class="form-check-label">
+                                <label class="radio-inline">
+                                    <input class="form-check-input" type="radio" name="isAvailableToSell"
+                                        formControlName="isAvailableToSell" [value]="true" selected>Yes
+                                </label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="isAvailableToSell"
+                                        formControlName="isAvailableToSell" [value]="false">No
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <input (change)="onImageChangeFromFile($event)" type="file" #file class="form-control" id="upload"
+                                [ngClass]="{ 'is-invalid': submitted && f.imageUpload.errors }"
+                                formControlName="imageUpload" />
+                                <div>
+                                    <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+                                </div>
+                            <div *ngIf="f.imageUpload?.errors?.['required'] && submitted" class="alert alert-danger">
+                                This field is required</div>
+                            <div *ngIf="wrongFileFormat" class="alert alert-danger">JPEG or JPG Image is required</div>
+                        </div> -->
+                    </div>
+
+                    <!-- <div class="col-lg-8 col-sm-8 margin-right">
+                        <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+                            <img [src]="imageURL" [alt]="createPaintingForm.value.name">
+                        </div>
+                    </div> -->
+
+                    <div class="col-lg-3 col-sm-3 margin-left"></div>
+                    <div class="col-lg-5 col-sm-5 margin-left">
+                        <app-upload-painting (onUploadFinished)="uploadFinished($event)"></app-upload-painting>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 text-left">
+                        <button type="submit" class="default-btn page-btn text-center">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

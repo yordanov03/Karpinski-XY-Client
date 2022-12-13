@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,15 +22,19 @@ import { RecoverPasswordComponent } from './components/pages/recover-password/re
 import { TermsConditionsComponent } from './components/pages/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from './components/pages/privacy-policy/privacy-policy.component';
 import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.component';
-import { ServicesComponent } from './components/pages/services/services.component';
+import { PaintingsComponent } from './components/pages/paintings/paintings.component';
 import { ServicesDetailsComponent } from './components/pages/services-details/services-details.component';
-import { ProductsComponent } from './components/pages/products/products.component';
+import { ControlPanelComponent } from './components/pages/control-panel/control-panel.component';
 import { CartComponent } from './components/pages/cart/cart.component';
 import { CheckoutComponent } from './components/pages/checkout/checkout.component';
-import { ProductsDetailsComponent } from './components/pages/products-details/products-details.component';
+import { PaintingsDetailsComponent } from './components/pages/paintings-details/paintings-details.component';
 import { BlogComponent } from './components/pages/blog/blog.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
+import { AuthService } from './_services/auth.service';
+import { UploadPaintingComponent } from './upload-painting/upload-painting.component';
+import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 
 @NgModule({
   declarations: [
@@ -45,23 +52,29 @@ import { ContactComponent } from './components/pages/contact/contact.component';
     TermsConditionsComponent,
     PrivacyPolicyComponent,
     ComingSoonComponent,
-    ServicesComponent,
+    PaintingsComponent,
     ServicesDetailsComponent,
-    ProductsComponent,
+    ControlPanelComponent,
     CartComponent,
     CheckoutComponent,
-    ProductsDetailsComponent,
+    PaintingsDetailsComponent,
     BlogComponent,
     BlogDetailsComponent,
-    ContactComponent
+    ContactComponent,
+    CreatePaintingComponent,
+    UploadPaintingComponent,
+    EditPaintingComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
