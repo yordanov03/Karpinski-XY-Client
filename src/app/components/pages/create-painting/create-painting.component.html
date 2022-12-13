@@ -101,26 +101,7 @@
                                 </label>
                             </div>
                         </div>
-
-                        <!-- <div class="form-group">
-                            <input (change)="onImageChangeFromFile($event)" type="file" #file class="form-control" id="upload"
-                                [ngClass]="{ 'is-invalid': submitted && f.imageUpload.errors }"
-                                formControlName="imageUpload" />
-                                <div>
-                                    <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
-                                </div>
-                            <div *ngIf="f.imageUpload?.errors?.['required'] && submitted" class="alert alert-danger">
-                                This field is required</div>
-                            <div *ngIf="wrongFileFormat" class="alert alert-danger">JPEG or JPG Image is required</div>
-                        </div> -->
                     </div>
-
-                    <!-- <div class="col-lg-8 col-sm-8 margin-right">
-                        <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
-                            <img [src]="imageURL" [alt]="createPaintingForm.value.name">
-                        </div>
-                    </div> -->
-
                     <div class="col-lg-3 col-sm-3 margin-left"></div>
                     <div class="col-lg-5 col-sm-5 margin-left">
                         <app-upload-painting (onUploadFinished)="uploadFinished($event)"></app-upload-painting>
