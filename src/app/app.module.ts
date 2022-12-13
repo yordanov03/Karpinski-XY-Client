@@ -34,6 +34,7 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 import { AuthService } from './_services/auth.service';
 import { UploadPaintingComponent } from './upload-painting/upload-painting.component';
+import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { UploadPaintingComponent } from './upload-painting/upload-painting.compo
     BlogDetailsComponent,
     ContactComponent,
     CreatePaintingComponent,
-    UploadPaintingComponent
+    UploadPaintingComponent,
+    EditPaintingComponent
   ],
   imports: [
     BrowserModule,

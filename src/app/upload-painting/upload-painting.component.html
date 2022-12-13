@@ -1,78 +1,24 @@
-<!-- <div class="row" style="margin-bottom:15px;">
-    <!-- <div class="col-8">
-      <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" multiple>
-      <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-    </div>
-    <div class="col-md-4">
-      <span class="upload" *ngIf="progress > 0">
-        {{progress}}%
-      </span>
-      <span class="upload" *ngIf="message">
-        {{message}}
-      </span>
-    </div>
-    <!-- <div *ngIf="f.imageUpload?.errors?.['required'] && submitted" class="alert alert-danger">
-        This field is required</div> -->
-    <!-- <div *ngIf="wrongFileFormat" class="alert alert-danger">JPEG or JPG Image is required</div>
-    <div class="col">
-        <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
-            <img [src]="imageURL">
-        </div>
-    </div> -->
-
-
-
-        <div class="row">
-                <div id="imagePreview" *ngIf="imageURL && imageURL !== ''">
-                    <img [src]="imageURL">
-                </div>
-            </div>
-            
-
-
-            <div class="col-auto">
-                <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" multiple>
-            <button type="button" class="btn btn-success" (click)="file.click()" id="uploadButton">Upload File</button>
-            
-            </div>
-            <div>
-                <div class="col-auto">
-                    <span class="upload" *ngIf="progress > 0">
-                        {{progress}}%
-                      </span>
-                </div>
-            </div>
-
-            <div class="col-auto">
-                <span id="messageUpload" *ngIf="message">
-                    {{message}}
-                  </span>
-            </div>
-
-            
-
-
-
-
-        
-
-          
-
-          
-
-
-  <!-- <div class="col-4">
-    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" multiple>
-      <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+<div class="row">
+  <div id="imagePreview" *ngIf="imageURL && imageURL !== ''">
+    <img [src]="imageURL">
   </div>
-  <div class="col-md-4">
+</div>
+
+<div class="col-auto">
+  <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" multiple required>
+  <button type="button" class="btn btn-success" (click)="file.click()" id="uploadButton">Upload File</button>
+
+</div>
+<div>
+  <div class="col-auto">
     <span class="upload" *ngIf="progress > 0">
       {{progress}}%
     </span>
-    <span class="upload" *ngIf="message">
-      {{message}}
-    </span>
-  </div> -->
+  </div>
+</div>
 
-
-
+<div class="col-auto">
+  <span id="messageUpload" *ngIf="message">
+    {{message}}
+  </span>
+</div>

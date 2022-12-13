@@ -39,11 +39,11 @@ createPaintingForm: FormGroup;
      }
 
   ngOnInit(): void {
+    this.paintingsService.isInCreationMode = true
   }
 
 createPainting(){
   this.createPaintingForm.get('imageURL').setValue(this.response.dbPath)
-  console.log(this.createPaintingForm.value)
   
   if(this.createPaintingForm.invalid){
     this.submitted = true;

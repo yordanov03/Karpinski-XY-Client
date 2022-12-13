@@ -20,6 +20,7 @@ import { BlogComponent } from './components/pages/blog/blog.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
+import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -39,6 +40,7 @@ const routes: Routes = [
     {path: 'cart', component: CartComponent},
     {path: 'checkout', component: CheckoutComponent},
     {path: 'paintings-details/:id', component: PaintingsDetailsComponent},
+    {path: 'paintings/:id/edit', component: EditPaintingComponent},
     {path: 'blog', component: BlogComponent},
     {path: 'blog-details', component: BlogDetailsComponent},
     {path: 'contact', component: ContactComponent},

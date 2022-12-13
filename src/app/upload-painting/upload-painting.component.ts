@@ -1,7 +1,10 @@
 import { HttpClient, HttpEventType, HttpErrorResponse } from '@angular/common/http';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { PaintingsService } from '../_services/paintings.service';
 import { UploadService } from '../_services/upload.service';
 
 @Component({
@@ -14,14 +17,21 @@ export class UploadPaintingComponent implements OnInit {
   progress: number;
   message: string;
   wrongFileFormat = false;
+  currentImagePath$: Observable<string>;
 
   @Output() public onUploadFinished = new EventEmitter();
 
-  constructor(private http: HttpClient,
-    private uploadService: UploadService,
+  constructor(private uploadService: UploadService,
+    private paintingsService: PaintingsService,
     private toasterService: ToastrService) { }
 
   ngOnInit(): void {
+    if(!this.paintingsService.isInCreationMode){
+      this.paintingsService.selectedCurrentPaintingPath$.subscribe((response)=>{
+        this.imageURL = response
+      })
+    }
+
   }
 
   public uploadFile = (files) => {
@@ -29,7 +39,6 @@ export class UploadPaintingComponent implements OnInit {
       return;
     }
 
-    console.log(files[0].target)
     if(files[0].type !== "image/jpeg"){
       this.toasterService.error("wrong file format");
       return;
@@ -46,7 +55,6 @@ export class UploadPaintingComponent implements OnInit {
       this.imageURL = reader.result as string;
     }
     reader.readAsDataURL(fileToUpload)
-    
     //Service
     return this.uploadService.uploadImage(formData)
       .subscribe({
@@ -61,6 +69,4 @@ export class UploadPaintingComponent implements OnInit {
       error: (err: HttpErrorResponse) => console.log(err)
     });
   }
-
-
 }

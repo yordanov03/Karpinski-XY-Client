@@ -3,7 +3,7 @@ export class Painting{
     name: string;
     price: string;
     dimensions: string;
-    availableToSell: boolean;
+    isAvailableToSell: boolean;
     imageUrl: string;
     description: string;
     shortDescription: string;

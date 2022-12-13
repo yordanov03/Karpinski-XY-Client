@@ -60,20 +60,22 @@ onDeleteClick(id){
           title: 'Deleted successfully'
           })
         }
+        else{
+          popoverMessage().fire({
+            icon:"error",
+            title: "Something went wrong with the backend"
+          })
+        }
       })
      setTimeout(() => {
       window.location.reload();
      }, 2000);
     }
-    else{
-      popoverMessage().fire({
-        icon:"error",
-        title: "Something went wrong with the backend"
-      })
-    }
+  
   })
-
- 
 }
 
+onEditPainting(id){
+  this.router.navigate(['paintings/'+id+'/edit'])
+}
 }
