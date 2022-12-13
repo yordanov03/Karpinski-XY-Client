@@ -29,8 +29,8 @@
 
                     <div class="service-content">
                         <a routerLink="/service-details"><h3>{{painting.name}}</h3></a>
-                        <p> Dimensions: {{painting.dimensions}}</p>
                         <p>{{painting.description}}</p>
+                        <p> Dimensions: {{painting.dimensions}}</p>
                         <p *ngIf="!(isLoggedIn$ | async)">Price: {{painting.price}}</p>
 
                     <p *ngIf="!(isLoggedIn$ | async)">
