@@ -19,15 +19,16 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-4">
                         <div class="form-group">
+                            <label>Name</label>
                             <input type="text" name="name" id="name" class="form-control"
                                 placeholder="Name of the painting" formControlName="name">
                         </div>
-                        <div *ngIf="f.name?.touched && f.name?.errors?.['required'] || submitted"
-                            class="alert alert-danger">
+                        <div *ngIf="f.name?.touched && f.name?.errors?.['required'] || submitted" class="alert alert-danger">
                             This field is required
                         </div>
 
                         <div class="form-group">
+                            <label>Short description</label>
                             <textarea class="form-control" row=3 name="description" id="shortDescription"
                                 class="form-control" placeholder="Short description of the painting"
                                 formControlName="shortDescription">
@@ -38,6 +39,7 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Description</label>
                             <textarea class="form-control" row=8 name="description" id="description"
                                 class="form-control" placeholder="Description of the painting"
                                 formControlName="description">
@@ -46,9 +48,8 @@
                         <div *ngIf="f.description?.touched && f.description?.errors?.['required'] || submitted"
                             class="alert alert-danger">This field is required
                         </div>
-
-
                         <div class="form-group">
+                            <label>Price</label>
                             <input type="text" name="price" id="price" class="form-control" required placeholder="Price"
                                 formControlName="price">
                         </div>
@@ -58,7 +59,8 @@
                         <div *ngIf="f.price.errors?.pattern" class="alert alert-danger">Only numbers are allowed!</div>
 
                         <div class="form-group">
-                            <input type="text" name="size" id="dimensions" class="form-control" placeholder="Dimensions"
+                            <label>Dimensions</label>
+                            <input type="text" name="dimensions" id="dimensions" class="form-control" placeholder="Dimensions"
                                 formControlName="dimensions">
                         </div>
                         <div *ngIf="f.dimensions?.touched && f.dimensions?.errors?.['required'] || submitted"
@@ -66,6 +68,7 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Technique</label>
                             <input type="text" name="size" id="technique" class="form-control" placeholder="Technique"
                                 formControlName="technique">
                         </div>
@@ -74,6 +77,7 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Year</label>
                             <input type="text" name="year" id="year" class="form-control" required placeholder="Year"
                                 formControlName="year">
                         </div>
