@@ -80,6 +80,6 @@ onEditPainting(id){
 }
 
 onMakeInqueryClick(){
-this.router.navigate(['contact'])
+
 }
 }

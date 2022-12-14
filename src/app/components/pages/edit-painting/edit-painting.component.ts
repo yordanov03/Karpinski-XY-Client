@@ -101,6 +101,7 @@ onImageChangeFromFile($event:any)
   this.editPaintingForm.patchValue({
     avatar: file
   });
+
   this.editPaintingForm.get('imageUpload').updateValueAndValidity();
 
   // File Preview
@@ -114,6 +115,7 @@ onImageChangeFromFile($event:any)
           //call validation
           this.wrongFileFormat = true;
           this.imageURL = '';
+
           this.editPaintingForm.controls["imageUpload"].setValidators([Validators.required]);
           this.editPaintingForm.get('imageUpload').updateValueAndValidity();
         }
@@ -127,5 +129,4 @@ uploadFinished = (event) => {
 get f(){
 return this.editPaintingForm.controls;
 }
-
 }

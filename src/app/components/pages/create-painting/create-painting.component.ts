@@ -6,6 +6,7 @@ import { HttpEventType } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { popoverMessage } from 'src/app/shared/popover-messages';
 
+
 @Component({
   selector: 'app-create-painting',
   templateUrl: './create-painting.component.html',
@@ -44,7 +45,6 @@ createPaintingForm: FormGroup;
   }
 
 createPainting(){
-
   if(this.createPaintingForm.invalid){
     this.submitted = true;
     popoverMessage().fire({
@@ -93,6 +93,7 @@ onImageChangeFromFile($event:any)
     this.createPaintingForm.patchValue({
       avatar: file
     });
+
     this.createPaintingForm.get('imageUpload').updateValueAndValidity()
 
     // File Preview
