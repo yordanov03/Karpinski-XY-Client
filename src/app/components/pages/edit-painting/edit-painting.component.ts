@@ -81,10 +81,10 @@ response: {dbPath: ''};
     }
     this.submitted = true;
     this.paintingsService.editPainting(this.editPaintingForm.value).subscribe(res=>{
-      this.router.navigate(['paintings'])
+      this.router.navigate(['paintings']);
       popoverMessage().fire({
         icon: 'success',
-      title: 'Changes have been saved successfully'
+      title: 'Updated successfully',
       })
     })
     this.submitted = false;

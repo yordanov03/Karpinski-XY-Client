@@ -75,7 +75,7 @@ this.paintingsService
   (res:any)=>{
     popoverMessage().fire({
       icon: 'success',
-    title: 'Deleted successfully'
+    title: 'Created successfully'
     })
 setTimeout(() => {
   this.router.navigate(['/'])
