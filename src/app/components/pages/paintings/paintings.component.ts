@@ -78,4 +78,8 @@ onDeleteClick(id){
 onEditPainting(id){
   this.router.navigate(['paintings/'+id+'/edit'])
 }
+
+onMakeInqueryClick(){
+this.router.navigate(['contact'])
+}
 }
