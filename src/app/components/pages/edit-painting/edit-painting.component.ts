@@ -82,10 +82,14 @@ response: {dbPath: ''};
     this.submitted = true;
     this.paintingsService.editPainting(this.editPaintingForm.value).subscribe(res=>{
       this.router.navigate(['paintings']);
+      // const dropdownClassName = document.getElementsByClassName("nice-select swal2-select")[0] as HTMLElement | null;
+      // console.log(dropdownClassName)
+      // dropdownClassName.append("display: hidden")
+
       popoverMessage().fire({
         icon: 'success',
       title: 'Updated successfully',
-      })
+      }) 
     })
     this.submitted = false;
   }
