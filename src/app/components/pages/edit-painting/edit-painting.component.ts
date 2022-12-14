@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
+import { popoverMessage } from 'src/app/shared/popover-messages';
 import { Painting } from 'src/app/_models/painting.model';
 import { PaintingsService } from 'src/app/_services/paintings.service';
 import { environment } from 'src/environments/environment';
@@ -68,7 +69,10 @@ response: {dbPath: ''};
   editPainting(){
     if(this.editPaintingForm.invalid){
       this.submitted = true;
-      this.toastrService.error("Please fill in all fields")
+      popoverMessage().fire({
+        icon: 'error',
+      title: 'All fields are required'
+      })
       setTimeout(() => {
         this.submitted = false;
         this.wrongFileFormat = false;
@@ -77,8 +81,11 @@ response: {dbPath: ''};
     }
     this.submitted = true;
     this.paintingsService.editPainting(this.editPaintingForm.value).subscribe(res=>{
-      this.router.navigate(['paintings'])
-      this.toastrService.success("Changes have been saved")
+      this.router.navigate(['paintings']);
+      popoverMessage().fire({
+        icon: 'success',
+      title: 'Updated successfully',
+      })
     })
     this.submitted = false;
   }
@@ -94,7 +101,9 @@ onImageChangeFromFile($event:any)
   this.editPaintingForm.patchValue({
     avatar: file
   });
-  // this.createPaintingForm.get('imageUpload').updateValueAndValidity()
+
+  this.editPaintingForm.get('imageUpload').updateValueAndValidity();
+
   // File Preview
   const reader = new FileReader();
   reader.onload = () => {
@@ -106,26 +115,11 @@ onImageChangeFromFile($event:any)
           //call validation
           this.wrongFileFormat = true;
           this.imageURL = '';
-          // this.createPaintingForm.reset();
+
           this.editPaintingForm.controls["imageUpload"].setValidators([Validators.required]);
           this.editPaintingForm.get('imageUpload').updateValueAndValidity();
         }
     }
-}
-
- // Image Preview
- showPreview(event) {
-  const file = (event.target as HTMLInputElement).files[0];
-  this.editPaintingForm.patchValue({
-    avatar: file
-  });
-  this.editPaintingForm.get('imageUpload').updateValueAndValidity()
-  // File Preview
-  const reader = new FileReader();
-  reader.onload = () => {
-    this.imageURL = reader.result as string;
-  }
-  reader.readAsDataURL(file)
 }
 
 uploadFinished = (event) => { 
@@ -135,9 +129,4 @@ uploadFinished = (event) => {
 get f(){
 return this.editPaintingForm.controls;
 }
-
-get year(){
-  return this.editPaintingForm.get('year');
-}
-
 }

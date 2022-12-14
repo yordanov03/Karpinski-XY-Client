@@ -1,4 +1,4 @@
-export class Painting{
+export interface Painting{
     id: string;
     name: string;
     price: string;

@@ -4,6 +4,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { popoverMessage } from '../shared/popover-messages';
+
 import { PaintingsService } from '../_services/paintings.service';
 import { UploadService } from '../_services/upload.service';
 
@@ -66,7 +68,10 @@ export class UploadPaintingComponent implements OnInit {
           this.onUploadFinished.emit(event.body);
         }
       },
-      error: (err: HttpErrorResponse) => console.log(err)
+      error: (err: HttpErrorResponse) =>   popoverMessage().fire({
+        icon: 'error',
+      title: 'Something went wrong with uploadding the image'
+      })
     });
   }
 }

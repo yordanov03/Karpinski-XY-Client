@@ -59,6 +59,9 @@ onDeleteClick(id){
             icon: 'success',
           title: 'Deleted successfully'
           })
+          setTimeout(() => {
+            window.location.reload();
+           }, 2000);
         }
         else{
           popoverMessage().fire({
@@ -67,9 +70,6 @@ onDeleteClick(id){
           })
         }
       })
-     setTimeout(() => {
-      window.location.reload();
-     }, 2000);
     }
   
   })
@@ -77,5 +77,9 @@ onDeleteClick(id){
 
 onEditPainting(id){
   this.router.navigate(['paintings/'+id+'/edit'])
+}
+
+onMakeInqueryClick(){
+
 }
 }

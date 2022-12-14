@@ -4,6 +4,8 @@ import { PaintingsService } from 'src/app/_services/paintings.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpEventType } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { popoverMessage } from 'src/app/shared/popover-messages';
+
 
 @Component({
   selector: 'app-create-painting',
@@ -43,11 +45,12 @@ createPaintingForm: FormGroup;
   }
 
 createPainting(){
-  this.createPaintingForm.get('imageURL').setValue(this.response.dbPath)
-  
   if(this.createPaintingForm.invalid){
     this.submitted = true;
-    this.toasterService.error("Please fill in all fields")
+    popoverMessage().fire({
+      icon: 'error',
+    title: 'Please fill in all fields'
+    })
     setTimeout(() => {
       this.submitted = false;
       this.wrongFileFormat = false;
@@ -55,18 +58,29 @@ createPainting(){
     return
   }
 
+  if(this.response === undefined){
+    popoverMessage().fire({
+      icon: 'error',
+    title: 'Image is not uploaded'
+    })
+    return
+  }
+
+  this.createPaintingForm.get('imageURL').setValue(this.response.dbPath)
+
+  //Call the service
 this.paintingsService
 .createPainting(this.createPaintingForm.value)
 .subscribe(
   (res:any)=>{
-this.toasterService.success("Success");
+    popoverMessage().fire({
+      icon: 'success',
+    title: 'Created successfully'
+    })
 setTimeout(() => {
   this.router.navigate(['/'])
 }, 3000);
-}
-
-)
-
+})
 }
 
 onImageChangeFromFile($event:any)
@@ -79,7 +93,9 @@ onImageChangeFromFile($event:any)
     this.createPaintingForm.patchValue({
       avatar: file
     });
-    // this.createPaintingForm.get('imageUpload').updateValueAndValidity()
+
+    this.createPaintingForm.get('imageUpload').updateValueAndValidity()
+
     // File Preview
     const reader = new FileReader();
     reader.onload = () => {
@@ -91,31 +107,15 @@ onImageChangeFromFile($event:any)
             //call validation
             this.wrongFileFormat = true;
             this.imageURL = '';
-            // this.createPaintingForm.reset();
+            this.createPaintingForm.reset();
             this.createPaintingForm.controls["imageUpload"].setValidators([Validators.required]);
             this.createPaintingForm.get('imageUpload').updateValueAndValidity();
           }
       }
   }
 
-   // Image Preview
-   showPreview(event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    this.createPaintingForm.patchValue({
-      avatar: file
-    });
-    this.createPaintingForm.get('imageUpload').updateValueAndValidity()
-    // File Preview
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imageURL = reader.result as string;
-    }
-    reader.readAsDataURL(file)
-  }
-
   uploadFinished = (event) => { 
-    this.response = event; 
-    console.log(this.response.dbPath)
+    this.response = event;
   }
         
 get f(){
