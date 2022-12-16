@@ -35,9 +35,10 @@ response: {dbPath: ''};
       dimensions: new FormControl('', Validators.required),
       isAvailableToSell: new FormControl(true),
       imageURL: new FormControl(''),
-      'year': new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$") ]),
+      year: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$") ]),
       shortDescription: new FormControl('',Validators.required),
-      technique: new FormControl('', Validators.required)
+      technique: new FormControl('', Validators.required),
+      onFocus: new FormControl(false)
     })
    }
 
@@ -58,7 +59,8 @@ response: {dbPath: ''};
           'imageUrl':[this.painting.imageUrl],
           'year':[this.painting.year],
           'shortDescription':[this.painting.shortDescription],
-          'technique':[this.painting.technique]
+          'technique':[this.painting.technique],
+          'onFocus':[this.painting.onFocus]
         })
       })
     })
@@ -87,10 +89,6 @@ response: {dbPath: ''};
         title: 'Updated successfully',
         }) 
         },2000);
-      // const dropdownClassName = document.getElementsByClassName("nice-select swal2-select")[0] as HTMLElement | null;
-      // console.log(dropdownClassName)
-      // dropdownClassName.append("display: hidden")
-
     })
     this.submitted = false;
   }

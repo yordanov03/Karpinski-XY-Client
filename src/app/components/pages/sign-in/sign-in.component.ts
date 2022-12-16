@@ -39,7 +39,7 @@ export class SignInComponent implements OnInit {
         this.authService.saveUserInfo(data);
         popoverMessage().fire({
           icon:"success",
-          text:"Hello my love"
+          text:"Hello, my love"
         })
         setTimeout(() => {
           this.router.navigate([""])
@@ -58,12 +58,6 @@ export class SignInComponent implements OnInit {
         }, 2000);
         return;
       }
-      // ,
-      //  () =>{if(this.isLoginFailed){
-      //   this.isLogInSuccessful = true;
-      //   console.log("ifa raboti")
-      //   this.authService.saveUserInfo(this.serverResponse);
-      // }} 
       );
 
   }

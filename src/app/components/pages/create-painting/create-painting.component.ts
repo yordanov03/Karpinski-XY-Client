@@ -34,6 +34,7 @@ createPaintingForm: FormGroup;
         year:['', [Validators.required, Validators.pattern("^[0-9]*$") ]],
         shortDescription:['',Validators.required],
         technique:['',Validators.required],
+        onFocus:[false]
       })
      }
 

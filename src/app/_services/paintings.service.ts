@@ -14,6 +14,7 @@ export class PaintingsService {
   paintingDetailsPath = environment.apiUrl + 'paintings/'
   deletePaintingPath = environment.apiUrl + 'paintings/'
   editPaintingPath = environment.apiUrl + 'paintings/update'
+  onFocusPaintingsPath = environment.apiUrl + '/paintings/onfocus'
 
   paintingId:string;
   isInCreationMode = false;
@@ -40,6 +41,10 @@ export class PaintingsService {
 
   editPainting(data){
     return this.http.put<Painting>(this.editPaintingPath, data);
+  }
+
+  getOnFocusPaintings(data):  Observable<Array<Painting>>{
+    return this.http.get<Array<Painting>>(this.onFocusPaintingsPath)
   }
 
  sendPaintingPathForEdit(path: string){

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Painting } from 'src/app/_models/painting.model';
+import { PaintingsService } from 'src/app/_services/paintings.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,9 +10,16 @@ import { environment } from 'src/environments/environment';
 })
 export class HomePageComponent implements OnInit {
 homePagePaitingsUrl = environment.homePagePaitings;
-  constructor() { }
+paintingsOnFocus: Array<Painting>;
+  constructor(private paintingsService: PaintingsService) { }
 
   ngOnInit(): void {
+    this.getPaintingsOnFocus();
   }
 
+  getPaintingsOnFocus(){
+    return this.paintingsService.getAvailablePaintings().subscribe(paintings=>{
+      this.paintingsOnFocus = paintings;
+  })
+  }
 }
