@@ -1,13 +1,10 @@
-import { HttpClient, HttpEventType, HttpErrorResponse } from '@angular/common/http';
-import { ThisReceiver } from '@angular/compiler';
+import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { popoverMessage } from '../shared/popover-messages';
+import { popoverMessage } from '../../../shared/popover-messages';
 
-import { PaintingsService } from '../_services/paintings.service';
-import { UploadService } from '../_services/upload.service';
+import { PaintingsService } from '../../../_services/paintings.service';
+import { UploadService } from '../../../_services/upload.service';
 
 @Component({
   selector: 'app-upload-painting',
@@ -24,8 +21,7 @@ export class UploadPaintingComponent implements OnInit {
   @Output() public onUploadFinished = new EventEmitter();
 
   constructor(private uploadService: UploadService,
-    private paintingsService: PaintingsService,
-    private toasterService: ToastrService) { }
+    private paintingsService: PaintingsService) { }
 
   ngOnInit(): void {
     if(!this.paintingsService.isInCreationMode){
@@ -42,7 +38,10 @@ export class UploadPaintingComponent implements OnInit {
     }
 
     if(files[0].type !== "image/jpeg"){
-      this.toasterService.error("wrong file format");
+      popoverMessage().fire({
+        icon:"error",
+        text:"Wrong file format"
+      })
       return;
     }
 

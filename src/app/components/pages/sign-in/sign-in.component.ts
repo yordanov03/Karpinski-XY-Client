@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { popoverMessage } from 'src/app/shared/popover-messages';
 import { AuthService } from 'src/app/_services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,6 +16,7 @@ export class SignInComponent implements OnInit {
   isLogInSuccessful = false;
   isLoginFailed = false;
   errorMessage = '';
+  serverResponse;
 
   constructor(private fb: FormBuilder, 
     private authService: AuthService,
@@ -29,19 +32,40 @@ export class SignInComponent implements OnInit {
 
   login(){
     this.authService.login(this.loginForm.value).subscribe(data =>{
-      this.isLogInSuccessful = true;
-      this.authService.saveUserInfo(data);
+      // this.isLogInSuccessful = true;
+      // this.authService.saveUserInfo(data);
       setTimeout(() => {
-        this.router.navigate([""])
-      }, 2000)
+        this.isLogInSuccessful = true
+        this.authService.saveUserInfo(data);
+        popoverMessage().fire({
+          icon:"success",
+          text:"Hello my love"
+        })
+        setTimeout(() => {
+          this.router.navigate([""])
+          this.isLogInSuccessful = true
+        }, 2000);
+      }, 1000)
     },
       err => {
+        this.errorMessage = "Could not log you in"
         this.isLoginFailed = true;
-        if (err.status == 401)
-          this.errorMessage = "Wrong credentials";
-        else
-          console.log(err);
-      });
+        this.isLogInSuccessful = false;
+        this.authService.clearUserInfo();
+        setTimeout(() => {
+          this.errorMessage = "";
+          this.isLoginFailed = false;
+        }, 2000);
+        return;
+      }
+      // ,
+      //  () =>{if(this.isLoginFailed){
+      //   this.isLogInSuccessful = true;
+      //   console.log("ifa raboti")
+      //   this.authService.saveUserInfo(this.serverResponse);
+      // }} 
+      );
+
   }
   
   get username(){

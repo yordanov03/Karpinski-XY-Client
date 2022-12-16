@@ -17,7 +17,6 @@ user: User;
   constructor(private http: HttpClient) { }
 
   login(data: Observable<any>){
-    this.saveUserInfo(data);
     this.currentUser.next(this.user);
     this.loggedIn.next(true)
     return this.http.post(this.loginPath, data)
@@ -29,12 +28,17 @@ user: User;
 
   saveUserInfo(data){
     this.user = new User(data['username'], data['token'], data['id'])
-    console.log(this.user)
     localStorage.setItem('userInfo', JSON.stringify(this.user));
   }
 
   getUserInfo(){
     return localStorage.getItem('userInfo');
+  }
+
+  clearUserInfo(){
+    this.currentUser.next(null);
+    this.loggedIn.next(false)
+    localStorage.removeItem('userInfo');
   }
 
   get isLoggedIn(){

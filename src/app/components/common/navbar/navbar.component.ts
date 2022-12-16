@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { popoverMessage } from 'src/app/shared/popover-messages';
 import { User } from 'src/app/_models/user.model';
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -25,6 +26,12 @@ export class NavbarComponent implements OnInit {
   logout(event:any){
     this.authService.logout();
     this.router.navigate(['/']);
+  setTimeout(() => {
+    popoverMessage().fire({
+      icon:"success",
+      text: "Bye Pawliushko"
+    })
+  }, 2000);
   }
 
 }

@@ -56,7 +56,7 @@ onDeleteClick(id){
         if(res.succeeded){
           
           popoverMessage().fire({
-            icon: 'success',
+          icon: 'success',
           title: 'Deleted successfully'
           })
           setTimeout(() => {

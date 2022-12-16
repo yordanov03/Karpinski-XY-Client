@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { Painting } from 'src/app/_models/painting.model';
@@ -26,8 +25,7 @@ response: {dbPath: ''};
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private paintingsService: PaintingsService,
-    private toastrService: ToastrService) 
+    private paintingsService: PaintingsService) 
     {
       this.editPaintingForm = this.fb.group({
       id: new FormControl(''),
@@ -76,20 +74,23 @@ response: {dbPath: ''};
       setTimeout(() => {
         this.submitted = false;
         this.wrongFileFormat = false;
-      }, 3000);
+      }, 2000);
       return
     }
     this.submitted = true;
     this.paintingsService.editPainting(this.editPaintingForm.value).subscribe(res=>{
       this.router.navigate(['paintings']);
+      setTimeout(() => {
+        
+        popoverMessage().fire({
+          icon: 'success',
+        title: 'Updated successfully',
+        }) 
+        },2000);
       // const dropdownClassName = document.getElementsByClassName("nice-select swal2-select")[0] as HTMLElement | null;
       // console.log(dropdownClassName)
       // dropdownClassName.append("display: hidden")
 
-      popoverMessage().fire({
-        icon: 'success',
-      title: 'Updated successfully',
-      }) 
     })
     this.submitted = false;
   }

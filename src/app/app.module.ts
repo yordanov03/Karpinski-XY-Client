@@ -33,8 +33,9 @@ import { BlogDetailsComponent } from './components/pages/blog-details/blog-detai
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 import { AuthService } from './_services/auth.service';
-import { UploadPaintingComponent } from './upload-painting/upload-painting.component';
+import { UploadPaintingComponent } from './components/pages/upload-painting/upload-painting.component';
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
+import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -72,9 +73,12 @@ import { EditPaintingComponent } from './components/pages/edit-painting/edit-pai
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    ToastrModule.forRoot()
+    // ToastrModule.forRoot()
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+  {provide: HTTP_INTERCEPTORS,
+  useClass: ErrorInterceptor,
+  multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
