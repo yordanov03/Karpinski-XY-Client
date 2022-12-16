@@ -1,8 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaintingsService } from 'src/app/_services/paintings.service';
-import { ToastrService } from 'ngx-toastr';
-import { HttpEventType } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { popoverMessage } from 'src/app/shared/popover-messages';
 
@@ -24,7 +22,6 @@ response: {dbPath: ''};
 createPaintingForm: FormGroup;
   constructor(private fb: FormBuilder,
     private paintingsService: PaintingsService,
-    private toasterService: ToastrService,
     private router: Router) {
 
       this.createPaintingForm = this.fb.group({
