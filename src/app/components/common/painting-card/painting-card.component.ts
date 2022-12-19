@@ -27,7 +27,6 @@ export class PaintingCardComponent implements OnInit {
     this.fetchAvailablePaintings();
   }
   fetchAvailablePaintings(){
-    console.log(this.paintingsService.atHome)
     if(!this.paintingsService.atHome){
       return this.paintingsService.getOnFocusPaintings().subscribe(paintings=>{
         this.paintings = paintings;
@@ -54,9 +53,8 @@ onDeleteClick(id){
   }).then((willDelete)=>{
     if(willDelete.isConfirmed){
       this.paintingsService.deletePainting(id).subscribe((res:any) => {
-
-        if(res.succeeded){
-          
+        console.log(res)
+        if(res){
           popoverMessage().fire({
           icon: 'success',
           title: 'Deleted successfully'
