@@ -14,11 +14,16 @@ export class PaintingsService {
   paintingDetailsPath = environment.apiUrl + 'paintings/'
   deletePaintingPath = environment.apiUrl + 'paintings/'
   editPaintingPath = environment.apiUrl + 'paintings/update'
+  onFocusPaintingsPath = environment.apiUrl + 'paintings/onfocus'
 
   paintingId:string;
   isInCreationMode = false;
+
   private currentPaintingPath$ = new BehaviorSubject<string>('');
   selectedCurrentPaintingPath$ = this.currentPaintingPath$.asObservable();
+
+  private atHomeComponent$ = new BehaviorSubject<boolean>(true);
+  currentlyAtHomeComponent$ = this.atHomeComponent$.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -42,7 +47,15 @@ export class PaintingsService {
     return this.http.put<Painting>(this.editPaintingPath, data);
   }
 
+  getOnFocusPaintings(): Observable<Array<Painting>>{
+    return this.http.get<Array<Painting>>(this.onFocusPaintingsPath)
+  }
+
  sendPaintingPathForEdit(path: string){
   return this.currentPaintingPath$.next(path);
+ }
+
+ sendComponentLocation(location: boolean){
+  this.atHomeComponent$.next(location);
  }
 }

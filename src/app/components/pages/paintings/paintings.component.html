@@ -20,29 +20,7 @@
             <h2>Dizo Provide Good Quality Printing Services</h2>
             <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That homeless, won't many of goals thoughts volumes felt.</p>
         </div>
-
-        <div class="row pt-45" >
-            <div class="col-lg-4 col-md-6" *ngFor="let painting of avaialablePaintings">
-                <h4 *ngIf="avaialablePaintings.length===0">Nothing to show here</h4>
-                <div class="service-card">
-                    <a routerLink="/paintings-details/{{painting.id}}"><img src="{{apiUrl}}{{painting.imageUrl}}" alt="Service Images"
-                        style="width:550px; height:520px;"></a>
-
-                    <div class="service-content">
-                        <a routerLink="/paintings-details/{{painting.id}}"><h3>{{painting.name}}</h3></a>
-                        <p>{{painting.description}}</p>
-                        <p> Dimensions: {{painting.dimensions}}</p>
-                        <p *ngIf="(isLoggedIn$ | async)">Price: {{painting.price}}</p>
-
-                    <p *ngIf="(isLoggedIn$ | async)">
-                        <i class='bi bi-trash3' id="trashbutton" type="button" (click)="onDeleteClick(painting.id)"></i>
-                        <i class='bi bi-pencil' id="pencilbutton" type="button" (click)="onEditPainting(painting.id)"></i>
-                    </p>
-                        <a routerLink="/contact" class="default-btn" (click)="onMakeInqueryClick">Make inquery</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <app-painting-card></app-painting-card>
     </div>
 </section>
 

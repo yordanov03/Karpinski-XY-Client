@@ -36,6 +36,7 @@ import { AuthService } from './_services/auth.service';
 import { UploadPaintingComponent } from './components/pages/upload-painting/upload-painting.component';
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
+import { PaintingCardComponent } from './components/common/painting-card/painting-card.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
     ContactComponent,
     CreatePaintingComponent,
     UploadPaintingComponent,
-    EditPaintingComponent
+    EditPaintingComponent,
+    PaintingCardComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,6 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    // ToastrModule.forRoot()
   ],
   providers: [AuthService,
   {provide: HTTP_INTERCEPTORS,

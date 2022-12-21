@@ -9,4 +9,5 @@ export interface Painting{
     shortDescription: string;
     year: number;
     technique: string;
+    onFocus: boolean;
 }

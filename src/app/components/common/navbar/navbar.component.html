@@ -16,7 +16,7 @@
                         <li class="nav-item">
                             <a href="javascript:void(0)" class="nav-link" routerLink="/paintings">Paintings <i class='bx bx-plus'></i></a>
                         </li>
-                        <li class="nav-item" *ngIf="!(isLoggedIn$ | async)">
+                        <li class="nav-item" *ngIf="(isLoggedIn$ | async)">
                             <a href="javascript:void(0)" class="nav-link" routerLink="/control-panel">Control panel <i class='bx bx-plus'></i></a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a routerLink="/create-painting" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Create Paiting</a></li>
