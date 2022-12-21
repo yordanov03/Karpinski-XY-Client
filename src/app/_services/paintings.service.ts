@@ -25,9 +25,6 @@ export class PaintingsService {
   private atHomeComponent$ = new BehaviorSubject<boolean>(true);
   currentlyAtHomeComponent$ = this.atHomeComponent$.asObservable();
 
-  atHome=true;
-
-
   constructor(private http: HttpClient) { }
 
   createPainting(data): Observable<Painting>{
@@ -35,7 +32,6 @@ export class PaintingsService {
   }
 
   getAvailablePaintings(): Observable<Array<Painting>>{
-    this.atHome = false;
     return this.http.get<Array<Painting>>(this.availablePaintingPath)
   }
 
@@ -52,7 +48,6 @@ export class PaintingsService {
   }
 
   getOnFocusPaintings(): Observable<Array<Painting>>{
-    this.atHome = true;
     return this.http.get<Array<Painting>>(this.onFocusPaintingsPath)
   }
 

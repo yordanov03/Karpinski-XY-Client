@@ -5,8 +5,9 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="banner-content">
-                    <h1>We Are Digital Print Media Ageny</h1>    
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu smod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                    <h1>We Are Digital Print Media Ageny</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu smod tempor incididunt ut
+                        labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
                     <div class="banner-btn">
                         <a routerLink="/" class="default-btn">Know More</a>
                         <a routerLink="/product" class="default-btn active">Our Products</a>
@@ -58,8 +59,13 @@
                 <div class="about-content">
                     <span>About Me</span>
                     <h2>We Are Leading Our Agency for 15 Years</h2>
-                    <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That homeless, won't many of goals thoughts volumes felt with of as he this its tend broad. Well, were make come when from would area page.</p>
-                    <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That homeless, won't many of goals thoughts volumes felt with of as he this its tend broad. Well, were make come when from would area page puzzles hell in is through on the in more rent mountains.</p>
+                    <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That
+                        homeless, won't many of goals thoughts volumes felt with of as he this its tend broad. Well,
+                        were make come when from would area page.</p>
+                    <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That
+                        homeless, won't many of goals thoughts volumes felt with of as he this its tend broad. Well,
+                        were make come when from would area page puzzles hell in is through on the in more rent
+                        mountains.</p>
                     <div class="about-btn">
                         <a routerLink="/" class="know-more-btn">Know More</a>
                     </div>
@@ -76,57 +82,53 @@
 <section class="service-area pb-70">
     <div class="container">
         <div class="scetion-title text-center">
-            <span>Services</span>
+            <span>Art</span>
             <h2>Dizo Provide Good Quality Printing Services</h2>
-            <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That homeless, won't many of goals thoughts volumes felt.</p>
+            <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That
+                homeless, won't many of goals thoughts volumes felt.</p>
         </div>
-        <!-- <div class="service-slider owl-carousel owl-theme pt-45">
-            <app-painting-card></app-painting-card>
-        </div> -->
-        <app-painting-card></app-painting-card>
-        
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-lg-4" *ngFor="let painting of paintingsOnFocusPt1">
+                            <div class="service-card">
+                                <a routerLink="/paintings-details/{{painting.id}}"><img src="{{painting.imageUrl}}"
+                                        alt="Service Images" width="450" height="420"></a>
 
-        <!-- <div class="service-slider owl-carousel owl-theme pt-45">
-            <div class="service-card">
-                <a routerLink="/service-details"><img src="assets/img/service/service1.jpg" alt="Service Images"></a>
-
-                <div class="service-content">
-                    <a routerLink="/service-details"><h3>Brand Identy</h3></a>
-                    <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit, sed do eiusmo gd  tempor incididunt ut labore.</p>
-                    <a routerLink="/service-details" class="more-btn"><i class='bx bx-plus'></i></a>
+                                <div class="service-content">
+                                    <a routerLink="/painting-details/{{painting.id}}">
+                                        <h3>{{painting.name}}</h3>
+                                    </a>
+                                    <p>{{painting.shortDescription}}</p>
+                                    <a routerLink="/contact" class="default-btn" (click)="onMakeInqueryClick(painting.name)">Make inquery</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div> -->
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-lg-4" *ngFor="let painting of paintingsOnFocusPt2">
+                            <div class="service-card">
+                                <a routerLink="/paintings-details/{{painting.id}}"><img src="{{painting.imageUrl}}"
+                                        alt="Service Images" width="450" height="420"></a>
 
-            <!-- <div class="service-card">
-                <a routerLink="/service-details"><img src="assets/img/service/service2.jpg" alt="Service Images"></a>
-
-                <div class="service-content">
-                    <a routerLink="/service-details"><h3>Package Design</h3></a>
-                    <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit, sed do eiusmo gd  tempor incididunt ut labore.</p>
-                    <a routerLink="/service-details" class="more-btn"><i class='bx bx-plus'></i></a>
+                                <div class="service-content">
+                                    <a routerLink="/painting-details/{{painting.id}}">
+                                        <h3>{{painting.name}}</h3>
+                                    </a>
+                                    <p>{{painting.shortDescription}}</p>
+                                    <a routerLink="/contact" class="default-btn" (click)="onMakeInqueryClick(painting.name)">Make inquery</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="service-card">
-                <a routerLink="/service-details"><img src="assets/img/service/service3.jpg" alt="Service Images"></a>
-
-                <div class="service-content">
-                    <a routerLink="/service-details"><h3>Pattern Design</h3></a>
-                    <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit, sed do eiusmo gd  tempor incididunt ut labore.</p>
-                    <a routerLink="/service-details" class="more-btn"><i class='bx bx-plus'></i></a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <a routerLink="/service-details"><img src="assets/img/service/service4.jpg" alt="Service Images"></a>
-
-                <div class="service-content">
-                    <a routerLink="/service-details"><h3>Book Cover</h3></a>
-                    <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit, sed do eiusmo gd  tempor incididunt ut labore.</p>
-                    <a routerLink="/service-details" class="more-btn"><i class='bx bx-plus'></i></a>
-                </div>
-            </div> -->
-        <!-- </div> -->
+        </div>
     </div>
 </section>
 
@@ -135,16 +137,20 @@
         <div class="scetion-title text-center">
             <span>Product</span>
             <h2>We Have Some Pre-ready Demo Product</h2>
-            <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That homeless, won't many of goals thoughts volumes felt.</p>
+            <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That
+                homeless, won't many of goals thoughts volumes felt.</p>
         </div>
 
         <div class="row pt-45">
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
-                    <a routerLink="/product-details"><img src="assets/img/products/products1.jpg" alt="Products Images"></a>
+                    <a routerLink="/product-details"><img src="assets/img/products/products1.jpg"
+                            alt="Products Images"></a>
 
                     <div class="product-content">
-                        <a routerLink="/product-details"><h3>Package Design</h3></a>
+                        <a routerLink="/product-details">
+                            <h3>Package Design</h3>
+                        </a>
                         <p><span>$29</span> +vat</p>
                         <div class="product-cart">
                             <ul>
@@ -158,10 +164,13 @@
 
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
-                    <a routerLink="/product-details"><img src="assets/img/products/products2.jpg" alt="Products Images"></a>
+                    <a routerLink="/product-details"><img src="assets/img/products/products2.jpg"
+                            alt="Products Images"></a>
 
                     <div class="product-content">
-                        <a routerLink="/product-details"><h3>T-shirt Design</h3></a>
+                        <a routerLink="/product-details">
+                            <h3>T-shirt Design</h3>
+                        </a>
                         <p><span>$20</span> +vat</p>
                         <div class="product-cart">
                             <ul>
@@ -175,10 +184,13 @@
 
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
-                    <a routerLink="/product-details"><img src="assets/img/products/products3.jpg" alt="Products Images"></a>
+                    <a routerLink="/product-details"><img src="assets/img/products/products3.jpg"
+                            alt="Products Images"></a>
 
                     <div class="product-content">
-                        <a routerLink="/product-details"><h3>Cover Van</h3></a>
+                        <a routerLink="/product-details">
+                            <h3>Cover Van</h3>
+                        </a>
                         <p><span>$30</span> +vat</p>
                         <div class="product-cart">
                             <ul>
@@ -192,10 +204,13 @@
 
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
-                    <a routerLink="/product-details"><img src="assets/img/products/products4.jpg" alt="Products Images"></a>
+                    <a routerLink="/product-details"><img src="assets/img/products/products4.jpg"
+                            alt="Products Images"></a>
 
                     <div class="product-content">
-                        <a routerLink="/product-details"><h3>Mug Design</h3></a>
+                        <a routerLink="/product-details">
+                            <h3>Mug Design</h3>
+                        </a>
                         <p><span>$10</span> +vat</p>
                         <div class="product-cart">
                             <ul>
@@ -209,10 +224,13 @@
 
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
-                    <a routerLink="/product-details"><img src="assets/img/products/products5.jpg" alt="Products Images"></a>
+                    <a routerLink="/product-details"><img src="assets/img/products/products5.jpg"
+                            alt="Products Images"></a>
 
                     <div class="product-content">
-                        <a routerLink="/product-details"><h3>Book Cover</h3></a>
+                        <a routerLink="/product-details">
+                            <h3>Book Cover</h3>
+                        </a>
                         <p><span>$15</span> +vat</p>
                         <div class="product-cart">
                             <ul>
@@ -226,10 +244,13 @@
 
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
-                    <a routerLink="/product-details"><img src="assets/img/products/products6.jpg" alt="Products Images"></a>
+                    <a routerLink="/product-details"><img src="assets/img/products/products6.jpg"
+                            alt="Products Images"></a>
 
                     <div class="product-content">
-                        <a routerLink="/product-details"><h3>Astronaut Cover</h3></a>
+                        <a routerLink="/product-details">
+                            <h3>Astronaut Cover</h3>
+                        </a>
                         <p><span>$35</span> +vat</p>
                         <div class="product-cart">
                             <ul>
@@ -253,22 +274,26 @@
         <div class="scetion-title text-center">
             <span>Blogs</span>
             <h2>Our Regular Blog Post</h2>
-            <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That homeless, won't many of goals thoughts volumes felt.</p>
+            <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That
+                homeless, won't many of goals thoughts volumes felt.</p>
         </div>
 
         <div class="row pt-45">
             <div class="col-lg-4 col-md-6">
                 <div class="blog-card">
                     <a routerLink="/blog-details"><img src="assets/img/blog/blog1.jpg" alt="Blog Images"></a>
-                    
+
                     <div class="blog-content">
-                        <a routerLink="/blog-details"><h3>Work Once Print 100+</h3></a>
+                        <a routerLink="/blog-details">
+                            <h3>Work Once Print 100+</h3>
+                        </a>
                         <ul class="blog-admin">
                             <li><a routerLink="/"><i class='bx bxs-user'></i> Admin</a></li>
-                            <li><i class='bx bx-calendar-alt' ></i> 18 May 2020</li>
+                            <li><i class='bx bx-calendar-alt'></i> 18 May 2020</li>
                         </ul>
                         <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit.</p>
-                        <a routerLink="/blog-details" class="read-more-btn">Read More <i class='bx bxs-chevrons-right'></i></a>
+                        <a routerLink="/blog-details" class="read-more-btn">Read More <i
+                                class='bx bxs-chevrons-right'></i></a>
                     </div>
                 </div>
             </div>
@@ -276,15 +301,18 @@
             <div class="col-lg-4 col-md-6">
                 <div class="blog-card">
                     <a routerLink="/blog-details"><img src="assets/img/blog/blog2.jpg" alt="Blog Images"></a>
-                    
+
                     <div class="blog-content">
-                        <a routerLink="/blog-details"><h3>Keep Your Print Great</h3></a>
+                        <a routerLink="/blog-details">
+                            <h3>Keep Your Print Great</h3>
+                        </a>
                         <ul class="blog-admin">
                             <li><a routerLink="/"><i class='bx bxs-user'></i> Admin</a></li>
-                            <li><i class='bx bx-calendar-alt' ></i> 18 May 2020</li>
+                            <li><i class='bx bx-calendar-alt'></i> 18 May 2020</li>
                         </ul>
                         <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit.</p>
-                        <a routerLink="/blog-details" class="read-more-btn">Read More <i class='bx bxs-chevrons-right'></i></a>
+                        <a routerLink="/blog-details" class="read-more-btn">Read More <i
+                                class='bx bxs-chevrons-right'></i></a>
                     </div>
                 </div>
             </div>
@@ -292,15 +320,18 @@
             <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
                 <div class="blog-card">
                     <a routerLink="/blog-details"><img src="assets/img/blog/blog3.jpg" alt="Blog Images"></a>
-                    
+
                     <div class="blog-content">
-                        <a routerLink="/blog-details"><h3>Digital Print is Science</h3></a>
+                        <a routerLink="/blog-details">
+                            <h3>Digital Print is Science</h3>
+                        </a>
                         <ul class="blog-admin">
                             <li><a routerLink="/"><i class='bx bxs-user'></i> Admin</a></li>
-                            <li><i class='bx bx-calendar-alt' ></i> 18 May 2020</li>
+                            <li><i class='bx bx-calendar-alt'></i> 18 May 2020</li>
                         </ul>
                         <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit.</p>
-                        <a routerLink="/blog-details" class="read-more-btn">Read More <i class='bx bxs-chevrons-right'></i></a>
+                        <a routerLink="/blog-details" class="read-more-btn">Read More <i
+                                class='bx bxs-chevrons-right'></i></a>
                     </div>
                 </div>
             </div>

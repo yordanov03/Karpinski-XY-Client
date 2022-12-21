@@ -27,15 +27,9 @@ export class PaintingCardComponent implements OnInit {
     this.fetchAvailablePaintings();
   }
   fetchAvailablePaintings(){
-    if(!this.paintingsService.atHome){
-      return this.paintingsService.getOnFocusPaintings().subscribe(paintings=>{
-        this.paintings = paintings;
-      })
-    }
     return this.paintingsService.getAvailablePaintings().subscribe(paintings=>{
       this.paintings = paintings;
     }
-
     )
   }
 
