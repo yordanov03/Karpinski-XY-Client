@@ -7,14 +7,14 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class InqueryService {
-postInqueryPath = environment.apiUrl + 'inquery'
+export class InquiryService {
+postinquiryPath = environment.apiUrl + 'inquiry'
 
 constructor(private http: HttpClient) { }
 
-postInquery(data): Observable<any>{
+postinquiry(data): Observable<any>{
   console.log(data)
-    return this.http.post(this.postInqueryPath, data);
+    return this.http.post(this.postinquiryPath, data);
   }
 }
 

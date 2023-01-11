@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { timer } from 'rxjs';
-import { InqueryService } from 'src/app/_services/inquery.service';
+import { InquiryService } from 'src/app/_services/inquiry.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,7 +13,7 @@ submitted = false;
 contactForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-  private inqueryService: InqueryService) { }
+  private inquiryService: InquiryService) { }
 
   ngOnInit(): void {
     this.contactForm = this.formBuilder.group({
@@ -36,14 +35,14 @@ contactForm: FormGroup;
       return;
     }
 
-    return this.inqueryService.postInquery(this.contactForm.value).subscribe(
+    return this.inquiryService.postinquiry(this.contactForm.value).subscribe(
       res=>{
       const Toast = Swal.mixin({
         confirmButtonColor: '#3cd1ff'
       })
       Toast.fire(
         'Success',
-        'You will get a confirmation about the inquery on your email',
+        'You will get a confirmation about the inquiry on your email',
         'success'
       )
       this.contactForm.reset();

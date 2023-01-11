@@ -28,7 +28,7 @@ apiUrl = environment.apiUrl;
       this.paintingsOnFocusPt2 = paintings.slice(3,6)
   })
   }
-  onMakeInqueryClick(data){
+  onMakeinquiryClick(data){
 
   }
   
