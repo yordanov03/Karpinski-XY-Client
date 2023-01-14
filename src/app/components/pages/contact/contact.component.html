@@ -23,40 +23,59 @@
     <div class="container">
         <div class="contact-wrap pt-45">
             <div class="contact-wrap-form">
-                 <form id="contactForm">
+                 <form id="contactForm" [formGroup]="contactForm">
                      <div class="row">
                          <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
-                                <input type="text" name="name" id="name" class="form-control" required placeholder="Your Name">
+                                <input type="text" name="name" id="name" class="form-control" 
+                                placeholder="Your Name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
                             </div>
+                            <div *ngIf="f.name.errors && submitted"
+                            class="alert alert-danger">This field is required
+                        </div>
                          </div>
 
                          <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
-                                <input type="email" name="email" id="email" class="form-control" required placeholder="Your Email">
+                                <input type="email" name="email" id="email" class="form-control" 
+                                placeholder="Your Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                             </div>
+                            <div *ngIf="f.email.errors && submitted"
+                            class="alert alert-danger">This field is required
+                        </div>
+                        <div *ngIf="f.email?.touched && f.email?.errors?.email" class="alert alert-danger">Email must be a
+                            valid email address</div>
                          </div>
 
                          <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
-                                <input type="text" name="phone_number" id="phone_number" required class="form-control" placeholder="Your Phone">
+                                <input type="text" name="phone_number" id="phone_number" 
+                                class="form-control" placeholder="+(country code)(phone number)" formControlName="phoneNumber">
                             </div>
+                            <!-- <div *ngIf="f.phoneNumber.errors.pattern"
+                            class="alert alert-danger">Phone number is not valid
+                        </div> -->
                          </div>
 
                          <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
-                                <input type="text" name="msg_subject" id="msg_subject" class="form-control" required placeholder="Your Subject">
+                                <input type="text" name="msg_subject" id="msg_subject" class="form-control" 
+                                placeholder="Your Subject" formControlName="subject">
                             </div>
                          </div>
 
                          <div class="col-lg-12 col-md-12">
                             <div class="form-group">
-                                <textarea name="message" class="form-control" id="message" cols="30" rows="8" required placeholder="Your Message"></textarea>
+                                <textarea name="content" class="form-control" id="content" cols="30" rows="8" 
+                                placeholder="Your Message" formControlName="content" [ngClass]="{ 'is-invalid': submitted && f.content.errors }"></textarea>
                             </div>
+                            <div *ngIf="f.content.errors && submitted" class="alert alert-danger">This field is required
+                        </div>
                          </div>
 
                          <div class="col-lg-12 col-md-12 text-center">
-                            <button type="submit" class="default-btn page-btn text-center">Send Message</button>
+                            <button type="submit" class="default-btn page-btn text-center" (click)="onSubmitForm()"
+                            >Send Message</button>
                          </div>
                      </div>
                  </form>

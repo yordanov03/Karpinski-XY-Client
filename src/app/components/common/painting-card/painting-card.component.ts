@@ -73,7 +73,7 @@ onEditPainting(id){
   this.router.navigate(['paintings/'+id+'/edit'])
 }
 
-onMakeInqueryClick(name){
+onMakeinquiryClick(name){
 
 }
 
