@@ -1,14 +1,20 @@
 <div class="row">
-  <div id="imagePreview" *ngIf="imageURL && imageURL !== ''">
-    <img [src]="imageURL">
+  <!-- Loop through imageURLs array to display all images -->
+  <div id="imagePreview" *ngFor="let url of imageURLs">
+    <img [src]="url">
   </div>
 </div>
 
 <div class="col-auto">
-  <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" multiple required>
-  <button type="button" class="btn btn-success" (click)="file.click()" id="uploadButton">Upload File</button>
+  <!-- Checkbox for main picture -->
+  <input type="checkbox" [(ngModel)]="isMainPicture">
+  <label for="isMainPicture">Is Main Picture</label>
 
+  <!-- Notice the multiple attribute to allow multiple files -->
+  <input type="file" #file placeholder="Choose file" (change)="uploadFiles(file.files)" style="display:none;" multiple required>
+  <button type="button" class="btn btn-success" (click)="file.click()" id="uploadButton">Upload Files</button>
 </div>
+
 <div>
   <div class="col-auto">
     <span class="upload" *ngIf="progress > 0">

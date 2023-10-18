@@ -12,64 +12,69 @@ import { UploadService } from '../../../_services/upload.service';
   styleUrls: ['./upload-painting.component.scss']
 })
 export class UploadPaintingComponent implements OnInit {
-  imageURL: string | ArrayBuffer;
+  imageURLs: string[] = [];
   progress: number;
   message: string;
   wrongFileFormat = false;
+  isMainPicture: boolean = false; // Added this flag
   currentImagePath$: Observable<string>;
 
   @Output() public onUploadFinished = new EventEmitter();
 
-  constructor(private uploadService: UploadService,
-    private paintingsService: PaintingsService) { }
+  constructor(private uploadService: UploadService, private paintingsService: PaintingsService) { }
 
   ngOnInit(): void {
-    if(!this.paintingsService.isInCreationMode){
-      this.paintingsService.selectedCurrentPaintingPath$.subscribe((response)=>{
-        this.imageURL = response
-      })
+    if (!this.paintingsService.isInCreationMode) {
+      this.paintingsService.selectedCurrentPaintingPath$.subscribe((response) => {
+        // If needed, populate imageURLs here based on the response
+      });
     }
-
   }
 
-  public uploadFile = (files) => {
+  public uploadFiles = (files: FileList) => {
     if (files.length === 0) {
       return;
     }
 
-    if(files[0].type !== "image/jpeg"){
-      popoverMessage().fire({
-        icon:"error",
-        text:"Wrong file format"
-      })
-      return;
+    const fileData: { file: File, isMainPicture: boolean }[] = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files.item(i);
+
+      if (file.type !== "image/jpeg") {
+        popoverMessage().fire({
+          icon: "error",
+          text: "JPEG format only"
+        });
+        return;
+      }
+
+      fileData.push({ file, isMainPicture: this.isMainPicture });
+
+      // Preview
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageURLs.push(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
 
-    let fileToUpload = <File>files[0];
-    this.imageURL = fileToUpload.name;
-    const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
+    // Replace this with the actual painting ID
+    const paintingId = 'your_actual_painting_id_here';
 
-    //Prieview
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imageURL = reader.result as string;
-    }
-    reader.readAsDataURL(fileToUpload)
-    //Service
-    return this.uploadService.uploadImage(formData)
-      .subscribe({
-        next: (event) => {
-        if (event.type === HttpEventType.UploadProgress)
+    // Service
+    this.uploadService.uploadImages(paintingId, fileData).subscribe({
+      next: (event) => {
+        if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
-        else if (event.type === HttpEventType.Response) {
+        } else if (event.type === HttpEventType.Response) {
           this.message = 'Upload success.';
           this.onUploadFinished.emit(event.body);
         }
       },
-      error: (err: HttpErrorResponse) =>   popoverMessage().fire({
+      error: (err: HttpErrorResponse) => popoverMessage().fire({
         icon: 'error',
-      title: 'Something went wrong with uploadding the image'
+        title: 'Something went wrong with uploading the images'
       })
     });
   }
