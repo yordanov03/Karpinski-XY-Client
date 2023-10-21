@@ -23,23 +23,23 @@ export class InquiryService extends BaseService {
   }
 
   /**
-   * Path part for operation inquiryPost
+   * Path part for operation registerInquiry
    */
-  static readonly InquiryPostPath = '/Inquiry';
+  static readonly RegisterInquiryPath = '/Inquiry';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `inquiryPost()` instead.
+   * To access only the response body, use `registerInquiry()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  inquiryPost$Response(params?: {
+  registerInquiry$Response(params?: {
     context?: HttpContext
     body?: Inquiry
   }
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InquiryService.InquiryPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, InquiryService.RegisterInquiryPath, 'post');
     if (params) {
       rb.body(params.body, 'application/*+json');
     }
@@ -58,17 +58,17 @@ export class InquiryService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `inquiryPost$Response()` instead.
+   * To access the full response (for headers, for example), `registerInquiry$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  inquiryPost(params?: {
+  registerInquiry(params?: {
     context?: HttpContext
     body?: Inquiry
   }
 ): Observable<void> {
 
-    return this.inquiryPost$Response(params).pipe(
+    return this.registerInquiry$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

@@ -25,23 +25,23 @@ export class IdentityService extends BaseService {
   }
 
   /**
-   * Path part for operation identityRegisterPost
+   * Path part for operation regsiter
    */
-  static readonly IdentityRegisterPostPath = '/Identity/Register';
+  static readonly RegsiterPath = '/Identity/register';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `identityRegisterPost()` instead.
+   * To access only the response body, use `regsiter()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  identityRegisterPost$Response(params?: {
+  regsiter$Response(params?: {
     context?: HttpContext
     body?: RegisterRequestModel
   }
 ): Observable<StrictHttpResponse<IdentityResult>> {
 
-    const rb = new RequestBuilder(this.rootUrl, IdentityService.IdentityRegisterPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, IdentityService.RegsiterPath, 'post');
     if (params) {
       rb.body(params.body, 'application/*+json');
     }
@@ -60,69 +60,69 @@ export class IdentityService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `identityRegisterPost$Response()` instead.
+   * To access the full response (for headers, for example), `regsiter$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  identityRegisterPost(params?: {
+  regsiter(params?: {
     context?: HttpContext
     body?: RegisterRequestModel
   }
 ): Observable<IdentityResult> {
 
-    return this.identityRegisterPost$Response(params).pipe(
+    return this.regsiter$Response(params).pipe(
       map((r: StrictHttpResponse<IdentityResult>) => r.body as IdentityResult)
     );
   }
 
   /**
-   * Path part for operation identityLoginPost
+   * Path part for operation login
    */
-  static readonly IdentityLoginPostPath = '/Identity/Login';
+  static readonly LoginPath = '/Identity/login';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `identityLoginPost()` instead.
+   * To access only the response body, use `login()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  identityLoginPost$Response(params?: {
+  login$Response(params?: {
     context?: HttpContext
     body?: LoginRequestModel
   }
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<any>> {
 
-    const rb = new RequestBuilder(this.rootUrl, IdentityService.IdentityLoginPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, IdentityService.LoginPath, 'post');
     if (params) {
       rb.body(params.body, 'application/*+json');
     }
 
     return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<any>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `identityLoginPost$Response()` instead.
+   * To access the full response (for headers, for example), `login$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  identityLoginPost(params?: {
+  login(params?: {
     context?: HttpContext
     body?: LoginRequestModel
   }
-): Observable<void> {
+): Observable<any> {
 
-    return this.identityLoginPost$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.login$Response(params).pipe(
+      map((r: StrictHttpResponse<any>) => r.body as any)
     );
   }
 
