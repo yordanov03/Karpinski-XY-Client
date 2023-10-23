@@ -9,8 +9,8 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { IdentityResult } from '../models/identity-result';
 import { LoginRequestModel } from '../models/login-request-model';
+import { LoginResponseModel } from '../models/login-response-model';
 import { RegisterRequestModel } from '../models/register-request-model';
 
 @Injectable({
@@ -39,7 +39,7 @@ export class IdentityService extends BaseService {
     context?: HttpContext
     body?: RegisterRequestModel
   }
-): Observable<StrictHttpResponse<IdentityResult>> {
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, IdentityService.RegsiterPath, 'post');
     if (params) {
@@ -47,13 +47,13 @@ export class IdentityService extends BaseService {
     }
 
     return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
+      responseType: 'text',
+      accept: '*/*',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<IdentityResult>;
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
       })
     );
   }
@@ -68,10 +68,10 @@ export class IdentityService extends BaseService {
     context?: HttpContext
     body?: RegisterRequestModel
   }
-): Observable<IdentityResult> {
+): Observable<void> {
 
     return this.regsiter$Response(params).pipe(
-      map((r: StrictHttpResponse<IdentityResult>) => r.body as IdentityResult)
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
@@ -90,7 +90,7 @@ export class IdentityService extends BaseService {
     context?: HttpContext
     body?: LoginRequestModel
   }
-): Observable<StrictHttpResponse<any>> {
+): Observable<StrictHttpResponse<LoginResponseModel>> {
 
     const rb = new RequestBuilder(this.rootUrl, IdentityService.LoginPath, 'post');
     if (params) {
@@ -104,7 +104,7 @@ export class IdentityService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<any>;
+        return r as StrictHttpResponse<LoginResponseModel>;
       })
     );
   }
@@ -119,10 +119,10 @@ export class IdentityService extends BaseService {
     context?: HttpContext
     body?: LoginRequestModel
   }
-): Observable<any> {
+): Observable<LoginResponseModel> {
 
     return this.login$Response(params).pipe(
-      map((r: StrictHttpResponse<any>) => r.body as any)
+      map((r: StrictHttpResponse<LoginResponseModel>) => r.body as LoginResponseModel)
     );
   }
 
