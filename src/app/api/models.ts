@@ -5,5 +5,4 @@ export { LoginRequestModel } from './models/login-request-model';
 export { LoginResponseModel } from './models/login-response-model';
 export { Painting } from './models/painting';
 export { PaintingPicture } from './models/painting-picture';
-export { ProblemDetails } from './models/problem-details';
 export { RegisterRequestModel } from './models/register-request-model';

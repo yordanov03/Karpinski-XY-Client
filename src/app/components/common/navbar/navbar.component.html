@@ -50,11 +50,11 @@
                         <a routerLink="/sign-up" class="phone-btn">Register</a>
                     </div>
 
-                    <div class="menu-btn"*ngIf="(isLoggedIn$ | async)">
-                        <a>Hello {{user?.username}}</a>
-                    </div>
+                    <div class="menu-btn" *ngIf="(isLoggedIn$ | async)">
+                        <a>Hello {{(username$ | async)}}</a>
+                      </div>
 
-                    <div class="menu-btn"(click)="logout($event)" *ngIf="(isLoggedIn$ | async)">
+                    <div class="menu-btn" (click)="logout($event)" *ngIf="(isLoggedIn$ | async)">
                         <a class="phone-btn" type="submit">Logout</a>
                     </div>
                 </div>

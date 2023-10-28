@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -37,6 +36,13 @@ import { UploadPaintingComponent } from './components/pages/upload-painting/uplo
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { PaintingCardComponent } from './components/common/painting-card/painting-card.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { authReducer } from './stores/auth/auth.reducer';
+import { AuthEffects } from './stores/auth/auth.effects';
+import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -75,11 +81,17 @@ import { PaintingCardComponent } from './components/common/painting-card/paintin
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    StoreModule.forRoot({ auth: authReducer }),
+    StoreDevtoolsModule.instrument({
+      name: 'Karpinski XY',
+      logOnly: environment.production
+    }),
+    EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [AuthService,
-  {provide: HTTP_INTERCEPTORS,
-  useClass: ErrorInterceptor,
-  multi: true}],
+  {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
