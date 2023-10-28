@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { matchValidator } from 'src/app/shared/password-validator';
-import { AuthService } from '../../../_services/auth.service';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '../../../stores/auth/auth.actions'
+import * as fromAuth from 'src/app/stores/auth/auth.selectors';
 
 @Component({
   selector: 'app-register',
@@ -11,11 +12,11 @@ import { AuthService } from '../../../_services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  isSuccessful = false;
-  isSignUpFailed = false;
+  isSuccessful$ = this.store.select(fromAuth.selectIsSignupSuccessful);
+  isSignUpFailed$ = this.store.select(fromAuth.selectIsSignupFailed);
   errorMessage = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.registerForm = this.fb.group({
       'username':['', [Validators.required, Validators.minLength(3)]],
       'email':['', [Validators.required, Validators.email]],
@@ -28,21 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    return this.authService.register(this.registerForm.value).subscribe(
-      (res: any) => {
-        if (res.succeeded) {
-          this.isSuccessful = true;
-            const errorMessageStyle = document.getElementById("signupfailedErrorBox");
-            errorMessageStyle.style.display = "none"
-          setTimeout(() => {
-            this.router.navigate([""])
-          }, 2000);
-        } else {
-          this.isSignUpFailed = true;
-          this.errorMessage = res.errors[0].description
-        }
-      }
-    );
+    this.store.dispatch(AuthActions.register({ payload: this.registerForm.value }));
   }
 
   get username(){

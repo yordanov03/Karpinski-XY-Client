@@ -8,11 +8,13 @@ const _authReducer = createReducer(
   on(AuthActions.loginSuccess, (state, { user }) => ({...state, isLoggedin: true, username: user.username})),
   on(AuthActions.loginFailure, (state, { error }) => ({ ...state, isLoggedin: false, user: null, error: error })),
 
-  on(AuthActions.logout, (state) => ({ ...state })),
   on(AuthActions.logoutSuccess, (state) => ({ ...state, isLoggedin: false, username: '' })),
-  on(AuthActions.logoutFailure, (state, { error }) => ({ ...state, isLoggedin: false, user: null, error }))
+  on(AuthActions.logoutFailure, (state, { error }) => ({ ...state, isLoggedin: false, user: null, error })),
 
+  on(AuthActions.registerSuccess, (state) => ({ ...state, isSignUpFailed: false, errorMessage: null})),
+  on(AuthActions.registerFailure, (state, { error }) => ({...state, isSignUpFailed: true, errorMessage: error}))
 );
+
 
 export function authReducer(state: AuthState | undefined, action: Action): AuthState {
   return _authReducer(state, action);

@@ -69,5 +69,31 @@ export class AuthEffects {
   )
 );
 
+register$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.register),
+      mergeMap(action =>
+        this.identityService.regsiter({ body: action.payload }).pipe(
+          tap(() => {
+            popoverMessage().fire({
+              icon: 'success',
+              text: 'Registration Successful'
+            });
+            setTimeout(() => {
+              this.router.navigate(['']);
+            }, 2000);
+          }),
+          map(() => AuthActions.registerSuccess()),
+          catchError(error => {
+            popoverMessage().fire({
+              icon: 'error',
+              text: 'Registration failed'
+            });
+            return of(AuthActions.registerFailure({ error }));
+          })
+        )
+      )
+    )
+  );
 
 }

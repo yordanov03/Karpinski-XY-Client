@@ -13,3 +13,13 @@ export const selectUsername = createSelector(
   selectAuthState,
   (authState: AuthState) => authState.username
 );
+
+export const selectIsSignupSuccessful = createSelector(
+  selectAuthState,
+  (authState: AuthState) => authState.isSignupSuccessful
+);
+
+export const selectIsSignupFailed = createSelector(
+  selectAuthState,
+  (authState: AuthState) => authState.isSignupFailed
+);

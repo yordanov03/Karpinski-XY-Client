@@ -77,10 +77,10 @@
                     </div>
                     <br />
                     <div>
-                        <div class="alert alert-danger" *ngIf="registerForm.hasError && isSignUpFailed" id="signupfailedErrorBox" >
+                        <div class="alert alert-danger" *ngIf="registerForm.hasError && isSignUpFailed$ | async" id="signupfailedErrorBox" >
                             Registration failed! {{ errorMessage }}
                         </div>
-                        <div class="alert alert-success" *ngIf="isSuccessful">
+                        <div class="alert alert-success" *ngIf="isSuccessful$ | async">
                             Your registration is successful!
                         </div>
                     </div>
