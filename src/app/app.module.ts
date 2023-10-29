@@ -43,6 +43,8 @@ import { AuthEffects } from './stores/auth/auth.effects';
 import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { contactReducer } from './stores/contact/contact.reducer';
+import { ContactEffects } from './stores/contact/contact.effects';
 
 @NgModule({
   declarations: [
@@ -81,12 +83,16 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({ auth: authReducer }),
+    StoreModule.forRoot
+    ({ 
+      auth: authReducer,
+      contact: contactReducer
+    }),
     StoreDevtoolsModule.instrument({
       name: 'Karpinski XY',
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, ContactEffects]),
   ],
   providers: [AuthService,
   {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

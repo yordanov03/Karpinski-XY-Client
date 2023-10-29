@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface Inquiry {
+export interface Contact {
   content?: null | string;
   email?: null | string;
   name?: null | string;

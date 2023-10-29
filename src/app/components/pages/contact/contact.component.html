@@ -28,23 +28,21 @@
                          <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <input type="text" name="name" id="name" class="form-control" 
-                                placeholder="Your Name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                placeholder="Your Name" formControlName="name">
                             </div>
-                            <div *ngIf="f.name.errors && submitted"
-                            class="alert alert-danger">This field is required
-                        </div>
+                            <div *ngIf="name?.touched && name?.errors?.['required']" class="alert alert-danger">
+                                This field is required</div>
                          </div>
 
                          <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
                                 <input type="email" name="email" id="email" class="form-control" 
-                                placeholder="Your Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                placeholder="Your Email" formControlName="email">
                             </div>
-                            <div *ngIf="f.email.errors && submitted"
-                            class="alert alert-danger">This field is required
-                        </div>
-                        <div *ngIf="f.email?.touched && f.email?.errors?.email" class="alert alert-danger">Email must be a
-                            valid email address</div>
+                            <div *ngIf="email?.touched && email?.errors?.['required']" class="alert alert-danger">This field
+                                is required</div>
+                            <div *ngIf="email?.touched && email?.errors?.email" class="alert alert-danger">Email must be a
+                                valid email address</div>
                          </div>
 
                          <div class="col-lg-6 col-sm-6">
@@ -67,14 +65,17 @@
                          <div class="col-lg-12 col-md-12">
                             <div class="form-group">
                                 <textarea name="content" class="form-control" id="content" cols="30" rows="8" 
-                                placeholder="Your Message" formControlName="content" [ngClass]="{ 'is-invalid': submitted && f.content.errors }"></textarea>
+                                placeholder="Your Message" formControlName="content"></textarea>
                             </div>
-                            <div *ngIf="f.content.errors && submitted" class="alert alert-danger">This field is required
-                        </div>
+                            <div *ngIf="content?.touched && content?.errors?.['required']" class="alert alert-danger">This
+                                field is required</div>
+                            <div *ngIf="content?.touched && content?.errors?.minlength" class="alert alert-danger">
+                                The minimum length is {{ content.errors.minlength.requiredLength }} characters.</div>
                          </div>
 
                          <div class="col-lg-12 col-md-12 text-center">
-                            <button type="submit" class="default-btn page-btn text-center" (click)="onSubmitForm()"
+                            <button type="submit" class="default-btn page-btn text-center" [disabled]="!contactForm.valid" 
+                            [ngClass]="{'disabled-btn': !contactForm.valid}" (click)="onSubmitForm()"
                             >Send Message</button>
                          </div>
                      </div>

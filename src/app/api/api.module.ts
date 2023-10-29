@@ -4,8 +4,8 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { ContactService } from './services/contact.service';
 import { IdentityService } from './services/identity.service';
-import { InquiryService } from './services/inquiry.service';
 import { PaintingsService } from './services/paintings.service';
 
 /**
@@ -16,8 +16,8 @@ import { PaintingsService } from './services/paintings.service';
   exports: [],
   declarations: [],
   providers: [
+    ContactService,
     IdentityService,
-    InquiryService,
     PaintingsService,
     ApiConfiguration
   ],

@@ -6,7 +6,7 @@ import * as AuthActions from './auth.actions';
 import { IdentityService } from 'src/app/api/services';
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { Router } from '@angular/router';
-import { JwtService } from 'src/app/api/services/jwt.service';
+import { JwtService } from 'src/app/shared/services/jwt.service';
 
 @Injectable()
 export class AuthEffects {

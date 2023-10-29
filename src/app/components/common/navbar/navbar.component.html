@@ -54,7 +54,7 @@
                         <a>Hello {{(username$ | async)}}</a>
                       </div>
 
-                    <div class="menu-btn" (click)="logout($event)" *ngIf="(isLoggedIn$ | async)">
+                    <div class="menu-btn" (click)="logout()" *ngIf="(isLoggedIn$ | async)">
                         <a class="phone-btn" type="submit">Logout</a>
                     </div>
                 </div>

@@ -94,7 +94,6 @@ export class IdentityService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, IdentityService.LoginPath, 'post');
     if (params) {
-      console.log(params.body)
       rb.body(params.body, 'application/*+json');
     }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchValidator } from 'src/app/shared/password-validator';
 import { Store } from '@ngrx/store';
 import * as AuthActions from '../../../stores/auth/auth.actions'
@@ -47,5 +47,7 @@ export class RegisterComponent implements OnInit {
   get confirmPassword(){
     return this.registerForm.get('confirmPassword');
   }
-
+  public isInvalid(control: AbstractControl): boolean {
+    return (control.invalid || control.errors !== null) && (control.dirty || control.touched);
+  }
 }

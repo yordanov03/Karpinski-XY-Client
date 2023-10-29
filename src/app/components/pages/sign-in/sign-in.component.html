@@ -55,8 +55,13 @@
                     </div>
 
                     <div class="col-12 text-center">
-                        <button class="default-btn btn-two sign-btn" type="submit">Sign In Now</button>
-                    </div>
+                        <button class="default-btn btn-two sign-btn" 
+                                type="submit" 
+                                [disabled]="!loginForm.valid" 
+                                [ngClass]="{'disabled-btn': !loginForm.valid}">
+                          Sign In Now
+                        </button>
+                      </div>
 
                     <!-- <div>
                         <div *ngIf="isLoginFailed" class="alert alert-danger">{{errorMessage}}</div>

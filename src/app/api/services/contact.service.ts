@@ -9,12 +9,12 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { Inquiry } from '../models/inquiry';
+import { Contact } from '../models/contact';
 
 @Injectable({
   providedIn: 'root',
 })
-export class InquiryService extends BaseService {
+export class ContactService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -25,7 +25,7 @@ export class InquiryService extends BaseService {
   /**
    * Path part for operation registerInquiry
    */
-  static readonly RegisterInquiryPath = '/Inquiry';
+  static readonly RegisterInquiryPath = '/Contact';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -35,11 +35,11 @@ export class InquiryService extends BaseService {
    */
   registerInquiry$Response(params?: {
     context?: HttpContext
-    body?: Inquiry
+    body?: Contact
   }
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InquiryService.RegisterInquiryPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, ContactService.RegisterInquiryPath, 'post');
     if (params) {
       rb.body(params.body, 'application/*+json');
     }
@@ -64,7 +64,7 @@ export class InquiryService extends BaseService {
    */
   registerInquiry(params?: {
     context?: HttpContext
-    body?: Inquiry
+    body?: Contact
   }
 ): Observable<void> {
 

@@ -21,18 +21,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.username$ = this.store.select(fromAuth.selectUsername)
     this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
-    this.username$.subscribe(username => console.log('Username: ', username));
   }
 
-  logout(event:any){
-  //   this.authService.logout();
-  //   this.router.navigate(['/']);
-  // setTimeout(() => {
-  //   popoverMessage().fire({
-  //     icon:"success",
-  //     text: "Bye Pawliushko"
-  //   })
-  // }, 2000);
+  logout(){
   this.store.dispatch(AuthActions.logout());
   }
 

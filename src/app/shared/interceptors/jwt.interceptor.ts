@@ -6,7 +6,7 @@ import {
   HttpEvent,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { JwtService } from '../../api/services/jwt.service'
+import { JwtService } from '../services/jwt.service'
 
 
 @Injectable()
