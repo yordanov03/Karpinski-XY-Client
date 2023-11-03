@@ -166,7 +166,7 @@ export class PaintingsService extends BaseService {
     body?: Painting
   }
 ): Observable<void> {
-
+console.log('service')
     return this.create$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );

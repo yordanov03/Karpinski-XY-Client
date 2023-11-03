@@ -45,6 +45,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { contactReducer } from './stores/contact/contact.reducer';
 import { ContactEffects } from './stores/contact/contact.effects';
+import { paintingReducer } from './stores/paintings/painting.reducers';
+import { PaintingEffects } from './stores/paintings/painting.effects';
 
 @NgModule({
   declarations: [
@@ -86,13 +88,14 @@ import { ContactEffects } from './stores/contact/contact.effects';
     StoreModule.forRoot
     ({ 
       auth: authReducer,
-      contact: contactReducer
+      contact: contactReducer,
+      painting: paintingReducer
     }),
     StoreDevtoolsModule.instrument({
       name: 'Karpinski XY',
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([AuthEffects, ContactEffects]),
+    EffectsModule.forRoot([AuthEffects, ContactEffects, PaintingEffects]),
   ],
   providers: [AuthService,
   {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
