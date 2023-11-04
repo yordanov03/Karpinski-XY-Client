@@ -1,62 +1,19 @@
-// input[type="radio"]{
-//     margin-left:20px ;
-//     margin-right:5px ;
-//   }
-//   .imagePreview{
-//     max-height: 50px;
-//     max-width: 350px;
-
-// // object-position: absolute;
-// right:0%;
-
-// float: right;
-//   }
-
-//   .upload{
-//     font-weight:bold;
-//     color:#28a745;
-//     margin-left: 15px;
-//     line-height: 36px;
-//   }
-
-//   div{
-//     overflow: auto ;
-//   }
-//   app-upload-painting{
-//     bottom: 0;
-//   }
-
-// ::ng-deep.uploaded-images {
-//   display: flex;
-//   flex-wrap: wrap;
-//   flex-direction: row;  /* Explicitly set to row */
-//   justify-content: flex-start;
-//   align-items: flex-start;
-//   width: 100%;
-// }
-
-// ::ng-deep.uploaded-image {
-//   flex: 0 1 calc(33.333% - 10px);
-//   max-width: calc(33.333% - 10px);
-//   margin: 5px;
-//   position: relative;
-//   box-sizing: border-box;
-
 ::ng-deep.uploaded-images {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
 }
 
 ::ng-deep.uploaded-image {
-  flex: calc(33.333% - 10px)!important;
-  max-width: calc(33.333% - 10px)!important;
-  margin: 5px;
-  position: relative;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
 
   .checkbox-container {
     position: absolute;

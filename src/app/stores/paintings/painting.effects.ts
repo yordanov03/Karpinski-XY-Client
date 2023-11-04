@@ -24,7 +24,7 @@ export class PaintingEffects {
       }),
         map(() => paintingActions.createPaintingSuccess()),
         catchError(error =>{
-          console.log('kur')
+          console.log(error)
           popoverMessage().fire({
             icon: 'error',
             text: 'Painting not saved'

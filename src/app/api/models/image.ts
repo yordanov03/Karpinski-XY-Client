@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface Image {
-  file?: null | Blob;
-  imageUrl: string;
-  isMainPicture?: boolean;
+  file?: null | string;
+  imageUrl?: null | string;
+  isMainImage?: boolean;
   paintingId?: string;
 }
