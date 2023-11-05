@@ -12,11 +12,9 @@ export class PaintingEffects {
 
   createPainting$ = createEffect(() =>
     this.actions$.pipe(
-      tap(action => console.log('Action coming in effect:', action)),
       ofType(paintingActions.createPainting),
       switchMap(action => this.paintingsService.create({ body: action.payload }).pipe(
         tap(() => {
-          console.log('success')
         popoverMessage().fire({
           icon: 'success',
           text: 'Painting created'
@@ -31,6 +29,46 @@ export class PaintingEffects {
           });
           return of(paintingActions.createPaintingFailure({ payload: error }))
         } )
+      ))
+    )
+  );
+  
+  updatePainting$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(paintingActions.updatePainting),
+      switchMap(action => this.paintingsService.update({ body: action.painting }).pipe(
+        tap(() => {
+          console.log('success');
+          popoverMessage().fire({
+            icon: 'success',
+            text: 'Painting updated'
+          });
+        }),
+        map(() => paintingActions.updatePaintingSuccess()),
+        catchError(error => {
+          console.log(error);
+          popoverMessage().fire({
+            icon: 'error',
+            text: 'Painting not updated'
+          });
+          return of(paintingActions.updatePaintingFailure({ error }))
+        })
+      ))
+    )
+  )
+
+  loadPainting$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(paintingActions.loadPainting),
+      switchMap(action => this.paintingsService.getPainting(action.id).pipe(
+        map(painting => paintingActions.setEditingPainting({ painting })),
+        catchError(error => {
+          popoverMessage().fire({
+            icon: 'error',
+            text: 'Painting not updated'
+          });
+          return of(paintingActions.loadPaintingFailure({ error }));
+        })
       ))
     )
   );

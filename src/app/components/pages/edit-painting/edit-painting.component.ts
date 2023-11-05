@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { popoverMessage } from 'src/app/shared/popover-messages';
-import { Painting } from 'src/app/_models/painting.model';
-import { PaintingsService } from 'src/app/_services/paintings.service';
-import { environment } from 'src/environments/environment';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { PaintingState } from 'src/app/stores/paintings/painting.state';
+import * as paintingActions from '../../../stores/paintings/painting.actions'
+import * as fromSelectors from '../../../stores/paintings/painting.selectos'
+import { Painting } from 'src/app/api/models';
+import { Image } from 'src/app/api/models';
 
 @Component({
   selector: 'app-edit-painting',
@@ -13,123 +14,100 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./edit-painting.component.scss']
 })
 export class EditPaintingComponent implements OnInit {
-editPaintingForm: FormGroup;
-paintingId: string;
-painting: Painting;
-wrongFileFormat = true;
-imageURL: string;
-submitted = false;
-response: {dbPath: ''};
+  paintingState$: Observable<PaintingState>;
+  editPaintingForm: FormGroup;
+  images: Image[] = [];
 
-
-  constructor(private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private paintingsService: PaintingsService) 
-    {
-      this.editPaintingForm = this.fb.group({
-      id: new FormControl(''),
-      name: new FormControl('',Validators.required),
-      description: new FormControl('',Validators.required),
-      price:new FormControl(''),
-      dimensions: new FormControl('', Validators.required),
-      isAvailableToSell: new FormControl(true),
-      imageURL: new FormControl(''),
-      year: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$") ]),
-      shortDescription: new FormControl('',Validators.required),
-      technique: new FormControl('', Validators.required),
-      onFocus: new FormControl(false)
-    })
-   }
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<{ painting: PaintingState }>,
+  ) {
+    this.paintingState$ = this.store.select('painting');
+    this.editPaintingForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      dimensions: ['', Validators.required],
+      isAvailableToSell: [true],
+      year: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      shortDescription: ['', Validators.required],
+      technique: ['', Validators.required],
+      isOnFocus: [false],
+      isAvailableForSale: [true],
+      images: this.fb.array([], Validators.required)
+    });
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params=>{
-      this.paintingId = params['id'];
-      this.paintingsService.getDetails(this.paintingId).subscribe(res=>{
-        this.painting = res;
-        this.imageURL = environment.apiUrl+ this.painting.imageUrl
-        this.paintingsService.sendPaintingPathForEdit(this.imageURL);
-        this.editPaintingForm = this.fb.group({
-          'id':[this.painting.id],
-          'name':[this.painting.name],
-          'description':[this.painting.description],
-          'price':[this.painting.price],
-          'dimensions':[this.painting.dimensions],
-          'isAvailableToSell':[this.painting.isAvailableToSell],
-          'imageUrl':[this.painting.imageUrl],
-          'year':[this.painting.year],
-          'shortDescription':[this.painting.shortDescription],
-          'technique':[this.painting.technique],
-          'onFocus':[this.painting.onFocus]
-        })
-      })
-    })
+
+    this.images.forEach((image, index) => {
+      this.addImageFormGroup(image);
+    });
+
+    this.imagesFormArray.valueChanges.subscribe((images) => {
+      images.forEach((image, index) => {
+        this.images[index].isMainImage = image.isMainImage;
+      });
+    });
   }
 
-  editPainting(){
-    if(this.editPaintingForm.invalid){
-      this.submitted = true;
-      popoverMessage().fire({
-        icon: 'error',
-      title: 'All fields are required'
-      })
-      setTimeout(() => {
-        this.submitted = false;
-        this.wrongFileFormat = false;
-      }, 2000);
-      return
+  get imagesFormArray() {
+    return (this.editPaintingForm?.get('images') as FormArray);
+  }
+
+  editPainting() {
+    if (this.editPaintingForm.valid) {
+      const formValue = this.preparePayload();
+
+      // Dispatch action to edit painting
+      this.store.dispatch(paintingActions.updatePainting({ painting: formValue }));
     }
-    this.submitted = true;
-    this.paintingsService.editPainting(this.editPaintingForm.value).subscribe(res=>{
-      this.router.navigate(['paintings']);
-      setTimeout(() => {
-        
-        popoverMessage().fire({
-          icon: 'success',
-        title: 'Updated successfully',
-        }) 
-        },2000);
-    })
-    this.submitted = false;
   }
 
-  
-onImageChangeFromFile($event:any)
-{
-    if ($event.target.files && $event.target.files[0]) {
-      let file = $event.target.files[0];
-        if(file.type == "image/jpeg") {
-          const file = (event.target as HTMLInputElement).files[0];
-          this.wrongFileFormat = false;
-  this.editPaintingForm.patchValue({
-    avatar: file
-  });
-
-  this.editPaintingForm.get('imageUpload').updateValueAndValidity();
-
-  // File Preview
-  const reader = new FileReader();
-  reader.onload = () => {
-    this.imageURL = reader.result as string;
+  preparePayload(): Painting {
+    const formValue = this.editPaintingForm.getRawValue();
+    formValue.images = this.images.map(image => {
+      return {
+        file: image.file,
+        isMainImage: image.isMainImage
+      };
+    });
+    return formValue as Painting;
   }
-  reader.readAsDataURL(file)
-        }
-        else {
-          //call validation
-          this.wrongFileFormat = true;
-          this.imageURL = '';
 
-          this.editPaintingForm.controls["imageUpload"].setValidators([Validators.required]);
-          this.editPaintingForm.get('imageUpload').updateValueAndValidity();
-        }
+  addImageFormGroup(image: any) {
+    const imageFormGroup = this.fb.group({
+      file: [image, Validators.required],
+      isMainImage: [image.isMainImage]
+    });
+    this.imagesFormArray.push(imageFormGroup);
+  }
+
+  onMultipleImageUpload(event: any) {
+    const files: FileList = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const base64String = e.target.result.split(',')[1];
+        const image: Image = {
+          file: base64String,
+          imageUrl: '',
+          isMainImage: false
+        };
+        this.images.push(image);
+        this.addImageFormGroup(image);
+      };
+      reader.readAsDataURL(file);
     }
-}
+  }
 
-uploadFinished = (event) => { 
-  this.response = event; 
-}
-      
-get f(){
-return this.editPaintingForm.controls;
-}
+  onDeleteImage(index: number) {
+    this.images.splice(index, 1);
+    this.imagesFormArray.removeAt(index);
+  }
+
+  get f() {
+    return this.editPaintingForm.controls;
+  }
 }

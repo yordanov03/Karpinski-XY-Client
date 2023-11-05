@@ -1,27 +1,67 @@
-input[type="radio"]{
-    margin-left:20px ;
-    margin-right:5px ;
-  }
-  .imagePreview{
-    max-height: 50px;
-    max-width: 350px;
+::ng-deep .uploaded-images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding: 10px;  /* Optional: Add padding to the container if you want some space around the images */
+}
 
-// object-position: absolute;
-right:0%;
+::ng-deep .uploaded-image {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: calc(33.33% - 10px);  /* Adjusted width for 3 images per row */
+  margin: 5px;  /* Space between images */
+  position: relative;
 
-float: right;
+  .checkbox-container,
+  .delete-icon {
+    z-index: 1;
   }
 
-  .upload{
-    font-weight:bold;
-    color:#28a745;
-    margin-left: 15px;
-    line-height: 36px;
+  .checkbox-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
   }
 
-  div{
-    overflow: auto ;
+  .delete-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  app-upload-painting{
-    bottom: 0;
+}
+
+.uploaded-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.disabled-btn {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  &:disabled {
+    &::before,
+    &::after {
+      background-color: transparent !important;
+      color: inherit !important;
+    }
   }
+}
