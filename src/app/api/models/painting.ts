@@ -9,7 +9,7 @@ export interface Painting {
   isAvailableToSell?: boolean;
   isDeleted?: boolean;
   name?: null | string;
-  onFocus?: boolean;
+  isOnFocus?: boolean;
   price?: number;
   shortDescription?: null | string;
   technique?: null | string;

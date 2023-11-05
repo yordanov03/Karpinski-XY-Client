@@ -18,3 +18,14 @@ export const selectPainting = createSelector(
   selectPaintingState,
   (state: PaintingState) => state.painting
 );
+
+export const selectAvailablePainting = createSelector(
+  selectPaintingState,
+  (state: PaintingState) => state.availablePaintings
+);
+
+export const selectPaintingsOnFocus = createSelector(
+  selectPaintingState,
+  (state: PaintingState) => state.paintingsOnFocus
+);
+

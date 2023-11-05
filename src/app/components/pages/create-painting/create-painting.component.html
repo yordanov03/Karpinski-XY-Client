@@ -119,10 +119,14 @@
                 <div *ngFor="let image of images; let i = index" class="uploaded-image">
                   <div [formGroupName]="i">
                     <img [src]="'data:image/png;base64,' + image.file" alt="Uploaded Painting">
-                    <div class="radio-container">
-                      <input type="radio" name="isMainImage" [value]="i" formControlName="isMainImage">
+                    <div class="checkbox-container">
+                      <input type="checkbox" formControlName="isMainImage">
                       <label>&nbsp;Set as Main</label>
-                  </div>
+                    </div>
+                    <!-- <div class="radio-container">
+                      <input type="radio" name="isMainImage" [checked]="image.isMainImage" (change)="onMainImageChange(i)" formControlName="isMainImage">
+                      <label>&nbsp;Set as Main</label>
+                  </div> -->
                     <div class="delete-icon" (click)="onDeleteImage(i)">X</div>
                   </div>
                 </div>

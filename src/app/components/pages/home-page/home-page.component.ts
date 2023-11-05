@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Painting } from 'src/app/_models/painting.model';
-import { PaintingsService } from 'src/app/_services/paintings.service';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as paintingActions from '../../../stores/paintings/painting.actions'
+import * as fromPainting from '../../../stores/paintings/painting.selectos'
+import { Painting } from 'src/app/api/models';
 import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-home-page',
@@ -10,23 +14,22 @@ import { environment } from 'src/environments/environment';
 })
 export class HomePageComponent implements OnInit {
 homePagePaitingsUrl = environment.homePagePaitings;
-paintingsOnFocusPt1: Array<Painting> = [];
-paintingsOnFocusPt2: Array<Painting> = [];
-apiUrl = environment.apiUrl;
+// paintingsOnFocusPt1: Array<Painting> = [];
+// paintingsOnFocusPt2: Array<Painting> = [];
+// apiUrl = environment.apiUrl;
+paintingsOnFocus$: Observable<Painting[]>;
 
-  constructor(private paintingsService: PaintingsService) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.getPaintingsOnFocus();
+    this.store.dispatch(paintingActions.loadPaintingsOnFocus());
+
+    // Select paintings on focus from the store
+    this.paintingsOnFocus$ = this.store.pipe(select(fromPainting.selectPaintingsOnFocus));
   }
 
   getPaintingsOnFocus(){
-    return this.paintingsService.getOnFocusPaintings().subscribe(paintings=>{
-      paintings.forEach((val,index)=> 
-      paintings[index].imageUrl = this.apiUrl+ paintings[index].imageUrl);
-      this.paintingsOnFocusPt1 = paintings.slice(0,3)
-      this.paintingsOnFocusPt2 = paintings.slice(3,6)
-  })
+ 
   }
   onMakeinquiryClick(data){
 

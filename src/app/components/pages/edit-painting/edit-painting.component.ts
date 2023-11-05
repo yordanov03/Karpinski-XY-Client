@@ -65,7 +65,7 @@ export class EditPaintingComponent implements OnInit {
           year: painting.year,
           shortDescription: painting.shortDescription,
           technique: painting.technique,
-          isOnFocus: painting.onFocus,
+          isOnFocus: painting.isOnFocus,
           isAvailableForSale: painting.isAvailableToSell
         });
 

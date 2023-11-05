@@ -88,7 +88,42 @@
                 homeless, won't many of goals thoughts volumes felt.</p>
         </div>
         <span>&nbsp;</span>
+
         <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <ng-container *ngFor="let painting of paintingsOnFocus$ | async; let i = index; let isFirst = first">
+                    <div *ngIf="i % 2 === 0" class="carousel-item" [class.active]="isFirst">
+                        <div class="row">
+                            <ng-container *ngFor="let p of [0, 1, 2]">
+                                <div class="col-lg-4" *ngIf="paintingsOnFocus$ | async as paintings">
+                                    <div class="service-card">
+                                        <a routerLink="/paintings-details/{{paintings[i + p]?.id}}">
+                                            <img [src]="paintings[i + p]?.images[0]?.imageUrl" alt="Service Images" width="400" height="380">
+                                        </a>
+                                        <div class="service-content">
+                                            <a routerLink="/painting-details/{{paintings[i + p]?.id}}">
+                                                <h3>{{paintings[i + p]?.name}}</h3>
+                                            </a>
+                                            <p>{{paintings[i + p]?.shortDescription}}</p>
+                                            <a routerLink="/contact" class="default-btn" (click)="onMakeinquiryClick(paintings[i + p]?.name)">Make inquiry</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!-- <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row">
@@ -127,7 +162,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 

@@ -45,3 +45,28 @@ export const loadPaintingFailure = createAction(
   '[Painting] Load Painting Failure',
   props<{ error: any }>()
 );
+
+export const loadAvailablePaintings = createAction(
+  '[Painting] Load Paintings'
+);
+
+export const loadAvailablePaintingsSuccess = createAction(
+  '[Painting] Load Paintings Success',
+  props<{ availablePaintings: Painting[] }>()
+);
+
+export const loadAvailablePaintingsFailure = createAction(
+  '[Painting] Load Paintings Failure',
+  props<{ error: any }>()
+);
+
+export const loadPaintingsOnFocus = createAction
+('[PaintingsOnFocus] Load');
+
+export const loadPaintingsOnFocusSuccess = createAction
+('[PaintingsOnFocus] Load Success', 
+props<{ paintingsOnFocus: Painting[] }>());
+
+export const loadPaintingsOnFocusFailure = createAction
+('[PaintingsOnFocus] Load Failure', 
+props<{ error: any }>());

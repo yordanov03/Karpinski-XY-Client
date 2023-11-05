@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { PaintingState } from 'src/app/stores/paintings/painting.state';
 import * as paintingActions from '../../../stores/paintings/painting.actions'
-import * as fromSelectors from '../../../stores/paintings/painting.selectos'
 import { Painting } from 'src/app/api/models';
 import { Image } from 'src/app/api/models';
 
@@ -60,7 +59,6 @@ export class CreatePaintingComponent implements OnInit {
 
     if (this.createPaintingForm.valid) {
       const formValue = this.preparePayload();
-      console.log(formValue.images[0].isMainImage)
 
       // Dispatch action to create painting
       this.store.dispatch(paintingActions.createPainting({ payload: formValue }));
