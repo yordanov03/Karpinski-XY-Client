@@ -3,10 +3,6 @@ import { PaintingState } from './painting.state';
 
 export const selectPaintingState = createFeatureSelector<PaintingState>('painting');
 
-export const selectPaintingData = createSelector(
-  selectPaintingState,
-  (state: PaintingState) => state.paintingData
-);
 
 export const selectLoading = createSelector(
   selectPaintingState,
@@ -18,7 +14,7 @@ export const selectError = createSelector(
   (state: PaintingState) => state.error
 );
 
-export const selectFormSubmitted = createSelector(
+export const selectPainting = createSelector(
   selectPaintingState,
-  (state: PaintingState) => state.formSubmitted
+  (state: PaintingState) => state.painting
 );

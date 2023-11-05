@@ -5,10 +5,14 @@ import { initialState } from './painting.state';
 export const paintingReducer = createReducer(
   initialState,
   on(paintingActions.createPainting, (state) => ({...state, loading: true,})),
-  on(paintingActions.createPaintingSuccess, (state, ) => ({...state, loading: false,})),
+  on(paintingActions.createPaintingSuccess, (state) => ({...state, loading: false,})),
   on(paintingActions.createPaintingFailure, (state, { payload }) => ({...state, error: payload, loading: false})),
 
   on(paintingActions.updatePainting, (state) => ({...state, loading: true,})),
   on(paintingActions.updatePaintingSuccess, state => ({ ...state, error: null })),
-  on(paintingActions.updatePaintingFailure, (state, { error }) => ({ ...state, error }))
+  on(paintingActions.updatePaintingFailure, (state, { error }) => ({ ...state, error })),
+
+  on(paintingActions.loadPainting, state => ({ ...state, loading: true, error: null })),
+  on(paintingActions.loadPaintingSuccess, (state, { painting }) => ({ ...state, painting, loading: false })),
+  on(paintingActions.loadPaintingFailure, (state, { error }) => ({ ...state, error, loading: false })),
 );

@@ -36,7 +36,12 @@ export const loadPainting = createAction(
   props<{ id: string }>()
 );
 
-export const setEditingPainting = createAction(
+export const loadPaintingSuccess = createAction(
   '[Painting] Set Editing Painting',
   props<{ painting: Painting }>()
+);
+
+export const loadPaintingFailure = createAction(
+  '[Painting] Load Painting Failure',
+  props<{ error: any }>()
 );

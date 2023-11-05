@@ -5,6 +5,7 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { PaintingsService } from 'src/app/api/services';
+import { Painting } from 'src/app/api/models';
 
 @Injectable()
 export class PaintingEffects {
@@ -58,18 +59,19 @@ export class PaintingEffects {
   )
 
   loadPainting$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(paintingActions.loadPainting),
-      switchMap(action => this.paintingsService.getPainting(action.id).pipe(
-        map(painting => paintingActions.setEditingPainting({ painting })),
-        catchError(error => {
-          popoverMessage().fire({
-            icon: 'error',
-            text: 'Painting not updated'
-          });
-          return of(paintingActions.loadPaintingFailure({ error }));
-        })
-      ))
-    )
-  );
+  this.actions$.pipe(
+    ofType(paintingActions.loadPainting),
+    switchMap(action => this.paintingsService.getPaintingToEdit({ id: action.id }).pipe(
+      map((painting: Painting) => paintingActions.loadPaintingSuccess({ painting })),
+      catchError(error => {
+        console.error(error);
+        popoverMessage().fire({
+          icon: 'error',
+          text: 'Failed to load painting'
+        });
+        return of(paintingActions.loadPaintingFailure({ error }));
+      })
+    ))
+  )
+);
 }

@@ -36,20 +36,20 @@ export class PaintingsService extends BaseService {
   onFocus$Response(params?: {
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<Array<Painting>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PaintingsService.OnFocusPath, 'get');
     if (params) {
     }
 
     return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<Array<Painting>>;
       })
     );
   }
@@ -63,10 +63,10 @@ export class PaintingsService extends BaseService {
   onFocus(params?: {
     context?: HttpContext
   }
-): Observable<void> {
+): Observable<Array<Painting>> {
 
     return this.onFocus$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<Array<Painting>>) => r.body as Array<Painting>)
     );
   }
 
@@ -186,20 +186,20 @@ export class PaintingsService extends BaseService {
   available$Response(params?: {
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<Array<Painting>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PaintingsService.AvailablePath, 'get');
     if (params) {
     }
 
     return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<Array<Painting>>;
       })
     );
   }
@@ -213,10 +213,61 @@ export class PaintingsService extends BaseService {
   available(params?: {
     context?: HttpContext
   }
-): Observable<void> {
+): Observable<Array<Painting>> {
 
     return this.available$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<Array<Painting>>) => r.body as Array<Painting>)
+    );
+  }
+
+  /**
+   * Path part for operation getPaintingToEdit
+   */
+  static readonly GetPaintingToEditPath = '/Paintings/toEdit/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getPaintingToEdit()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getPaintingToEdit$Response(params: {
+    id: string;
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<Painting>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.GetPaintingToEditPath, 'get');
+    if (params) {
+      rb.path('id', params.id, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Painting>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getPaintingToEdit$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getPaintingToEdit(params: {
+    id: string;
+    context?: HttpContext
+  }
+): Observable<Painting> {
+
+    return this.getPaintingToEdit$Response(params).pipe(
+      map((r: StrictHttpResponse<Painting>) => r.body as Painting)
     );
   }
 
@@ -235,7 +286,7 @@ export class PaintingsService extends BaseService {
     id: string;
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<Painting>> {
 
     const rb = new RequestBuilder(this.rootUrl, PaintingsService.GetPaintingPath, 'get');
     if (params) {
@@ -243,13 +294,13 @@ export class PaintingsService extends BaseService {
     }
 
     return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<Painting>;
       })
     );
   }
@@ -264,10 +315,10 @@ export class PaintingsService extends BaseService {
     id: string;
     context?: HttpContext
   }
-): Observable<void> {
+): Observable<Painting> {
 
     return this.getPainting$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<Painting>) => r.body as Painting)
     );
   }
 

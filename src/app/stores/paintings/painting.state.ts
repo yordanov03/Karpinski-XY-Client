@@ -1,12 +1,14 @@
+import { Painting } from "src/app/api/models";
+
 export interface PaintingState {
-    paintingData: FormData | null;
+    painting: Painting
     formSubmitted: boolean
     error: string | null;
     loading: boolean;
   }
   
   export const initialState: PaintingState = {
-    paintingData: null,
+    painting: null,
     formSubmitted: false,
     error: null,
     loading: false,

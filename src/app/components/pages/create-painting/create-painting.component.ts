@@ -41,7 +41,6 @@ export class CreatePaintingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formSubmitted$ = this.store.select(fromSelectors.selectFormSubmitted)
     this.images.forEach((image, index) => {
       this.addImageFormGroup(image);
     });

@@ -7,6 +7,8 @@ import * as paintingActions from '../../../stores/paintings/painting.actions'
 import * as fromSelectors from '../../../stores/paintings/painting.selectos'
 import { Painting } from 'src/app/api/models';
 import { Image } from 'src/app/api/models';
+import { ActivatedRoute } from '@angular/router';
+import { filter, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-painting',
@@ -21,9 +23,11 @@ export class EditPaintingComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store<{ painting: PaintingState }>,
-  ) {
+    private route: ActivatedRoute) 
+    {
     this.paintingState$ = this.store.select('painting');
     this.editPaintingForm = this.fb.group({
+      id:[''],
       name: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
@@ -39,16 +43,48 @@ export class EditPaintingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.store.dispatch(paintingActions.loadPainting({ id }))
+    }
 
-    this.images.forEach((image, index) => {
-      this.addImageFormGroup(image);
+    this.store.select(fromSelectors.selectPainting)
+    .pipe(
+      filter(painting => painting !== null),
+      take(1))
+    .subscribe(painting => {
+      console.log(painting);
+      if (painting) {
+        this.editPaintingForm.patchValue({
+          id: painting.id,
+          name: painting.name,
+          description: painting.description,
+          price: painting.price,
+          dimensions: painting.dimensions,
+          isAvailableToSell: painting.isAvailableToSell,
+          year: painting.year,
+          shortDescription: painting.shortDescription,
+          technique: painting.technique,
+          isOnFocus: painting.onFocus,
+          isAvailableForSale: painting.isAvailableToSell
+        });
+
+        // Load images
+        this.images = painting.images.map(img => ({
+          file: img.file,
+          imageUrl: img.imageUrl,
+          isMainImage: img.isMainImage
+        }));
+
+        this.images.forEach(image => this.addImageFormGroup(image));
+      }
     });
 
-    this.imagesFormArray.valueChanges.subscribe((images) => {
-      images.forEach((image, index) => {
-        this.images[index].isMainImage = image.isMainImage;
-      });
+  this.imagesFormArray.valueChanges.subscribe((images) => {
+    images.forEach((image, index) => {
+      this.images[index].isMainImage = image.isMainImage;
     });
+  });
   }
 
   get imagesFormArray() {
@@ -69,7 +105,8 @@ export class EditPaintingComponent implements OnInit {
     formValue.images = this.images.map(image => {
       return {
         file: image.file,
-        isMainImage: image.isMainImage
+        isMainImage: image.isMainImage,
+        imageUrl: image.imageUrl!==null? image.imageUrl : null
       };
     });
     return formValue as Painting;
@@ -93,7 +130,7 @@ export class EditPaintingComponent implements OnInit {
         const image: Image = {
           file: base64String,
           imageUrl: '',
-          isMainImage: false
+          isMainImage: null
         };
         this.images.push(image);
         this.addImageFormGroup(image);
