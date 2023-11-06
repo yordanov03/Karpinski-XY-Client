@@ -16,7 +16,7 @@ export const paintingReducer = createReducer(
   on(paintingActions.loadPaintingSuccess, (state, { painting }) => ({ ...state, painting, loading: false })),
   on(paintingActions.loadPaintingFailure, (state, { error }) => ({ ...state, error, loading: false })),
 
-  on(paintingActions.loadAvailablePaintingsSuccess, (state, { availablePaintings }) => ({ ...state, paintings: [...availablePaintings] })),
+  on(paintingActions.loadAvailablePaintingsSuccess, (state, { availablePaintings }) => ({ ...state, availablePaintings: [...availablePaintings] })),
   on(paintingActions.loadAvailablePaintingsFailure, (state, { error }) => ({ ...state, error })),
 
   on(paintingActions.loadPaintingsOnFocusSuccess, (state, { paintingsOnFocus }) => ({ ...state, paintingsOnFocus: [...paintingsOnFocus] })),

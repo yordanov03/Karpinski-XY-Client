@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { popoverMessage } from 'src/app/shared/popover-messages';
-import { Painting } from 'src/app/_models/painting.model';
-import { AuthService } from 'src/app/_services/auth.service';
-import { PaintingsService } from 'src/app/_services/paintings.service';
-import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { Store, select } from '@ngrx/store';
+import * as paintingActions from '../../../stores/paintings/painting.actions'
+import * as fromPainting from '../../../stores/paintings/painting.selectos'
+import { Router } from '@angular/router';
+import { Painting } from 'src/app/api/models';
+import { PaintingsService } from 'src/app/_services/paintings.service';
 
 @Component({
   selector: 'app-painting-card',
@@ -14,23 +15,25 @@ import Swal from 'sweetalert2';
   styleUrls: ['./painting-card.component.scss']
 })
 export class PaintingCardComponent implements OnInit {
-  paintings: Array<Painting>;
-  apiUrl = environment.apiUrl
+  // paintings: Array<Painting>;
+  // apiUrl = environment.apiUrl
   isLoggedIn$: Observable<boolean>; 
+  availablePaintings$: Observable<Painting[]>;
 
-  constructor(private paintingsService: PaintingsService,
-    private authService: AuthService,
-    private router: Router) { }
+  constructor(private store: Store,
+    private router: Router,
+    private paintingsService: PaintingsService) {}
+
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this.authService.isLoggedIn;
-    this.fetchAvailablePaintings();
+    this.store.dispatch(paintingActions.loadAvailablePaintings());
+    this.availablePaintings$ = this.store.pipe(select(fromPainting.selectAvailablePaintings));
   }
   fetchAvailablePaintings(){
-    return this.paintingsService.getAvailablePaintings().subscribe(paintings=>{
-      this.paintings = paintings;
-    }
-    )
+    // return this.paintingsService.getAvailablePaintings().subscribe(paintings=>{
+    //   this.paintings = paintings;
+    // }
+    // )
   }
 
 onDeleteClick(id){

@@ -19,7 +19,7 @@ export const selectPainting = createSelector(
   (state: PaintingState) => state.painting
 );
 
-export const selectAvailablePainting = createSelector(
+export const selectAvailablePaintings = createSelector(
   selectPaintingState,
   (state: PaintingState) => state.availablePaintings
 );
