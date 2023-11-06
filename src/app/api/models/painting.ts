@@ -8,8 +8,8 @@ export interface Painting {
   images?: null | Array<Image>;
   isAvailableToSell?: boolean;
   isDeleted?: boolean;
-  name?: null | string;
   isOnFocus?: boolean;
+  name?: null | string;
   price?: number;
   shortDescription?: null | string;
   technique?: null | string;

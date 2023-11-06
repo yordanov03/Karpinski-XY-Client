@@ -1,5 +1,3 @@
-import { LoginResponseModel } from "src/app/api/models";
-
 export interface AuthState {
     isLoggedin: boolean,
     username: string,

@@ -70,3 +70,18 @@ props<{ paintingsOnFocus: Painting[] }>());
 export const loadPaintingsOnFocusFailure = createAction
 ('[PaintingsOnFocus] Load Failure', 
 props<{ error: any }>());
+
+export const deletePainting = createAction(
+  '[Painting List] Delete Painting',
+  props<{ id: string }>()
+);
+
+export const deletePaintingSuccess = createAction(
+  '[Painting API] Delete Painting Success',
+  props<{ id: string }>()
+);
+
+export const deletePaintingFailure = createAction(
+  '[Painting API] Delete Painting Failure',
+  props<{ error: any }>()
+);

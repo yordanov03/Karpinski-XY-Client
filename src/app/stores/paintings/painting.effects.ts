@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as paintingActions from './painting.actions';
-import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { PaintingsService } from 'src/app/api/services';
@@ -19,6 +19,7 @@ export class PaintingEffects {
       ofType(paintingActions.createPainting),
       switchMap(action => this.paintingsService.create({ body: action.payload }).pipe(
         tap(() => {
+          this.router.navigate([""])
         popoverMessage().fire({
           icon: 'success',
           text: 'Painting created'
@@ -42,6 +43,7 @@ export class PaintingEffects {
       ofType(paintingActions.updatePainting),
       switchMap(action => this.paintingsService.update({ body: action.painting }).pipe(
         tap(() => {
+          this.router.navigate(["/paintings"])
           popoverMessage().fire({
             icon: 'success',
             text: 'Painting updated'
@@ -108,4 +110,29 @@ loadPaintingsOnFocus$ = createEffect(() =>
     ))
   )
 );
+
+deletePainting$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(paintingActions.deletePainting),
+      switchMap((action) =>
+        this.paintingsService.delete({ id: action.id }).pipe(
+          tap(() => {
+            this.router.navigate(["/paintings"])
+            popoverMessage().fire({
+              icon: 'success',
+              text: 'Painting deleted successfully'
+            });
+          }),
+          map(() => paintingActions.deletePaintingSuccess({ id: action.id })),
+          catchError((error) => {
+            popoverMessage().fire({
+              icon: 'error',
+              text: 'Failed to delete painting'
+            });
+            return of(paintingActions.deletePaintingFailure({ error }));
+          })
+        )
+      )
+    )
+  );
 }
