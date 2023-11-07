@@ -173,54 +173,6 @@ export class PaintingsService extends BaseService {
   }
 
   /**
-   * Path part for operation available
-   */
-  static readonly AvailablePath = '/Paintings/available';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `available()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  available$Response(params?: {
-    context?: HttpContext
-  }
-): Observable<StrictHttpResponse<Array<Painting>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, PaintingsService.AvailablePath, 'get');
-    if (params) {
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<Painting>>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `available$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  available(params?: {
-    context?: HttpContext
-  }
-): Observable<Array<Painting>> {
-
-    return this.available$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<Painting>>) => r.body as Array<Painting>)
-    );
-  }
-
-  /**
    * Path part for operation getPaintingToEdit
    */
   static readonly GetPaintingToEditPath = '/Paintings/toEdit/{id}';
@@ -370,6 +322,102 @@ export class PaintingsService extends BaseService {
 
     return this.delete$Response(params).pipe(
       map((r: StrictHttpResponse<string>) => r.body as string)
+    );
+  }
+
+  /**
+   * Path part for operation portfolio
+   */
+  static readonly PortfolioPath = '/Paintings/portfolio';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `portfolio()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  portfolio$Response(params?: {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<Array<Painting>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.PortfolioPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Painting>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `portfolio$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  portfolio(params?: {
+    context?: HttpContext
+  }
+): Observable<Array<Painting>> {
+
+    return this.portfolio$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<Painting>>) => r.body as Array<Painting>)
+    );
+  }
+
+  /**
+   * Path part for operation available
+   */
+  static readonly AvailablePath = '/Paintings/available';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `available()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  available$Response(params?: {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<Array<Painting>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.AvailablePath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Painting>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `available$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  available(params?: {
+    context?: HttpContext
+  }
+): Observable<Array<Painting>> {
+
+    return this.available$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<Painting>>) => r.body as Array<Painting>)
     );
   }
 

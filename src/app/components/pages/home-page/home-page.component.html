@@ -135,7 +135,46 @@
                 homeless, won't many of goals thoughts volumes felt.</p>
         </div>
         <div class="row pt-45">
-            <div class="col-lg-4 col-md-6">
+            <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <!-- Divide the products array into chunks of 3 for each slide -->
+                  <ng-container *ngFor="let chunk of (portfolioPaintings$ | async) | sliceArray:3; let isFirst = first">
+                    <div class="carousel-item" [class.active]="isFirst">
+                      <div class="row">
+                        <!-- Display each product in the chunk -->
+                        <div class="col-lg-4 col-md-6" *ngFor="let product of chunk">
+                          <div class="product-card">
+                            <a routerLink="/product-details/{{product.id}}">
+                              <img [src]="product.imageUrl" alt="Product Images">
+                            </a>
+                            <div class="product-content">
+                              <a routerLink="/product-details/{{product.id}}">
+                                <h3>{{ product.name }}</h3>
+                              </a>
+                              <p><span>${{ product.price }}</span> +vat</p>
+                              <div class="product-cart">
+                                <ul>
+                                  <li><a routerLink="/wishlist"><i class='bx bx-heart'></i></a></li>
+                                  <li><a routerLink="/cart"><i class='bx bx-cart'></i></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <!-- <div class="col-lg-4 col-md-6">
                 <div class="product-card">
                     <a routerLink="/product-details"><img src="assets/img/products/products1.jpg"
                             alt="Products Images"></a>
@@ -248,7 +287,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
