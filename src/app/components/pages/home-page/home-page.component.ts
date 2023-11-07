@@ -14,17 +14,12 @@ import { environment } from 'src/environments/environment';
 })
 export class HomePageComponent implements OnInit {
 homePagePaitingsUrl = environment.homePagePaitings;
-// paintingsOnFocusPt1: Array<Painting> = [];
-// paintingsOnFocusPt2: Array<Painting> = [];
-// apiUrl = environment.apiUrl;
 paintingsOnFocus$: Observable<Painting[]>;
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.store.dispatch(PaintingActions.loadPaintingsOnFocus());
-
-    // Select paintings on focus from the store
     this.paintingsOnFocus$ = this.store.pipe(select(fromPainting.selectPaintingsOnFocus));
   }
 

@@ -15,9 +15,6 @@ import * as bootstrap from 'bootstrap';
   styleUrls: ['./paintings-details.component.scss']
 })
 export class PaintingsDetailsComponent implements OnInit {
-// id: string
-// painting: Painting
-// apiRoute = environment.apiUrl
 painting$: Observable<Painting>;
 currentUrl: string;
 
@@ -40,12 +37,10 @@ currentUrl: string;
     const carouselElement = document.querySelector('#carouselExampleIndicators');
 
     if (carouselElement) {
-      // Initialize carousel if it's not already instantiated
       let bsCarousel = bootstrap.Carousel.getInstance(carouselElement);
       if (!bsCarousel) {
         bsCarousel = new bootstrap.Carousel(carouselElement);
       }
-      // Now, use the `to` method to go to the specific slide
       bsCarousel.to(index);
     }
   }

@@ -156,7 +156,7 @@ export class EditPaintingComponent implements OnInit {
       this.imagesFormArray.removeAt(0);
     }
   
-    // Now repopulate the FormArray with FormGroup instances based on the current images array.
+    // Repopulate the FormArray with FormGroup instances based on the current images array.
     this.images.forEach(image => this.addImageFormGroup(image));
     console.log(this.editPaintingForm.value)
   }

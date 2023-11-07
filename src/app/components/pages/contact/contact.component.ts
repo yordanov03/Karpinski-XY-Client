@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as ContactActions from '../../../stores/contact/contact.actions';
 import * as fromSelectors from '../../../stores/contact/contact.selectors';
@@ -30,7 +30,6 @@ isSubmitted$: Observable<boolean>;
     this.isSubmitted$ = this.store.select(fromSelectors.selectIsSubmitted)
     this.store.select(fromPaintingSelectors.selectPaintingName).subscribe(selectedPaintingName => {
       if (selectedPaintingName) {
-        // Patch the form only if there is a value
         this.contactForm.patchValue({
           subject: selectedPaintingName
         });

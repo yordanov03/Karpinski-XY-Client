@@ -5,7 +5,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding: 10px;  /* Optional: Add padding to the container if you want some space around the images */
+  padding: 10px; 
 }
 
 ::ng-deep .uploaded-image {
@@ -15,7 +15,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: calc(33.33% - 10px);  /* Adjusted width for 3 images per row */
-  margin: 5px;  /* Space between images */
+  margin: 5px;
   position: relative;
 
   .checkbox-container,

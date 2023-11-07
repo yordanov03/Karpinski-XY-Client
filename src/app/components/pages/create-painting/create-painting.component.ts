@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { PaintingState } from 'src/app/stores/paintings/painting.state';
@@ -59,8 +58,6 @@ export class CreatePaintingComponent implements OnInit {
 
     if (this.createPaintingForm.valid) {
       const formValue = this.preparePayload();
-
-      // Dispatch action to create painting
       this.store.dispatch(paintingActions.createPainting({ payload: formValue }));
     }
   }
@@ -74,7 +71,7 @@ export class CreatePaintingComponent implements OnInit {
         isMainImage: image.isMainImage
       };
     });
-    return formValue as Painting; // Type cast to Painting model
+    return formValue as Painting;
   }
 
   addImageFormGroup(image: any) {
