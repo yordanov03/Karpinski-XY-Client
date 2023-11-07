@@ -100,3 +100,8 @@ export const loadPaintingFailure = createAction(
   '[Painting] Load Painting Failure',
   props<{ error: any }>()
 );
+
+export const makeInquiry = createAction(
+  '[Painting] Make Inquiry',
+  props<{ name: string }>()
+);

@@ -7,6 +7,7 @@ export interface PaintingState {
     formSubmitted: boolean
     error: string | null;
     loading: boolean;
+    selectedPaintingName: string
   }
   
   export const initialState: PaintingState = {
@@ -16,5 +17,6 @@ export interface PaintingState {
     formSubmitted: false,
     error: null,
     loading: false,
+    selectedPaintingName: ''
   };
   

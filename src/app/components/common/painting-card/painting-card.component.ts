@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { popoverMessage } from 'src/app/shared/popover-messages';
 import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
-import * as paintingActions from '../../../stores/paintings/painting.actions'
+import * as PaintingActions from '../../../stores/paintings/painting.actions'
 import * as fromPainting from '../../../stores/paintings/painting.selectos'
 import * as fromAuth from '../../../stores/auth/auth.selectors'
 import { Router } from '@angular/router';
 import { Painting } from 'src/app/api/models';
-import { PaintingsService } from 'src/app/_services/paintings.service';
 
 @Component({
   selector: 'app-painting-card',
@@ -21,12 +19,11 @@ export class PaintingCardComponent implements OnInit {
   availablePaintings$: Observable<Painting[]>;
 
   constructor(private store: Store,
-    private router: Router,
-    private paintingsService: PaintingsService) { }
+    private router: Router) { }
 
 
   ngOnInit(): void {
-    this.store.dispatch(paintingActions.loadAvailablePaintings());
+    this.store.dispatch(PaintingActions.loadAvailablePaintings());
     this.availablePaintings$ = this.store.select(fromPainting.selectAvailablePaintings)
     this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
   }
@@ -45,7 +42,7 @@ export class PaintingCardComponent implements OnInit {
 
     }).then((willDelete) => {
       if (willDelete.isConfirmed) {
-       this.store.dispatch(paintingActions.deletePainting({id: id}))
+       this.store.dispatch(PaintingActions.deletePainting({id: id}))
       }
 
     })
@@ -56,7 +53,6 @@ export class PaintingCardComponent implements OnInit {
   }
 
   onMakeinquiryClick(name) {
-
+    this.store.dispatch(PaintingActions.makeInquiry({name: name}))
   }
-
 }

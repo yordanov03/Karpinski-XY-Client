@@ -1,5 +1,4 @@
 <app-navbar></app-navbar>
-
 <div class="inner-banner inner-bg2">
     <div class="container">
         <div class="inner-title">
@@ -12,46 +11,77 @@
         </div>
     </div>
 </div>
-<!-- painting.component.html -->
+
 <section class="product-detls ptb-100" *ngIf="painting$ | async as painting">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12">
-                <div class="product-detls-image">
-                    <img [src]="painting.images[0].imageUrl" alt="Image" style="width:650px; height:600px;">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indicators -->
+                    <!-- <ol class="carousel-indicators">
+                        <li *ngFor="let image of painting?.images; let i = index" [class.active]="i === 0"
+                            attr.data-bs-target="#carouselExampleIndicators" attr.data-bs-slide-to="{{i}}">
+                        </li>
+                    </ol> -->
+                    <div class="carousel-inner" role="listbox">
+                        <div *ngFor="let image of painting?.images; let i = index" class="carousel-item"
+                            [class.active]="i === 0">
+                            <img [src]="image.imageUrl" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Thumbnails -->
+                <div class="carousel-thumbnails">
+                    <img *ngFor="let image of painting.images; let i = index" [src]="image.imageUrl"
+                        [class.active]="i == 0" (click)="selectImage(i)" class="img-thumbnail">
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-6 col-md-12" style="padding-left: 40px;">
                 <div class="product-desc">
                     <h3>{{ painting.name }}</h3>
 
                     <p>{{ painting.shortDescription }}</p>
-    
+
                     <div class="product-share">
                         <ul>
                             <li><span>Share:</span></li>
-                            <li><a href="#" target="_blank"><i class='bx bxl-facebook'></i></a></li>
-                            <li><a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a></li>
-                            <li><a href="#" target="_blank"><i class='bx bxl-twitter'></i></a></li>
-                            <li><a href="#" target="_blank"><i class='bx bxl-instagram'></i></a></li>
+                            <li><a [href]="'https://www.facebook.com/sharer/sharer.php?u=' + currentUrl" target="_blank"><i class='bx bxl-facebook'></i></a></li>
+                            <li><a [href]="'https://twitter.com/intent/tweet?url=' + currentUrl" target="_blank"><i class='bx bxl-twitter'></i></a></li>
+                            <li><a [href]="'https://www.linkedin.com/sharing/share-offsite/?url=' + currentUrl" target="_blank"><i class='bx bxl-linkedin'></i></a></li>
+                            <!-- <li><a href="#" target="_blank"><i class='bx bxl-instagram'></i></a></li> -->
                         </ul>
                     </div>
 
                     <!-- Additional Information Tabs -->
+    
                     <div class="product-detls-tab">
-                        <ul class="tabs">
-                            <li class="current"><a href="#">Description</a></li>
-                            <li><a href="#">Additional information</a></li>
+                        <ul class="nav nav-tabs tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link tab-background" data-bs-toggle="tab" href="#description" role="tab">Description</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link tab-background" data-bs-toggle="tab" href="#additionalInfo" role="tab">Additional information</a>
+                            </li>
                         </ul>
-                        <div class="tab_content">
-                            <div class="tabs_item current active">
+                        <div class="tab-content tab_content">
+                            <div role="tabpanel" class="tab-pane fade show active tabs_item" id="description">
                                 <div class="product-detls-tab-content">
                                     <p>{{ painting.description }}</p>
                                 </div>
                             </div>
-
-                            <div class="tabs_item">
+                            <div role="tabpanel" class="tab-pane fade tabs_item" id="additionalInfo">
                                 <div class="product-detls-tab-content">
                                     <ul class="additional-information">
                                         <li><span>Technique:</span> {{ painting.technique }}</li>
@@ -63,118 +93,14 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End of Additional Information Tabs -->
-
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-6">
+                        <a routerLink="/contact" class="default-btn centered-btn" (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<!-- <div *ngIf="error$ | async as error">
-    <p>Error loading painting: {{ error.message }}</p>
-</div> -->
-
-
-<!-- <section class="product-detls ptb-100">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <div class="product-detls-image">
-                    <img src="{{apiRoute}}{{painting?.imageUrl}}" alt="Image" style="width:650px; height:600px;">
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12">
-                <div class="product-desc">
-                    <h3>{{painting?.name}}</h3>
-
-                    <p>{{painting?.shortDescription}}</p>
-    
-                    <div class="product-share">
-                        <ul>
-                            <li><span>Share:</span></li>
-                            <li><a href="#" target="_blank"><i class='bx bxl-facebook'></i></a></li>
-                            <li><a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a></li>
-                            <li><a href="#" target="_blank"><i class='bx bxl-twitter'></i></a></li>
-                            <li><a href="#" target="_blank"><i class='bx bxl-instagram'></i></a></li>
-                        </ul>
-                    </div>
-
-
-                    <div class="col-lg-12 col-md-12">
-                        <div class="tab product-detls-tab">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12">
-                                    <ul class="tabs">
-                                        <li><a href="#">Description</a></li>
-                                        <li><a href="#">Additional information</a></li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="tab_content current active">
-                                        <div class="tabs_item current">
-                                            <div class="product-detls-tab-content">
-                                                <p>{{painting?.description}}</p>
-                                            </div>
-                                        </div>
-        
-                                        <div class="tabs_item">
-                                            <div class="product-detls-tab-content">
-                                                <ul class="additional-information">
-                                                    <li><span>Technique:</span>{{painting?.technique}}</li>
-                                                    <li><span>Year:</span>{{painting?.year}}</li>
-                                                    <li><span>Size:</span> {{painting?.dimensions}}</li>
-                                                    <li><span>Tag:</span>Book Cover</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-<!-- 
-           <div class="col-lg-12 col-md-12">
-                <div class="tab product-detls-tab">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                            <ul class="tabs">
-                                <li><a href="#">Description</a></li>
-                                <li><a href="#">Additional information</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="col-lg-12 col-md-12">
-                            <div class="tab_content current active">
-                                <div class="tabs_item current">
-                                    <div class="product-detls-tab-content">
-                                        <p>{{painting?.description}}</p>
-                                    </div>
-                                </div>
-
-                                <div class="tabs_item">
-                                    <div class="product-detls-tab-content">
-                                        <ul class="additional-information">
-                                            <li><span>Technique:</span>12</li>
-                                            <li><span>Year:</span>Business</li>
-                                            <li><span>Size:</span> Large, Medium</li>
-                                            <li><span>Tag:</span>Book Cover</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-
-        <!-- </div>
-    </div>
-</section> -->
-
 <app-footer></app-footer>

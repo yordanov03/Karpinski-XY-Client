@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as paintingActions from '../../../stores/paintings/painting.actions'
+import * as PaintingActions from '../../../stores/paintings/painting.actions'
 import * as fromPainting from '../../../stores/paintings/painting.selectos'
 import { Painting } from 'src/app/api/models';
 import { environment } from 'src/environments/environment';
@@ -22,7 +22,7 @@ paintingsOnFocus$: Observable<Painting[]>;
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.store.dispatch(paintingActions.loadPaintingsOnFocus());
+    this.store.dispatch(PaintingActions.loadPaintingsOnFocus());
 
     // Select paintings on focus from the store
     this.paintingsOnFocus$ = this.store.pipe(select(fromPainting.selectPaintingsOnFocus));
@@ -31,8 +31,8 @@ paintingsOnFocus$: Observable<Painting[]>;
   getPaintingsOnFocus(){
  
   }
-  onMakeinquiryClick(data){
-
+  onMakeinquiryClick(name){
+    this.store.dispatch(PaintingActions.makeInquiry({name: name}))
   }
   
 }

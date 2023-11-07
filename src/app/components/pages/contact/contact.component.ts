@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Store } from '@ngrx/store';
 import * as ContactActions from '../../../stores/contact/contact.actions';
 import * as fromSelectors from '../../../stores/contact/contact.selectors';
+import * as fromPaintingSelectors from '../../../stores/paintings/painting.selectos';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -27,11 +28,18 @@ isSubmitted$: Observable<boolean>;
     })
 
     this.isSubmitted$ = this.store.select(fromSelectors.selectIsSubmitted)
+    this.store.select(fromPaintingSelectors.selectPaintingName).subscribe(selectedPaintingName => {
+      if (selectedPaintingName) {
+        // Patch the form only if there is a value
+        this.contactForm.patchValue({
+          subject: selectedPaintingName
+        });
+      }
+    });
   }
 
   onSubmitForm(){
     if (this.contactForm.invalid) {
-      console.log('invalid')
       return;
     }
 
