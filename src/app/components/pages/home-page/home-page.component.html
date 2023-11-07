@@ -91,31 +91,29 @@
 
         <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <ng-container *ngFor="let painting of paintingsOnFocus$ | async; let i = index; let isFirst = first">
-                    <div *ngIf="i % 2 === 0" class="carousel-item" [class.active]="isFirst">
-                        <div class="row">
-                            <ng-container *ngFor="let p of [0, 1, 2]">
-                                <div class="col-lg-4" *ngIf="paintingsOnFocus$ | async as paintings">
-                                    <div class="service-card">
-                                        <a routerLink="/paintings-details/{{paintings[i + p]?.id}}">
-                                            <img [src]="paintings[i + p]?.images[0]?.imageUrl" alt="Service Images"
-                                                width="400" height="380">
-                                        </a>
-                                        <div class="service-content">
-                                            <a routerLink="/painting-details/{{paintings[i + p]?.id}}">
-                                                <h3>{{paintings[i + p]?.name}}</h3>
-                                            </a>
-                                            <p>{{paintings[i + p]?.shortDescription}}</p>
-                                            <a routerLink="/contact" class="default-btn"
-                                                (click)="onMakeinquiryClick(paintings[i + p]?.name)">Make inquiry</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-container>
+                <!-- divide the paintings array into chunks of 3 for each slide -->
+                <ng-container *ngFor="let chunk of (paintingsOnFocus$ | async) | sliceArray:3; let isFirst = first">
+                  <div class="carousel-item" [class.active]="isFirst">
+                    <div class="row">
+                      <!-- display each painting in the chunk -->
+                      <div class="col-lg-4" *ngFor="let painting of chunk">
+                        <div class="service-card">
+                          <a routerLink="/paintings-details/{{painting.id}}">
+                            <img [src]="painting.images[0]?.imageUrl" alt="Service Images" width="400" height="380">
+                          </a>
+                          <div class="service-content">
+                            <a routerLink="/paintings-details/{{painting.id}}">
+                              <h3>{{ painting.name }}</h3>
+                            </a>
+                            <p>{{ painting.shortDescription }}</p>
+                            <a routerLink="/contact" class="default-btn" (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
+                          </div>
                         </div>
+                      </div>
                     </div>
+                  </div>
                 </ng-container>
-            </div>
+              </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>

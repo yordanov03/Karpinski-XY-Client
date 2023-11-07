@@ -15,12 +15,24 @@ import { environment } from 'src/environments/environment';
 export class HomePageComponent implements OnInit {
 homePagePaitingsUrl = environment.homePagePaitings;
 paintingsOnFocus$: Observable<Painting[]>;
+paintingsChunks: any[][];
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.store.dispatch(PaintingActions.loadPaintingsOnFocus());
     this.paintingsOnFocus$ = this.store.pipe(select(fromPainting.selectPaintingsOnFocus));
+    // this.paintingsOnFocus$.subscribe(paintings => {
+    //   this.paintingsChunks = this.chunkArray(paintings, 3);
+    // });
+  }
+
+  chunkArray(array, size): any[][] {
+    const chunked_arr = [];
+    for (let i = 0; i < array.length; i += size) {
+      chunked_arr.push(array.slice(i, i + size));
+    }
+    return chunked_arr.filter(chunk => chunk.length === size); // Filter out incomplete chunks
   }
 
   onMakeinquiryClick(name){
