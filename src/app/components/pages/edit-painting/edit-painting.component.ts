@@ -45,7 +45,7 @@ export class EditPaintingComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.store.dispatch(paintingActions.loadPainting({ id }))
+      this.store.dispatch(paintingActions.loadPaintingToEdit({ id }))
     }
 
     this.store.select(fromSelectors.selectPainting)
@@ -140,8 +140,25 @@ export class EditPaintingComponent implements OnInit {
   }
 
   onDeleteImage(index: number) {
-    this.images.splice(index, 1);
-    this.imagesFormArray.removeAt(index);
+    if (index >= 0 && index < this.images.length) {
+      // Remove the image from the images array
+      this.images.splice(index, 1);
+  
+      // Remove the FormGroup for the image from the FormArray
+      this.imagesFormArray.removeAt(index);
+      this.updateImagesFormArray();
+    }
+  }
+
+  updateImagesFormArray() {
+    // Clear the FormArray first to ensure there are no residual FormGroup entries.
+    while (this.imagesFormArray.length !== 0) {
+      this.imagesFormArray.removeAt(0);
+    }
+  
+    // Now repopulate the FormArray with FormGroup instances based on the current images array.
+    this.images.forEach(image => this.addImageFormGroup(image));
+    console.log(this.editPaintingForm.value)
   }
 
   get f() {

@@ -12,8 +12,71 @@
         </div>
     </div>
 </div>
+<!-- painting.component.html -->
+<section class="product-detls ptb-100" *ngIf="painting$ | async as painting">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="product-detls-image">
+                    <img [src]="painting.images[0].imageUrl" alt="Image" style="width:650px; height:600px;">
+                </div>
+            </div>
 
-<section class="product-detls ptb-100">
+            <div class="col-lg-6 col-md-12">
+                <div class="product-desc">
+                    <h3>{{ painting.name }}</h3>
+
+                    <p>{{ painting.shortDescription }}</p>
+    
+                    <div class="product-share">
+                        <ul>
+                            <li><span>Share:</span></li>
+                            <li><a href="#" target="_blank"><i class='bx bxl-facebook'></i></a></li>
+                            <li><a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a></li>
+                            <li><a href="#" target="_blank"><i class='bx bxl-twitter'></i></a></li>
+                            <li><a href="#" target="_blank"><i class='bx bxl-instagram'></i></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Additional Information Tabs -->
+                    <div class="product-detls-tab">
+                        <ul class="tabs">
+                            <li class="current"><a href="#">Description</a></li>
+                            <li><a href="#">Additional information</a></li>
+                        </ul>
+                        <div class="tab_content">
+                            <div class="tabs_item current active">
+                                <div class="product-detls-tab-content">
+                                    <p>{{ painting.description }}</p>
+                                </div>
+                            </div>
+
+                            <div class="tabs_item">
+                                <div class="product-detls-tab-content">
+                                    <ul class="additional-information">
+                                        <li><span>Technique:</span> {{ painting.technique }}</li>
+                                        <li><span>Year:</span> {{ painting.year }}</li>
+                                        <li><span>Size:</span> {{ painting.dimensions }}</li>
+                                        <li><span>Tag:</span> {{ painting.tag || 'N/A' }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Additional Information Tabs -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <div *ngIf="error$ | async as error">
+    <p>Error loading painting: {{ error.message }}</p>
+</div> -->
+
+
+<!-- <section class="product-detls ptb-100">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12">
@@ -72,11 +135,8 @@
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
-            </div>
+            </div> -->
 <!-- 
            <div class="col-lg-12 col-md-12">
                 <div class="tab product-detls-tab">
@@ -113,8 +173,8 @@
             </div> -->
 
 
-        </div>
+        <!-- </div>
     </div>
-</section>
+</section> -->
 
 <app-footer></app-footer>

@@ -31,17 +31,17 @@ export const updatePaintingFailure = createAction(
   props<{ error: any }>()
 );
 
-export const loadPainting = createAction(
+export const loadPaintingToEdit = createAction(
   '[Painting] Load Painting',
   props<{ id: string }>()
 );
 
-export const loadPaintingSuccess = createAction(
+export const loadPaintingToEditSuccess = createAction(
   '[Painting] Set Editing Painting',
   props<{ painting: Painting }>()
 );
 
-export const loadPaintingFailure = createAction(
+export const loadPaintingToEditFailure = createAction(
   '[Painting] Load Painting Failure',
   props<{ error: any }>()
 );
@@ -77,11 +77,26 @@ export const deletePainting = createAction(
 );
 
 export const deletePaintingSuccess = createAction(
-  '[Painting API] Delete Painting Success',
+  '[Painting] Delete Painting Success',
   props<{ id: string }>()
 );
 
 export const deletePaintingFailure = createAction(
-  '[Painting API] Delete Painting Failure',
+  '[Painting] Delete Painting Failure',
+  props<{ error: any }>()
+);
+
+export const loadPainting = createAction(
+  '[Painting] Load Painting',
+  props<{ id: string }>()
+);
+
+export const loadPaintingSuccess = createAction(
+  '[Painting] Load Painting Success',
+  props<{ painting: Painting }>()
+);
+
+export const loadPaintingFailure = createAction(
+  '[Painting] Load Painting Failure',
   props<{ error: any }>()
 );

@@ -337,7 +337,7 @@ export class PaintingsService extends BaseService {
     id: string;
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<string>> {
 
     const rb = new RequestBuilder(this.rootUrl, PaintingsService.DeletePath, 'delete');
     if (params) {
@@ -345,13 +345,13 @@ export class PaintingsService extends BaseService {
     }
 
     return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<string>;
       })
     );
   }
@@ -366,10 +366,10 @@ export class PaintingsService extends BaseService {
     id: string;
     context?: HttpContext
   }
-): Observable<void> {
+): Observable<string> {
 
     return this.delete$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<string>) => r.body as string)
     );
   }
 
