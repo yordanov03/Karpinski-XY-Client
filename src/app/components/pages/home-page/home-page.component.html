@@ -138,20 +138,20 @@
             <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <!-- Divide the products array into chunks of 3 for each slide -->
-                  <ng-container *ngFor="let chunk of (portfolioPaintings$ | async) | sliceArray:3; let isFirst = first">
+                  <ng-container *ngFor="let chunk of (availablePaintings$ | async) | sliceArray:3; let isFirst = first">
                     <div class="carousel-item" [class.active]="isFirst">
                       <div class="row">
                         <!-- Display each product in the chunk -->
-                        <div class="col-lg-4 col-md-6" *ngFor="let product of chunk">
+                        <div class="col-lg-4 col-md-6" *ngFor="let painting of chunk">
                           <div class="product-card">
-                            <a routerLink="/product-details/{{product.id}}">
-                              <img [src]="product.imageUrl" alt="Product Images">
+                            <a routerLink="/paintings-details/{{painting.id}}">
+                              <img [src]="painting.images[0]?.imageUrl" alt="Product Images" width="400" height="380">
                             </a>
                             <div class="product-content">
-                              <a routerLink="/product-details/{{product.id}}">
-                                <h3>{{ product.name }}</h3>
+                              <a routerLink="/paintings-details/{{painting.id}}">
+                                <h3>{{ painting.name }}</h3>
                               </a>
-                              <p><span>${{ product.price }}</span> +vat</p>
+                              <p><span>${{ painting.price }}</span> +vat</p>
                               <div class="product-cart">
                                 <ul>
                                   <li><a routerLink="/wishlist"><i class='bx bx-heart'></i></a></li>

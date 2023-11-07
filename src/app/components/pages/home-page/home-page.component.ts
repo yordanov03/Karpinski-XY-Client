@@ -23,7 +23,10 @@ paintingsChunks: any[][];
 
   ngOnInit(): void {
     this.store.dispatch(PaintingActions.loadPaintingsOnFocus());
-    this.paintingsOnFocus$ = this.store.pipe(select(fromPainting.selectPaintingsOnFocus));
+    this.paintingsOnFocus$ = this.store.select(fromPainting.selectPaintingsOnFocus);
+
+    this.store.dispatch(PaintingActions.loadAvailablePaintings());
+    this.availablePaintings$ = this.store.select(fromPainting.selectAvailablePaintings);
   }
 
   chunkArray(array, size): any[][] {

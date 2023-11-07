@@ -23,23 +23,23 @@ export class ContactService extends BaseService {
   }
 
   /**
-   * Path part for operation registerInquiry
+   * Path part for operation registerContact
    */
-  static readonly RegisterInquiryPath = '/Contact';
+  static readonly RegisterContactPath = '/Contact';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `registerInquiry()` instead.
+   * To access only the response body, use `registerContact()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  registerInquiry$Response(params?: {
+  registerContact$Response(params?: {
     context?: HttpContext
     body?: Contact
   }
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ContactService.RegisterInquiryPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, ContactService.RegisterContactPath, 'post');
     if (params) {
       rb.body(params.body, 'application/*+json');
     }
@@ -58,17 +58,17 @@ export class ContactService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `registerInquiry$Response()` instead.
+   * To access the full response (for headers, for example), `registerContact$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  registerInquiry(params?: {
+  registerContact(params?: {
     context?: HttpContext
     body?: Contact
   }
 ): Observable<void> {
 
-    return this.registerInquiry$Response(params).pipe(
+    return this.registerContact$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

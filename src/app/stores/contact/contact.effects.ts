@@ -4,7 +4,6 @@ import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import * as ContactActions from './contact.actions';
 import { ContactService } from 'src/app/api/services';
-import { Store } from '@ngrx/store';
 import { popoverMessage } from 'src/app/shared/popover-messages';
 
 
@@ -17,7 +16,7 @@ export class ContactEffects {
 submitContactForm$ = createEffect(() =>
   this.actions$.pipe(
     ofType(ContactActions.submitContactForm),
-    mergeMap(action => this.contactService.registerInquiry({body: action.payload}).pipe(
+    mergeMap(action => this.contactService.registerContact({body: action.payload}).pipe(
       tap(() => {
         popoverMessage().fire({
           icon: 'success',

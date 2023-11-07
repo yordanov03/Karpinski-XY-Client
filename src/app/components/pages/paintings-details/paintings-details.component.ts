@@ -20,7 +20,6 @@ currentUrl: string;
 
   constructor(private store: Store,
     private route: ActivatedRoute) {
-    this.painting$ = this.store.select(selectPainting);
   }
 
   ngOnInit(): void {
@@ -29,7 +28,8 @@ currentUrl: string;
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
-        this.store.dispatch(PaintingActions.loadPainting({ id }));
+        this.store.dispatch(PaintingActions.loadPainting({ id: params.get('id') }));
+        this.painting$ = this.store.select(selectPainting);
       }
     });
   }

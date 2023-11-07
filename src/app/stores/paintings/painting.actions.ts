@@ -32,17 +32,17 @@ export const updatePaintingFailure = createAction(
 );
 
 export const loadPaintingToEdit = createAction(
-  '[Painting] Load Painting',
+  '[Painting] Load Painting To Edit',
   props<{ id: string }>()
 );
 
 export const loadPaintingToEditSuccess = createAction(
-  '[Painting] Set Editing Painting',
+  '[Painting] Set Editing Painting To Edit',
   props<{ painting: Painting }>()
 );
 
 export const loadPaintingToEditFailure = createAction(
-  '[Painting] Load Painting Failure',
+  '[Painting] Load Painting To Edit Failure',
   props<{ error: any }>()
 );
 
