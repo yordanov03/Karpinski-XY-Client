@@ -1,10 +1,13 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+
+import { Component,  OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, mergeMap } from 'rxjs/operators';
-import { Painting } from 'src/app/_models/painting.model';
-import { PaintingsService } from 'src/app/_services/paintings.service';
-import { environment } from 'src/environments/environment';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Painting } from 'src/app/api/models';
+import { selectPainting } from 'src/app/stores/paintings/painting.selectos';
+import * as PaintingActions from '../../../stores/paintings/painting.actions'
+import * as bootstrap from 'bootstrap';
+
 
 @Component({
   selector: 'app-paintings-details',
@@ -12,24 +15,37 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./paintings-details.component.scss']
 })
 export class PaintingsDetailsComponent implements OnInit {
-id: string
-painting: Painting
-apiRoute = environment.apiUrl
+painting$: Observable<Painting>;
+currentUrl: string;
 
-  constructor(private route: ActivatedRoute,
-    private paintingsService: PaintingsService) {
-      this.fetchData();
-     }
-
-  ngOnInit(): void {}
-
-  fetchData(){
-    this.route.params.pipe(map(params=>{
-      const id = params['id'];
-      return id;
-    }), mergeMap(id=>this.paintingsService.getDetails(id))).subscribe(res=>{
-      this.painting = res;
-    })
+  constructor(private store: Store,
+    private route: ActivatedRoute) {
+    this.painting$ = this.store.select(selectPainting);
   }
 
+  ngOnInit(): void {
+    this.currentUrl = window.location.href
+
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.store.dispatch(PaintingActions.loadPainting({ id }));
+      }
+    });
+  }
+  selectImage(index: number): void {
+    const carouselElement = document.querySelector('#carouselExampleIndicators');
+
+    if (carouselElement) {
+      let bsCarousel = bootstrap.Carousel.getInstance(carouselElement);
+      if (!bsCarousel) {
+        bsCarousel = new bootstrap.Carousel(carouselElement);
+      }
+      bsCarousel.to(index);
+    }
+  }
+
+  onMakeinquiryClick(name: string) {
+    this.store.dispatch(PaintingActions.makeInquiry({name: name}))
+  }
 }

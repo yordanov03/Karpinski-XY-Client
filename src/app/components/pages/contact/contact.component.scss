@@ -1,0 +1,12 @@
+.disabled-btn {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    &:disabled {
+        &::before,
+        &::after {
+          background-color: transparent !important;  // Overwrite background color
+          color: inherit !important;  // Overwrite text color
+        }
+      }
+  }

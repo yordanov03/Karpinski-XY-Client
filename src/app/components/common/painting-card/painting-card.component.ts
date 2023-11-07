@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { popoverMessage } from 'src/app/shared/popover-messages';
-import { Painting } from 'src/app/_models/painting.model';
-import { AuthService } from 'src/app/_services/auth.service';
-import { PaintingsService } from 'src/app/_services/paintings.service';
-import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { Store } from '@ngrx/store';
+import * as PaintingActions from '../../../stores/paintings/painting.actions'
+import * as fromPainting from '../../../stores/paintings/painting.selectos'
+import * as fromAuth from '../../../stores/auth/auth.selectors'
+import { Router } from '@angular/router';
+import { Painting } from 'src/app/api/models';
 
 @Component({
   selector: 'app-painting-card',
@@ -14,67 +14,44 @@ import Swal from 'sweetalert2';
   styleUrls: ['./painting-card.component.scss']
 })
 export class PaintingCardComponent implements OnInit {
-  paintings: Array<Painting>;
-  apiUrl = environment.apiUrl
-  isLoggedIn$: Observable<boolean>; 
 
-  constructor(private paintingsService: PaintingsService,
-    private authService: AuthService,
+  isLoggedIn$: Observable<boolean>;
+  availablePaintings$: Observable<Painting[]>;
+
+  constructor(private store: Store,
     private router: Router) { }
 
+
   ngOnInit(): void {
-    this.isLoggedIn$ = this.authService.isLoggedIn;
-    this.fetchAvailablePaintings();
-  }
-  fetchAvailablePaintings(){
-    return this.paintingsService.getAvailablePaintings().subscribe(paintings=>{
-      this.paintings = paintings;
-    }
-    )
+    this.store.dispatch(PaintingActions.loadAvailablePaintings());
+    this.availablePaintings$ = this.store.select(fromPainting.selectAvailablePaintings)
+    this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
   }
 
-onDeleteClick(id){
-  Swal.fire({
-    title: 'Confirmation required',
-    text: 'Are you sure you want to delete this entry',
-    icon: 'question',
-    confirmButtonText: 'yes',
-    confirmButtonColor: 'red',
-    showCancelButton: true,
-    cancelButtonText: 'no',
-    focusCancel: true,
-    
-  }).then((willDelete)=>{
-    if(willDelete.isConfirmed){
-      this.paintingsService.deletePainting(id).subscribe((res:any) => {
-        console.log(res)
-        if(res){
-          popoverMessage().fire({
-          icon: 'success',
-          title: 'Deleted successfully'
-          })
-          setTimeout(() => {
-            window.location.reload();
-           }, 2000);
-        }
-        else{
-          popoverMessage().fire({
-            icon:"error",
-            title: "Something went wrong with the backend"
-          })
-        }
-      })
-    }
-  
-  })
-}
+  onDeleteClick(id) {
+    Swal.fire({
+      title: 'Confirmation required',
+      text: 'Are you sure you want to delete this entry',
+      icon: 'question',
+      confirmButtonText: 'yes',
+      confirmButtonColor: 'red',
+      showCancelButton: true,
+      cancelButtonText: 'no',
+      focusCancel: true,
 
-onEditPainting(id){
-  this.router.navigate(['paintings/'+id+'/edit'])
-}
+    }).then((willDelete) => {
+      if (willDelete.isConfirmed) {
+       this.store.dispatch(PaintingActions.deletePainting({id: id}))
+      }
 
-onMakeinquiryClick(name){
+    })
+  }
 
-}
+  onEditPainting(id) {
+    this.router.navigate(['paintings/' + id + '/edit'])
+  }
 
+  onMakeinquiryClick(name) {
+    this.store.dispatch(PaintingActions.makeInquiry({name: name}))
+  }
 }

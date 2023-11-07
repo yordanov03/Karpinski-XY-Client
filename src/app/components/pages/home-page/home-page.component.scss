@@ -1,3 +1,17 @@
 .carouselControls{
     margin: 10px
 }
+.carousel-control-prev, .carousel-control-next {
+    width: auto !important;
+    top: 100% !important; 
+}
+
+.carousel-control-prev {
+    left: 0 !important;
+    padding-left: 15px !important;
+}
+
+.carousel-control-next {
+    right: 0 !important;
+    padding-right: 15px !important;
+}

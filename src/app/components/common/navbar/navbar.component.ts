@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
-import { popoverMessage } from 'src/app/shared/popover-messages';
-import { User } from 'src/app/_models/user.model';
-import { AuthService } from 'src/app/_services/auth.service';
+import { Store } from '@ngrx/store';
+import * as fromAuth from 'src/app/stores/auth/auth.selectors';
+import * as AuthActions from '../../../stores/auth/auth.actions'
 
 @Component({
   selector: 'app-navbar',
@@ -11,27 +10,18 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn$: Observable<boolean>;  
-  currentUser$: Observable<User>;
-  user: User;
-  constructor(private authService: AuthService, private router: Router) { }
+  isLoggedIn$: Observable<boolean>; 
+  username$: Observable<string>
+
+  constructor(private store: Store) { }
 
   ngOnInit() {
-    this.currentUser$ = this.authService.loggedinUser
-    this.currentUser$.subscribe({next: user=>{this.user = user} })
-    this.isLoggedIn$ = this.authService.isLoggedIn;
-    this.authService.autoLogin();
+    this.username$ = this.store.select(fromAuth.selectUsername)
+    this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
   }
 
-  logout(event:any){
-    this.authService.logout();
-    this.router.navigate(['/']);
-  setTimeout(() => {
-    popoverMessage().fire({
-      icon:"success",
-      text: "Bye Pawliushko"
-    })
-  }, 2000);
+  logout(){
+  this.store.dispatch(AuthActions.logout());
   }
 
 }

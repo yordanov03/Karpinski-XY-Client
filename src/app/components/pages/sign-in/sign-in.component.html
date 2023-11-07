@@ -55,16 +55,21 @@
                     </div>
 
                     <div class="col-12 text-center">
-                        <button class="default-btn btn-two sign-btn" type="submit">Sign In Now</button>
-                    </div>
+                        <button class="default-btn btn-two sign-btn" 
+                                type="submit" 
+                                [disabled]="!loginForm.valid" 
+                                [ngClass]="{'disabled-btn': !loginForm.valid}">
+                          Sign In Now
+                        </button>
+                      </div>
 
-                    <div>
+                    <!-- <div>
                         <div *ngIf="isLoginFailed" class="alert alert-danger">{{errorMessage}}</div>
                     </div>
 
                     <div>
                         <div *ngIf="isLogInSuccessful" class="alert alert-success">Sign in successful</div>
-                    </div>
+                    </div> -->
 
                     <div class="col-12">
                         <p class="account-desc">Not a registered? <a routerLink="/sign-up">Register</a></p>

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InquiryService } from 'src/app/_services/inquiry.service';
-import Swal from 'sweetalert2';
+import { Store } from '@ngrx/store';
+import * as ContactActions from '../../../stores/contact/contact.actions';
+import * as fromSelectors from '../../../stores/contact/contact.selectors';
+import * as fromPaintingSelectors from '../../../stores/paintings/painting.selectos';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
@@ -9,11 +12,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-submitted = false;
 contactForm: FormGroup;
+isSubmitted$: Observable<boolean>;
 
   constructor(private formBuilder: FormBuilder,
-  private inquiryService: InquiryService) { }
+  private store: Store) { }
 
   ngOnInit(): void {
     this.contactForm = this.formBuilder.group({
@@ -23,36 +26,39 @@ contactForm: FormGroup;
       subject:[''],
       content:['', [Validators.required, Validators.minLength(10)]]
     })
+
+    this.isSubmitted$ = this.store.select(fromSelectors.selectIsSubmitted)
+    this.store.select(fromPaintingSelectors.selectPaintingName).subscribe(selectedPaintingName => {
+      if (selectedPaintingName) {
+        this.contactForm.patchValue({
+          subject: selectedPaintingName
+        });
+      }
+    });
   }
 
   onSubmitForm(){
-    if(this.contactForm.invalid){
-      this.submitted = true;
-      console.log("nevalidna forma")
-      setTimeout(() => {
-        this.submitted = false;
-      }, 2000);
+    if (this.contactForm.invalid) {
       return;
     }
 
-    return this.inquiryService.postinquiry(this.contactForm.value).subscribe(
-      res=>{
-      const Toast = Swal.mixin({
-        confirmButtonColor: '#3cd1ff'
-      })
-      Toast.fire(
-        'Success',
-        'You will get a confirmation about the inquiry on your email',
-        'success'
-      )
-      this.contactForm.reset();
-    }
-
-    )
+    this.store.dispatch(ContactActions.submitContactForm( {payload: this.contactForm.value}));
+    this.contactForm.reset();
   }
 
-  get f(){
-    return this.contactForm.controls;
+  get name(){
+    return this.contactForm.get('name')
   }
-
+  get email(){
+    return this.contactForm.get('email')
+  }
+  get phoneNumber(){
+    return this.contactForm.get('phoneNumber')
+  }
+  get subject(){
+    return this.contactForm.get('subject')
+  }
+  get content(){
+    return this.contactForm.get('content')
+  }
 }

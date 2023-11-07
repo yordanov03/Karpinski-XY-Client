@@ -88,45 +88,42 @@
                 homeless, won't many of goals thoughts volumes felt.</p>
         </div>
         <span>&nbsp;</span>
+
         <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-lg-4" *ngFor="let painting of paintingsOnFocusPt1">
-                            <div class="service-card">
-                                <a routerLink="/paintings-details/{{painting.id}}"><img src="{{painting.imageUrl}}"
-                                        alt="Service Images" width="450" height="420"></a>
-
-                                <div class="service-content">
-                                    <a routerLink="/painting-details/{{painting.id}}">
-                                        <h3>{{painting.name}}</h3>
-                                    </a>
-                                    <p>{{painting.shortDescription}}</p>
-                                    <a routerLink="/contact" class="default-btn" (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
+                <ng-container *ngFor="let painting of paintingsOnFocus$ | async; let i = index; let isFirst = first">
+                    <div *ngIf="i % 2 === 0" class="carousel-item" [class.active]="isFirst">
+                        <div class="row">
+                            <ng-container *ngFor="let p of [0, 1, 2]">
+                                <div class="col-lg-4" *ngIf="paintingsOnFocus$ | async as paintings">
+                                    <div class="service-card">
+                                        <a routerLink="/paintings-details/{{paintings[i + p]?.id}}">
+                                            <img [src]="paintings[i + p]?.images[0]?.imageUrl" alt="Service Images"
+                                                width="400" height="380">
+                                        </a>
+                                        <div class="service-content">
+                                            <a routerLink="/painting-details/{{paintings[i + p]?.id}}">
+                                                <h3>{{paintings[i + p]?.name}}</h3>
+                                            </a>
+                                            <p>{{paintings[i + p]?.shortDescription}}</p>
+                                            <a routerLink="/contact" class="default-btn"
+                                                (click)="onMakeinquiryClick(paintings[i + p]?.name)">Make inquiry</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </ng-container>
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-lg-4" *ngFor="let painting of paintingsOnFocusPt2">
-                            <div class="service-card">
-                                <a routerLink="/paintings-details/{{painting.id}}"><img src="{{painting.imageUrl}}"
-                                        alt="Service Images" width="450" height="420"></a>
-
-                                <div class="service-content">
-                                    <a routerLink="/painting-details/{{painting.id}}">
-                                        <h3>{{painting.name}}</h3>
-                                    </a>
-                                    <p>{{painting.shortDescription}}</p>
-                                    <a routerLink="/contact" class="default-btn" (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </ng-container>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
 </section>
@@ -139,7 +136,6 @@
             <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That
                 homeless, won't many of goals thoughts volumes felt.</p>
         </div>
-
         <div class="row pt-45">
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
@@ -160,7 +156,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
                     <a routerLink="/product-details"><img src="assets/img/products/products2.jpg"
@@ -180,12 +175,10 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
                     <a routerLink="/product-details"><img src="assets/img/products/products3.jpg"
                             alt="Products Images"></a>
-
                     <div class="product-content">
                         <a routerLink="/product-details">
                             <h3>Cover Van</h3>
@@ -205,7 +198,6 @@
                 <div class="product-card">
                     <a routerLink="/product-details"><img src="assets/img/products/products4.jpg"
                             alt="Products Images"></a>
-
                     <div class="product-content">
                         <a routerLink="/product-details">
                             <h3>Mug Design</h3>
@@ -220,7 +212,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
                     <a routerLink="/product-details"><img src="assets/img/products/products5.jpg"

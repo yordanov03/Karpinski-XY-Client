@@ -36,7 +36,7 @@
                         <div *ngIf="username?.touched && username?.errors?.['required']" class="alert alert-danger">This
                             field is required</div>
                         <div *ngIf="username?.touched && username?.errors?.minlength" class="alert alert-danger">
-                            Username is too short</div>
+                            The minimum length is {{ username.errors.minlength.requiredLength }} characters.</div>
                     </div>
 
                     <div class="col-12">
@@ -73,14 +73,20 @@
                     </div>
 
                     <div class="col-12 text-center">
-                        <button class="default-btn btn-two sign-btn" type="submit" >Register</button>
-                    </div>
+                        <button class="default-btn btn-two sign-btn" 
+                                type="submit" 
+                                [disabled]="!registerForm.valid" 
+                                [ngClass]="{'disabled-btn': !registerForm.valid}">
+                          Register
+                        </button>
+                      </div>
+                      
                     <br />
                     <div>
-                        <div class="alert alert-danger" *ngIf="registerForm.hasError && isSignUpFailed" id="signupfailedErrorBox" >
+                        <div class="alert alert-danger" *ngIf="registerForm.hasError && isSignUpFailed$ | async" id="signupfailedErrorBox" >
                             Registration failed! {{ errorMessage }}
                         </div>
-                        <div class="alert alert-success" *ngIf="isSuccessful">
+                        <div class="alert alert-success" *ngIf="isSuccessful$ | async">
                             Your registration is successful!
                         </div>
                     </div>
