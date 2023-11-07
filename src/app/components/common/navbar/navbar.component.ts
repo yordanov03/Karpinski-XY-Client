@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
-import { User } from 'src/app/_models/user.model';
-import { AuthService } from 'src/app/_services/auth.service';
 import { Store } from '@ngrx/store';
 import * as fromAuth from 'src/app/stores/auth/auth.selectors';
 import * as AuthActions from '../../../stores/auth/auth.actions'

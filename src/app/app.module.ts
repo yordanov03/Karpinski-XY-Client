@@ -31,8 +31,6 @@ import { BlogComponent } from './components/pages/blog/blog.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
-import { AuthService } from './_services/auth.service';
-import { UploadPaintingComponent } from './components/pages/upload-painting/upload-painting.component';
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { PaintingCardComponent } from './components/common/painting-card/painting-card.component';
@@ -74,7 +72,6 @@ import { PaintingEffects } from './stores/paintings/painting.effects';
     BlogDetailsComponent,
     ContactComponent,
     CreatePaintingComponent,
-    UploadPaintingComponent,
     EditPaintingComponent,
     PaintingCardComponent
   ],
@@ -97,7 +94,7 @@ import { PaintingEffects } from './stores/paintings/painting.effects';
     }),
     EffectsModule.forRoot([AuthEffects, ContactEffects, PaintingEffects]),
   ],
-  providers: [AuthService,
+  providers: [
   {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 ],

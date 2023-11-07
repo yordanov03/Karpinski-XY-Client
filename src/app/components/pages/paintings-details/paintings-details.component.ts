@@ -1,13 +1,10 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+
+import { Component,  OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
-import { PaintingsService } from 'src/app/_services/paintings.service';
 import { Painting } from 'src/app/api/models';
 import { selectPainting } from 'src/app/stores/paintings/painting.selectos';
-import { environment } from 'src/environments/environment';
 import * as PaintingActions from '../../../stores/paintings/painting.actions'
 import * as bootstrap from 'bootstrap';
 
