@@ -29,7 +29,6 @@ export class PaintingCardComponent implements OnInit {
   }
 
   onDeleteClick(id) {
-    console.log(id)
     Swal.fire({
       title: 'Confirmation required',
       text: 'Are you sure you want to delete this entry',

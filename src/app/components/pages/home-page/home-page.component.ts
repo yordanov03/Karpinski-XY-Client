@@ -23,11 +23,7 @@ paintingsOnFocus$: Observable<Painting[]>;
     this.paintingsOnFocus$ = this.store.pipe(select(fromPainting.selectPaintingsOnFocus));
   }
 
-  getPaintingsOnFocus(){
- 
-  }
   onMakeinquiryClick(name){
     this.store.dispatch(PaintingActions.makeInquiry({name: name}))
   }
-  
 }
