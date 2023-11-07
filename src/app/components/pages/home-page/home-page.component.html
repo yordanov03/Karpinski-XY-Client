@@ -19,8 +19,14 @@
                 <div class="banner-img">
                     <img src="{{homePagePaitingsUrl}}1.jpg" alt="Banner Images">
 
+                    <!-- <div class="banner-into-slider owl-carousel owl-theme">
+                        <div class="banner-item" *ngFor="let painting of (portfolioPaintings$ | async)">
+                          <img [src]="painting.images[0].imageUrl" alt="Banner Image" width="100" height="100">
+                        </div>
+                      </div> -->
+
                     <div class="banner-into-slider owl-carousel owl-theme">
-                        <div class="banner-item">
+                        <!-- <div class="banner-item">
                             <img src="{{homePagePaitingsUrl}}2.jpg" alt="Banner Images">
                         </div>
 
@@ -34,6 +40,37 @@
 
                         <div class="banner-item">
                             <img src="{{homePagePaitingsUrl}}5.jpg" alt="Banner Images">
+                        </div> -->
+
+                        <div class="banner-item">
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[0]?.images?.[0]?.imageUrl as imageUrl" href="/paintings-details/{{(paintingsOnFocus$ | async)?.[0]?.id}}" target="_blank">
+                            <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                             </a>
+                        </div>
+                        <div class="banner-item">
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[1]?.images?.[0]?.imageUrl as imageUrl" href="/paintings-details/{{(paintingsOnFocus$ | async)?.[1]?.id}}" target="_blank">
+                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                 </a>
+                        </div>
+                        <div class="banner-item">
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[2]?.images?.[0]?.imageUrl as imageUrl" href="/paintings-details/{{(paintingsOnFocus$ | async)?.[2]?.id}}" target="_blank">
+                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                 </a>
+                        </div>
+                        <div class="banner-item">
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[3]?.images?.[0]?.imageUrl as imageUrl" href="/paintings-details/{{(paintingsOnFocus$ | async)?.[3]?.id}}" target="_blank">
+                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                 </a>
+                        </div>
+                        <div class="banner-item">
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[4]?.images?.[0]?.imageUrl as imageUrl" href="/paintings-details/{{(paintingsOnFocus$ | async)?.[4]?.id}}" target="_blank">
+                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                 </a>
+                        </div>
+                        <div class="banner-item">
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[5]?.images?.[0]?.imageUrl as imageUrl" href="/paintings-details/{{(paintingsOnFocus$ | async)?.[5]?.id}}" target="_blank">
+                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                 </a>
                         </div>
                     </div>
                 </div>
@@ -151,11 +188,9 @@
                               <a routerLink="/paintings-details/{{painting.id}}">
                                 <h3>{{ painting.name }}</h3>
                               </a>
-                              <p><span>${{ painting.price }}</span> +vat</p>
+                              <p><span>{{ painting.dimensions }}</span></p>
                               <div class="product-cart">
                                 <ul>
-                                  <li><a routerLink="/wishlist"><i class='bx bx-heart'></i></a></li>
-                                  <li><a routerLink="/cart"><i class='bx bx-cart'></i></a></li>
                                 </ul>
                               </div>
                             </div>

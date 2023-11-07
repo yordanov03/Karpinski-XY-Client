@@ -28,5 +28,10 @@ export const paintingReducer = createReducer(
   on(PaintingActions.loadPaintingSuccess, (state, { painting }) => ({...state, painting, error: null, selectedPaintingName:'' })),
   on(PaintingActions.loadPaintingFailure, (state, { error }) => ({...state, painting: null, error })),
 
-  on(PaintingActions.makeInquiry, (state, { name }) => ({ ...state, selectedPaintingName: name }))
+  on(PaintingActions.loadPortfolioPaintings, (state) => ({ ...state, loading: true, error: null })),
+  on(PaintingActions.loadPortfolioPaintingsSuccess, (state, { portfolioPaintings }) => ({ ...state, loading: false, portfolioPaintings })),
+  on(PaintingActions.loadPortfolioPaintingsFailure, (state, { error }) => ({ ...state, loading: false, error })),
+
+
+  on(PaintingActions.makeInquiry, (state, { name }) => ({ ...state, selectedPaintingName: name })),
 );

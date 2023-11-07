@@ -157,4 +157,18 @@ loadPaintingsOnFocus$ = createEffect(() =>
     )
   )
 );
+
+loadPortfolio$ = createEffect(() => this.actions$.pipe(
+  ofType(PaintingActions.loadPortfolioPaintings),
+  switchMap(() => this.paintingsService.portfolio().pipe(
+    map(portfolioPaintings => PaintingActions.loadPortfolioPaintingsSuccess({ portfolioPaintings })),
+    catchError(error => {
+      popoverMessage().fire({
+        icon: 'error',
+        title: 'Error fetching portfolio Paintings'
+      });
+      return of(PaintingActions.loadPortfolioPaintingsFailure({ error }));
+    })
+  ))
+));
 }

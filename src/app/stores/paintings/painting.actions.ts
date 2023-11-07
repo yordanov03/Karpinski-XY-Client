@@ -105,3 +105,15 @@ export const makeInquiry = createAction(
   '[Painting] Make Inquiry',
   props<{ name: string }>()
 );
+
+export const loadPortfolioPaintings = createAction('[Portfolio] Load Portfolio');
+
+export const loadPortfolioPaintingsSuccess = createAction(
+  '[Painting Portfolio] Load Portfolio Success',
+  props<{ portfolioPaintings: Painting[] }>()
+);
+
+export const loadPortfolioPaintingsFailure = createAction(
+  '[Painting Portfolio] Load Portfolio Failure',
+  props<{ error: any }>()
+);
