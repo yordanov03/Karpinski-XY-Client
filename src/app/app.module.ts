@@ -46,7 +46,6 @@ import { ContactEffects } from './stores/contact/contact.effects';
 import { paintingReducer } from './stores/paintings/painting.reducers';
 import { PaintingEffects } from './stores/paintings/painting.effects';
 import { SliceArrayPipe } from './shared/pipes/sliceArray.pipe';
-import { PortfolioCardComponent } from './components/common/portfolio-card/portfolio-card/portfolio-card.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +76,6 @@ import { PortfolioCardComponent } from './components/common/portfolio-card/portf
     EditPaintingComponent,
     PaintingCardComponent,
     SliceArrayPipe,
-    PortfolioCardComponent
   ],
   imports: [
     BrowserModule,
