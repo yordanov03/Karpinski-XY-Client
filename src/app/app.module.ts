@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PreloaderComponent } from './components/common/preloader/preloader.component';
@@ -46,6 +45,8 @@ import { ContactEffects } from './stores/contact/contact.effects';
 import { paintingReducer } from './stores/paintings/painting.reducers';
 import { PaintingEffects } from './stores/paintings/painting.effects';
 import { SliceArrayPipe } from './shared/pipes/sliceArray.pipe';
+import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
+import { PortfolioCardComponent } from './components/common/portfolio-card/portfolio-card.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,8 @@ import { SliceArrayPipe } from './shared/pipes/sliceArray.pipe';
     EditPaintingComponent,
     PaintingCardComponent,
     SliceArrayPipe,
+    PortfolioComponent,
+    PortfolioCardComponent
   ],
   imports: [
     BrowserModule,

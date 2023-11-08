@@ -21,6 +21,7 @@ import { BlogDetailsComponent } from './components/pages/blog-details/blog-detai
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
+import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
     {path: 'coming-soon', component: ComingSoonComponent},
     {path: 'create-painting', component: CreatePaintingComponent},
     {path: 'paintings', component: PaintingsComponent},
+    {path: 'portfolio', component: PortfolioComponent},
     {path: 'service-details', component: ServicesDetailsComponent},
     {path: 'control-panel', component: ControlPanelComponent},
     {path: 'cart', component: CartComponent},
