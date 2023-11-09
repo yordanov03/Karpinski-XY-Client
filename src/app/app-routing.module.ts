@@ -31,7 +31,7 @@ const routes: Routes = [
     {path: 'sign-in', component: SignInComponent},
     {path: 'sign-up', component: RegisterComponent},
     {path: 'recover-password', component: RecoverPasswordComponent},
-    {path: 'terms-condition', component: TermsConditionsComponent},
+    {path: 'terms-conditions', component: TermsConditionsComponent},
     {path: 'privacy-policy', component: PrivacyPolicyComponent},
     {path: 'coming-soon', component: ComingSoonComponent},
     {path: 'create-painting', component: CreatePaintingComponent},
