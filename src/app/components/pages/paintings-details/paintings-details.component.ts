@@ -2,7 +2,7 @@
 import { Component,  OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Painting } from 'src/app/api/models';
 import { selectPainting } from 'src/app/stores/paintings/painting.selectos';
 import * as PaintingActions from '../../../stores/paintings/painting.actions'
@@ -24,6 +24,7 @@ currentUrl: string;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href
+    console.log(this.currentUrl)
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
