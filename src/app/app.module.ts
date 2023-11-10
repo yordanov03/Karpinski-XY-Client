@@ -45,6 +45,7 @@ import { PaintingEffects } from './stores/paintings/painting.effects';
 import { SliceArrayPipe } from './shared/pipes/sliceArray.pipe';
 import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
 import { PortfolioCardComponent } from './components/common/portfolio-card/portfolio-card.component';
+import { SubscriptionEffects } from './stores/subscription/subscription.effects';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,11 @@ import { PortfolioCardComponent } from './components/common/portfolio-card/portf
       name: 'Karpinski XY',
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([AuthEffects, ContactEffects, PaintingEffects]),
+    EffectsModule.forRoot([
+      AuthEffects, 
+      ContactEffects, 
+      PaintingEffects,
+      SubscriptionEffects]),
   ],
   providers: [
   {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

@@ -7,6 +7,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 import { ContactService } from './services/contact.service';
 import { IdentityService } from './services/identity.service';
 import { PaintingsService } from './services/paintings.service';
+import { SubscriptionService } from './services/subscription.service';
 
 /**
  * Module that provides all services and configuration.
@@ -19,6 +20,7 @@ import { PaintingsService } from './services/paintings.service';
     ContactService,
     IdentityService,
     PaintingsService,
+    SubscriptionService,
     ApiConfiguration
   ],
 })
