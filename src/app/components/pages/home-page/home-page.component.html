@@ -161,21 +161,21 @@
     </div>
 </section>
 
-<section class="product-area pb-70">
+<!-- <section class="product-area pb-70">
     <div class="container">
         <div class="scetion-title text-center">
             <span>Portfolio</span>
             <h2>My work throughout the years</h2>
-            <p>I invite you to trace back how my painting style, my inspirations, my technique, my perceptions have evolved over the years</p>
+            <p>I invite you to trace back how my painting style,my inspirations, my technique, my perceptions have evolved over the years</p>
         </div>
         <div class="row pt-45">
             <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                  <!-- Divide the products array into chunks of 3 for each slide -->
+\
                   <ng-container *ngFor="let chunk of (availablePaintings$ | async) | sliceArray:3; let isFirst = first">
                     <div class="carousel-item" [class.active]="isFirst">
                       <div class="row">
-                        <!-- Display each product in the chunk -->
+    \
                         <div class="col-lg-4 col-md-6" *ngFor="let painting of chunk">
                           <div class="product-card">
                             <a routerLink="/paintings-details/{{painting.id}}">
@@ -212,6 +212,6 @@
     <div class="product-shape">
         <img src="assets/img/products/shape.png" alt="Products Shape">
     </div>
-</section>
+</section> -->
 
 <app-footer></app-footer>
