@@ -39,6 +39,22 @@ export class PaintingEffects {
       ))
     )
   );
+
+  loadPaintingToEdit$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(PaintingActions.loadPaintingToEdit),
+    switchMap(action => this.paintingsService.getPaintingToEdit({ id: action.id }).pipe(
+      map((painting: Painting) => PaintingActions.loadPaintingToEditSuccess({ painting })),
+      catchError(error => {
+        popoverMessage().fire({
+          icon: 'error',
+          text: 'Failed to load painting to edit'
+        });
+        return of(PaintingActions.loadPaintingToEditFailure({ error }));
+      })
+    ))
+  )
+);
   
   updatePainting$ = createEffect(() =>
     this.actions$.pipe(
@@ -65,19 +81,28 @@ export class PaintingEffects {
     )
   )
 
-  loadPainting$ = createEffect(() =>
+  deletePainting$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(PaintingActions.loadPaintingToEdit),
-    switchMap(action => this.paintingsService.getPaintingToEdit({ id: action.id }).pipe(
-      map((painting: Painting) => PaintingActions.loadPaintingToEditSuccess({ painting })),
-      catchError(error => {
-        popoverMessage().fire({
-          icon: 'error',
-          text: 'Failed to load painting'
-        });
-        return of(PaintingActions.loadPaintingToEditFailure({ error }));
-      })
-    ))
+    ofType(PaintingActions.deletePainting),
+    switchMap((action) =>
+      this.paintingsService.delete({ id: action.id }).pipe(
+        tap(() => {
+          this.router.navigate(["/paintings"])
+          popoverMessage().fire({
+            icon: 'success',
+            text: 'Painting deleted successfully'
+          });
+        }),
+        map(() => PaintingActions.deletePaintingSuccess({ id: action.id })),
+        catchError((error) => {
+          popoverMessage().fire({
+            icon: 'error',
+            text: 'Failed to delete painting'
+          });
+          return of(PaintingActions.deletePaintingFailure({ error }));
+        })
+      )
+    )
   )
 );
 
@@ -115,37 +140,12 @@ loadPaintingsOnFocus$ = createEffect(() =>
   )
 );
 
-deletePainting$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(PaintingActions.deletePainting),
-      switchMap((action) =>
-        this.paintingsService.delete({ id: action.id }).pipe(
-          tap(() => {
-            this.router.navigate(["/paintings"])
-            popoverMessage().fire({
-              icon: 'success',
-              text: 'Painting deleted successfully'
-            });
-          }),
-          map(() => PaintingActions.deletePaintingSuccess({ id: action.id })),
-          catchError((error) => {
-            popoverMessage().fire({
-              icon: 'error',
-              text: 'Failed to delete painting'
-            });
-            return of(PaintingActions.deletePaintingFailure({ error }));
-          })
-        )
-      )
-    )
-  );
-
-  getPainting$ = createEffect(() =>
+  loadPainting$ = createEffect(() =>
   this.actions$.pipe(
     ofType(PaintingActions.loadPainting),
     switchMap(action =>
-      this.paintingsService.getPainting$Response({ id: action.id }).pipe(
-        map(response => PaintingActions.loadPaintingSuccess({ painting: response.body as Painting })),
+      this.paintingsService.loadPainting({ id: action.id }).pipe(
+        map(response => PaintingActions.loadPaintingSuccess({ painting: response as Painting })),
         catchError(error => {
           popoverMessage().fire({
             icon: 'error',
@@ -157,4 +157,18 @@ deletePainting$ = createEffect(() =>
     )
   )
 );
+
+loadPortfolio$ = createEffect(() => this.actions$.pipe(
+  ofType(PaintingActions.loadPortfolioPaintings),
+  switchMap(() => this.paintingsService.portfolio().pipe(
+    map(portfolioPaintings => PaintingActions.loadPortfolioPaintingsSuccess({ portfolioPaintings })),
+    catchError(error => {
+      popoverMessage().fire({
+        icon: 'error',
+        title: 'Error fetching portfolio Paintings'
+      });
+      return of(PaintingActions.loadPortfolioPaintingsFailure({ error }));
+    })
+  ))
+));
 }

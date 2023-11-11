@@ -16,11 +16,10 @@ import { ControlPanelComponent } from './components/pages/control-panel/control-
 import { CartComponent } from './components/pages/cart/cart.component';
 import { CheckoutComponent } from './components/pages/checkout/checkout.component';
 import { PaintingsDetailsComponent } from './components/pages/paintings-details/paintings-details.component';
-import { BlogComponent } from './components/pages/blog/blog.component';
-import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
+import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -30,19 +29,18 @@ const routes: Routes = [
     {path: 'sign-in', component: SignInComponent},
     {path: 'sign-up', component: RegisterComponent},
     {path: 'recover-password', component: RecoverPasswordComponent},
-    {path: 'terms-condition', component: TermsConditionsComponent},
+    {path: 'terms-conditions', component: TermsConditionsComponent},
     {path: 'privacy-policy', component: PrivacyPolicyComponent},
     {path: 'coming-soon', component: ComingSoonComponent},
     {path: 'create-painting', component: CreatePaintingComponent},
     {path: 'paintings', component: PaintingsComponent},
+    {path: 'portfolio', component: PortfolioComponent},
     {path: 'service-details', component: ServicesDetailsComponent},
     {path: 'control-panel', component: ControlPanelComponent},
     {path: 'cart', component: CartComponent},
     {path: 'checkout', component: CheckoutComponent},
     {path: 'paintings-details/:id', component: PaintingsDetailsComponent},
     {path: 'paintings/:id/edit', component: EditPaintingComponent},
-    {path: 'blog', component: BlogComponent},
-    {path: 'blog-details', component: BlogDetailsComponent},
     {path: 'contact', component: ContactComponent},
     {path: '**', component: ErrorComponent},
 ];

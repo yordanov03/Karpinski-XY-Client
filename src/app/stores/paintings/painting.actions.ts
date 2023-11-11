@@ -32,17 +32,17 @@ export const updatePaintingFailure = createAction(
 );
 
 export const loadPaintingToEdit = createAction(
-  '[Painting] Load Painting',
+  '[Painting] Load Painting To Edit',
   props<{ id: string }>()
 );
 
 export const loadPaintingToEditSuccess = createAction(
-  '[Painting] Set Editing Painting',
+  '[Painting] Set Editing Painting To Edit',
   props<{ painting: Painting }>()
 );
 
 export const loadPaintingToEditFailure = createAction(
-  '[Painting] Load Painting Failure',
+  '[Painting] Load Painting To Edit Failure',
   props<{ error: any }>()
 );
 
@@ -104,4 +104,16 @@ export const loadPaintingFailure = createAction(
 export const makeInquiry = createAction(
   '[Painting] Make Inquiry',
   props<{ name: string }>()
+);
+
+export const loadPortfolioPaintings = createAction('[Portfolio] Load Portfolio');
+
+export const loadPortfolioPaintingsSuccess = createAction(
+  '[Painting Portfolio] Load Portfolio Success',
+  props<{ portfolioPaintings: Painting[] }>()
+);
+
+export const loadPortfolioPaintingsFailure = createAction(
+  '[Painting Portfolio] Load Portfolio Failure',
+  props<{ error: any }>()
 );

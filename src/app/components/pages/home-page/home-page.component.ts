@@ -15,16 +15,20 @@ import { environment } from 'src/environments/environment';
 export class HomePageComponent implements OnInit {
 homePagePaitingsUrl = environment.homePagePaitings;
 paintingsOnFocus$: Observable<Painting[]>;
+availablePaintings$: Observable<Painting[]>;
+portfolioPaintings$: Observable<Painting[]>
 paintingsChunks: any[][];
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.store.dispatch(PaintingActions.loadPaintingsOnFocus());
-    this.paintingsOnFocus$ = this.store.pipe(select(fromPainting.selectPaintingsOnFocus));
-    // this.paintingsOnFocus$.subscribe(paintings => {
-    //   this.paintingsChunks = this.chunkArray(paintings, 3);
-    // });
+    this.store.dispatch(PaintingActions.loadAvailablePaintings());
+    this.store.dispatch(PaintingActions.loadPortfolioPaintings());
+
+    this.paintingsOnFocus$ = this.store.select(fromPainting.selectPaintingsOnFocus);
+    this.availablePaintings$ = this.store.select(fromPainting.selectAvailablePaintings);
+    this.portfolioPaintings$ = this.store.select(fromPainting.selectPortfolioPaintings)
   }
 
   chunkArray(array, size): any[][] {

@@ -29,6 +29,11 @@ export const selectPaintingsOnFocus = createSelector(
   (state: PaintingState) => state.paintingsOnFocus
 );
 
+export const selectPortfolioPaintings = createSelector(
+  selectPaintingState,
+  (state: PaintingState) => state.portfolioPaintings
+);
+
 export const selectPaintingName = createSelector(
   selectPaintingState,
   (state: PaintingState) => state.selectedPaintingName

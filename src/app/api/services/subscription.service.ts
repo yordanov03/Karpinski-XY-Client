@@ -9,12 +9,11 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { Contact } from '../models/contact';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ContactService extends BaseService {
+export class SubscriptionService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -23,25 +22,25 @@ export class ContactService extends BaseService {
   }
 
   /**
-   * Path part for operation registerContact
+   * Path part for operation subscribe
    */
-  static readonly RegisterContactPath = '/Contact';
+  static readonly SubscribePath = '/Subscription';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `registerContact()` instead.
+   * To access only the response body, use `subscribe()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method doesn't expect any request body.
    */
-  registerContact$Response(params?: {
+  subscribe$Response(params?: {
+    email?: string;
     context?: HttpContext
-    body?: Contact
   }
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ContactService.RegisterContactPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, SubscriptionService.SubscribePath, 'post');
     if (params) {
-      rb.body(params.body, 'application/*+json');
+      rb.query('email', params.email, {});
     }
 
     return this.http.request(rb.build({
@@ -58,17 +57,17 @@ export class ContactService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `registerContact$Response()` instead.
+   * To access the full response (for headers, for example), `subscribe$Response()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method doesn't expect any request body.
    */
-  registerContact(params?: {
+  subscribe(params?: {
+    email?: string;
     context?: HttpContext
-    body?: Contact
   }
 ): Observable<void> {
 
-    return this.registerContact$Response(params).pipe(
+    return this.subscribe$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

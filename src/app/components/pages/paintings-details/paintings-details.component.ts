@@ -2,7 +2,7 @@
 import { Component,  OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Painting } from 'src/app/api/models';
 import { selectPainting } from 'src/app/stores/paintings/painting.selectos';
 import * as PaintingActions from '../../../stores/paintings/painting.actions'
@@ -20,16 +20,17 @@ currentUrl: string;
 
   constructor(private store: Store,
     private route: ActivatedRoute) {
-    this.painting$ = this.store.select(selectPainting);
   }
 
   ngOnInit(): void {
     this.currentUrl = window.location.href
+    console.log(this.currentUrl)
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
-        this.store.dispatch(PaintingActions.loadPainting({ id }));
+        this.store.dispatch(PaintingActions.loadPainting({ id: params.get('id') }));
+        this.painting$ = this.store.select(selectPainting);
       }
     });
   }

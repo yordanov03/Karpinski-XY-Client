@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PreloaderComponent } from './components/common/preloader/preloader.component';
@@ -27,8 +26,6 @@ import { ControlPanelComponent } from './components/pages/control-panel/control-
 import { CartComponent } from './components/pages/cart/cart.component';
 import { CheckoutComponent } from './components/pages/checkout/checkout.component';
 import { PaintingsDetailsComponent } from './components/pages/paintings-details/paintings-details.component';
-import { BlogComponent } from './components/pages/blog/blog.component';
-import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
@@ -46,6 +43,9 @@ import { ContactEffects } from './stores/contact/contact.effects';
 import { paintingReducer } from './stores/paintings/painting.reducers';
 import { PaintingEffects } from './stores/paintings/painting.effects';
 import { SliceArrayPipe } from './shared/pipes/sliceArray.pipe';
+import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
+import { PortfolioCardComponent } from './components/common/portfolio-card/portfolio-card.component';
+import { SubscriptionEffects } from './stores/subscription/subscription.effects';
 
 @NgModule({
   declarations: [
@@ -69,13 +69,13 @@ import { SliceArrayPipe } from './shared/pipes/sliceArray.pipe';
     CartComponent,
     CheckoutComponent,
     PaintingsDetailsComponent,
-    BlogComponent,
-    BlogDetailsComponent,
     ContactComponent,
     CreatePaintingComponent,
     EditPaintingComponent,
     PaintingCardComponent,
-    SliceArrayPipe
+    SliceArrayPipe,
+    PortfolioComponent,
+    PortfolioCardComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +94,11 @@ import { SliceArrayPipe } from './shared/pipes/sliceArray.pipe';
       name: 'Karpinski XY',
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([AuthEffects, ContactEffects, PaintingEffects]),
+    EffectsModule.forRoot([
+      AuthEffects, 
+      ContactEffects, 
+      PaintingEffects,
+      SubscriptionEffects]),
   ],
   providers: [
   {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

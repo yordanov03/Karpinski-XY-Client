@@ -15,3 +15,22 @@
     right: 0 !important;
     padding-right: 15px !important;
 }
+
+.banner-item {
+    // width: 250px;
+    // height: 200px;
+    width: 300px;
+    height: 250px;
+    border-radius: 25px; /* Rounded corners */
+    overflow: hidden;    /* Hides the overflow */
+    display: flex;       /* Ensures the child elements are centered */
+    justify-content: center;
+    align-items: center; 
+  }
+  
+  .portfolio-image {
+    max-width: 100%;  /* Image can be as wide as needed, up to 100% of the parent */
+    max-height: 100%; /* Image can be as tall as needed, up to 100% of the parent */
+    object-fit: scale-down; /* Ensures image is scaled down if necessary, but not up */
+  }
+  
