@@ -58,8 +58,8 @@ img {
 }
 .ptb-100 {
     padding: {
-        top: 100px;
-        bottom: 100px;
+        top: 50px;
+        bottom: 50px;
     };
 }
 .pt-100 {
@@ -2198,7 +2198,7 @@ Inner Banner Style
         opacity: 0.2;
     }
     .inner-title {
-        padding-top: 50px;
+        padding-top: 30px;
         padding-bottom: 50px;
         position: relative;
 
@@ -2238,6 +2238,7 @@ Inner Banner Style
 }
 .inner-bg1 {
     background-image: url(assets/img/paintings/homePagePaitings/8.jpg);
+    max-height: 130px;
 }
 .inner-bg2 {
     background-image: url(assets/img/inner-banner/2.jpg);

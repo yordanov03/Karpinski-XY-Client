@@ -125,8 +125,8 @@
                     <div class="contact-wrap-form">
                         <!-- Uploaded Images -->
                         <div class="uploaded-images">
-                            <div formArrayName="images" class="uploaded-images">
-                                <div *ngFor="let image of images; let i = index" class="uploaded-image">
+                            <div formArrayName="paintingImages" class="uploaded-images">
+                                <div *ngFor="let image of paintingImages; let i = index" class="uploaded-image">
                                     <div [formGroupName]="i">
                                         <img [src]="'data:image/jpeg;base64,' + image.file" alt="Uploaded Painting">
                                         <div class="checkbox-container">

@@ -24,7 +24,7 @@
                         </li>
                     </ol> -->
                     <div class="carousel-inner" role="listbox">
-                        <div *ngFor="let image of painting?.images; let i = index" class="carousel-item"
+                        <div *ngFor="let image of painting?.paintingImages; let i = index" class="carousel-item"
                             [class.active]="i === 0">
                             <img [src]="image.imageUrl" class="d-block w-100" alt="...">
                         </div>
@@ -43,7 +43,7 @@
 
                 <!-- Thumbnails -->
                 <div class="carousel-thumbnails">
-                    <img *ngFor="let image of painting.images; let i = index" [src]="image.imageUrl"
+                    <img *ngFor="let image of painting.paintingImages; let i = index" [src]="image.imageUrl"
                         [class.active]="i == 0" (click)="selectImage(i)" class="img-thumbnail">
                 </div>
             </div>

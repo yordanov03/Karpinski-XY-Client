@@ -5,8 +5,7 @@ import { Store } from '@ngrx/store';
 import { PaintingState } from 'src/app/stores/paintings/painting.state';
 import * as paintingActions from '../../../stores/paintings/painting.actions'
 import * as fromSelectors from '../../../stores/paintings/painting.selectos'
-import { Painting } from 'src/app/api/models';
-import { Image } from 'src/app/api/models';
+import { Painting, PaintingImage } from 'src/app/api/models';
 import { ActivatedRoute } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
 
@@ -18,7 +17,7 @@ import { filter, take } from 'rxjs/operators';
 export class EditPaintingComponent implements OnInit {
   paintingState$: Observable<PaintingState>;
   editPaintingForm: FormGroup;
-  images: Image[] = [];
+  paintingImages: PaintingImage[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -38,7 +37,7 @@ export class EditPaintingComponent implements OnInit {
       technique: ['', Validators.required],
       isOnFocus: [false],
       isAvailableForSale: [true],
-      images: this.fb.array([], Validators.required)
+      paintingImages: this.fb.array([], Validators.required)
     });
   }
 
@@ -53,7 +52,6 @@ export class EditPaintingComponent implements OnInit {
       filter(painting => painting !== null),
       take(1))
     .subscribe(painting => {
-      console.log(painting);
       if (painting) {
         this.editPaintingForm.patchValue({
           id: painting.id,
@@ -70,25 +68,25 @@ export class EditPaintingComponent implements OnInit {
         });
 
         // Load images
-        this.images = painting.images.map(img => ({
+        this.paintingImages = painting.paintingImages.map(img => ({
           file: img.file,
           imageUrl: img.imageUrl,
           isMainImage: img.isMainImage
         }));
 
-        this.images.forEach(image => this.addImageFormGroup(image));
+        this.paintingImages.forEach(image => this.addImageFormGroup(image));
       }
     });
 
-  this.imagesFormArray.valueChanges.subscribe((images) => {
+  this.paintingImagesFormArray.valueChanges.subscribe((images) => {
     images.forEach((image, index) => {
-      this.images[index].isMainImage = image.isMainImage;
+      this.paintingImages[index].isMainImage = image.isMainImage;
     });
   });
   }
 
-  get imagesFormArray() {
-    return (this.editPaintingForm?.get('images') as FormArray);
+  get paintingImagesFormArray() {
+    return (this.editPaintingForm?.get('paintingImages') as FormArray);
   }
 
   editPainting() {
@@ -102,7 +100,7 @@ export class EditPaintingComponent implements OnInit {
 
   preparePayload(): Painting {
     const formValue = this.editPaintingForm.getRawValue();
-    formValue.images = this.images.map(image => {
+    formValue.paintingImages = this.paintingImages.map(image => {
       return {
         file: image.file,
         isMainImage: image.isMainImage,
@@ -112,12 +110,12 @@ export class EditPaintingComponent implements OnInit {
     return formValue as Painting;
   }
 
-  addImageFormGroup(image: any) {
+  addImageFormGroup(paintingImage: any) {
     const imageFormGroup = this.fb.group({
-      file: [image, Validators.required],
-      isMainImage: [image.isMainImage]
+      file: [paintingImage, Validators.required],
+      isMainImage: [paintingImage.isMainImage]
     });
-    this.imagesFormArray.push(imageFormGroup);
+    this.paintingImagesFormArray.push(imageFormGroup);
   }
 
   onMultipleImageUpload(event: any) {
@@ -127,12 +125,12 @@ export class EditPaintingComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const base64String = e.target.result.split(',')[1];
-        const image: Image = {
+        const image: PaintingImage = {
           file: base64String,
           imageUrl: '',
           isMainImage: null
         };
-        this.images.push(image);
+        this.paintingImages.push(image);
         this.addImageFormGroup(image);
       };
       reader.readAsDataURL(file);
@@ -140,24 +138,24 @@ export class EditPaintingComponent implements OnInit {
   }
 
   onDeleteImage(index: number) {
-    if (index >= 0 && index < this.images.length) {
+    if (index >= 0 && index < this.paintingImages.length) {
       // Remove the image from the images array
-      this.images.splice(index, 1);
+      this.paintingImages.splice(index, 1);
   
       // Remove the FormGroup for the image from the FormArray
-      this.imagesFormArray.removeAt(index);
+      this.paintingImagesFormArray.removeAt(index);
       this.updateImagesFormArray();
     }
   }
 
   updateImagesFormArray() {
     // Clear the FormArray first to ensure there are no residual FormGroup entries.
-    while (this.imagesFormArray.length !== 0) {
-      this.imagesFormArray.removeAt(0);
+    while (this.paintingImagesFormArray.length !== 0) {
+      this.paintingImagesFormArray.removeAt(0);
     }
   
     // Repopulate the FormArray with FormGroup instances based on the current images array.
-    this.images.forEach(image => this.addImageFormGroup(image));
+    this.paintingImages.forEach(image => this.addImageFormGroup(image));
     console.log(this.editPaintingForm.value)
   }
 

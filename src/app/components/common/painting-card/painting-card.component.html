@@ -6,7 +6,7 @@
       <div class="col-lg-4 col-md-6" *ngFor="let painting of paintings">
         <div class="service-card">
           <a routerLink="/paintings-details/{{painting.id}}">
-            <img [src]="painting.images[0].imageUrl" width="450" height="420">
+            <img [src]="painting.paintingImages[0].imageUrl" width="450" height="420">
           </a>
           <div class="service-content">
             <a routerLink="/paintings-details/{{painting.id}}">

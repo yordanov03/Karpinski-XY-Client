@@ -46,37 +46,37 @@
                         </div> -->
 
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[0]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[0]?.paintingImages?.[0]?.imageUrl as imageUrl"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[0]?.id}}" target="_blank">
                                 <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[1]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[1]?.paintingImages?.[0]?.imageUrl as imageUrl"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[1]?.id}}" target="_blank">
                                 <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[2]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[2]?.paintingImages?.[0]?.imageUrl as imageUrl"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[2]?.id}}" target="_blank">
                                 <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[3]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[3]?.paintingImages?.[0]?.imageUrl as imageUrl"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[3]?.id}}" target="_blank">
                                 <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[4]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[4]?.paintingImages?.[0]?.imageUrl as imageUrl"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[4]?.id}}" target="_blank">
                                 <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[5]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[5]?.paintingImages?.[0]?.imageUrl as imageUrl"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[5]?.id}}" target="_blank">
                                 <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
                             </a>
@@ -141,14 +141,14 @@
         <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <!-- divide the paintings array into chunks of 3 for each slide -->
-                <ng-container *ngFor="let chunk of (paintingsOnFocus$ | async) | sliceArray:3; let isFirst = first">
+                <ng-container *ngFor="let chunk of (availablePaintings$ | async) | sliceArray:3; let isFirst = first">
                     <div class="carousel-item" [class.active]="isFirst">
                         <div class="row">
                             <!-- display each painting in the chunk -->
                             <div class="col-lg-4" *ngFor="let painting of chunk">
                                 <div class="service-card">
                                     <a routerLink="/paintings-details/{{painting.id}}">
-                                        <img [src]="painting.images[0]?.imageUrl" alt="Service Images" width="400"
+                                        <img [src]="painting.paintingImages[0]?.imageUrl" alt="Service Images" width="400"
                                             height="380">
                                     </a>
                                     <div class="service-content">
@@ -186,13 +186,13 @@
             <p>I invite you to trace back how my painting style,my inspirations, my technique, my perceptions have evolved over the years</p>
         </div>
         <br>
-        <ng-container *ngFor="let chunk of (availablePaintings$ | async) | sliceArray:3; let isFirst = first">
+        <ng-container *ngFor="let chunk of (portfolioPaintings$ | async) | sliceArray:3; let isFirst = first">
             <!-- <div class="carousel-item" [class.active]="isFirst"> -->
             <div class="row">
                 <div class="col-lg-4 col-md-6" *ngFor="let painting of chunk">
                     <div class="product-card">
                         <a routerLink="/paintings-details/{{painting.id}}">
-                            <img [src]="painting.images[0]?.imageUrl" alt="Product Images" width="400" height="380">
+                            <img [src]="painting.paintingImages[0]?.imageUrl" alt="Product Images" width="400" height="380">
                         </a>
                         <div class="product-content">
                             <a routerLink="/paintings-details/{{painting.id}}">

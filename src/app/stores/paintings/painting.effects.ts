@@ -4,20 +4,20 @@ import * as PaintingActions from './painting.actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { popoverMessage } from 'src/app/shared/popover-messages';
-import { PaintingsService } from 'src/app/api/services';
 import { Painting } from 'src/app/api/models';
 import { Router } from '@angular/router';
+import { PaintingService } from 'src/app/api/services';
 
 @Injectable()
 export class PaintingEffects {
   constructor(private actions$: Actions, 
-    private paintingsService: PaintingsService,
+    private paintingService: PaintingService,
     private router: Router) {}
 
   createPainting$ = createEffect(() =>
     this.actions$.pipe(
       ofType(PaintingActions.createPainting),
-      switchMap(action => this.paintingsService.create({ body: action.payload }).pipe(
+      switchMap(action => this.paintingService.create({ body: action.payload }).pipe(
         tap(() => {
         popoverMessage().fire({
           icon: 'success',
@@ -43,7 +43,7 @@ export class PaintingEffects {
   loadPaintingToEdit$ = createEffect(() =>
   this.actions$.pipe(
     ofType(PaintingActions.loadPaintingToEdit),
-    switchMap(action => this.paintingsService.getPaintingToEdit({ id: action.id }).pipe(
+    switchMap(action => this.paintingService.getPaintingToEdit({ id: action.id }).pipe(
       map((painting: Painting) => PaintingActions.loadPaintingToEditSuccess({ painting })),
       catchError(error => {
         popoverMessage().fire({
@@ -59,7 +59,7 @@ export class PaintingEffects {
   updatePainting$ = createEffect(() =>
     this.actions$.pipe(
       ofType(PaintingActions.updatePainting),
-      switchMap(action => this.paintingsService.update({ body: action.painting }).pipe(
+      switchMap(action => this.paintingService.update({ body: action.painting }).pipe(
         tap(() => {
           popoverMessage().fire({
             icon: 'success',
@@ -85,7 +85,7 @@ export class PaintingEffects {
   this.actions$.pipe(
     ofType(PaintingActions.deletePainting),
     switchMap((action) =>
-      this.paintingsService.delete({ id: action.id }).pipe(
+      this.paintingService.delete({ id: action.id }).pipe(
         tap(() => {
           this.router.navigate(["/paintings"])
           popoverMessage().fire({
@@ -109,7 +109,7 @@ export class PaintingEffects {
 loadAvailablePaintings$ = createEffect(() =>
   this.actions$.pipe(
     ofType(PaintingActions.loadAvailablePaintings),
-    switchMap(() => this.paintingsService.available().pipe(
+    switchMap(() => this.paintingService.available().pipe(
       map((availablePaintings: Painting[]) => PaintingActions.loadAvailablePaintingsSuccess({ availablePaintings })),
       catchError(error => {
         console.error(error);
@@ -126,7 +126,7 @@ loadAvailablePaintings$ = createEffect(() =>
 loadPaintingsOnFocus$ = createEffect(() =>
   this.actions$.pipe(
     ofType(PaintingActions.loadPaintingsOnFocus),
-    switchMap(() => this.paintingsService.onFocus().pipe(
+    switchMap(() => this.paintingService.onFocus().pipe(
       map((paintingsOnFocus: Painting[]) => PaintingActions.loadPaintingsOnFocusSuccess({ paintingsOnFocus })),
       catchError(error => {
         console.error(error);
@@ -144,7 +144,7 @@ loadPaintingsOnFocus$ = createEffect(() =>
   this.actions$.pipe(
     ofType(PaintingActions.loadPainting),
     switchMap(action =>
-      this.paintingsService.loadPainting({ id: action.id }).pipe(
+      this.paintingService.loadPainting({ id: action.id }).pipe(
         map(response => PaintingActions.loadPaintingSuccess({ painting: response as Painting })),
         catchError(error => {
           popoverMessage().fire({
@@ -160,7 +160,7 @@ loadPaintingsOnFocus$ = createEffect(() =>
 
 loadPortfolio$ = createEffect(() => this.actions$.pipe(
   ofType(PaintingActions.loadPortfolioPaintings),
-  switchMap(() => this.paintingsService.portfolio().pipe(
+  switchMap(() => this.paintingService.portfolio().pipe(
     map(portfolioPaintings => PaintingActions.loadPortfolioPaintingsSuccess({ portfolioPaintings })),
     catchError(error => {
       popoverMessage().fire({

@@ -1,8 +1,10 @@
 export { Contact } from './models/contact';
+export { Exhibition } from './models/exhibition';
+export { ExhibitionImage } from './models/exhibition-image';
 export { IdentityError } from './models/identity-error';
 export { IdentityResult } from './models/identity-result';
-export { Image } from './models/image';
 export { LoginRequestModel } from './models/login-request-model';
 export { LoginResponseModel } from './models/login-response-model';
 export { Painting } from './models/painting';
+export { PaintingImage } from './models/painting-image';
 export { RegisterRequestModel } from './models/register-request-model';
