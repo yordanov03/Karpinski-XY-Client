@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { PaintingState } from 'src/app/stores/paintings/painting.state';
-import * as paintingActions from '../../../stores/paintings/painting.actions'
-import * as fromSelectors from '../../../stores/paintings/painting.selectos'
+import { PaintingState } from 'src/app/stores/painting/painting.state';
+import * as paintingActions from '../../../stores/painting/painting.actions'
+import * as fromSelectors from '../../../stores/painting/painting.selectos'
 import { Painting, PaintingImage } from 'src/app/api/models';
 import { ActivatedRoute } from '@angular/router';
 import { filter, take } from 'rxjs/operators';

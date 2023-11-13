@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as ContactActions from '../../../stores/contact/contact.actions';
 import * as fromSelectors from '../../../stores/contact/contact.selectors';
-import * as fromPaintingSelectors from '../../../stores/paintings/painting.selectos';
+import * as fromPaintingSelectors from '../../../stores/painting/painting.selectos';
 import { Observable } from 'rxjs';
 
 @Component({

@@ -20,6 +20,7 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
+import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
     {path: 'privacy-policy', component: PrivacyPolicyComponent},
     {path: 'coming-soon', component: ComingSoonComponent},
     {path: 'create-painting', component: CreatePaintingComponent},
+    {path: 'create-exhibition', component: CreateExhibitionComponent},
     {path: 'paintings', component: PaintingsComponent},
     {path: 'portfolio', component: PortfolioComponent},
     {path: 'service-details', component: ServicesDetailsComponent},

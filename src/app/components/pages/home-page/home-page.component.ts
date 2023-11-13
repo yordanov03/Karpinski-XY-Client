@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as PaintingActions from '../../../stores/paintings/painting.actions'
-import * as fromPainting from '../../../stores/paintings/painting.selectos'
+import * as PaintingActions from '../../../stores/painting/painting.actions'
+import * as fromPainting from '../../../stores/painting/painting.selectos'
 import { Painting } from 'src/app/api/models';
 import { environment } from 'src/environments/environment';
 

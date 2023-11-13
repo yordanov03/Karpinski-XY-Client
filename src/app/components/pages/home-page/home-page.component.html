@@ -128,8 +128,8 @@
     </div>
 </div>
 
-<section class="service-area pb-70">
-    <div class="container">
+<section class="service-area pb-70" >
+    <div class="container" *ngIf="(portfolioPaintings$ | async)?.length">
         <div class="scetion-title text-center">
             <span>Art</span>
             <h2>Some of my recent work</h2>
@@ -178,7 +178,7 @@
 </section>
 
 
-<section class="product-area pb-70">
+<section class="product-area pb-70" *ngIf="(availablePaintings$| async).length>0">
     <div class="container">
         <div class="scetion-title text-center">
             <span>Portfolio</span>

@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Painting } from 'src/app/api/models';
-import { selectPainting } from 'src/app/stores/paintings/painting.selectos';
-import * as PaintingActions from '../../../stores/paintings/painting.actions'
+import { selectPainting } from 'src/app/stores/painting/painting.selectos';
+import * as PaintingActions from '../../../stores/painting/painting.actions'
 import * as bootstrap from 'bootstrap';
 
 

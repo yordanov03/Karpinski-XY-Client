@@ -40,12 +40,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { contactReducer } from './stores/contact/contact.reducer';
 import { ContactEffects } from './stores/contact/contact.effects';
-import { paintingReducer } from './stores/paintings/painting.reducers';
-import { PaintingEffects } from './stores/paintings/painting.effects';
+import { paintingReducer } from './stores/painting/painting.reducers';
+import { PaintingEffects } from './stores/painting/painting.effects';
 import { SliceArrayPipe } from './shared/pipes/sliceArray.pipe';
 import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
 import { PortfolioCardComponent } from './components/common/portfolio-card/portfolio-card.component';
 import { SubscriptionEffects } from './stores/subscription/subscription.effects';
+import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
+import { ExhibitionEffects } from './stores/exhibition/exhibition.effects';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,8 @@ import { SubscriptionEffects } from './stores/subscription/subscription.effects'
     PaintingCardComponent,
     SliceArrayPipe,
     PortfolioComponent,
-    PortfolioCardComponent
+    PortfolioCardComponent,
+    CreateExhibitionComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +101,8 @@ import { SubscriptionEffects } from './stores/subscription/subscription.effects'
       AuthEffects, 
       ContactEffects, 
       PaintingEffects,
-      SubscriptionEffects]),
+      SubscriptionEffects,
+      ExhibitionEffects]),
   ],
   providers: [
   {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

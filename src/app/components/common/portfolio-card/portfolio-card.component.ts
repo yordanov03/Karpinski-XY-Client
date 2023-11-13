@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Painting } from 'src/app/api/models';
-import * as PaintingActions from '../../../stores/paintings/painting.actions'
-import * as fromPainting from '../../../stores/paintings/painting.selectos'
+import * as PaintingActions from '../../../stores/painting/painting.actions'
+import * as fromPainting from '../../../stores/painting/painting.selectos'
 import * as fromAuth from '../../../stores/auth/auth.selectors'
 import Swal from 'sweetalert2';
 

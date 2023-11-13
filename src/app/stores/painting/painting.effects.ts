@@ -112,11 +112,11 @@ loadAvailablePaintings$ = createEffect(() =>
     switchMap(() => this.paintingService.available().pipe(
       map((availablePaintings: Painting[]) => PaintingActions.loadAvailablePaintingsSuccess({ availablePaintings })),
       catchError(error => {
-        console.error(error);
-        popoverMessage().fire({
-          icon: 'error',
-          text: 'Failed to load available paintings'
-        });
+        // console.error(error);
+        // popoverMessage().fire({
+        //   icon: 'error',
+        //   text: 'Failed to load available paintings'
+        // });
         return of(PaintingActions.loadAvailablePaintingsFailure({ error }));
       })
     ))
@@ -129,11 +129,11 @@ loadPaintingsOnFocus$ = createEffect(() =>
     switchMap(() => this.paintingService.onFocus().pipe(
       map((paintingsOnFocus: Painting[]) => PaintingActions.loadPaintingsOnFocusSuccess({ paintingsOnFocus })),
       catchError(error => {
-        console.error(error);
-        popoverMessage().fire({
-          icon: 'error',
-          text: 'Failed to load paintings on focus'
-        });
+        // console.error(error);
+        // popoverMessage().fire({
+        //   icon: 'error',
+        //   text: 'Failed to load paintings on focus'
+        // });
         return of(PaintingActions.loadPaintingsOnFocusFailure({ error }));
       })
     ))
@@ -163,10 +163,10 @@ loadPortfolio$ = createEffect(() => this.actions$.pipe(
   switchMap(() => this.paintingService.portfolio().pipe(
     map(portfolioPaintings => PaintingActions.loadPortfolioPaintingsSuccess({ portfolioPaintings })),
     catchError(error => {
-      popoverMessage().fire({
-        icon: 'error',
-        title: 'Error fetching portfolio Paintings'
-      });
+      // popoverMessage().fire({
+      //   icon: 'error',
+      //   title: 'Error fetching portfolio Paintings'
+      // });
       return of(PaintingActions.loadPortfolioPaintingsFailure({ error }));
     })
   ))
