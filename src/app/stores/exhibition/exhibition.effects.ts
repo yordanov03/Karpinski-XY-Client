@@ -23,7 +23,7 @@ export class ExhibitionEffects {
             });
             setTimeout(() => {
               this.router.navigate([""]);
-            }, 2000);
+            }, 3000);
           }),
           map(() => ExhibitionActions.createExhibitionSuccess({payload: action.payload})),
           catchError(error => {
