@@ -49,6 +49,8 @@ import { SubscriptionEffects } from './stores/subscription/subscription.effects'
 import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
 import { ExhibitionEffects } from './stores/exhibition/exhibition.effects';
 import { exhibitionReducer } from './stores/exhibition/exhibition.reducer';
+import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
+import { BlogCardComponent } from './components/common/blog-card/blog-card.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { exhibitionReducer } from './stores/exhibition/exhibition.reducer';
     SliceArrayPipe,
     PortfolioComponent,
     PortfolioCardComponent,
-    CreateExhibitionComponent
+    CreateExhibitionComponent,
+    ExhibtionComponent,
+    BlogCardComponent
   ],
   imports: [
     BrowserModule,

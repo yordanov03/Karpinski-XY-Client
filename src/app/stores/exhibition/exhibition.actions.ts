@@ -28,3 +28,18 @@ export const loadExhibitionsFailure = createAction(
   '[Exhibition] Load Exhibitions Failure',
   props<{ error: any }>()
 );
+
+export const deleteExhibition = createAction(
+  '[Exhibition] Delete Exhibition',
+  props<{ id: string }>()
+);
+
+export const deleteExhibitionSuccess = createAction(
+  '[Exhibition] Delete Exhibition Success',
+  props<{ id: string }>()
+);
+
+export const deleteExhibitionFailure = createAction(
+  '[Exhibition] Delete Exhibition Failure',
+  props<{ error: any }>()
+);

@@ -29,5 +29,14 @@ on(ExhibitionActions.loadExhibitionsSuccess, (state, { exhibitions }) => ({
 on(ExhibitionActions.loadExhibitionsFailure, (state, { error }) => ({
   ...state,
   error
+})),
+
+on(ExhibitionActions.deleteExhibitionSuccess, (state, { id }) => ({
+  ...state,
+  exhibitions: state.exhibitions.filter(exhibition => exhibition.id !== id)
+})),
+on(ExhibitionActions.deleteExhibitionFailure, (state, { error }) => ({
+  ...state,
+  // handle error
 }))
 );
