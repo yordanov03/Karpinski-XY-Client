@@ -254,6 +254,7 @@ Navbar Area
     width: 100%;
     z-index: 999;
     height: auto;
+    margin-left: -25px;
 
     nav {
         .navbar-nav {
@@ -999,6 +1000,8 @@ Service Area Style
 
         img {
             max-width: 100%;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
         }
     }
     .service-content {
@@ -1056,7 +1059,10 @@ Product Area Style
 
         img {
             max-width: 100%;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
         }
+
     }
     .product-content {
         padding: 24px  20px;

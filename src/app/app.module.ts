@@ -50,7 +50,7 @@ import { CreateExhibitionComponent } from './components/pages/create-exhibition/
 import { ExhibitionEffects } from './stores/exhibition/exhibition.effects';
 import { exhibitionReducer } from './stores/exhibition/exhibition.reducer';
 import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
-import { BlogCardComponent } from './components/common/blog-card/blog-card.component';
+import { ExhibitionCardComponent } from './components/common/exhibition-card/exhibition-card.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +83,7 @@ import { BlogCardComponent } from './components/common/blog-card/blog-card.compo
     PortfolioCardComponent,
     CreateExhibitionComponent,
     ExhibtionComponent,
-    BlogCardComponent
+    ExhibitionCardComponent
   ],
   imports: [
     BrowserModule,

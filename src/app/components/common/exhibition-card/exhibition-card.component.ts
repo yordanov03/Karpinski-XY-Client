@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as ExhibitionActions from '../../../stores/exhibition/exhibition.actions'
 import * as fromExhibition from '../../../stores/exhibition/exhibition.selectors'
 import * as fromAuth from '../../../stores/auth/auth.selectors'
@@ -9,14 +9,16 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-blog-card',
-  templateUrl: './blog-card.component.html',
-  styleUrls: ['./blog-card.component.scss']
+  selector: 'app-exhibition-card',
+  templateUrl: './exhibition-card.component.html',
+  styleUrls: ['./exhibition-card.component.scss']
 })
-export class BlogCardComponent implements OnInit {
+export class ExhibitionCardComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
   exhibitions$: Observable<Exhibition[]>;
+
+  @Input() exhibition: Exhibition;
 
   constructor(private store: Store,
     private router: Router) { }
