@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as PaintingActions from '../../../stores/painting/painting.actions'
 import * as fromPainting from '../../../stores/painting/painting.selectos'
-import { Painting } from 'src/app/api/models';
+import * as ExhibitionActions from '../../../stores/exhibition/exhibition.actions'
+import * as fromExhibition from '../../../stores/exhibition/exhibition.selectors'
+import { Exhibition, Painting } from 'src/app/api/models';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -16,7 +19,8 @@ export class HomePageComponent implements OnInit {
 homePagePaitingsUrl = environment.homePagePaitings;
 paintingsOnFocus$: Observable<Painting[]>;
 availablePaintings$: Observable<Painting[]>;
-portfolioPaintings$: Observable<Painting[]>
+portfolioPaintings$: Observable<Painting[]>;
+exhibitions$: Observable<Exhibition[]>;
 paintingsChunks: any[][];
 
   constructor(private store: Store) { }
@@ -25,10 +29,13 @@ paintingsChunks: any[][];
     this.store.dispatch(PaintingActions.loadPaintingsOnFocus());
     this.store.dispatch(PaintingActions.loadAvailablePaintings());
     this.store.dispatch(PaintingActions.loadPortfolioPaintings());
+    this.store.dispatch(ExhibitionActions.loadExhibitions());
 
     this.paintingsOnFocus$ = this.store.select(fromPainting.selectPaintingsOnFocus);
     this.availablePaintings$ = this.store.select(fromPainting.selectAvailablePaintings);
-    this.portfolioPaintings$ = this.store.select(fromPainting.selectPortfolioPaintings)
+    this.portfolioPaintings$ = this.store.select(fromPainting.selectPortfolioPaintings);
+    this.exhibitions$ = this.store.select(fromExhibition.selectAllExhibitions).pipe(
+      map(exhibitions => exhibitions.slice(0, 3)));
   }
 
   chunkArray(array, size): any[][] {

@@ -48,6 +48,7 @@ import { PortfolioCardComponent } from './components/common/portfolio-card/portf
 import { SubscriptionEffects } from './stores/subscription/subscription.effects';
 import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
 import { ExhibitionEffects } from './stores/exhibition/exhibition.effects';
+import { exhibitionReducer } from './stores/exhibition/exhibition.reducer';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { ExhibitionEffects } from './stores/exhibition/exhibition.effects';
     ({ 
       auth: authReducer,
       contact: contactReducer,
-      painting: paintingReducer
+      painting: paintingReducer,
+      exhibition: exhibitionReducer
     }),
     StoreDevtoolsModule.instrument({
       name: 'Karpinski XY',

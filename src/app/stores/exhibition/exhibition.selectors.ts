@@ -3,7 +3,7 @@ import { ExhibitionState } from './exhibition.state';
 
 export const selectExhibitionState = createFeatureSelector <ExhibitionState>('exhibition');
 
-export const selectExhibitions = createSelector(
+export const selectAllExhibitions = createSelector(
   selectExhibitionState,
   (state: ExhibitionState) => state.exhibitions
 );

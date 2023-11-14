@@ -34,7 +34,15 @@ export class CreateExhibitionComponent implements OnInit {
  }
 
  ngOnInit(): void {
-   
+  this.exhibitionImages.forEach((image, index) => {
+    this.addImageFormGroup(image);
+  });
+
+  this.exhibitionImagesFormArray.valueChanges.subscribe((images) => {
+    images.forEach((image, index) => {
+      this.exhibitionImages[index].isMainImage = image.isMainImage;
+    });
+  });
  }
 
  get exhibitionImagesFormArray() {
@@ -45,6 +53,7 @@ createExhibition() {
   if (this.createExhibitionForm.valid) {
     const formValue = this.preparePayload();
     this.store.dispatch(exhibitionActions.createExhibition({ payload: formValue }));
+    console.log(this.createExhibitionForm.value)
   }
 }
 

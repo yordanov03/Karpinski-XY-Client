@@ -17,4 +17,17 @@ export const exhibitionReducer = createReducer(
 //     ...state,
 //     // handle the error
 //   }))
+on(ExhibitionActions.loadExhibitions, state => ({
+  ...state,
+  // reset errors or set loading state if needed
+})),
+on(ExhibitionActions.loadExhibitionsSuccess, (state, { exhibitions }) => ({
+  ...state,
+  exhibitions,
+  error: null
+})),
+on(ExhibitionActions.loadExhibitionsFailure, (state, { error }) => ({
+  ...state,
+  error
+}))
 );

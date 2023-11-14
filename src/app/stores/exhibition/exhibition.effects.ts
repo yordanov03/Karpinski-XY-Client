@@ -38,6 +38,19 @@ export class ExhibitionEffects {
     )
   );
 
+  loadExhibitions$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(ExhibitionActions.loadExhibitions),
+    switchMap(() =>
+      this.exhibitionService.getAllExhibitions().pipe(
+        map(exhibitions => ExhibitionActions.loadExhibitionsSuccess({ exhibitions })),
+        catchError(error => of(ExhibitionActions.loadExhibitionsFailure({ error })))
+      )
+    )
+  )
+);
+
+
   constructor(
     private actions$: Actions,
     private exhibitionService: ExhibitionService,
