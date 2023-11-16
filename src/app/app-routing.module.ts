@@ -22,6 +22,7 @@ import { EditPaintingComponent } from './components/pages/edit-painting/edit-pai
 import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
 import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
 import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
+import { ExhibitionDetailsComponent } from './components/pages/exhibition-details/exhibition-details.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -45,7 +46,9 @@ const routes: Routes = [
     {path: 'paintings-details/:id', component: PaintingsDetailsComponent},
     {path: 'paintings/:id/edit', component: EditPaintingComponent},
     {path: 'contact', component: ContactComponent},
-    {path: 'exhibitions', component: ExhibtionComponent },
+    {path: 'exhibitions', component: ExhibtionComponent},
+    {path: 'exhibitions-details/:id', component: ExhibitionDetailsComponent},
+    // {path: 'exhibitions-details', component: ExhibitionDetailsComponent},
     {path: '**', component: ErrorComponent},
 ];
 

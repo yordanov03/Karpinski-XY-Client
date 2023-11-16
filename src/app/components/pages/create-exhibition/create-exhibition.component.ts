@@ -26,10 +26,10 @@ export class CreateExhibitionComponent implements OnInit {
       endDate: ['', Validators.required],
       location: ['', Validators.required],
       longDescription: [''],
-      shortDescription: [''],
+      shortDescription: ['', Validators.required],
       organizer: [''],
       link: [''],
-      exhibitionImages: this.fb.array([])
+      exhibitionImages: this.fb.array([], Validators.required)
     });
  }
 
@@ -53,7 +53,6 @@ createExhibition() {
   if (this.createExhibitionForm.valid) {
     const formValue = this.preparePayload();
     this.store.dispatch(exhibitionActions.createExhibition({ payload: formValue }));
-    console.log(this.createExhibitionForm.value)
   }
 }
 

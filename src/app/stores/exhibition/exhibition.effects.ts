@@ -76,6 +76,18 @@ deleteExhibition$ = createEffect(() =>
   )
 );
 
+getExhibition$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(ExhibitionActions.getExhibition),
+  mergeMap(action =>
+    this.exhibitionService.getExhibition({ id: action.id }).pipe(
+      map(exhibition => ExhibitionActions.getExhibitionSuccess({ exhibition })),
+      catchError(error => of(ExhibitionActions.getExhibitionFailure({ error })))
+    )
+  )
+)
+);
+
   constructor(
     private actions$: Actions,
     private exhibitionService: ExhibitionService,

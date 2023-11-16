@@ -38,5 +38,14 @@ on(ExhibitionActions.deleteExhibitionSuccess, (state, { id }) => ({
 on(ExhibitionActions.deleteExhibitionFailure, (state, { error }) => ({
   ...state,
   // handle error
+})),
+
+on(ExhibitionActions.getExhibitionSuccess, (state, { exhibition }) => ({
+  ...state,
+  exhibition
+})),
+on(ExhibitionActions.getExhibitionFailure, (state, { error }) => ({
+  ...state,
+  error
 }))
 );

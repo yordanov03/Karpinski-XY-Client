@@ -51,6 +51,7 @@ import { ExhibitionEffects } from './stores/exhibition/exhibition.effects';
 import { exhibitionReducer } from './stores/exhibition/exhibition.reducer';
 import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
 import { ExhibitionCardComponent } from './components/common/exhibition-card/exhibition-card.component';
+import { ExhibitionDetailsComponent } from './components/pages/exhibition-details/exhibition-details.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ExhibitionCardComponent } from './components/common/exhibition-card/exh
     PortfolioCardComponent,
     CreateExhibitionComponent,
     ExhibtionComponent,
-    ExhibitionCardComponent
+    ExhibitionCardComponent,
+    ExhibitionDetailsComponent
   ],
   imports: [
     BrowserModule,

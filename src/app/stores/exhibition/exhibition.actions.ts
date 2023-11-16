@@ -43,3 +43,18 @@ export const deleteExhibitionFailure = createAction(
   '[Exhibition] Delete Exhibition Failure',
   props<{ error: any }>()
 );
+
+export const getExhibition = createAction(
+  '[Exhibition] Get Exhibition',
+  props<{ id: string }>()
+);
+
+export const getExhibitionSuccess = createAction(
+  '[Exhibition] Get Exhibition Success',
+  props<{ exhibition: Exhibition }>()
+);
+
+export const getExhibitionFailure = createAction(
+  '[Exhibition] Get Exhibition Failure',
+  props<{ error: any }>()
+);
