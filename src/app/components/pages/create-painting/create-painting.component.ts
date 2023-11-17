@@ -90,7 +90,7 @@ export class CreatePaintingComponent implements OnInit {
         const base64String = e.target.result.split(',')[1];
         const image: PaintingImage = {
           file: base64String,
-          imageUrl: '',
+          imagePath: '',
           isMainImage: false
         };
         this.paintingImages.push(image);

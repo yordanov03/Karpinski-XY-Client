@@ -84,7 +84,7 @@ onMultipleImageUpload(event: any) {
       const base64String = e.target.result.split(',')[1];
       const image: ExhibitionImage = {
         file: base64String,
-        imageUrl: '',
+        imagePath: '',
         isMainImage: false
       };
       this.exhibitionImages.push(image);

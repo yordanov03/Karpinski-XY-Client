@@ -26,7 +26,7 @@
                     <div class="carousel-inner" role="listbox">
                         <div *ngFor="let image of painting?.paintingImages; let i = index" class="carousel-item"
                             [class.active]="i === 0">
-                            <img [src]="image.imageUrl" class="d-block w-100" alt="...">
+                            <img [src]="image.imagePath" class="d-block w-100" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -43,7 +43,7 @@
 
                 <!-- Thumbnails -->
                 <div class="carousel-thumbnails">
-                    <img *ngFor="let image of painting.paintingImages; let i = index" [src]="image.imageUrl"
+                    <img *ngFor="let image of painting.paintingImages; let i = index" [src]="image.imagePath"
                         [class.active]="i == 0" (click)="selectImage(i)" class="img-thumbnail">
                 </div>
             </div>

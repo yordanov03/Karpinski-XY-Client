@@ -77,7 +77,7 @@ export class EditExhibitionComponent implements OnInit {
           // Load images
         this.exhibitionImages = exhibition.exhibitionImages.map(img => ({
           file: img.file,
-          imageUrl: img.imageUrl,
+          imageUrl: img.imagePath,
           isMainImage: img.isMainImage
         }));
         this.exhibitionImages.forEach(image => this.addImageFormGroup(image));
@@ -114,7 +114,7 @@ export class EditExhibitionComponent implements OnInit {
       return {
         file: image.file,
         isMainImage: image.isMainImage,
-        imageUrl: image.imageUrl!==null? image.imageUrl : null
+        imageUrl: image.imagePath!==null? image.imagePath : null
       };
     });
     return formValue as Exhibition;
@@ -137,7 +137,7 @@ export class EditExhibitionComponent implements OnInit {
         const base64String = e.target.result.split(',')[1];
         const image: ExhibitionImage = {
           file: base64String,
-          imageUrl: '', // Set URL if available
+          imagePath: '', // Set URL if available
           isMainImage: false
         };
         this.exhibitionImages.push(image);

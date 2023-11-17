@@ -3,7 +3,8 @@
 export interface ExhibitionImage {
   entityId?: string;
   file?: null | string;
+  fileName?: null | string;
   id?: string;
-  imageUrl?: null | string;
+  imagePath?: null | string;
   isMainImage?: boolean;
 }

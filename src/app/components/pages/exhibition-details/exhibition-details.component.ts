@@ -32,7 +32,7 @@ export class ExhibitionDetailsComponent implements OnInit {
     });
     this.exhibition$.subscribe(exhibition => {
       if (exhibition && exhibition.exhibitionImages.length > 0) {
-        this.selectedImage = exhibition.exhibitionImages[0].imageUrl;
+        this.selectedImage = exhibition.exhibitionImages[0].imagePath;
       }
     });
   }
