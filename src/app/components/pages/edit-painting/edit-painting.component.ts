@@ -73,7 +73,7 @@ export class EditPaintingComponent implements OnInit {
           imageUrl: img.imageUrl,
           isMainImage: img.isMainImage
         }));
-
+        console.log(this.editPaintingForm.value)
         this.paintingImages.forEach(image => this.addImageFormGroup(image));
       }
     });

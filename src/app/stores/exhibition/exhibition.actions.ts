@@ -58,3 +58,32 @@ export const getExhibitionFailure = createAction(
   '[Exhibition] Get Exhibition Failure',
   props<{ error: any }>()
 );
+
+export const getExhibitionToEdit = createAction(
+  '[Exhibition] Get Exhibition To Edit',
+  props<{ id: string }>()
+);
+
+export const getExhibitionToEditSuccess = createAction(
+  '[Exhibition] Get Exhibition To Edit Success',
+  props<{ exhibition: Exhibition }>()
+);
+
+export const getExhibitionToEditFailure = createAction(
+  '[Exhibition] Get Exhibition To Edit Failure',
+  props<{ error: any }>()
+);
+
+export const updateExhibition = createAction(
+  '[Exhibition] Update Exhibition',
+  props<{ exhibition: Exhibition }>()
+);
+
+export const updateExhibitionSuccess = createAction(
+  '[Exhibition] Update Exhibition Success'
+);
+
+export const updateExhibitionFailure = createAction(
+  '[Exhibition] Update Exhibition Failure',
+  props<{ error: any }>()
+);

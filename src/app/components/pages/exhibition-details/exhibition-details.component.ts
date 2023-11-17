@@ -5,8 +5,6 @@ import { Observable } from 'rxjs';
 import { Exhibition } from 'src/app/api/models';
 import * as ExhibitionActions from '../../../stores/exhibition/exhibition.actions'
 import * as fromExhibition from '../../../stores/exhibition/exhibition.selectors'
-import * as bootstrap from 'bootstrap';
-
 
 @Component({
   selector: 'app-exhibition-details',
@@ -28,7 +26,7 @@ export class ExhibitionDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
-        this.store.dispatch(ExhibitionActions.getExhibition({ id: params.get('id') }));
+        this.store.dispatch(ExhibitionActions.getExhibition({ id: id }));
         this.exhibition$ = this.store.select(fromExhibition.selectExhibition);
       }
     });
@@ -38,17 +36,7 @@ export class ExhibitionDetailsComponent implements OnInit {
       }
     });
   }
-  // selectImage(index: number): void {
-  //   const carouselElement = document.querySelector('#carouselExhibitionIndicators');
-
-  //   if (carouselElement) {
-  //     let bsCarousel = bootstrap.Carousel.getInstance(carouselElement);
-  //     if (!bsCarousel) {
-  //       bsCarousel = new bootstrap.Carousel(carouselElement);
-  //     }
-  //     bsCarousel.to(index);
-  //   }
-  // }
+  
   selectImage(imageUrl: string): void {
     this.selectedImage = imageUrl;
   }

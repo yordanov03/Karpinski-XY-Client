@@ -1,0 +1,68 @@
+::ng-deep .uploaded-images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px; 
+  }
+  
+  ::ng-deep .uploaded-image {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: calc(33.33% - 10px);  /* Adjusted width for 3 images per row */
+    margin: 5px;
+    position: relative;
+  
+    .checkbox-container,
+    .delete-icon {
+      z-index: 1;
+    }
+  
+    .checkBox-container {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 5px;
+    }
+  
+    .delete-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      background-color: red;
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  .uploaded-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .disabled-btn {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    &:disabled {
+      &::before,
+      &::after {
+        background-color: transparent !important;
+        color: inherit !important;
+      }
+    }
+  }
+  

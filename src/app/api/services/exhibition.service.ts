@@ -71,6 +71,57 @@ export class ExhibitionService extends BaseService {
   }
 
   /**
+   * Path part for operation updateExhibition
+   */
+  static readonly UpdateExhibitionPath = '/Exhibition';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `updateExhibition()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  updateExhibition$Response(params?: {
+    context?: HttpContext
+    body?: Exhibition
+  }
+): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ExhibitionService.UpdateExhibitionPath, 'put');
+    if (params) {
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `updateExhibition$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  updateExhibition(params?: {
+    context?: HttpContext
+    body?: Exhibition
+  }
+): Observable<void> {
+
+    return this.updateExhibition$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
    * Path part for operation createExhibition
    */
   static readonly CreateExhibitionPath = '/Exhibition';
@@ -169,60 +220,6 @@ export class ExhibitionService extends BaseService {
 
     return this.getExhibition$Response(params).pipe(
       map((r: StrictHttpResponse<Exhibition>) => r.body as Exhibition)
-    );
-  }
-
-  /**
-   * Path part for operation updateExhibition
-   */
-  static readonly UpdateExhibitionPath = '/Exhibition/{id}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `updateExhibition()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  updateExhibition$Response(params: {
-    id: string;
-    context?: HttpContext
-    body?: Exhibition
-  }
-): Observable<StrictHttpResponse<void>> {
-
-    const rb = new RequestBuilder(this.rootUrl, ExhibitionService.UpdateExhibitionPath, 'put');
-    if (params) {
-      rb.path('id', params.id, {});
-      rb.body(params.body, 'application/*+json');
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `updateExhibition$Response()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  updateExhibition(params: {
-    id: string;
-    context?: HttpContext
-    body?: Exhibition
-  }
-): Observable<void> {
-
-    return this.updateExhibition$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 

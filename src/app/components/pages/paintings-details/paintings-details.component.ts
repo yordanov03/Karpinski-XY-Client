@@ -24,12 +24,11 @@ currentUrl: string;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href
-    console.log(this.currentUrl)
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
-        this.store.dispatch(PaintingActions.loadPainting({ id: params.get('id') }));
+        this.store.dispatch(PaintingActions.loadPainting({ id: id }));
         this.painting$ = this.store.select(selectPainting);
       }
     });

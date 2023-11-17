@@ -23,6 +23,7 @@ import { PortfolioComponent } from './components/pages/portfolio/portfolio.compo
 import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
 import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
 import { ExhibitionDetailsComponent } from './components/pages/exhibition-details/exhibition-details.component';
+import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit-exhibition.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -48,12 +49,12 @@ const routes: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'exhibitions', component: ExhibtionComponent},
     {path: 'exhibitions-details/:id', component: ExhibitionDetailsComponent},
-    // {path: 'exhibitions-details', component: ExhibitionDetailsComponent},
+    {path: 'exhibitions/:id/edit', component: EditExhibitionComponent},
     {path: '**', component: ErrorComponent},
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

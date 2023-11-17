@@ -52,6 +52,7 @@ import { exhibitionReducer } from './stores/exhibition/exhibition.reducer';
 import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
 import { ExhibitionCardComponent } from './components/common/exhibition-card/exhibition-card.component';
 import { ExhibitionDetailsComponent } from './components/pages/exhibition-details/exhibition-details.component';
+import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit-exhibition.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ExhibitionDetailsComponent } from './components/pages/exhibition-detail
     CreateExhibitionComponent,
     ExhibtionComponent,
     ExhibitionCardComponent,
-    ExhibitionDetailsComponent
+    ExhibitionDetailsComponent,
+    EditExhibitionComponent
   ],
   imports: [
     BrowserModule,

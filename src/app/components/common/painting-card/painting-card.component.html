@@ -12,7 +12,7 @@
             <a routerLink="/paintings-details/{{painting.id}}">
               <h3>{{painting.name}}</h3>
             </a>
-            <p>{{painting.description}}</p>
+            <p>{{painting.shortDescription}}</p>
             <p>Dimensions: {{painting.dimensions}}</p>
             <p *ngIf="(isLoggedIn$ | async)">Price: {{painting.price}}</p>
             <p *ngIf="(isLoggedIn$ | async)">

@@ -47,5 +47,11 @@ on(ExhibitionActions.getExhibitionSuccess, (state, { exhibition }) => ({
 on(ExhibitionActions.getExhibitionFailure, (state, { error }) => ({
   ...state,
   error
-}))
+})),
+
+on(ExhibitionActions.getExhibitionToEditSuccess, (state, { exhibition }) => ({ ...state, exhibition })),
+  on(ExhibitionActions.getExhibitionToEditFailure, (state, { error }) => ({ ...state, error })),
+
+  on(ExhibitionActions.updateExhibitionSuccess, state => ({ ...state, updated: true })),
+  on(ExhibitionActions.updateExhibitionFailure, (state, { error }) => ({ ...state, error }))
 );
