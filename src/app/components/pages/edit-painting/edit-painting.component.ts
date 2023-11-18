@@ -70,8 +70,9 @@ export class EditPaintingComponent implements OnInit {
         // Load images
         this.paintingImages = painting.paintingImages.map(img => ({
           file: img.file,
-          imageUrl: img.imagePath,
-          isMainImage: img.isMainImage
+          imagePath: img.imagePath,
+          isMainImage: img.isMainImage,
+          fileName: img.fileName
         }));
         console.log(this.editPaintingForm.value)
         this.paintingImages.forEach(image => this.addImageFormGroup(image));
@@ -92,7 +93,7 @@ export class EditPaintingComponent implements OnInit {
   editPainting() {
     if (this.editPaintingForm.valid) {
       const formValue = this.preparePayload();
-
+      console.log(formValue)
       // Dispatch action to edit painting
       this.store.dispatch(paintingActions.updatePainting({ painting: formValue }));
     }
@@ -104,7 +105,8 @@ export class EditPaintingComponent implements OnInit {
       return {
         file: image.file,
         isMainImage: image.isMainImage,
-        imageUrl: image.imagePath!==null? image.imagePath : null
+        imagePath: image.imagePath!==null? image.imagePath : null,
+        fileName: image.fileName
       };
     });
     return formValue as Painting;
@@ -128,7 +130,8 @@ export class EditPaintingComponent implements OnInit {
         const image: PaintingImage = {
           file: base64String,
           imagePath: '',
-          isMainImage: null
+          isMainImage: null,
+          fileName: file.name
         };
         this.paintingImages.push(image);
         this.addImageFormGroup(image);

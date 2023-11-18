@@ -7,6 +7,8 @@
             <ul>
                 <li><a routerLink="/">Home</a></li>
                 <li><i class='bx bxs-chevrons-right'></i></li>
+                <li><a routerLink="/exhibitions">Exhibitions</a></li>
+                <li><i class='bx bxs-chevrons-right'></i></li>
                 <li>Exhibition Details</li>
             </ul>
         </div>
@@ -24,10 +26,10 @@
                 <!-- Thumbnails -->
                 <div class="carousel-thumbnails">
                     <img *ngFor="let image of exhibition.exhibitionImages; let i = index" 
-                         [src]="image.imageUrl" 
-                         (click)="selectImage(image.imageUrl)" 
+                         [src]="image.imagePath" 
+                         (click)="selectImage(image.imagePath)" 
                          class="img-thumbnail" 
-                         [class.active]="selectedImage === image.imageUrl">
+                         [class.active]="selectedImage === image.imagePath">
                 </div>
                 <br>
                 <br>

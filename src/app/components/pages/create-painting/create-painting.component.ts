@@ -67,7 +67,8 @@ export class CreatePaintingComponent implements OnInit {
     formValue.paintingImages = this.paintingImages.map(paintingImage => {
       return {
         file: paintingImage.file,
-        isMainImage: paintingImage.isMainImage
+        isMainImage: paintingImage.isMainImage,
+        fileName: paintingImage.fileName
       };
     });
     return formValue as Painting;
@@ -91,7 +92,8 @@ export class CreatePaintingComponent implements OnInit {
         const image: PaintingImage = {
           file: base64String,
           imagePath: '',
-          isMainImage: false
+          isMainImage: false,
+          fileName: file.name
         };
         this.paintingImages.push(image);
         this.addImageFormGroup(image);

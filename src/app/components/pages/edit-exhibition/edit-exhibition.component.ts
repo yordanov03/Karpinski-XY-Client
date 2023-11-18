@@ -49,8 +49,7 @@ export class EditExhibitionComponent implements OnInit {
     this.store.select(fromSelectors.selectExhibition)
       .pipe(
         filter(exhibition => exhibition !== null),
-        take(1),
-        takeUntil(this.destroy$))
+        take(1))
       .subscribe(exhibition => {
         console.log(exhibition)
         if (exhibition) {
@@ -77,8 +76,9 @@ export class EditExhibitionComponent implements OnInit {
           // Load images
         this.exhibitionImages = exhibition.exhibitionImages.map(img => ({
           file: img.file,
-          imageUrl: img.imagePath,
-          isMainImage: img.isMainImage
+          imagePath: img.imagePath,
+          isMainImage: img.isMainImage,
+          fileName: img.fileName
         }));
         this.exhibitionImages.forEach(image => this.addImageFormGroup(image));
         console.log(this.editExhibitionForm.value)
@@ -104,6 +104,7 @@ export class EditExhibitionComponent implements OnInit {
   editExhibition() {
     if (this.editExhibitionForm.valid) {
       const formValue = this.preparePayload()
+      console.log(formValue)
       this.store.dispatch(exhibitionActions.updateExhibition({ exhibition: formValue }));
     }
   }
@@ -114,7 +115,8 @@ export class EditExhibitionComponent implements OnInit {
       return {
         file: image.file,
         isMainImage: image.isMainImage,
-        imageUrl: image.imagePath!==null? image.imagePath : null
+        imagePath: image.imagePath!==null? image.imagePath : null,
+        fileName: image.fileName
       };
     });
     return formValue as Exhibition;
@@ -138,7 +140,8 @@ export class EditExhibitionComponent implements OnInit {
         const image: ExhibitionImage = {
           file: base64String,
           imagePath: '', // Set URL if available
-          isMainImage: false
+          isMainImage: false,
+          fileName: file.name
         };
         this.exhibitionImages.push(image);
         this.addImageFormGroup(image);

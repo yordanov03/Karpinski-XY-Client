@@ -61,7 +61,8 @@ preparePayload(): Exhibition {
   formValue.exhibitionImages = this.exhibitionImages.map(exhibitionImage => {
     return {
       file: exhibitionImage.file,
-      isMainImage: exhibitionImage.isMainImage
+      isMainImage: exhibitionImage.isMainImage,
+      fileName: exhibitionImage.fileName
     };
   });
   return formValue as Exhibition;
@@ -85,7 +86,8 @@ onMultipleImageUpload(event: any) {
       const image: ExhibitionImage = {
         file: base64String,
         imagePath: '',
-        isMainImage: false
+        isMainImage: false,
+        fileName: file.name
       };
       this.exhibitionImages.push(image);
       this.addImageFormGroup(image);

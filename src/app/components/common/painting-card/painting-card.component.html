@@ -3,7 +3,7 @@
       <div *ngIf="paintings.length === 0">
         <h4>Nothing to show here</h4>
       </div>
-      <div class="col-lg-4 col-md-6" *ngFor="let painting of paintings">
+      <div class="col-lg-4 col-md-5" *ngFor="let painting of paintings">
         <div class="service-card">
           <a routerLink="/paintings-details/{{painting.id}}">
             <img [src]="painting.paintingImages[0].imagePath" width="450" height="420">
@@ -12,7 +12,7 @@
             <a routerLink="/paintings-details/{{painting.id}}">
               <h3>{{painting.name}}</h3>
             </a>
-            <p>{{painting.shortDescription}}</p>
+            <p class="short-description">{{painting.shortDescription}}</p>
             <p>Dimensions: {{painting.dimensions}}</p>
             <p *ngIf="(isLoggedIn$ | async)">Price: {{painting.price}}</p>
             <p *ngIf="(isLoggedIn$ | async)">

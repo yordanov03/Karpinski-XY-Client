@@ -2045,8 +2045,9 @@ Testimonial Area Two Style
 }
 .testimonial-img-2 {
    img {
-       border-radius: 15px;
-       width: 370px !important;
+    border-radius: 15px;
+    max-width: 370px !important;
+    max-height: 370px !important;
    }
 }
 .testimonial-icon {
@@ -3850,6 +3851,8 @@ Product Details Page Style
     .tab_content {
         border: 1px dashed #eeeeee;
         padding: 30px;
+        overflow: hidden;
+        word-wrap: break-word;
 
         .tabs_item {
             .product-detls-tab-content {
