@@ -9,7 +9,6 @@ export interface Exhibition {
   location?: null | string;
   longDescription?: null | string;
   organizer?: null | string;
-  shortDescription?: null | string;
   startDate?: string;
   title?: null | string;
 }

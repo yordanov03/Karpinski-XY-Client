@@ -16,17 +16,6 @@
                                     This field is required
                                 </div>
 
-                                <!-- Short Description -->
-                                <div class="form-group">
-                                    <textarea class="form-control" row=3 name="shortDescription" id="shortDescription"
-                                        placeholder="Short description of the exhibition"
-                                        formControlName="shortDescription">
-                                    </textarea>
-                                </div>
-                                <div *ngIf="f.shortDescription?.touched && f.shortDescription?.errors?.['required']"
-                                    class="alert alert-danger">This field is required
-                                </div>
-
                                 <!-- Start Date -->
                                 <div class="form-group">
                                     <input type="date" name="startDate" id="startDate" class="form-control"

@@ -155,7 +155,7 @@
                                         <a routerLink="/paintings-details/{{painting.id}}">
                                             <h3>{{ painting.name }}</h3>
                                         </a>
-                                        <p>{{ painting.shortDescription }}</p>
+                                        <p>{{ painting.dimensions }}</p>
                                         <a routerLink="/contact" class="default-btn"
                                             (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
                                     </div>
@@ -286,7 +286,6 @@
                                 <li><a routerLink="/"><i class='bi bi-geo-alt-fill'></i> {{ exhibition.location }}</a></li>
                                 <li><i class='bx bx-calendar-alt'></i> {{ exhibition.startDate | date:'dd/MM/yyyy' }}</li>
                             </ul>
-                            <p>{{ exhibition.shortDescription }}</p>
                             <a routerLink="/exhibitions/{{exhibition.id}}" class="read-more-btn">Read More <i class='bx bxs-chevrons-right'></i></a>
                         </div>
                     </div>

@@ -35,13 +35,6 @@
               </div>
               <div class="col-lg-6 col-sm-6">
                 <div class="form-group">
-                  <textarea class="form-control" row=3 name="shortDescription" id="shortDescription" placeholder="Short description of the exhibition" formControlName="shortDescription"></textarea>
-                </div>
-                <div *ngIf="f.shortDescription?.touched && f.shortDescription?.errors?.['required']" class="alert alert-danger">
-                  This field is required
-                </div>
-
-                <div class="form-group">
                   <input type="text" name="organizer" id="organizer" class="form-control" placeholder="Organizer" formControlName="organizer">
                 </div>
 

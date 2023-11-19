@@ -26,7 +26,6 @@ export class CreateExhibitionComponent implements OnInit {
       endDate: ['', Validators.required],
       location: ['', Validators.required],
       longDescription: [''],
-      shortDescription: ['', Validators.required],
       organizer: [''],
       link: [''],
       exhibitionImages: this.fb.array([], Validators.required)

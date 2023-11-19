@@ -11,7 +11,6 @@ export interface Painting {
   name?: null | string;
   paintingImages?: null | Array<PaintingImage>;
   price?: number;
-  shortDescription?: null | string;
   technique?: null | string;
   year?: number;
 }

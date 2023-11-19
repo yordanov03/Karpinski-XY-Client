@@ -33,7 +33,6 @@ export class EditPaintingComponent implements OnInit {
       dimensions: ['', Validators.required],
       isAvailableToSell: [true],
       year: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      shortDescription: ['', Validators.required],
       technique: ['', Validators.required],
       isOnFocus: [false],
       isAvailableForSale: [true],
@@ -61,7 +60,6 @@ export class EditPaintingComponent implements OnInit {
           dimensions: painting.dimensions,
           isAvailableToSell: painting.isAvailableToSell,
           year: painting.year,
-          shortDescription: painting.shortDescription,
           technique: painting.technique,
           isOnFocus: painting.isOnFocus,
           isAvailableForSale: painting.isAvailableToSell

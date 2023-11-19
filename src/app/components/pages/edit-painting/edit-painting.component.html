@@ -16,16 +16,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <textarea class="form-control" row=3 name="description" id="shortDescription"
-                                        placeholder="Short description of the painting"
-                                        formControlName="shortDescription">
-                                </textarea>
-                                </div>
-                                <div *ngIf="f.shortDescription?.touched && f.shortDescription?.errors?.['required']"
-                                    class="alert alert-danger">This field is required
-                                </div>
-
-                                <div class="form-group">
                                     <input type="text" name="price" id="price" class="form-control" required
                                         placeholder="Price" formControlName="price">
                                 </div>

@@ -29,7 +29,6 @@ export class CreatePaintingComponent implements OnInit {
       dimensions: ['', Validators.required],
       isAvailableToSell: [true],
       year: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      shortDescription: ['', Validators.required],
       technique: ['', Validators.required],
       isOnFocus: [false],
       isAvailableForSale: [true],

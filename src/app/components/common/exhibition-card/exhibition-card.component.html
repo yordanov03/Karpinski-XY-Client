@@ -12,7 +12,7 @@
                     <li><a routerLink="/"><i class='bi bi-geo-alt-fill'></i> {{ exhibition.location }}</a></li>
                     <li><i class='bx bx-calendar-alt'></i> {{ exhibition.startDate | date:'dd/MM/yyyy' }}</li>
                 </ul>
-                <p>{{ exhibition.shortDescription }}</p>
+                <p>{{ exhibition.dimensions }}</p>
                 <p *ngIf="(isLoggedIn$ | async)">
                     <i class='bi bi-trash3' id="trashbutton" type="button" (click)="onDeleteClick(exhibition.id)"></i>
                     <i class='bi bi-pencil' id="pencilbutton" type="button" (click)="onEdit(exhibition.id)"></i>

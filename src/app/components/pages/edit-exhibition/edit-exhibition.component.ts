@@ -33,7 +33,6 @@ export class EditExhibitionComponent implements OnInit {
       endDate: ['', Validators.required],
       location: ['', Validators.required],
       longDescription: [''],
-      shortDescription: ['', Validators.required],
       organizer: [''],
       link: [''],
       exhibitionImages: this.fb.array([], Validators.required)
@@ -66,7 +65,6 @@ export class EditExhibitionComponent implements OnInit {
             endDate: this.formatDate(exhibition.endDate),
             location: exhibition.location,
             longDescription: exhibition.longDescription,
-            shortDescription: exhibition.shortDescription,
             organizer: exhibition.organizer,
             link: exhibition.link
           });
