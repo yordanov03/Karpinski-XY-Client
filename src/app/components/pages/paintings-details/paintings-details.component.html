@@ -6,7 +6,16 @@
             <ul>
                 <li><a routerLink="/">Home</a></li>
                 <li><i class='bx bxs-chevrons-right'></i></li>
-                <li><a routerLink="/paintings">Paintings</a></li>
+                <ng-container *ngIf="painting$ | async as painting">
+                    <li *ngIf="painting.isAvailableToSell">
+                        <a routerLink="/paintings">Paintings</a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="painting$ | async as painting">
+                    <li *ngIf="!painting.isAvailableToSell">
+                        <a routerLink="/portfolio">Portoflio</a>
+                    </li>
+                </ng-container>
                 <li><i class='bx bxs-chevrons-right'></i></li>
                 <li>Painting Details</li>
             </ul>
@@ -87,8 +96,7 @@
                                     <ul class="additional-information">
                                         <li><span>Technique:</span> {{ painting.technique }}</li>
                                         <li><span>Year:</span> {{ painting.year }}</li>
-                                        <li><span>Size:</span> {{ painting.dimensions }}</li>
-                                        <li><span>Tag:</span> {{ painting.tag || 'N/A' }}</li>
+                                        <li><span>Dimensions:</span> {{ painting.dimensions }}</li>
                                     </ul>
                                 </div>
                             </div>

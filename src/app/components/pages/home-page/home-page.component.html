@@ -131,10 +131,10 @@
 <section class="service-area pb-70" >
     <div class="container" *ngIf="(availablePaintings$ | async)?.length">
         <div class="scetion-title text-center">
-            <span>Paintings</span>
+            <span>Available Paintings</span>
             <h2>Some of my recent work</h2>
             <p>I would like to share a brief representation of my current state of mind, giving you an inside look of
-                mind with surgical percision </p>
+                mind with surgical precision </p>
         </div>
         <span>&nbsp;</span>
 
@@ -191,7 +191,7 @@
                 <div class="col-lg-4 col-md-6" *ngFor="let painting of (portfolioPaintings$ | async)">
                     <div class="service-card">
                         <a routerLink="/paintings-details/{{painting.id}}">
-                            <img [src]="painting.paintingImages[0]?.imagePath" alt="Product Images" width="400" height="380">
+                            <img [src]="painting.paintingImages[0]?.imagePath" width="400" height="380">
                         </a>
                         <div class="service-content">
                             <a routerLink="/paintings-details/{{painting.id}}">
