@@ -65,12 +65,7 @@
   .img-thumbnail.active,
   .img-thumbnail:hover {
     opacity: 1;
-}
-
-.tab-background {
-    background-color: #f0f0f0; 
-    color: #333333;
-}            
+}    
 
 .centered-btn {
     display: block; 
@@ -79,3 +74,43 @@
     margin-left: auto;    
     margin-right: auto;   
 }
+
+.product-detls-tab {
+  .nav-tabs {
+    cursor: pointer;
+    border: black;
+    .nav-item {
+      .nav-link {
+        &.tab-background {
+          background-color: #f0f0f0; 
+          color: #333333;
+          transition: background-color 0.3s ease, color 0.3s ease; // Smooth transition for color and background
+
+          &:hover {
+            background-color: #e0e0e0; // Slightly darker background on hover
+          }
+
+          &.active {
+            color: #f0f0f0;
+            background-color: #3cd1ff; // Background color for active tab
+            transition: background-color 0.3s ease, color 0.3s ease; // Ensure the transition applies to the active state as well
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    .tab-pane {
+      transition: opacity 0.3s ease; // Fade effect for tab content
+      opacity: 0; // Start with content hidden
+      &.active {
+        opacity: 1; // Fully visible when active
+      }
+    }
+  }
+}
+
+  
+  
+  

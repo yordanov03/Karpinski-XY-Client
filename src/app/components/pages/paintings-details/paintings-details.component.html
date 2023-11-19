@@ -73,8 +73,40 @@
                     </div>
 
                     <!-- Additional Information Tabs -->
-    
                     <div class="product-detls-tab">
+                        <ul class="nav nav-tabs tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link tab-background" (click)="activeTab = 'additionalInfo'" [class.active]="activeTab === 'additionalInfo'">Additional information</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link tab-background" (click)="activeTab = 'description'" [class.active]="activeTab === 'description'">Description</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content tab_content">
+                            <div class="tab-pane fade tabs_item" [class.show]="activeTab === 'additionalInfo'" [class.active]="activeTab === 'additionalInfo'">
+                                <div class="product-detls-tab-content">
+                                    <div class="product-detls-tab-content">
+                                        <ul class="additional-information">
+                                            <li><span>Technique:</span> {{ painting.technique }}</li>
+                                            <li><span>Year:</span> {{ painting.year }}</li>
+                                            <li><span>Dimensions:</span> {{ painting.dimensions }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade tabs_item" [class.show]="activeTab === 'description'" [class.active]="activeTab === 'description'">
+                                <div class="product-detls-tab-content">
+                                    <p>{{ painting.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+    
+                    <!-- <div class="product-detls-tab">
                         <ul class="nav nav-tabs tabs" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link tab-background" data-bs-toggle="tab" href="#description" role="tab">Description</a>
@@ -99,7 +131,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row justify-content-center">
                     <div *ngIf='painting.IsAvailableToSell'class="col-lg-5 col-md-6">

@@ -17,6 +17,7 @@ import * as bootstrap from 'bootstrap';
 export class PaintingsDetailsComponent implements OnInit {
 painting$: Observable<Painting>;
 currentUrl: string;
+activeTab = 'additionalInfo';
 
   constructor(private store: Store,
     private route: ActivatedRoute) {
@@ -47,5 +48,9 @@ currentUrl: string;
 
   onMakeinquiryClick(name: string) {
     this.store.dispatch(PaintingActions.makeInquiry({name: name}))
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
   }
 }
