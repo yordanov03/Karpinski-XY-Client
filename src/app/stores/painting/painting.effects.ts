@@ -157,4 +157,12 @@ loadPortfolio$ = createEffect(() => this.actions$.pipe(
     })
   ))
 ));
+
+loadPaintingsToSell$ = createEffect(() => this.actions$.pipe(
+  ofType(PaintingActions.loadPaintingsToSell),
+  switchMap(() => this.paintingService.toSell().pipe(
+    map(paintingsToSell => PaintingActions.loadPaintingsToSellSuccess({ paintingsToSell })),
+    catchError(error => of(PaintingActions.loadPaintingsToSellFailure({ error })))
+  ))
+));
 }

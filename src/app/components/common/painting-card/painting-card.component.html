@@ -1,5 +1,5 @@
 <div class="row pt-45">
-    <ng-container *ngIf="(availablePaintings$ | async) as paintings">
+    <ng-container *ngIf="(paintingsToSell$ | async) as paintings">
       <div *ngIf="paintings.length === 0">
         <h4>Nothing to show here</h4>
       </div>

@@ -421,4 +421,52 @@ export class PaintingService extends BaseService {
     );
   }
 
+  /**
+   * Path part for operation toSell
+   */
+  static readonly ToSellPath = '/Painting/toSell';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `toSell()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  toSell$Response(params?: {
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<Array<Painting>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PaintingService.ToSellPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Painting>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `toSell$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  toSell(params?: {
+    context?: HttpContext
+  }
+): Observable<Array<Painting>> {
+
+    return this.toSell$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<Painting>>) => r.body as Array<Painting>)
+    );
+  }
+
 }

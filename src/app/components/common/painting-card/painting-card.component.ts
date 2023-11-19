@@ -16,15 +16,15 @@ import { Painting } from 'src/app/api/models';
 export class PaintingCardComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
-  availablePaintings$: Observable<Painting[]>;
+  paintingsToSell$: Observable<Painting[]>;
 
   constructor(private store: Store,
     private router: Router) { }
 
 
   ngOnInit(): void {
-    this.store.dispatch(PaintingActions.loadAvailablePaintings());
-    this.availablePaintings$ = this.store.select(fromPainting.selectAvailablePaintings)
+    this.store.dispatch(PaintingActions.loadPaintingsToSell());
+    this.paintingsToSell$ = this.store.select(fromPainting.selectPaintingsToSell)
     this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
   }
 

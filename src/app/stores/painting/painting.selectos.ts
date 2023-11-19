@@ -38,3 +38,8 @@ export const selectPaintingName = createSelector(
   selectPaintingState,
   (state: PaintingState) => state.selectedPaintingName
 );
+
+export const selectPaintingsToSell = createSelector(
+  selectPaintingState,
+  (state: PaintingState) => state.paintingsToSell
+);
