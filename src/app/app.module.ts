@@ -30,7 +30,6 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
-import { PaintingCardComponent } from './components/common/painting-card/painting-card.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './stores/auth/auth.reducer';
@@ -79,7 +78,6 @@ import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit
     ContactComponent,
     CreatePaintingComponent,
     EditPaintingComponent,
-    PaintingCardComponent,
     SliceArrayPipe,
     PortfolioComponent,
     PortfolioCardComponent,

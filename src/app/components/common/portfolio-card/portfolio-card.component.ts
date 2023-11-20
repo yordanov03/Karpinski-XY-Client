@@ -29,7 +29,6 @@ export class PortfolioCardComponent implements OnInit {
     this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
     
     new Masonry(this.masonryGrid.nativeElement, {
-      outerWidth: '5px'
     });
   }
 

@@ -148,8 +148,7 @@
                             <div class="col-lg-4" *ngFor="let painting of chunk">
                                 <div class="service-card">
                                     <a routerLink="/paintings-details/{{painting.id}}">
-                                        <img [src]="painting.paintingImages[0]?.imagePath" alt="Service Images" width="400"
-                                            height="380">
+                                        <img [src]="painting.paintingImages[0]?.imagePath" alt="Service Images" style="height: 350px; width: 100%; object-fit: cover;">
                                     </a>
                                     <div class="service-content">
                                         <a routerLink="/paintings-details/{{painting.id}}">

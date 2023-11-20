@@ -20,7 +20,71 @@
             <h2>Dizo Provide Good Quality Printing Services</h2>
             <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That homeless, won't many of goals thoughts volumes felt.</p>
         </div>
-        <app-painting-card></app-painting-card>
+
+
+
+        <div class="row pt-45">
+            <ng-container *ngIf="(paginatedPaintings$ | async) as paintings">
+              <div *ngIf="paintings.length === 0">
+                <h4>Nothing to show here</h4>
+              </div>
+              <div class="col-lg-4 col-md-5" *ngFor="let painting of paintings">
+                <div class="service-card">
+                  <a routerLink="/paintings-details/{{painting.id}}">
+                    <img [src]="painting.paintingImages[0]?.imagePath" width="380" height="400">
+                  </a>
+                  <div class="service-content">
+                    <a routerLink="/paintings-details/{{painting.id}}">
+                      <h3>{{painting.name}}</h3>
+                    </a>
+                    <p class="short-description">{{painting.dimensions}}</p>
+                    <p>Dimensions: {{painting.dimensions}}</p>
+                    <p *ngIf="(isLoggedIn$ | async)">Price: {{painting.price}}</p>
+                    <p *ngIf="(isLoggedIn$ | async)">
+                      <i class='bi bi-trash3' id="trashbutton" type="button" (click)="onDeleteClick(painting.id)"></i>
+                      <i class='bi bi-pencil' id="pencilbutton" type="button" (click)="onEditPainting(painting.id)"></i>
+                    </p>
+                    <a routerLink="/contact" class="default-btn" (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+        
+          
+          
+
+          <div class="pagination-area">
+            <nav aria-label="Page navigation example text-center">
+              <ul class="pagination">
+                <li class="page-item" [class.disabled]="currentPage === 1">
+                  <a class="page-link" (click)="currentPage > 1 && goToPage(currentPage - 1)">
+                    <i class='bx bx-chevrons-left'></i>
+                  </a>
+                </li>
+                <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.current]="i + 1 === currentPage">
+                  <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+                </li>
+                <li class="page-item" [class.disabled]="currentPage === totalPages">
+                  <a class="page-link" (click)="currentPage < totalPages && goToPage(currentPage + 1)">
+                    <i class='bx bx-chevrons-right'></i>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+ 
+
+          
+          
+          
+
+          
+          
+          
+
+
     </div>
 </section>
 
