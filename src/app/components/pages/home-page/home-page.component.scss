@@ -24,6 +24,11 @@
     display: flex;       /* Ensures the child elements are centered */
     justify-content: center;
     align-items: center; 
+    object-fit: scale-down;
+  }
+
+  .banner-img .banner-into-slider .banner-item img{
+    object-fit: scale-down;
   }
   
   .portfolio-image {
@@ -31,7 +36,7 @@
     height: 350px; /* Adjust as needed */
     max-width: 100%;  /* Image can be as wide as needed, up to 100% of the parent */
     max-height: 100%; /* Image can be as tall as needed, up to 100% of the parent */
-    object-fit: scale-down; /* Ensures image is scaled down if necessary, but not up */
+    object-fit: cover; /* Ensures image is scaled down if necessary, but not up */
   }
 
   .exhibition-image {

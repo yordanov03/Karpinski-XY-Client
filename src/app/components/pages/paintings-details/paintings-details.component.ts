@@ -19,6 +19,9 @@ painting$: Observable<Painting>;
 currentUrl: string;
 activeTab = 'additionalInfo';
 
+showFullSizeImage: boolean = false;
+fullSizeImageUrl: string;
+
   constructor(private store: Store,
     private route: ActivatedRoute) {
   }
@@ -52,5 +55,14 @@ activeTab = 'additionalInfo';
 
   setActiveTab(tab: string) {
     this.activeTab = tab;
+  }
+
+  openFullSizeImage(imageUrl: string): void {
+    this.fullSizeImageUrl = imageUrl;
+    this.showFullSizeImage = true;
+  }
+
+  closeFullSizeImage(): void {
+    this.showFullSizeImage = false;
   }
 }

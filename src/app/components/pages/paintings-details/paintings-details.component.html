@@ -28,16 +28,10 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <!-- Indicators -->
-                    <!-- <ol class="carousel-indicators">
-                        <li *ngFor="let image of painting?.images; let i = index" [class.active]="i === 0"
-                            attr.data-bs-target="#carouselExampleIndicators" attr.data-bs-slide-to="{{i}}">
-                        </li>
-                    </ol> -->
                     <div class="carousel-inner" role="listbox">
                         <div *ngFor="let image of painting?.paintingImages; let i = index" class="carousel-item"
                             [class.active]="i === 0">
-                            <img [src]="image.imagePath" class="d-block w-100" alt="...">
+                            <img [src]="image.imagePath" class="d-block w-100" alt="..." (click)="openFullSizeImage(image.imagePath)">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -50,6 +44,11 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
+                </div>
+
+                <div *ngIf="showFullSizeImage" class="full-size-image-modal">
+                    <img [src]="fullSizeImageUrl" class="img-fluid" alt="Full size image">
+                    <button class="close-modal" (click)="closeFullSizeImage()">X</button>
                 </div>
 
                 <!-- Thumbnails -->

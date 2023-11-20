@@ -85,7 +85,7 @@ import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit
     ExhibtionComponent,
     ExhibitionCardComponent,
     ExhibitionDetailsComponent,
-    EditExhibitionComponent
+    EditExhibitionComponent,
   ],
   imports: [
     BrowserModule,
