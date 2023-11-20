@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import * as PaintingActions from '../../../stores/painting/painting.actions'
 import * as fromPainting from '../../../stores/painting/painting.selectos'
 import * as fromAuth from '../../../stores/auth/auth.selectors'
 import Swal from 'sweetalert2';
+import * as Masonry from 'masonry-layout';
 
 @Component({
   selector: 'app-portfolio-card',
@@ -17,6 +18,7 @@ export class PortfolioCardComponent implements OnInit {
 
   portfolioPaintings$: Observable<Painting[]>;
   isLoggedIn$: Observable<boolean>;
+  @ViewChild('masonryGrid', { static: true }) masonryGrid: ElementRef;
 
   constructor(private store: Store,
     private router: Router) { }
@@ -25,6 +27,10 @@ export class PortfolioCardComponent implements OnInit {
     this.store.dispatch(PaintingActions.loadPortfolioPaintings());
     this.portfolioPaintings$ = this.store.select(fromPainting.selectPortfolioPaintings)
     this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
+    
+    new Masonry(this.masonryGrid.nativeElement, {
+      outerWidth: '5px'
+    });
   }
 
   onDeleteClick(id) {
