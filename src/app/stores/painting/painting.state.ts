@@ -5,6 +5,7 @@ export interface PaintingState {
     availablePaintings: Painting [],
     paintingsOnFocus: Painting[],
     portfolioPaintings: Painting[],
+    paintingsToSell: Painting[],
     formSubmitted: boolean
     error: string | null;
     loading: boolean;
@@ -16,6 +17,7 @@ export interface PaintingState {
     availablePaintings: [],
     paintingsOnFocus: [],
     portfolioPaintings: [],
+    paintingsToSell: [],
     formSubmitted: false,
     error: null,
     loading: false,

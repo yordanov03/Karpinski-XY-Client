@@ -20,6 +20,10 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
+import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
+import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
+import { ExhibitionDetailsComponent } from './components/pages/exhibition-details/exhibition-details.component';
+import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit-exhibition.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -33,6 +37,7 @@ const routes: Routes = [
     {path: 'privacy-policy', component: PrivacyPolicyComponent},
     {path: 'coming-soon', component: ComingSoonComponent},
     {path: 'create-painting', component: CreatePaintingComponent},
+    {path: 'create-exhibition', component: CreateExhibitionComponent},
     {path: 'paintings', component: PaintingsComponent},
     {path: 'portfolio', component: PortfolioComponent},
     {path: 'service-details', component: ServicesDetailsComponent},
@@ -42,11 +47,14 @@ const routes: Routes = [
     {path: 'paintings-details/:id', component: PaintingsDetailsComponent},
     {path: 'paintings/:id/edit', component: EditPaintingComponent},
     {path: 'contact', component: ContactComponent},
+    {path: 'exhibitions', component: ExhibtionComponent},
+    {path: 'exhibitions-details/:id', component: ExhibitionDetailsComponent},
+    {path: 'exhibitions/:id/edit', component: EditExhibitionComponent},
     {path: '**', component: ErrorComponent},
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

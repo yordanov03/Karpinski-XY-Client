@@ -1,0 +1,114 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+    <form [formGroup]="editExhibitionForm" (ngSubmit)="editExhibition()" id="editExhibition">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-wrap pt-45">
+                    <div class="contact-wrap-form">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <!-- Title -->
+                                <div class="form-group">
+                                    <input type="text" name="title" id="title" class="form-control"
+                                        placeholder="Title of the exhibition" formControlName="title">
+                                </div>
+                                <div *ngIf="f.title?.touched && f.title?.errors?.['required']" class="alert alert-danger">
+                                    This field is required
+                                </div>
+
+                                <!-- Start Date -->
+                                <div class="form-group">
+                                    <input type="date" name="startDate" id="startDate" class="form-control"
+                                        formControlName="startDate">
+                                </div>
+                                <div *ngIf="f.startDate?.touched && f.startDate?.errors?.['required']"
+                                    class="alert alert-danger">This field is required
+                                </div>
+
+                                <!-- End Date -->
+                                <div class="form-group">
+                                    <input type="date" name="endDate" id="endDate" class="form-control"
+                                        formControlName="endDate">
+                                </div>
+                                <div *ngIf="f.endDate?.touched && f.endDate?.errors?.['required']"
+                                    class="alert alert-danger">This field is required
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6">
+                                <!-- Location -->
+                                <div class="form-group">
+                                    <input type="text" name="location" id="location" class="form-control"
+                                        placeholder="Location" formControlName="location">
+                                </div>
+                                <div *ngIf="f.location?.touched && f.location?.errors?.['required']"
+                                    class="alert alert-danger">This field is required
+                                </div>
+
+                                <!-- Organizer -->
+                                <div class="form-group">
+                                    <input type="text" name="organizer" id="organizer" class="form-control"
+                                        placeholder="Organizer" formControlName="organizer">
+                                </div>
+
+                                <!-- Link -->
+                                <div class="form-group">
+                                    <input type="text" name="link" id="link" class="form-control"
+                                        placeholder="Link" formControlName="link">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Long Description -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="8" name="longDescription" id="longDescription"
+                                        placeholder="Long description of the exhibition" formControlName="longDescription">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="row">
+                            <div class="col-12 text-left">
+                                <button type="submit" class="default-btn page-btn text-center"
+                                    [disabled]="!editExhibitionForm.valid"
+                                    [ngClass]="{'disabled-btn': !editExhibitionForm.valid}">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column for Images -->
+            <div class="col-md-6">
+                <div class="contact-wrap pt-45">
+                    <div class="contact-wrap-form">
+                        <!-- Uploaded Images -->
+                        <div class="uploaded-images">
+                            <div formArrayName="exhibitionImages" class="uploaded-images">
+                                <div *ngFor="let image of exhibitionImages; let i = index" class="uploaded-image">
+                                    <div [formGroupName]="i">
+                                        <img [src]="'data:image/jpeg;base64,' + image.file" alt="Uploaded Exhibition Image">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" formControlName="isMainImage">
+                                            <label>&nbsp;Set as Main</label>
+                                        </div>
+                                        <div class="delete-icon" (click)="onDeleteImage(i)">X</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Image Upload Button -->
+                        <div class="image-upload-btn">
+                            <input type="file" id="multiImageUpload" (change)="onMultipleImageUpload($event)" multiple>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<app-footer></app-footer>

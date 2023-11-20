@@ -117,3 +117,17 @@ export const loadPortfolioPaintingsFailure = createAction(
   '[Painting Portfolio] Load Portfolio Failure',
   props<{ error: any }>()
 );
+
+export const loadPaintingsToSell = createAction(
+  '[Painting to Sell] Load Paintings to Sell'
+);
+
+export const loadPaintingsToSellSuccess = createAction(
+  '[Painting to Sell] Load Paintings to Sell Success',
+  props<{ paintingsToSell: Painting[] }>()
+);
+
+export const loadPaintingsToSellFailure = createAction(
+  '[Painting to Sell] Load Paintings to Sell Failure',
+  props<{ error: any }>()
+);

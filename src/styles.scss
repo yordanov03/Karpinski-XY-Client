@@ -58,8 +58,8 @@ img {
 }
 .ptb-100 {
     padding: {
-        top: 100px;
-        bottom: 100px;
+        top: 50px;
+        bottom: 50px;
     };
 }
 .pt-100 {
@@ -254,6 +254,7 @@ Navbar Area
     width: 100%;
     z-index: 999;
     height: auto;
+    margin-left: -25px;
 
     nav {
         .navbar-nav {
@@ -999,6 +1000,8 @@ Service Area Style
 
         img {
             max-width: 100%;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
         }
     }
     .service-content {
@@ -1056,7 +1059,10 @@ Product Area Style
 
         img {
             max-width: 100%;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
         }
+
     }
     .product-content {
         padding: 24px  20px;
@@ -2039,8 +2045,9 @@ Testimonial Area Two Style
 }
 .testimonial-img-2 {
    img {
-       border-radius: 15px;
-       width: 370px !important;
+    border-radius: 15px;
+    max-width: 370px !important;
+    max-height: 370px !important;
    }
 }
 .testimonial-icon {
@@ -2198,7 +2205,7 @@ Inner Banner Style
         opacity: 0.2;
     }
     .inner-title {
-        padding-top: 50px;
+        padding-top: 30px;
         padding-bottom: 50px;
         position: relative;
 
@@ -2238,6 +2245,7 @@ Inner Banner Style
 }
 .inner-bg1 {
     background-image: url(assets/img/paintings/homePagePaitings/8.jpg);
+    max-height: 130px;
 }
 .inner-bg2 {
     background-image: url(assets/img/inner-banner/2.jpg);
@@ -3843,6 +3851,8 @@ Product Details Page Style
     .tab_content {
         border: 1px dashed #eeeeee;
         padding: 30px;
+        overflow: hidden;
+        word-wrap: break-word;
 
         .tabs_item {
             .product-detls-tab-content {
@@ -3852,6 +3862,7 @@ Product Details Page Style
 
                     &:last-child {
                         margin-bottom: 0;
+                        white-space: pre-line;
                     }                      
                 }
                 .additional-information {

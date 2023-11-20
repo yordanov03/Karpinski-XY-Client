@@ -6,6 +6,17 @@
             <ul>
                 <li><a routerLink="/">Home</a></li>
                 <li><i class='bx bxs-chevrons-right'></i></li>
+                <ng-container *ngIf="painting$ | async as painting">
+                    <li *ngIf="painting.isAvailableToSell">
+                        <a routerLink="/paintings">Paintings</a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="painting$ | async as painting">
+                    <li *ngIf="!painting.isAvailableToSell">
+                        <a routerLink="/portfolio">Portoflio</a>
+                    </li>
+                </ng-container>
+                <li><i class='bx bxs-chevrons-right'></i></li>
                 <li>Painting Details</li>
             </ul>
         </div>
@@ -17,16 +28,10 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <!-- Indicators -->
-                    <!-- <ol class="carousel-indicators">
-                        <li *ngFor="let image of painting?.images; let i = index" [class.active]="i === 0"
-                            attr.data-bs-target="#carouselExampleIndicators" attr.data-bs-slide-to="{{i}}">
-                        </li>
-                    </ol> -->
                     <div class="carousel-inner" role="listbox">
-                        <div *ngFor="let image of painting?.images; let i = index" class="carousel-item"
+                        <div *ngFor="let image of painting?.paintingImages; let i = index" class="carousel-item"
                             [class.active]="i === 0">
-                            <img [src]="image.imageUrl" class="d-block w-100" alt="...">
+                            <img [src]="image.imagePath" class="d-block w-100" alt="..." (click)="openFullSizeImage(image.imagePath)">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -41,9 +46,14 @@
                     </button>
                 </div>
 
+                <div *ngIf="showFullSizeImage" class="full-size-image-modal">
+                    <img [src]="fullSizeImageUrl" class="img-fluid" alt="Full size image">
+                    <button class="close-modal" (click)="closeFullSizeImage()">X</button>
+                </div>
+
                 <!-- Thumbnails -->
                 <div class="carousel-thumbnails">
-                    <img *ngFor="let image of painting.images; let i = index" [src]="image.imageUrl"
+                    <img *ngFor="let image of painting.paintingImages; let i = index" [src]="image.imagePath"
                         [class.active]="i == 0" (click)="selectImage(i)" class="img-thumbnail">
                 </div>
             </div>
@@ -51,8 +61,6 @@
             <div class="col-lg-6 col-md-12" style="padding-left: 40px;">
                 <div class="product-desc">
                     <h3>{{ painting.name }}</h3>
-
-                    <p>{{ painting.shortDescription }}</p>
 
                     <div class="product-share">
                         <ul>
@@ -64,8 +72,40 @@
                     </div>
 
                     <!-- Additional Information Tabs -->
-    
                     <div class="product-detls-tab">
+                        <ul class="nav nav-tabs tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link tab-background" (click)="activeTab = 'additionalInfo'" [class.active]="activeTab === 'additionalInfo'">Additional information</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link tab-background" (click)="activeTab = 'description'" [class.active]="activeTab === 'description'">Description</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content tab_content">
+                            <div class="tab-pane fade tabs_item" [class.show]="activeTab === 'additionalInfo'" [class.active]="activeTab === 'additionalInfo'">
+                                <div class="product-detls-tab-content">
+                                    <div class="product-detls-tab-content">
+                                        <ul class="additional-information">
+                                            <li><span>Technique:</span> {{ painting.technique }}</li>
+                                            <li><span>Year:</span> {{ painting.year }}</li>
+                                            <li><span>Dimensions:</span> {{ painting.dimensions }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade tabs_item" [class.show]="activeTab === 'description'" [class.active]="activeTab === 'description'">
+                                <div class="product-detls-tab-content">
+                                    <p>{{ painting.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+    
+                    <!-- <div class="product-detls-tab">
                         <ul class="nav nav-tabs tabs" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link tab-background" data-bs-toggle="tab" href="#description" role="tab">Description</a>
@@ -85,13 +125,12 @@
                                     <ul class="additional-information">
                                         <li><span>Technique:</span> {{ painting.technique }}</li>
                                         <li><span>Year:</span> {{ painting.year }}</li>
-                                        <li><span>Size:</span> {{ painting.dimensions }}</li>
-                                        <li><span>Tag:</span> {{ painting.tag || 'N/A' }}</li>
+                                        <li><span>Dimensions:</span> {{ painting.dimensions }}</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row justify-content-center">
                     <div *ngIf='painting.IsAvailableToSell'class="col-lg-5 col-md-6">

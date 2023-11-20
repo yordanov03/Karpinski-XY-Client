@@ -24,7 +24,7 @@
 
                     <!-- <div class="banner-into-slider owl-carousel owl-theme">
                         <div class="banner-item" *ngFor="let painting of (portfolioPaintings$ | async)">
-                          <img [src]="painting.images[0].imageUrl" alt="Banner Image" width="100" height="100">
+                          <img [src]="painting.images[0].imagePath" alt="Banner Image" width="100" height="100">
                         </div>
                       </div> -->
 
@@ -46,39 +46,39 @@
                         </div> -->
 
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[0]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[0]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[0]?.id}}" target="_blank">
-                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                <img [src]="imagePath" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[1]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[1]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[1]?.id}}" target="_blank">
-                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                <img [src]="imagePath" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[2]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[2]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[2]?.id}}" target="_blank">
-                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                <img [src]="imagePath" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[3]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[3]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[3]?.id}}" target="_blank">
-                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                <img [src]="imagePath" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[4]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[4]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[4]?.id}}" target="_blank">
-                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                <img [src]="imagePath" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                         <div class="banner-item">
-                            <a *ngIf="(paintingsOnFocus$ | async)?.[5]?.images?.[0]?.imageUrl as imageUrl"
+                            <a *ngIf="(paintingsOnFocus$ | async)?.[5]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[5]?.id}}" target="_blank">
-                                <img [src]="imageUrl" alt="Portfolio Image" class="portfolio-image">
+                                <img [src]="imagePath" alt="Portfolio Image" class="portfolio-image">
                             </a>
                         </div>
                     </div>
@@ -128,34 +128,33 @@
     </div>
 </div>
 
-<section class="service-area pb-70">
-    <div class="container">
+<section class="service-area pb-70" >
+    <div class="container" *ngIf="(availablePaintings$ | async)?.length">
         <div class="scetion-title text-center">
-            <span>Art</span>
+            <span>Available Paintings</span>
             <h2>Some of my recent work</h2>
             <p>I would like to share a brief representation of my current state of mind, giving you an inside look of
-                mind with surgical percision </p>
+                mind with surgical precision </p>
         </div>
         <span>&nbsp;</span>
 
         <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <!-- divide the paintings array into chunks of 3 for each slide -->
-                <ng-container *ngFor="let chunk of (paintingsOnFocus$ | async) | sliceArray:3; let isFirst = first">
+                <ng-container *ngFor="let chunk of (availablePaintings$ | async) | sliceArray:3; let isFirst = first">
                     <div class="carousel-item" [class.active]="isFirst">
                         <div class="row">
                             <!-- display each painting in the chunk -->
                             <div class="col-lg-4" *ngFor="let painting of chunk">
                                 <div class="service-card">
                                     <a routerLink="/paintings-details/{{painting.id}}">
-                                        <img [src]="painting.images[0]?.imageUrl" alt="Service Images" width="400"
-                                            height="380">
+                                        <img [src]="painting.paintingImages[0]?.imagePath" alt="Service Images" style="height: 350px; width: 100%; object-fit: cover;">
                                     </a>
                                     <div class="service-content">
                                         <a routerLink="/paintings-details/{{painting.id}}">
                                             <h3>{{ painting.name }}</h3>
                                         </a>
-                                        <p>{{ painting.shortDescription }}</p>
+                                        <p>{{ painting.dimensions }}</p>
                                         <a routerLink="/contact" class="default-btn"
                                             (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
                                     </div>
@@ -179,22 +178,21 @@
 
 
 <section class="product-area pb-70">
-    <div class="container">
+    <div class="container" *ngIf="(portfolioPaintings$| async).length>0">
         <div class="scetion-title text-center">
             <span>Portfolio</span>
             <h2>My work throughout the years</h2>
             <p>I invite you to trace back how my painting style,my inspirations, my technique, my perceptions have evolved over the years</p>
         </div>
         <br>
-        <ng-container *ngFor="let chunk of (availablePaintings$ | async) | sliceArray:3; let isFirst = first">
-            <!-- <div class="carousel-item" [class.active]="isFirst"> -->
+        <ng-container>
             <div class="row">
-                <div class="col-lg-4 col-md-6" *ngFor="let painting of chunk">
-                    <div class="product-card">
+                <div class="col-lg-4 col-md-6" *ngFor="let painting of (portfolioPaintings$ | async)">
+                    <div class="service-card">
                         <a routerLink="/paintings-details/{{painting.id}}">
-                            <img [src]="painting.images[0]?.imageUrl" alt="Product Images" width="400" height="380">
+                            <img [src]="painting.paintingImages[0]?.imagePath" width="400" height="380">
                         </a>
-                        <div class="product-content">
+                        <div class="service-content">
                             <a routerLink="/paintings-details/{{painting.id}}">
                                 <h3>{{ painting.name }}</h3>
                             </a>
@@ -208,10 +206,6 @@
                 </div>
             </div>
         </ng-container>
-
-        <!-- <div class="product-shape">
-        <img src="assets/img/products/shape.png" alt="Products Shape">
-    </div> -->
     </div>
 </section>
 
@@ -233,7 +227,7 @@
                         <div class="col-lg-4 col-md-6" *ngFor="let painting of chunk">
                           <div class="product-card">
                             <a routerLink="/paintings-details/{{painting.id}}">
-                              <img [src]="painting.images[0]?.imageUrl" alt="Product Images" width="400" height="380">
+                              <img [src]="painting.images[0]?.imagePath" alt="Product Images" width="400" height="380">
                             </a>
                             <div class="product-content">
                               <a routerLink="/paintings-details/{{painting.id}}">
@@ -268,66 +262,35 @@
     </div>
 </section> -->
 
-<section>
-    <div class="blog-area pb-70">
-    <div class="container">
+<section class="blog-area pb-70">
+    <div class="container" *ngIf="(exhibitions$| async).length>0">
         <div class="scetion-title text-center">
-            <span>Blogs</span>
-            <h2>Our Regular Blog Post</h2>
-            <p>What indication best sick be project proposal in attempt, train of the showed some a forth. That homeless, won't many of goals thoughts volumes felt.</p>
+            <span>Exhibitions</span>
+            <h2>A portion of the exhibitions I have been a part of</h2>
+            <p>Take a peak of the abstract art in real life form</p>
         </div>
 
         <div class="row pt-45">
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-card">
-                    <a routerLink="/blog-details"><img src="assets/img/blog/blog1.jpg" alt="Blog Images"></a>
-                    
-                    <div class="blog-content">
-                        <a routerLink="/blog-details"><h3>Work Once Print 100+</h3></a>
-                        <ul class="blog-admin">
-                            <li><a routerLink="/"><i class='bx bxs-user'></i> Admin</a></li>
-                            <li><i class='bx bx-calendar-alt' ></i> 18 May 2020</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit.</p>
-                        <a routerLink="/blog-details" class="read-more-btn">Read More <i class='bx bxs-chevrons-right'></i></a>
+            <ng-container>
+                <div class="col-lg-4 col-md-6" *ngFor="let exhibition of (exhibitions$ | async)">
+                    <div class="blog-card">
+                        <a routerLink="/exhibitions-details/{{exhibition.id}}">
+                            <img [src]="exhibition.exhibitionImages[0]?.imagePath" alt="Blog Images" class="exhibition-image">
+                        </a>
+                        <div class="blog-content">
+                            <a routerLink="/exhibitions-details/{{exhibition.id}}">
+                                <h3>{{ exhibition.title }}</h3>
+                            </a>
+                            <ul class="blog-admin">
+                                <li><a routerLink="/"><i class='bi bi-geo-alt-fill'></i> {{ exhibition.location }}</a></li>
+                                <li><i class='bx bx-calendar-alt'></i> {{ exhibition.startDate | date:'dd/MM/yyyy' }}</li>
+                            </ul>
+                            <a routerLink="/exhibitions/{{exhibition.id}}" class="read-more-btn">Read More <i class='bx bxs-chevrons-right'></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- <div class="col-lg-4 col-md-6">
-                <div class="blog-card">
-                    <a routerLink="/blog-details"><img src="assets/img/blog/blog2.jpg" alt="Blog Images"></a>
-                    
-                    <div class="blog-content">
-                        <a routerLink="/blog-details"><h3>Keep Your Print Great</h3></a>
-                        <ul class="blog-admin">
-                            <li><a routerLink="/"><i class='bx bxs-user'></i> Admin</a></li>
-                            <li><i class='bx bx-calendar-alt' ></i> 18 May 2020</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit.</p>
-                        <a routerLink="/blog-details" class="read-more-btn">Read More <i class='bx bxs-chevrons-right'></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
-                <div class="blog-card">
-                    <a routerLink="/blog-details"><img src="assets/img/blog/blog3.jpg" alt="Blog Images"></a>
-                    
-                    <div class="blog-content">
-                        <a routerLink="/blog-details"><h3>Digital Print is Science</h3></a>
-                        <ul class="blog-admin">
-                            <li><a routerLink="/"><i class='bx bxs-user'></i> Admin</a></li>
-                            <li><i class='bx bx-calendar-alt' ></i> 18 May 2020</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consect is etur adipiscing elit.</p>
-                        <a routerLink="/blog-details" class="read-more-btn">Read More <i class='bx bxs-chevrons-right'></i></a>
-                    </div>
-                </div>
-            </div> -->
+            </ng-container>
         </div>
     </div>
-</div>
 </section>
-
 <app-footer></app-footer>

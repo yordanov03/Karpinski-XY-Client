@@ -30,7 +30,6 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
-import { PaintingCardComponent } from './components/common/painting-card/painting-card.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './stores/auth/auth.reducer';
@@ -40,12 +39,19 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { contactReducer } from './stores/contact/contact.reducer';
 import { ContactEffects } from './stores/contact/contact.effects';
-import { paintingReducer } from './stores/paintings/painting.reducers';
-import { PaintingEffects } from './stores/paintings/painting.effects';
+import { paintingReducer } from './stores/painting/painting.reducers';
+import { PaintingEffects } from './stores/painting/painting.effects';
 import { SliceArrayPipe } from './shared/pipes/sliceArray.pipe';
 import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
 import { PortfolioCardComponent } from './components/common/portfolio-card/portfolio-card.component';
 import { SubscriptionEffects } from './stores/subscription/subscription.effects';
+import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
+import { ExhibitionEffects } from './stores/exhibition/exhibition.effects';
+import { exhibitionReducer } from './stores/exhibition/exhibition.reducer';
+import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
+import { ExhibitionCardComponent } from './components/common/exhibition-card/exhibition-card.component';
+import { ExhibitionDetailsComponent } from './components/pages/exhibition-details/exhibition-details.component';
+import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit-exhibition.component';
 
 @NgModule({
   declarations: [
@@ -72,10 +78,14 @@ import { SubscriptionEffects } from './stores/subscription/subscription.effects'
     ContactComponent,
     CreatePaintingComponent,
     EditPaintingComponent,
-    PaintingCardComponent,
     SliceArrayPipe,
     PortfolioComponent,
-    PortfolioCardComponent
+    PortfolioCardComponent,
+    CreateExhibitionComponent,
+    ExhibtionComponent,
+    ExhibitionCardComponent,
+    ExhibitionDetailsComponent,
+    EditExhibitionComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +98,8 @@ import { SubscriptionEffects } from './stores/subscription/subscription.effects'
     ({ 
       auth: authReducer,
       contact: contactReducer,
-      painting: paintingReducer
+      painting: paintingReducer,
+      exhibition: exhibitionReducer
     }),
     StoreDevtoolsModule.instrument({
       name: 'Karpinski XY',
@@ -98,7 +109,8 @@ import { SubscriptionEffects } from './stores/subscription/subscription.effects'
       AuthEffects, 
       ContactEffects, 
       PaintingEffects,
-      SubscriptionEffects]),
+      SubscriptionEffects,
+      ExhibitionEffects]),
   ],
   providers: [
   {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

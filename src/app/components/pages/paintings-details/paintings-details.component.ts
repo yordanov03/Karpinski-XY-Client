@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Painting } from 'src/app/api/models';
-import { selectPainting } from 'src/app/stores/paintings/painting.selectos';
-import * as PaintingActions from '../../../stores/paintings/painting.actions'
+import { selectPainting } from 'src/app/stores/painting/painting.selectos';
+import * as PaintingActions from '../../../stores/painting/painting.actions'
 import * as bootstrap from 'bootstrap';
 
 
@@ -17,6 +17,10 @@ import * as bootstrap from 'bootstrap';
 export class PaintingsDetailsComponent implements OnInit {
 painting$: Observable<Painting>;
 currentUrl: string;
+activeTab = 'additionalInfo';
+
+showFullSizeImage: boolean = false;
+fullSizeImageUrl: string;
 
   constructor(private store: Store,
     private route: ActivatedRoute) {
@@ -24,12 +28,11 @@ currentUrl: string;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href
-    console.log(this.currentUrl)
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
-        this.store.dispatch(PaintingActions.loadPainting({ id: params.get('id') }));
+        this.store.dispatch(PaintingActions.loadPainting({ id: id }));
         this.painting$ = this.store.select(selectPainting);
       }
     });
@@ -48,5 +51,18 @@ currentUrl: string;
 
   onMakeinquiryClick(name: string) {
     this.store.dispatch(PaintingActions.makeInquiry({name: name}))
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
+
+  openFullSizeImage(imageUrl: string): void {
+    this.fullSizeImageUrl = imageUrl;
+    this.showFullSizeImage = true;
+  }
+
+  closeFullSizeImage(): void {
+    this.showFullSizeImage = false;
   }
 }

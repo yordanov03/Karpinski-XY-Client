@@ -29,7 +29,7 @@ export class AuthEffects {
             icon: 'success',
             text: 'Hello, my love'
           });
-          setTimeout(() => this.router.navigate(['']), 2000);
+          setTimeout(() => this.router.navigate(['']), 3000);
         }),
         map(user => AuthActions.loginSuccess({ user })),
         catchError(error => {
@@ -81,7 +81,7 @@ register$ = createEffect(() =>
             });
             setTimeout(() => {
               this.router.navigate(['']);
-            }, 2000);
+            }, 3000);
           }),
           map(() => AuthActions.registerSuccess()),
           catchError(error => {
@@ -95,5 +95,4 @@ register$ = createEffect(() =>
       )
     )
   );
-
 }

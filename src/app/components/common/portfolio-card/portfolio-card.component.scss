@@ -1,21 +1,75 @@
-#trashbutton{
+#trashbutton, #pencilbutton {
     font-size: 24px;
     color: black;
-    margin-left: 25px;
-    float:right;
-    transform: translateY(-60%);
+    float: right;
+    transform: translateY(-100%);
+    background-color: white; /* Sets the background color to white */
+    border: 1px solid #ddd; /* Adds a minimal border */
+    width: 50px; /* Set width */
+    height: 50px; /* Set height to the same as width to make it square */
+    display: flex; /* Using Flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    box-sizing: border-box; /* Ensures padding and border are included in the dimensions */
+    cursor: pointer; /* Cursor as pointer */
 }
 
-#pencilbutton{
-    font-size: 24px;
-    color: black;
-    margin-left: 25px;
-    float:right;
-    transform: translateY(-60%);
+#trashbutton {
+    margin-left: 15px;
 }
+
+#pencilbutton {
+    margin-left: 35px;
+}
+
+.service-card{
+    box-shadow: none 
+}
+
+img {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
   }
+
+.portfolio-masonry {
+    column-count: 4; 
+    padding-top: 0.5em;
+}
+
+.masonry-item {
+    break-inside: avoid;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.masonry-item img {
+    max-width: 100%;
+    height: auto; 
+}
+
+@media (max-width: 1200px) {
+    .portfolio-masonry {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 992px) {
+    .portfolio-masonry {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-masonry {
+        column-count: 1;
+    }
+}
+
+

@@ -17,8 +17,6 @@
 }
 
 .banner-item {
-    // width: 250px;
-    // height: 200px;
     width: 300px;
     height: 250px;
     border-radius: 25px; /* Rounded corners */
@@ -26,11 +24,28 @@
     display: flex;       /* Ensures the child elements are centered */
     justify-content: center;
     align-items: center; 
+    object-fit: scale-down;
+  }
+
+  .banner-img .banner-into-slider .banner-item img{
+    object-fit: scale-down;
   }
   
   .portfolio-image {
+    width: 100%;
+    height: 350px; /* Adjust as needed */
     max-width: 100%;  /* Image can be as wide as needed, up to 100% of the parent */
     max-height: 100%; /* Image can be as tall as needed, up to 100% of the parent */
-    object-fit: scale-down; /* Ensures image is scaled down if necessary, but not up */
+    object-fit: cover; /* Ensures image is scaled down if necessary, but not up */
   }
+
+  .exhibition-image {
+    width: 100%;
+    height: 350px; /* Adjust as needed */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; /* or 'cover' to fill the space */
+    object-fit: cover;
+  }
+  
   

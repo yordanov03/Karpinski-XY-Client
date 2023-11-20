@@ -23,12 +23,13 @@
 
 .carousel-item,
 .carousel-item img {
-    height: 600px;
+    height: 500px;
     object-fit: scale-down;
 }
 
 .carousel-item img {
     width: 100%;
+    cursor: pointer;
 }
 
 .carousel-indicators li {
@@ -59,20 +60,13 @@
     cursor: pointer;
     opacity: 0.6;
     transition: opacity 0.3s ease;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: #f0f0f0; ;
   }
 
   .img-thumbnail.active,
   .img-thumbnail:hover {
     opacity: 1;
-}
-
-.tab-background {
-    background-color: #f0f0f0; 
-    color: #333333;
-}            
+}    
 
 .centered-btn {
     display: block; 
@@ -81,3 +75,75 @@
     margin-left: auto;    
     margin-right: auto;   
 }
+
+.product-detls-tab {
+  .nav-tabs {
+    cursor: pointer;
+    border: black;
+    .nav-item {
+      .nav-link {
+        &.tab-background {
+          background-color: #f0f0f0; 
+          color: #333333;
+          transition: background-color 0.3s ease, color 0.3s ease; // Smooth transition for color and background
+
+          &:hover {
+            background-color: #e0e0e0; // Slightly darker background on hover
+          }
+
+          &.active {
+            color: #f0f0f0;
+            background-color: #3cd1ff; // Background color for active tab
+            transition: background-color 0.3s ease, color 0.3s ease; // Ensure the transition applies to the active state as well
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    .tab-pane {
+      transition: opacity 0.3s ease; // Fade effect for tab content
+      opacity: 0; // Start with content hidden
+      &.active {
+        opacity: 1; // Fully visible when active
+      }
+    }
+  }
+}
+
+
+.full-size-image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.full-size-image-modal img {
+  max-height: 80%;
+  max-width: 100%;
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+
+  
+  
+  
