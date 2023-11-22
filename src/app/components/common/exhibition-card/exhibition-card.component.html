@@ -2,7 +2,7 @@
     <div class="col-lg-4 col-md-6" *ngFor="let exhibition of (exhibitions$ | async)">
         <div class="blog-card">
             <a routerLink="/exhibitions-details/{{exhibition.id}}">
-                <img [src]="exhibition.exhibitionImages[0]?.imagePath" alt="Blog Images" class="exhibition-image">
+                <img [src]="apiUrl + exhibition.exhibitionImages[0]?.imagePath" alt="Blog Images" class="exhibition-image">
             </a>
             <div class="blog-content">
                 <a routerLink="/exhibitions-details/{{exhibition.id}}">

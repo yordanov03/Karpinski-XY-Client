@@ -9,6 +9,7 @@ import * as PaintingActions from '../../../stores/painting/painting.actions'
 import * as fromPainting from '../../../stores/painting/painting.selectos'
 import * as fromAuth from '../../../stores/auth/auth.selectors'
 import { map, tap} from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class PaintingsComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 3;
   totalPages: number;
-
+  apiUrl: string = environment.apiUrl;
 
   constructor(private store: Store,
     private router: Router) {

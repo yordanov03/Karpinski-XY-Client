@@ -31,7 +31,7 @@
                     <div class="carousel-inner" role="listbox">
                         <div *ngFor="let image of painting?.paintingImages; let i = index" class="carousel-item"
                             [class.active]="i === 0">
-                            <img [src]="image.imagePath" class="d-block w-100" alt="..." (click)="openFullSizeImage(image.imagePath)">
+                            <img [src]="apiUrl + image.imagePath" class="d-block w-100" alt="..." (click)="openFullSizeImage(image.imagePath)">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -47,13 +47,13 @@
                 </div>
 
                 <div *ngIf="showFullSizeImage" class="full-size-image-modal">
-                    <img [src]="fullSizeImageUrl" class="img-fluid" alt="Full size image">
+                    <img [src]="apiUrl + fullSizeImageUrl" class="img-fluid" alt="Full size image">
                     <button class="close-modal" (click)="closeFullSizeImage()">X</button>
                 </div>
 
                 <!-- Thumbnails -->
                 <div class="carousel-thumbnails">
-                    <img *ngFor="let image of painting.paintingImages; let i = index" [src]="image.imagePath"
+                    <img *ngFor="let image of painting.paintingImages; let i = index" [src]="apiUrl + image.imagePath"
                         [class.active]="i == 0" (click)="selectImage(i)" class="img-thumbnail">
                 </div>
             </div>

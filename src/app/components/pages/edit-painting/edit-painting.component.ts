@@ -102,7 +102,7 @@ export class EditPaintingComponent implements OnInit {
     formValue.paintingImages = this.paintingImages.map(image => {
       return {
         file: image.file,
-        isMainImage: image.isMainImage,
+        isMainImage: image.isMainImage==null? false: image.isMainImage,
         imagePath: image.imagePath!==null? image.imagePath : null,
         fileName: image.fileName
       };

@@ -7,6 +7,7 @@ import { Painting } from 'src/app/api/models';
 import { selectPainting } from 'src/app/stores/painting/painting.selectos';
 import * as PaintingActions from '../../../stores/painting/painting.actions'
 import * as bootstrap from 'bootstrap';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -21,6 +22,7 @@ activeTab = 'additionalInfo';
 
 showFullSizeImage: boolean = false;
 fullSizeImageUrl: string;
+apiUrl: string = environment.apiUrl;
 
   constructor(private store: Store,
     private route: ActivatedRoute) {

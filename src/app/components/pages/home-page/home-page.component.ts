@@ -22,6 +22,7 @@ availablePaintings$: Observable<Painting[]>;
 portfolioPaintings$: Observable<Painting[]>;
 exhibitions$: Observable<Exhibition[]>;
 paintingsChunks: any[][];
+apiUrl: string = environment.apiUrl;
 
   constructor(private store: Store) { }
 

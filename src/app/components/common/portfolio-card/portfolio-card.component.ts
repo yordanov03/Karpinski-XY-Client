@@ -8,6 +8,7 @@ import * as fromPainting from '../../../stores/painting/painting.selectos'
 import * as fromAuth from '../../../stores/auth/auth.selectors'
 import Swal from 'sweetalert2';
 import * as Masonry from 'masonry-layout';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-portfolio-card',
@@ -18,6 +19,7 @@ export class PortfolioCardComponent implements OnInit {
 
   portfolioPaintings$: Observable<Painting[]>;
   isLoggedIn$: Observable<boolean>;
+  apiUrl: string = environment.apiUrl;
   @ViewChild('masonryGrid', { static: true }) masonryGrid: ElementRef;
 
   constructor(private store: Store,

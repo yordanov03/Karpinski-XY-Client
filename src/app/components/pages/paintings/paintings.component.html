@@ -31,7 +31,7 @@
               <div class="col-lg-4 col-md-5" *ngFor="let painting of paintings">
                 <div class="service-card">
                   <a routerLink="/paintings-details/{{painting.id}}">
-                    <img [src]="painting.paintingImages[0]?.imagePath" width="380" height="400">
+                    <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" width="380" height="400">
                   </a>
                   <div class="service-content">
                     <a routerLink="/paintings-details/{{painting.id}}">

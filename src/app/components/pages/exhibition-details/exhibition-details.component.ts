@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Exhibition } from 'src/app/api/models';
 import * as ExhibitionActions from '../../../stores/exhibition/exhibition.actions'
 import * as fromExhibition from '../../../stores/exhibition/exhibition.selectors'
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-exhibition-details',
@@ -16,6 +17,7 @@ export class ExhibitionDetailsComponent implements OnInit {
   exhibition$: Observable<Exhibition>;
   currentUrl: string;
   selectedImage: string;
+  apiUrl: string = environment.apiUrl;
 
   constructor(private store: Store,
     private route: ActivatedRoute) { }

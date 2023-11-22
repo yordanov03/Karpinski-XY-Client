@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EnvironmentInjector, Input, OnInit } from '@angular/core';
 import * as ExhibitionActions from '../../../stores/exhibition/exhibition.actions'
 import * as fromExhibition from '../../../stores/exhibition/exhibition.selectors'
 import * as fromAuth from '../../../stores/auth/auth.selectors'
@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { Exhibition } from 'src/app/api/models';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-exhibition-card',
@@ -17,6 +18,7 @@ export class ExhibitionCardComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
   exhibitions$: Observable<Exhibition[]>;
+  apiUrl: string = environment.apiUrl;
 
   @Input() exhibition: Exhibition;
 

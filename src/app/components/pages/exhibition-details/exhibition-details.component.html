@@ -20,13 +20,13 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="main-image-display">
-                    <img [src]="selectedImage" class="d-block w-100" alt="Main Exhibition Image">
+                    <img [src]="apiUrl + selectedImage" class="d-block w-100" alt="Main Exhibition Image">
                 </div>
             
                 <!-- Thumbnails -->
                 <div class="carousel-thumbnails">
                     <img *ngFor="let image of exhibition.exhibitionImages; let i = index" 
-                         [src]="image.imagePath" 
+                         [src]="apiUrl + image.imagePath" 
                          (click)="selectImage(image.imagePath)" 
                          class="img-thumbnail" 
                          [class.active]="selectedImage === image.imagePath">
