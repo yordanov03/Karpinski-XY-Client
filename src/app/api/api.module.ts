@@ -5,9 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { ContactService } from './services/contact.service';
-import { ExhibitionService } from './services/exhibition.service';
+import { ExhibitionsService } from './services/exhibitions.service';
 import { IdentityService } from './services/identity.service';
-import { PaintingService } from './services/painting.service';
+import { PaintingsService } from './services/paintings.service';
 import { SubscriptionService } from './services/subscription.service';
 
 /**
@@ -19,9 +19,9 @@ import { SubscriptionService } from './services/subscription.service';
   declarations: [],
   providers: [
     ContactService,
-    ExhibitionService,
+    ExhibitionsService,
     IdentityService,
-    PaintingService,
+    PaintingsService,
     SubscriptionService,
     ApiConfiguration
   ],

@@ -91,8 +91,7 @@ export class EditPaintingComponent implements OnInit {
   editPainting() {
     if (this.editPaintingForm.valid) {
       const formValue = this.preparePayload();
-      console.log(formValue)
-      // Dispatch action to edit painting
+
       this.store.dispatch(paintingActions.updatePainting({ painting: formValue }));
     }
   }

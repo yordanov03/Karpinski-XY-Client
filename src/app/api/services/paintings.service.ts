@@ -14,7 +14,7 @@ import { Painting } from '../models/painting';
 @Injectable({
   providedIn: 'root',
 })
-export class PaintingService extends BaseService {
+export class PaintingsService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -25,7 +25,7 @@ export class PaintingService extends BaseService {
   /**
    * Path part for operation onFocus
    */
-  static readonly OnFocusPath = '/Painting';
+  static readonly OnFocusPath = '/Paintings';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -38,7 +38,7 @@ export class PaintingService extends BaseService {
   }
 ): Observable<StrictHttpResponse<Array<Painting>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PaintingService.OnFocusPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.OnFocusPath, 'get');
     if (params) {
     }
 
@@ -73,7 +73,7 @@ export class PaintingService extends BaseService {
   /**
    * Path part for operation update
    */
-  static readonly UpdatePath = '/Painting';
+  static readonly UpdatePath = '/Paintings';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -87,7 +87,7 @@ export class PaintingService extends BaseService {
   }
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PaintingService.UpdatePath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.UpdatePath, 'put');
     if (params) {
       rb.body(params.body, 'application/*+json');
     }
@@ -124,7 +124,7 @@ export class PaintingService extends BaseService {
   /**
    * Path part for operation create
    */
-  static readonly CreatePath = '/Painting';
+  static readonly CreatePath = '/Paintings';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -138,7 +138,7 @@ export class PaintingService extends BaseService {
   }
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PaintingService.CreatePath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.CreatePath, 'post');
     if (params) {
       rb.body(params.body, 'application/*+json');
     }
@@ -175,7 +175,7 @@ export class PaintingService extends BaseService {
   /**
    * Path part for operation getPaintingToEdit
    */
-  static readonly GetPaintingToEditPath = '/Painting/toEdit/{id}';
+  static readonly GetPaintingToEditPath = '/Paintings/toEdit/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -189,7 +189,7 @@ export class PaintingService extends BaseService {
   }
 ): Observable<StrictHttpResponse<Painting>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PaintingService.GetPaintingToEditPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.GetPaintingToEditPath, 'get');
     if (params) {
       rb.path('id', params.id, {});
     }
@@ -226,7 +226,7 @@ export class PaintingService extends BaseService {
   /**
    * Path part for operation loadPainting
    */
-  static readonly LoadPaintingPath = '/Painting/{id}';
+  static readonly LoadPaintingPath = '/Paintings/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -240,7 +240,7 @@ export class PaintingService extends BaseService {
   }
 ): Observable<StrictHttpResponse<Painting>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PaintingService.LoadPaintingPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.LoadPaintingPath, 'get');
     if (params) {
       rb.path('id', params.id, {});
     }
@@ -277,7 +277,7 @@ export class PaintingService extends BaseService {
   /**
    * Path part for operation delete
    */
-  static readonly DeletePath = '/Painting/{id}';
+  static readonly DeletePath = '/Paintings/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -291,7 +291,7 @@ export class PaintingService extends BaseService {
   }
 ): Observable<StrictHttpResponse<string>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PaintingService.DeletePath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.DeletePath, 'delete');
     if (params) {
       rb.path('id', params.id, {});
     }
@@ -328,7 +328,7 @@ export class PaintingService extends BaseService {
   /**
    * Path part for operation portfolio
    */
-  static readonly PortfolioPath = '/Painting/portfolio';
+  static readonly PortfolioPath = '/Paintings/portfolio';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -341,7 +341,7 @@ export class PaintingService extends BaseService {
   }
 ): Observable<StrictHttpResponse<Array<Painting>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PaintingService.PortfolioPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.PortfolioPath, 'get');
     if (params) {
     }
 
@@ -376,7 +376,7 @@ export class PaintingService extends BaseService {
   /**
    * Path part for operation available
    */
-  static readonly AvailablePath = '/Painting/available';
+  static readonly AvailablePath = '/Paintings/available';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -389,7 +389,7 @@ export class PaintingService extends BaseService {
   }
 ): Observable<StrictHttpResponse<Array<Painting>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PaintingService.AvailablePath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.AvailablePath, 'get');
     if (params) {
     }
 
@@ -424,7 +424,7 @@ export class PaintingService extends BaseService {
   /**
    * Path part for operation toSell
    */
-  static readonly ToSellPath = '/Painting/toSell';
+  static readonly ToSellPath = '/Paintings/toSell';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -437,7 +437,7 @@ export class PaintingService extends BaseService {
   }
 ): Observable<StrictHttpResponse<Array<Painting>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PaintingService.ToSellPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PaintingsService.ToSellPath, 'get');
     if (params) {
     }
 

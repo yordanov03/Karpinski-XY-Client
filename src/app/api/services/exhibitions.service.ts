@@ -14,7 +14,7 @@ import { Exhibition } from '../models/exhibition';
 @Injectable({
   providedIn: 'root',
 })
-export class ExhibitionService extends BaseService {
+export class ExhibitionsService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -25,7 +25,7 @@ export class ExhibitionService extends BaseService {
   /**
    * Path part for operation getAllExhibitions
    */
-  static readonly GetAllExhibitionsPath = '/Exhibition';
+  static readonly GetAllExhibitionsPath = '/Exhibitions';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -38,7 +38,7 @@ export class ExhibitionService extends BaseService {
   }
 ): Observable<StrictHttpResponse<Array<Exhibition>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ExhibitionService.GetAllExhibitionsPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ExhibitionsService.GetAllExhibitionsPath, 'get');
     if (params) {
     }
 
@@ -73,7 +73,7 @@ export class ExhibitionService extends BaseService {
   /**
    * Path part for operation updateExhibition
    */
-  static readonly UpdateExhibitionPath = '/Exhibition';
+  static readonly UpdateExhibitionPath = '/Exhibitions';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -87,7 +87,7 @@ export class ExhibitionService extends BaseService {
   }
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ExhibitionService.UpdateExhibitionPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, ExhibitionsService.UpdateExhibitionPath, 'put');
     if (params) {
       rb.body(params.body, 'application/*+json');
     }
@@ -124,7 +124,7 @@ export class ExhibitionService extends BaseService {
   /**
    * Path part for operation createExhibition
    */
-  static readonly CreateExhibitionPath = '/Exhibition';
+  static readonly CreateExhibitionPath = '/Exhibitions';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -138,7 +138,7 @@ export class ExhibitionService extends BaseService {
   }
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ExhibitionService.CreateExhibitionPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, ExhibitionsService.CreateExhibitionPath, 'post');
     if (params) {
       rb.body(params.body, 'application/*+json');
     }
@@ -175,7 +175,7 @@ export class ExhibitionService extends BaseService {
   /**
    * Path part for operation getExhibition
    */
-  static readonly GetExhibitionPath = '/Exhibition/{id}';
+  static readonly GetExhibitionPath = '/Exhibitions/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -189,7 +189,7 @@ export class ExhibitionService extends BaseService {
   }
 ): Observable<StrictHttpResponse<Exhibition>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ExhibitionService.GetExhibitionPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ExhibitionsService.GetExhibitionPath, 'get');
     if (params) {
       rb.path('id', params.id, {});
     }
@@ -226,7 +226,7 @@ export class ExhibitionService extends BaseService {
   /**
    * Path part for operation deleteExhibition
    */
-  static readonly DeleteExhibitionPath = '/Exhibition/{id}';
+  static readonly DeleteExhibitionPath = '/Exhibitions/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -240,7 +240,7 @@ export class ExhibitionService extends BaseService {
   }
 ): Observable<StrictHttpResponse<string>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ExhibitionService.DeleteExhibitionPath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, ExhibitionsService.DeleteExhibitionPath, 'delete');
     if (params) {
       rb.path('id', params.id, {});
     }
@@ -277,7 +277,7 @@ export class ExhibitionService extends BaseService {
   /**
    * Path part for operation getExhibitionToEdit
    */
-  static readonly GetExhibitionToEditPath = '/Exhibition/toEdit/{id}';
+  static readonly GetExhibitionToEditPath = '/Exhibitions/toEdit/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -291,7 +291,7 @@ export class ExhibitionService extends BaseService {
   }
 ): Observable<StrictHttpResponse<Exhibition>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ExhibitionService.GetExhibitionToEditPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ExhibitionsService.GetExhibitionToEditPath, 'get');
     if (params) {
       rb.path('id', params.id, {});
     }
