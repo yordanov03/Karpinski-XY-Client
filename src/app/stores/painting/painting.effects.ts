@@ -6,12 +6,12 @@ import { of } from 'rxjs';
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { Painting } from 'src/app/api/models';
 import { Router } from '@angular/router';
-import { PaintingService } from 'src/app/api/services';
+import { PaintingsService } from 'src/app/api/services';
 
 @Injectable()
 export class PaintingEffects {
   constructor(private actions$: Actions, 
-    private paintingService: PaintingService,
+    private paintingService: PaintingsService,
     private router: Router) {}
 
   createPainting$ = createEffect(() =>

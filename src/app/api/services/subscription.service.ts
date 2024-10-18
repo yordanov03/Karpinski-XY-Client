@@ -24,7 +24,7 @@ export class SubscriptionService extends BaseService {
   /**
    * Path part for operation subscribe
    */
-  static readonly SubscribePath = '/Subscription';
+  static readonly SubscribePath = '/api/Subscription';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

@@ -27,7 +27,7 @@ export class IdentityService extends BaseService {
   /**
    * Path part for operation regsiter
    */
-  static readonly RegsiterPath = '/Identity/register';
+  static readonly RegsiterPath = '/api/Identity/register';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -78,7 +78,7 @@ export class IdentityService extends BaseService {
   /**
    * Path part for operation login
    */
-  static readonly LoginPath = '/Identity/login';
+  static readonly LoginPath = '/api/Identity/login';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

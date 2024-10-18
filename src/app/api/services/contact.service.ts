@@ -25,7 +25,7 @@ export class ContactService extends BaseService {
   /**
    * Path part for operation registerContact
    */
-  static readonly RegisterContactPath = '/Contact';
+  static readonly RegisterContactPath = '/api/Contact';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

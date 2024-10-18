@@ -25,7 +25,7 @@ export class ExhibitionsService extends BaseService {
   /**
    * Path part for operation getAllExhibitions
    */
-  static readonly GetAllExhibitionsPath = '/Exhibitions';
+  static readonly GetAllExhibitionsPath = '/api/Exhibitions';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -73,7 +73,7 @@ export class ExhibitionsService extends BaseService {
   /**
    * Path part for operation updateExhibition
    */
-  static readonly UpdateExhibitionPath = '/Exhibitions';
+  static readonly UpdateExhibitionPath = '/api/Exhibitions';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -124,7 +124,7 @@ export class ExhibitionsService extends BaseService {
   /**
    * Path part for operation createExhibition
    */
-  static readonly CreateExhibitionPath = '/Exhibitions';
+  static readonly CreateExhibitionPath = '/api/Exhibitions';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -175,7 +175,7 @@ export class ExhibitionsService extends BaseService {
   /**
    * Path part for operation getExhibition
    */
-  static readonly GetExhibitionPath = '/Exhibitions/{id}';
+  static readonly GetExhibitionPath = '/api/Exhibitions/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -226,7 +226,7 @@ export class ExhibitionsService extends BaseService {
   /**
    * Path part for operation deleteExhibition
    */
-  static readonly DeleteExhibitionPath = '/Exhibitions/{id}';
+  static readonly DeleteExhibitionPath = '/api/Exhibitions/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -277,7 +277,7 @@ export class ExhibitionsService extends BaseService {
   /**
    * Path part for operation getExhibitionToEdit
    */
-  static readonly GetExhibitionToEditPath = '/Exhibitions/toEdit/{id}';
+  static readonly GetExhibitionToEditPath = '/api/Exhibitions/toEdit/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

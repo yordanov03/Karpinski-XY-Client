@@ -25,7 +25,7 @@ export class PaintingsService extends BaseService {
   /**
    * Path part for operation onFocus
    */
-  static readonly OnFocusPath = '/Paintings';
+  static readonly OnFocusPath = '/api/Paintings';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -73,7 +73,7 @@ export class PaintingsService extends BaseService {
   /**
    * Path part for operation update
    */
-  static readonly UpdatePath = '/Paintings';
+  static readonly UpdatePath = '/api/Paintings';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -124,7 +124,7 @@ export class PaintingsService extends BaseService {
   /**
    * Path part for operation create
    */
-  static readonly CreatePath = '/Paintings';
+  static readonly CreatePath = '/api/Paintings';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -175,7 +175,7 @@ export class PaintingsService extends BaseService {
   /**
    * Path part for operation getPaintingToEdit
    */
-  static readonly GetPaintingToEditPath = '/Paintings/toEdit/{id}';
+  static readonly GetPaintingToEditPath = '/api/Paintings/toEdit/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -226,7 +226,7 @@ export class PaintingsService extends BaseService {
   /**
    * Path part for operation loadPainting
    */
-  static readonly LoadPaintingPath = '/Paintings/{id}';
+  static readonly LoadPaintingPath = '/api/Paintings/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -277,7 +277,7 @@ export class PaintingsService extends BaseService {
   /**
    * Path part for operation delete
    */
-  static readonly DeletePath = '/Paintings/{id}';
+  static readonly DeletePath = '/api/Paintings/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -328,7 +328,7 @@ export class PaintingsService extends BaseService {
   /**
    * Path part for operation portfolio
    */
-  static readonly PortfolioPath = '/Paintings/portfolio';
+  static readonly PortfolioPath = '/api/Paintings/portfolio';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -376,7 +376,7 @@ export class PaintingsService extends BaseService {
   /**
    * Path part for operation available
    */
-  static readonly AvailablePath = '/Paintings/available';
+  static readonly AvailablePath = '/api/Paintings/available';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -424,7 +424,7 @@ export class PaintingsService extends BaseService {
   /**
    * Path part for operation toSell
    */
-  static readonly ToSellPath = '/Paintings/toSell';
+  static readonly ToSellPath = '/api/Paintings/toSell';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

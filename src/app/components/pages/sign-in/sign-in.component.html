@@ -19,12 +19,12 @@
             <div class="scetion-title text-center">
                 <span>Sign In</span>
                 <h2>Sign In to your account!</h2>
-                <p>with your social network</p>
-                <ul class="sign-social-icon">
+                <p></p>
+                <!-- <ul class="sign-social-icon">
                     <li><a href="#"><i class='bx bxl-facebook'></i></a></li>
                     <li><a href="#"><i class='bx bxl-twitter' ></i></a></li>
                     <li><a href="#"><i class='bx bxl-google-plus'></i></a></li>
-                </ul>
+                </ul> -->
             </div>
 
             <form [formGroup]="loginForm"(ngSubmit)='login()'>
@@ -43,16 +43,16 @@
                         <div *ngIf="password?.touched && password?.errors?.['required']" class="alert alert-danger">This field is required</div>
                     </div>
 
-                    <div class="col-lg-6 col-sm-6 form-condition">
+                    <!-- <div class="col-lg-6 col-sm-6 form-condition">
                         <div class="agree-label">
                             <input type="checkbox" id="chb1">
                             <label for="chb1">Remember Me</label>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-lg-6 col-sm-6">
+                    <!-- <div class="col-lg-6 col-sm-6">
                         <a class="forget" routerLink="/recover-password">Forgot my password?</a>
-                    </div>
+                    </div> -->
 
                     <div class="col-12 text-center">
                         <button class="default-btn btn-two sign-btn" 

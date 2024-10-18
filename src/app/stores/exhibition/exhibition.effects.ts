@@ -4,19 +4,25 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import * as ExhibitionActions from './exhibition.actions';
-import { ExhibitionService } from 'src/app/api/services/exhibition.service'; // Adjust import path as necessary
+
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { Exhibition } from 'src/app/api/models';
+import { ExhibitionsService } from 'src/app/api/services/exhibitions.service';
 
 
 @Injectable()
 export class ExhibitionEffects {
+  constructor(
+    private actions$: Actions,
+    private exhibitionsService: ExhibitionsService,
+    private router: Router
+  ) { }
 
   createExhibition$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ExhibitionActions.createExhibition),
       switchMap(action =>
-        this.exhibitionService.createExhibition({ body: action.payload }).pipe(
+        this.exhibitionsService.createExhibition({ body: action.payload }).pipe(
           tap(() => {
             popoverMessage().fire({
               icon: 'success',
@@ -43,7 +49,7 @@ export class ExhibitionEffects {
     this.actions$.pipe(
       ofType(ExhibitionActions.loadExhibitions),
       switchMap(() =>
-        this.exhibitionService.getAllExhibitions().pipe(
+        this.exhibitionsService.getAllExhibitions().pipe(
           map(exhibitions => ExhibitionActions.loadExhibitionsSuccess({ exhibitions })),
           catchError(error => of(ExhibitionActions.loadExhibitionsFailure({ error })))
         )
@@ -55,7 +61,7 @@ export class ExhibitionEffects {
     this.actions$.pipe(
       ofType(ExhibitionActions.deleteExhibition),
       mergeMap(action =>
-        this.exhibitionService.deleteExhibition({ id: action.id }).pipe(
+        this.exhibitionsService.deleteExhibition({ id: action.id }).pipe(
           tap(() => {
             // Display success message
             popoverMessage().fire({
@@ -80,7 +86,7 @@ export class ExhibitionEffects {
   getExhibition$ = createEffect(() =>
   this.actions$.pipe(
     ofType(ExhibitionActions.getExhibition),
-    switchMap(action => this.exhibitionService.getExhibition({ id: action.id }).pipe(
+    switchMap(action => this.exhibitionsService.getExhibition({ id: action.id }).pipe(
       tap((exhibition: Exhibition) => console.log('Exhibition loaded:', exhibition)), 
       map((exhibition: Exhibition) => ExhibitionActions.getExhibitionSuccess({ exhibition })),
       catchError(error => {
@@ -98,7 +104,7 @@ export class ExhibitionEffects {
   getExhibitionToEdit$ = createEffect(() =>
   this.actions$.pipe(
     ofType(ExhibitionActions.getExhibitionToEdit),
-    switchMap(action => this.exhibitionService.getExhibitionToEdit({ id: action.id }).pipe(
+    switchMap(action => this.exhibitionsService.getExhibitionToEdit({ id: action.id }).pipe(
       tap((exhibition: Exhibition) => console.log('Exhibition loaded:', exhibition)), // Add this line
       map((exhibition: Exhibition) => ExhibitionActions.getExhibitionToEditSuccess({ exhibition })),
       catchError(error => {
@@ -116,7 +122,7 @@ export class ExhibitionEffects {
     this.actions$.pipe(
       ofType(ExhibitionActions.updateExhibition),
       switchMap(action =>
-        this.exhibitionService.updateExhibition({
+        this.exhibitionsService.updateExhibition({
           body: action.exhibition
         }).pipe(
           tap(() => {
@@ -140,11 +146,4 @@ export class ExhibitionEffects {
       )
     )
   );
-
-
-  constructor(
-    private actions$: Actions,
-    private exhibitionService: ExhibitionService,
-    private router: Router
-  ) { }
 }
