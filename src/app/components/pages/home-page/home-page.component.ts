@@ -33,8 +33,12 @@ apiUrl: string = environment.apiUrl;
     this.store.dispatch(ExhibitionActions.loadExhibitions());
 
     this.paintingsOnFocus$ = this.store.select(fromPainting.selectPaintingsOnFocus);
-    this.availablePaintings$ = this.store.select(fromPainting.selectAvailablePaintings);
-    this.portfolioPaintings$ = this.store.select(fromPainting.selectPortfolioPaintings);
+    this.availablePaintings$ = this.store.select(fromPainting.selectAvailablePaintings).pipe(
+      map(paintings => paintings.slice(0, 6))  // Get the first six paintings
+    );
+    this.portfolioPaintings$ = this.store.select(fromPainting.selectPortfolioPaintings).pipe(
+      map(paintings => paintings.slice(0, 6))  // Get the first six paintings
+    );
     this.exhibitions$ = this.store.select(fromExhibition.selectAllExhibitions).pipe(
       map(exhibitions => exhibitions.slice(0, 3)));
   }

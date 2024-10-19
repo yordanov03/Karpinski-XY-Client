@@ -53,7 +53,6 @@ export class CreatePaintingComponent implements OnInit {
   }
 
   createPainting() {
-    console.log(this.createPaintingForm.value)
     if (this.createPaintingForm.valid) {
       const formValue = this.preparePayload();
       this.store.dispatch(paintingActions.createPainting({ payload: formValue }));

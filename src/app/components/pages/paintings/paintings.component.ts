@@ -23,7 +23,7 @@ export class PaintingsComponent implements OnInit {
 
   paginatedPaintings$: Observable<Painting[]>;
   currentPage: number = 1;
-  pageSize: number = 3;
+  pageSize: number = 9;
   totalPages: number;
   apiUrl: string = environment.apiUrl;
 

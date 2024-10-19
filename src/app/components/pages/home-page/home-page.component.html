@@ -128,35 +128,66 @@
     </div>
 </div>
 
-<section class="service-area pb-70" >
+<!-- Available Paintings (Stacked Grid) -->
+<section class="product-area pb-70">
     <div class="container" *ngIf="(availablePaintings$ | async)?.length">
         <div class="scetion-title text-center">
             <span>Available Paintings</span>
             <h2>Some of my recent work</h2>
-            <p>I would like to share a brief representation of my current state of mind, giving you an inside look of
-                mind with surgical precision </p>
+            <p>I would like to share a brief representation of my current state of mind, giving you an inside look of mind with surgical precision.</p>
+        </div>
+        <br>
+        <ng-container>
+            <div class="row">
+                <!-- Display each painting in a stacked grid layout -->
+                <div class="col-lg-4 col-md-6" *ngFor="let painting of (availablePaintings$ | async)">
+                    <div class="service-card">
+                        <a routerLink="/paintings-details/{{painting.id}}">
+                            <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" width="400" height="380">
+                        </a>
+                        <div class="service-content">
+                            <a routerLink="/paintings-details/{{painting.id}}">
+                                <h3>{{ painting.name }}</h3>
+                            </a>
+                            <p><span>{{ painting.dimensions }}</span></p>
+                            <!-- The Make inquiry button only for Available Paintings -->
+                            <a routerLink="/contact" class="default-btn" (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</section>
+
+<!-- Portfolio (Carousel) -->
+<section class="service-area pb-70">
+    <div class="container" *ngIf="(portfolioPaintings$ | async)?.length">
+        <div class="scetion-title text-center">
+            <span>Portfolio</span>
+            <h2>My work throughout the years</h2>
+            <p>I invite you to trace back how my painting style, my inspirations, my technique, and my perceptions have evolved over the years.</p>
         </div>
         <span>&nbsp;</span>
 
         <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- divide the paintings array into chunks of 3 for each slide -->
-                <ng-container *ngFor="let chunk of (availablePaintings$ | async) | sliceArray:3; let isFirst = first">
+                <!-- divide the portfolio paintings array into chunks of 3 for each slide -->
+                <ng-container *ngFor="let chunk of (portfolioPaintings$ | async) | sliceArray:3; let isFirst = first">
                     <div class="carousel-item" [class.active]="isFirst">
                         <div class="row">
                             <!-- display each painting in the chunk -->
                             <div class="col-lg-4" *ngFor="let painting of chunk">
                                 <div class="service-card">
                                     <a routerLink="/paintings-details/{{painting.id}}">
-                                        <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" alt="Service Images" style="height: 350px; width: 100%; object-fit: cover;">
+                                        <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" alt="Portfolio Image" style="height: 350px; width: 100%; object-fit: cover;">
                                     </a>
                                     <div class="service-content">
                                         <a routerLink="/paintings-details/{{painting.id}}">
                                             <h3>{{ painting.name }}</h3>
                                         </a>
                                         <p>{{ painting.dimensions }}</p>
-                                        <a routerLink="/contact" class="default-btn"
-                                            (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
+                                        <!-- No "Make inquiry" button here -->
                                     </div>
                                 </div>
                             </div>
@@ -176,91 +207,6 @@
     </div>
 </section>
 
-
-<section class="product-area pb-70">
-    <div class="container" *ngIf="(portfolioPaintings$| async).length>0">
-        <div class="scetion-title text-center">
-            <span>Portfolio</span>
-            <h2>My work throughout the years</h2>
-            <p>I invite you to trace back how my painting style,my inspirations, my technique, my perceptions have evolved over the years</p>
-        </div>
-        <br>
-        <ng-container>
-            <div class="row">
-                <div class="col-lg-4 col-md-6" *ngFor="let painting of (portfolioPaintings$ | async)">
-                    <div class="service-card">
-                        <a routerLink="/paintings-details/{{painting.id}}">
-                            <img [src]="apiUrl +painting.paintingImages[0]?.imagePath" width="400" height="380">
-                        </a>
-                        <div class="service-content">
-                            <a routerLink="/paintings-details/{{painting.id}}">
-                                <h3>{{ painting.name }}</h3>
-                            </a>
-                            <p><span>{{ painting.dimensions }}</span></p>
-                            <div class="product-cart">
-                                <ul>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </ng-container>
-    </div>
-</section>
-
-<!-- <section class="product-area pb-70">
-    <div class="container">
-        <div class="scetion-title text-center">
-            <span>Portfolio</span>
-            <h2>My work throughout the years</h2>
-            <p>I invite you to trace back how my painting style,my inspirations, my technique, my perceptions have evolved over the years</p>
-        </div>
-        <div class="row pt-45">
-            <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-\
-                  <ng-container *ngFor="let chunk of (availablePaintings$ | async) | sliceArray:3; let isFirst = first">
-                    <div class="carousel-item" [class.active]="isFirst">
-                      <div class="row">
-    \
-                        <div class="col-lg-4 col-md-6" *ngFor="let painting of chunk">
-                          <div class="product-card">
-                            <a routerLink="/paintings-details/{{painting.id}}">
-                              <img [src]="painting.images[0]?.imagePath" alt="Product Images" width="400" height="380">
-                            </a>
-                            <div class="product-content">
-                              <a routerLink="/paintings-details/{{painting.id}}">
-                                <h3>{{ painting.name }}</h3>
-                              </a>
-                              <p><span>{{ painting.dimensions }}</span></p>
-                              <div class="product-cart">
-                                <ul>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </ng-container>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="product-shape">
-        <img src="assets/img/products/shape.png" alt="Products Shape">
-    </div>
-</section> -->
 
 <section class="blog-area pb-70">
     <div class="container" *ngIf="(exhibitions$| async).length>0">
