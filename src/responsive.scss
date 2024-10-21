@@ -172,6 +172,14 @@
         }
     }
 
+    .portfolio-image {
+        width: 100%;
+        height: 150px; /* Adjust as needed */
+        max-width: 100%;  /* Image can be as wide as needed, up to 100% of the parent */
+        max-height: 100%; /* Image can be as tall as needed, up to 100% of the parent */
+        object-fit: cover; /* Ensures image is scaled down if necessary, but not up */
+    }
+
     .service-card {
         .service-content {
             a {
