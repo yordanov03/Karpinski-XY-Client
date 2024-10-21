@@ -72,7 +72,6 @@ export class EditPaintingComponent implements OnInit {
           isMainImage: img.isMainImage,
           fileName: img.fileName
         }));
-        console.log(this.editPaintingForm.value)
         this.paintingImages.forEach(image => this.addImageFormGroup(image));
       }
     });
@@ -156,7 +155,6 @@ export class EditPaintingComponent implements OnInit {
   
     // Repopulate the FormArray with FormGroup instances based on the current images array.
     this.paintingImages.forEach(image => this.addImageFormGroup(image));
-    console.log(this.editPaintingForm.value)
   }
 
   get f() {

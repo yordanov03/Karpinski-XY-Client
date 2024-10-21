@@ -50,9 +50,7 @@ export class EditExhibitionComponent implements OnInit {
         filter(exhibition => exhibition !== null),
         take(1))
       .subscribe(exhibition => {
-        console.log(exhibition)
         if (exhibition) {
-          console.log(this.exhibitionImages)
           this.exhibitionImages = [];
           while (this.exhibitionImagesFormArray.length !== 0) {
             this.exhibitionImagesFormArray.removeAt(0);
@@ -79,7 +77,6 @@ export class EditExhibitionComponent implements OnInit {
           fileName: img.fileName
         }));
         this.exhibitionImages.forEach(image => this.addImageFormGroup(image));
-        console.log(this.editExhibitionForm.value)
       } 
       });
 
@@ -102,7 +99,6 @@ export class EditExhibitionComponent implements OnInit {
   editExhibition() {
     if (this.editExhibitionForm.valid) {
       const formValue = this.preparePayload()
-      console.log(formValue)
       this.store.dispatch(exhibitionActions.updateExhibition({ exhibition: formValue }));
     }
   }
@@ -157,7 +153,6 @@ export class EditExhibitionComponent implements OnInit {
       this.exhibitionImagesFormArray.removeAt(index);
       this.updateImagesFormArray();
     }
-    console.log(this.exhibitionImagesFormArray.value)
   }
 
   updateImagesFormArray() {

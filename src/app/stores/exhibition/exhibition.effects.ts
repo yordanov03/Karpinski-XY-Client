@@ -99,7 +99,6 @@ export class ExhibitionEffects {
   this.actions$.pipe(
     ofType(ExhibitionActions.getExhibition),
     switchMap(action => this.exhibitionsService.getExhibition({ id: action.id }).pipe(
-      tap((exhibition: Exhibition) => console.log('Exhibition loaded:', exhibition)), 
       map((exhibition: Exhibition) => ExhibitionActions.getExhibitionSuccess({ exhibition })),
       catchError(error => {
         popoverMessage().fire({
@@ -117,7 +116,6 @@ export class ExhibitionEffects {
   this.actions$.pipe(
     ofType(ExhibitionActions.getExhibitionToEdit),
     switchMap(action => this.exhibitionsService.getExhibitionToEdit({ id: action.id }).pipe(
-      tap((exhibition: Exhibition) => console.log('Exhibition loaded:', exhibition)),
       map((exhibition: Exhibition) => ExhibitionActions.getExhibitionToEditSuccess({ exhibition })),
       catchError(error => {
         popoverMessage().fire({

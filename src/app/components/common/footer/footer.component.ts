@@ -23,7 +23,6 @@ export class FooterComponent implements OnInit {
 
   onSubmit() {
     if (this.subscriptionForm.valid) {
-      console.log(this.subscriptionForm.controls.email.value)
       this.store.dispatch(SubscriptionActions.subscribe({ email: this.subscriptionForm.controls.email.value}));
     }
   }
