@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as PaintingActions from './painting.actions';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { catchError, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { EMPTY, of } from 'rxjs';
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { Painting } from 'src/app/api/models';
 import { Router } from '@angular/router';
 import { PaintingsService } from 'src/app/api/services';
+import { select, Store } from '@ngrx/store';
+import { selectAvailablePaintings, selectPaintingsToSell, selectPortfolioPaintings } from './painting.selectos';
 
 @Injectable()
 export class PaintingEffects {
   constructor(private actions$: Actions, 
     private paintingService: PaintingsService,
-    private router: Router) {}
+    private router: Router,
+    private store: Store) {}
 
   createPainting$ = createEffect(() =>
     this.actions$.pipe(
@@ -108,13 +111,22 @@ export class PaintingEffects {
 
 loadAvailablePaintings$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(PaintingActions.loadAvailablePaintings),
-    switchMap(() => this.paintingService.available().pipe(
-      map((availablePaintings: Painting[]) => PaintingActions.loadAvailablePaintingsSuccess({ availablePaintings })),
-      catchError(error => {
-        return of(PaintingActions.loadAvailablePaintingsFailure({ error }));
-      })
-    ))
+    ofType(PaintingActions.loadAvailablePaintings), // Trigger on loadAvailablePaintings action
+    withLatestFrom(this.store.pipe(select(selectAvailablePaintings))), // Combine with the current state of available paintings
+    switchMap(([action, availablePaintings]) => {
+      if (availablePaintings.length === 0) { // Only fetch from the backend if there are no available paintings in the state
+        return this.paintingService.available().pipe(
+          map((availablePaintings: Painting[]) => 
+            PaintingActions.loadAvailablePaintingsSuccess({ availablePaintings }) // Dispatch success action with fetched available paintings
+          ),
+          catchError(error => 
+            of(PaintingActions.loadAvailablePaintingsFailure({ error })) // Dispatch failure action if API call fails
+          )
+        );
+      } else {
+        return EMPTY; // Do nothing if available paintings are already in the state
+      }
+    })
   )
 );
 
@@ -148,21 +160,46 @@ loadPaintingsOnFocus$ = createEffect(() =>
   )
 );
 
-loadPortfolio$ = createEffect(() => this.actions$.pipe(
-  ofType(PaintingActions.loadPortfolioPaintings),
-  switchMap(() => this.paintingService.portfolio().pipe(
-    map(portfolioPaintings => PaintingActions.loadPortfolioPaintingsSuccess({ portfolioPaintings })),
-    catchError(error => {
-      return of(PaintingActions.loadPortfolioPaintingsFailure({ error }));
+loadPortfolio$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(PaintingActions.loadPortfolioPaintings), // Trigger on loadPortfolioPaintings action
+    withLatestFrom(this.store.pipe(select(selectPortfolioPaintings))), // Combine with the current state of portfolio paintings
+    switchMap(([action, portfolioPaintings]) => {
+      if (portfolioPaintings.length === 0) { // Only fetch from the backend if there are no portfolio paintings in the state
+        return this.paintingService.portfolio().pipe(
+          map(portfolioPaintings => 
+            PaintingActions.loadPortfolioPaintingsSuccess({ portfolioPaintings }) // Dispatch success action with fetched portfolio paintings
+          ),
+          catchError(error => 
+            of(PaintingActions.loadPortfolioPaintingsFailure({ error })) // Dispatch failure action if API call fails
+          )
+        );
+      } else {
+        return EMPTY; // Do nothing if portfolio paintings are already in the state
+      }
     })
-  ))
-));
+  )
+);
 
-loadPaintingsToSell$ = createEffect(() => this.actions$.pipe(
-  ofType(PaintingActions.loadPaintingsToSell),
-  switchMap(() => this.paintingService.toSell().pipe(
-    map(paintingsToSell => PaintingActions.loadPaintingsToSellSuccess({ paintingsToSell })),
-    catchError(error => of(PaintingActions.loadPaintingsToSellFailure({ error })))
-  ))
-));
+
+loadPaintingsToSell$ = createEffect(() => 
+  this.actions$.pipe(
+    ofType(PaintingActions.loadPaintingsToSell), // Trigger on loadPaintingsToSell action
+    withLatestFrom(this.store.pipe(select(selectPaintingsToSell))), // Combine with the current state of paintings to sell
+    switchMap(([action, paintingsToSellCount]) => {
+      if (paintingsToSellCount.length === 0) { // Only fetch from the backend if there are no paintings to sell in the state
+        return this.paintingService.toSell().pipe(
+          map(paintingsToSell => 
+            PaintingActions.loadPaintingsToSellSuccess({ paintingsToSell }) // Dispatch success action with fetched paintings
+          ),
+          catchError(error => 
+            of(PaintingActions.loadPaintingsToSellFailure({ error })) // Dispatch failure action if API call fails
+          )
+        );
+      } else {
+        return EMPTY; // Do nothing if paintings are already in the state
+      }
+    })
+  )
+);
 }

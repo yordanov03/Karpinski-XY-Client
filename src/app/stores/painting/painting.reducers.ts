@@ -8,8 +8,8 @@ export const paintingReducer = createReducer(
   on(PaintingActions.createPaintingSuccess, (state) => ({...state, loading: false,})),
   on(PaintingActions.createPaintingFailure, (state, { payload }) => ({...state, error: payload, loading: false})),
 
-  on(PaintingActions.updatePainting, (state) => ({...state, loading: true,})),
-  on(PaintingActions.updatePaintingSuccess, state => ({ ...state, error: null })),
+  on(PaintingActions.updatePainting, (state) => ({...state, loading: true, painting: state.painting })),
+  on(PaintingActions.updatePaintingSuccess, state => ({ ...state, error: null, paintingsToSell:[], availablePaintings:[], portfolioPaintings:[], painting: null  })),
   on(PaintingActions.updatePaintingFailure, (state, { error }) => ({ ...state, error })),
 
   on(PaintingActions.loadPaintingToEdit, state => ({ ...state, loading: true, error: null })),
@@ -22,7 +22,8 @@ export const paintingReducer = createReducer(
   on(PaintingActions.loadPaintingsOnFocusSuccess, (state, { paintingsOnFocus }) => ({ ...state, paintingsOnFocus: [...paintingsOnFocus] })),
   on(PaintingActions.loadPaintingsOnFocusFailure, (state, { error }) => ({ ...state, error })),
 
-  on(PaintingActions.deletePaintingSuccess, (state, { id }) => ({ ...state, paintings: state.availablePaintings.filter(painting => painting.id !== id), error: null })),
+  on(PaintingActions.deletePaintingSuccess, (state, { id }) => ({ ...state, paintings: state.availablePaintings.filter(painting => painting.id !== id), 
+    paintingsToSell: state.availablePaintings.filter(painting => painting.id !== id), error: null })),
   on(PaintingActions.deletePaintingFailure, (state, { error }) => ({ ...state, error })),
 
   on(PaintingActions.loadPaintingSuccess, (state, { painting }) => ({...state, painting, error: null, selectedPaintingName:'' })),

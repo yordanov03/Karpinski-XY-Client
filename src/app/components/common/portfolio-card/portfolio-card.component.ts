@@ -30,11 +30,11 @@ export class PortfolioCardComponent implements OnInit {
     this.portfolioPaintings$ = this.store.select(fromPainting.selectPortfolioPaintings)
     this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
     
-    new Masonry(this.masonryGrid.nativeElement, {
-    });
+    new Masonry(this.masonryGrid.nativeElement, {});
   }
 
-  onDeleteClick(id) {
+  onDeleteClick(event: Event, id) {
+    event.stopPropagation()
     Swal.fire({
       title: 'Confirmation required',
       text: 'Are you sure you want to delete this entry',
@@ -53,7 +53,8 @@ export class PortfolioCardComponent implements OnInit {
     })
   }
   
-  onEditPainting(id) {
+  onEditPainting(event: Event, id) {
+    event.stopPropagation()
     this.router.navigate(['paintings/' + id + '/edit'])
   }
 

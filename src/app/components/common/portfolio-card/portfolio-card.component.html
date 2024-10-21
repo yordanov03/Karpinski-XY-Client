@@ -7,14 +7,13 @@
             <div class="service-card">
                 <a routerLink="/paintings-details/{{painting.id}}">
                     <img [src]="apiUrl + painting.paintingImages[0]?.imagePath">
-                    <p *ngIf="(isLoggedIn$ | async)">
-                        <i class='bi bi-trash3' id="trashbutton" type="button" (click)="onDeleteClick(painting.id)"></i>
-                        <i class='bi bi-pencil' id="pencilbutton" type="button" (click)="onEditPainting(painting.id)"></i>
-                    </p>
                 </a>
+                <p *ngIf="(isLoggedIn$ | async)">
+                    <i class='bi bi-trash3' id="trashbutton" type="button" (click)="onDeleteClick($event, painting.id)"></i>
+                    <i class='bi bi-pencil' id="pencilbutton" type="button" (click)="onEditPainting($event, painting.id)"></i>
+                </p>
             </div>
         </div>
     </ng-container>
 </div>
-
 

@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { EMPTY, of } from 'rxjs';
+import { catchError, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import * as ExhibitionActions from './exhibition.actions';
 
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { Exhibition } from 'src/app/api/models';
 import { ExhibitionsService } from 'src/app/api/services/exhibitions.service';
+import { select, Store } from '@ngrx/store';
+import { selectAllExhibitions } from './exhibition.selectors';
 
 
 @Injectable()
@@ -15,7 +17,8 @@ export class ExhibitionEffects {
   constructor(
     private actions$: Actions,
     private exhibitionsService: ExhibitionsService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { }
 
   createExhibition$ = createEffect(() =>
@@ -47,16 +50,25 @@ export class ExhibitionEffects {
 
   loadExhibitions$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ExhibitionActions.loadExhibitions),
-      switchMap(() =>
-        this.exhibitionsService.getAllExhibitions().pipe(
-          map(exhibitions => ExhibitionActions.loadExhibitionsSuccess({ exhibitions })),
-          catchError(error => of(ExhibitionActions.loadExhibitionsFailure({ error })))
-        )
-      )
+      ofType(ExhibitionActions.loadExhibitions), // Trigger on loadExhibitions action
+      withLatestFrom(this.store.pipe(select(selectAllExhibitions))), // Combine with the current state of exhibitions
+      switchMap(([action, exhibitions]) => {
+        if (exhibitions.length === 0) { // Only fetch from the backend if there are no exhibitions in the state
+          return this.exhibitionsService.getAllExhibitions().pipe(
+            map(exhibitions => 
+              ExhibitionActions.loadExhibitionsSuccess({ exhibitions }) // Dispatch success action with fetched exhibitions
+            ),
+            catchError(error => 
+              of(ExhibitionActions.loadExhibitionsFailure({ error })) // Dispatch failure action if API call fails
+            )
+          );
+        } else {
+          return EMPTY; // Do nothing if exhibitions are already in the state
+        }
+      })
     )
   );
-
+  
   deleteExhibition$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ExhibitionActions.deleteExhibition),
@@ -105,7 +117,7 @@ export class ExhibitionEffects {
   this.actions$.pipe(
     ofType(ExhibitionActions.getExhibitionToEdit),
     switchMap(action => this.exhibitionsService.getExhibitionToEdit({ id: action.id }).pipe(
-      tap((exhibition: Exhibition) => console.log('Exhibition loaded:', exhibition)), // Add this line
+      tap((exhibition: Exhibition) => console.log('Exhibition loaded:', exhibition)),
       map((exhibition: Exhibition) => ExhibitionActions.getExhibitionToEditSuccess({ exhibition })),
       catchError(error => {
         popoverMessage().fire({
