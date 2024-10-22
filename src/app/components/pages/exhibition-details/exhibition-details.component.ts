@@ -6,6 +6,7 @@ import { Exhibition } from 'src/app/api/models';
 import * as ExhibitionActions from '../../../stores/exhibition/exhibition.actions'
 import * as fromExhibition from '../../../stores/exhibition/exhibition.selectors'
 import { environment } from 'src/environments/environment';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-exhibition-details',
@@ -20,7 +21,8 @@ export class ExhibitionDetailsComponent implements OnInit {
   apiUrl: string = environment.apiUrl;
 
   constructor(private store: Store,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.currentUrl = window.location.href
@@ -41,5 +43,14 @@ export class ExhibitionDetailsComponent implements OnInit {
   
   selectImage(imageUrl: string): void {
     this.selectedImage = imageUrl;
+  }
+
+  getFormattedDescription(description: string): SafeHtml {
+    // Replace newlines with <br> tags and sanitize the HTML content
+    const formattedDescription = description
+    .replace(/\n/g, '<br>')
+    .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">Link</a>');
+
+  return this.sanitizer.bypassSecurityTrustHtml(formattedDescription);
   }
 }
