@@ -12,6 +12,14 @@
     float:right;
 }
 
+.service-card h3 {
+    white-space: nowrap;       /* Prevents the title from wrapping */
+    overflow: hidden;          /* Hides the overflowed text */
+    text-overflow: ellipsis;   /* Adds ellipsis (...) to truncated text */
+    width: 100%;               /* Ensures it takes up the full width of the container */
+    display: block;            /* Ensures the title behaves like a block-level element */
+  }
+
 .short-description{
 overflow: hidden;
 display: -webkit-box;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import * as PaintingActions from './painting.actions';
+import * as PaintingActions from './paintings.actions';
 import { catchError, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
 import { popoverMessage } from 'src/app/shared/popover-messages';
@@ -8,7 +8,7 @@ import { Painting } from 'src/app/api/models';
 import { Router } from '@angular/router';
 import { PaintingsService } from 'src/app/api/services';
 import { select, Store } from '@ngrx/store';
-import { selectAvailablePaintings, selectPaintingsToSell, selectPortfolioPaintings } from './painting.selectos';
+import { selectAvailablePaintings, selectPaintingsToSell, selectPortfolioPaintings } from './paintings.selectos';
 
 @Injectable()
 export class PaintingEffects {

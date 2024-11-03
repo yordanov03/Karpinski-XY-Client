@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import * as ExhibitionActions from './exhibition.actions';
-import { initialState } from './exhibition.state';
+import * as ExhibitionActions from './exhibitions.actions';
+import { initialState } from './exhibitions.state';
 
 export const exhibitionReducer = createReducer(
   initialState,

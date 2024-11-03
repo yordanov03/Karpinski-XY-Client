@@ -1,6 +1,6 @@
 import { Exhibition } from "src/app/api/models";
 
-export interface ExhibitionState {
+export interface ExhibitionsState {
     exhibition: Exhibition
     exhibitions: Exhibition[]
     formSubmitted: boolean
@@ -8,7 +8,7 @@ export interface ExhibitionState {
     loading: boolean;
   }
   
-  export const initialState: ExhibitionState = {
+  export const initialState: ExhibitionsState = {
     exhibition: null,
     exhibitions: [],
     formSubmitted: false,

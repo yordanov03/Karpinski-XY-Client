@@ -1,6 +1,6 @@
 import { Painting } from "src/app/api/models";
 
-export interface PaintingState {
+export interface PaintingsState {
     painting: Painting
     availablePaintings: Painting [],
     paintingsOnFocus: Painting[],
@@ -12,7 +12,7 @@ export interface PaintingState {
     selectedPaintingName: string
   }
   
-  export const initialState: PaintingState = {
+  export const initialState: PaintingsState = {
     painting: null,
     availablePaintings: [],
     paintingsOnFocus: [],

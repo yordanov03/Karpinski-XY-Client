@@ -1,6 +1,6 @@
 import { Component, EnvironmentInjector, Input, OnInit } from '@angular/core';
-import * as ExhibitionActions from '../../../stores/exhibition/exhibition.actions'
-import * as fromExhibition from '../../../stores/exhibition/exhibition.selectors'
+import * as ExhibitionActions from '../../../stores/exhibitions/exhibitions.actions'
+import * as fromExhibition from '../../../stores/exhibitions/exhibitions.selectors'
 import * as fromAuth from '../../../stores/auth/auth.selectors'
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';

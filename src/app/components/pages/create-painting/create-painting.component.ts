@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { PaintingState } from 'src/app/stores/painting/painting.state';
-import * as paintingActions from '../../../stores/painting/painting.actions'
+import { PaintingsState } from 'src/app/stores/paintings/paintings.state';
+import * as paintingActions from '../../../stores/paintings/paintings.actions'
 import { Painting, PaintingImage } from 'src/app/api/models';
 
 
@@ -13,15 +13,15 @@ import { Painting, PaintingImage } from 'src/app/api/models';
   styleUrls: ['./create-painting.component.scss']
 })
 export class CreatePaintingComponent implements OnInit {
-  paintingState$: Observable<PaintingState>;
+  paintingsState$: Observable<PaintingsState>;
   formSubmitted$: Observable<boolean>
   createPaintingForm: FormGroup;
   paintingImages: PaintingImage[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<{ painting: PaintingState }>,) {
-    this.paintingState$ = this.store.select('painting');
+    private store: Store<{ painting: PaintingsState }>,) {
+    this.paintingsState$ = this.store.select('painting');
     this.createPaintingForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],

@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
-import * as ExhibitionActions from './exhibition.actions';
+import * as ExhibitionActions from './exhibitions.actions';
 
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { Exhibition } from 'src/app/api/models';
 import { ExhibitionsService } from 'src/app/api/services/exhibitions.service';
 import { select, Store } from '@ngrx/store';
-import { selectAllExhibitions } from './exhibition.selectors';
+import { selectAllExhibitions } from './exhibitions.selectors';
 
 
 @Injectable()

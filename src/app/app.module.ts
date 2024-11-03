@@ -39,15 +39,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { contactReducer } from './stores/contact/contact.reducer';
 import { ContactEffects } from './stores/contact/contact.effects';
-import { paintingReducer } from './stores/painting/painting.reducers';
-import { PaintingEffects } from './stores/painting/painting.effects';
+import { paintingReducer } from './stores/paintings/paintings.reducers';
+import { PaintingEffects } from './stores/paintings/paintings.effects';
 import { SliceArrayPipe } from './shared/pipes/sliceArray.pipe';
 import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
 import { PortfolioCardComponent } from './components/common/portfolio-card/portfolio-card.component';
 import { SubscriptionEffects } from './stores/subscription/subscription.effects';
 import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
-import { ExhibitionEffects } from './stores/exhibition/exhibition.effects';
-import { exhibitionReducer } from './stores/exhibition/exhibition.reducer';
+import { ExhibitionEffects } from './stores/exhibitions/exhibitions.effects';
+import { exhibitionReducer } from './stores/exhibitions/exhibitions.reducer';
 import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
 import { ExhibitionCardComponent } from './components/common/exhibition-card/exhibition-card.component';
 import { ExhibitionDetailsComponent } from './components/pages/exhibition-details/exhibition-details.component';
@@ -98,8 +98,8 @@ import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit
     ({ 
       auth: authReducer,
       contact: contactReducer,
-      painting: paintingReducer,
-      exhibition: exhibitionReducer
+      paintings: paintingReducer,
+      exhibitions: exhibitionReducer
     }),
     StoreDevtoolsModule.instrument({
       name: 'Karpinski XY',

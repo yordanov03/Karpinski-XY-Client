@@ -1,15 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
-import * as PaintingActions from './painting.actions';
-import { initialState } from './painting.state';
+import * as PaintingActions from './paintings.actions';
+import { initialState } from './paintings.state';
 
 export const paintingReducer = createReducer(
   initialState,
   on(PaintingActions.createPainting, (state) => ({...state, loading: true,})),
-  on(PaintingActions.createPaintingSuccess, (state) => ({...state, loading: false,})),
+  on(PaintingActions.createPaintingSuccess, (state) => ({...state, loading: false, paintingsOnFocus:[], paintingsToSell:[], availablePaintings:[], portfolioPaintings:[]})),
   on(PaintingActions.createPaintingFailure, (state, { payload }) => ({...state, error: payload, loading: false})),
 
   on(PaintingActions.updatePainting, (state) => ({...state, loading: true, painting: state.painting })),
-  on(PaintingActions.updatePaintingSuccess, state => ({ ...state, error: null, paintingsToSell:[], availablePaintings:[], portfolioPaintings:[], painting: null  })),
+  on(PaintingActions.updatePaintingSuccess, state => ({ ...state, error: null, paintingsOnFocus:[], paintingsToSell:[], availablePaintings:[], portfolioPaintings:[], painting: null  })),
   on(PaintingActions.updatePaintingFailure, (state, { error }) => ({ ...state, error })),
 
   on(PaintingActions.loadPaintingToEdit, state => ({ ...state, loading: true, error: null })),

@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { Painting } from 'src/app/api/models';
 import Swal from 'sweetalert2';
 
-import * as PaintingActions from '../../../stores/painting/painting.actions'
-import * as fromPainting from '../../../stores/painting/painting.selectos'
+import * as PaintingActions from '../../../stores/paintings/paintings.actions'
+import * as fromPainting from '../../../stores/paintings/paintings.selectos'
 import * as fromAuth from '../../../stores/auth/auth.selectors'
 import { map, tap} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';

@@ -3,8 +3,8 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Exhibition, ExhibitionImage } from 'src/app/api/models';
-import * as exhibitionActions from '../../../stores/exhibition/exhibition.actions';
-import { ExhibitionState } from 'src/app/stores/exhibition/exhibition.state';
+import * as exhibitionActions from '../../../stores/exhibitions/exhibitions.actions';
+import { ExhibitionsState } from 'src/app/stores/exhibitions/exhibitions.state';
 
 @Component({
   selector: 'app-create-exhibition',
@@ -12,13 +12,13 @@ import { ExhibitionState } from 'src/app/stores/exhibition/exhibition.state';
   styleUrls: ['./create-exhibition.component.scss']
 })
 export class CreateExhibitionComponent implements OnInit {
-  exhibitionState$: Observable<ExhibitionState>;
+  exhibitionState$: Observable<ExhibitionsState>;
   createExhibitionForm: FormGroup;
   exhibitionImages: ExhibitionImage[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<{ exhibition: ExhibitionState }>) {
+    private store: Store<{ exhibition: ExhibitionsState }>) {
     this.exhibitionState$ = this.store.select('exhibition');
     this.createExhibitionForm = this.fb.group({
       title: ['', Validators.required],

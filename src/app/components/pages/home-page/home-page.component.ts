@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as PaintingActions from '../../../stores/painting/painting.actions'
-import * as fromPainting from '../../../stores/painting/painting.selectos'
-import * as ExhibitionActions from '../../../stores/exhibition/exhibition.actions'
-import * as fromExhibition from '../../../stores/exhibition/exhibition.selectors'
+import * as PaintingActions from '../../../stores/paintings/paintings.actions'
+import * as fromPainting from '../../../stores/paintings/paintings.selectos'
+import * as ExhibitionActions from '../../../stores/exhibitions/exhibitions.actions'
+import * as fromExhibition from '../../../stores/exhibitions/exhibitions.selectors'
 import { Exhibition, Painting } from 'src/app/api/models';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';

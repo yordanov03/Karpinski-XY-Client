@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Exhibition } from 'src/app/api/models';
-import * as ExhibitionActions from '../../../stores/exhibition/exhibition.actions'
-import * as fromExhibition from '../../../stores/exhibition/exhibition.selectors'
+import * as ExhibitionActions from '../../../stores/exhibitions/exhibitions.actions'
+import * as fromExhibition from '../../../stores/exhibitions/exhibitions.selectors'
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 

@@ -5,9 +5,9 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
 import { Exhibition, ExhibitionImage } from 'src/app/api/models';
-import { ExhibitionState } from 'src/app/stores/exhibition/exhibition.state';
-import * as exhibitionActions from '../../../stores/exhibition/exhibition.actions';
-import * as fromSelectors from '../../../stores/exhibition/exhibition.selectors';
+import { ExhibitionsState } from 'src/app/stores/exhibitions/exhibitions.state';
+import * as exhibitionActions from '../../../stores/exhibitions/exhibitions.actions';
+import * as fromSelectors from '../../../stores/exhibitions/exhibitions.selectors';
 
 @Component({
   selector: 'app-edit-exhibition',
@@ -15,14 +15,14 @@ import * as fromSelectors from '../../../stores/exhibition/exhibition.selectors'
   styleUrls: ['./edit-exhibition.component.scss']
 })
 export class EditExhibitionComponent implements OnInit {
-  exhibitionState$: Observable<ExhibitionState>;
+  exhibitionState$: Observable<ExhibitionsState>;
   private destroy$ = new Subject<void>();
   editExhibitionForm: FormGroup;
   exhibitionImages: ExhibitionImage[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<{ exhibition: ExhibitionState }>,
+    private store: Store<{ exhibition: ExhibitionsState }>,
     private route: ActivatedRoute) {
       this.exhibitionState$ = this.store.select('exhibition');
 
