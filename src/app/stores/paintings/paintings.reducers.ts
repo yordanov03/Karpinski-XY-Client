@@ -2,8 +2,9 @@ import { createReducer, on } from '@ngrx/store';
 import * as PaintingActions from './paintings.actions';
 import { initialState } from './paintings.state';
 
-export const paintingReducer = createReducer(
+export const paintingsReducer = createReducer(
   initialState,
+  
   on(PaintingActions.createPainting, (state) => ({...state, loading: true,})),
   on(PaintingActions.createPaintingSuccess, (state) => ({...state, loading: false, paintingsOnFocus:[], paintingsToSell:[], availablePaintings:[], portfolioPaintings:[]})),
   on(PaintingActions.createPaintingFailure, (state, { payload }) => ({...state, error: payload, loading: false})),

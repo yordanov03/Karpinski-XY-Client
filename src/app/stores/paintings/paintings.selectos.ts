@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { PaintingsState } from './paintings.state';
 
-export const selectPaintingsState = createFeatureSelector<PaintingsState>('painting');
+export const selectPaintingsState = createFeatureSelector<PaintingsState>('paintings');
 
 
 export const selectLoading = createSelector(

@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import * as ExhibitionActions from './exhibitions.actions';
 import { initialState } from './exhibitions.state';
 
-export const exhibitionReducer = createReducer(
+export const exhibitionsReducer = createReducer(
   initialState,
   
   on(ExhibitionActions.loadExhibitions, state => ({ ...state })),

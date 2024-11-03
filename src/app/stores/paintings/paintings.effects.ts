@@ -11,7 +11,7 @@ import { select, Store } from '@ngrx/store';
 import { selectAvailablePaintings, selectPaintingsToSell, selectPortfolioPaintings } from './paintings.selectos';
 
 @Injectable()
-export class PaintingEffects {
+export class PaintingsEffects {
   constructor(private actions$: Actions, 
     private paintingService: PaintingsService,
     private router: Router,
@@ -69,7 +69,7 @@ export class PaintingEffects {
             text: 'Painting updated'
           });
           setTimeout(() => {
-            this.router.navigate(["/paintings"])
+            this.router.navigate(["/"])
           }, 3000);
         }),
         map(() => PaintingActions.updatePaintingSuccess()),

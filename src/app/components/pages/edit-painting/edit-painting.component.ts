@@ -67,6 +67,8 @@ export class EditPaintingComponent implements OnInit {
 
         // Load images
         this.paintingImages = painting.paintingImages.map(img => ({
+          id: img?.id,
+          entityId: img?.entityId,
           file: img.file,
           imagePath: img.imagePath,
           isMainImage: img.isMainImage,
@@ -99,6 +101,8 @@ export class EditPaintingComponent implements OnInit {
     const formValue = this.editPaintingForm.getRawValue();
     formValue.paintingImages = this.paintingImages.map(image => {
       return {
+        id: image.imagePath!==null? image.id : null,
+        entityId: image.entityId,
         file: image.file,
         isMainImage: image.isMainImage==null? false: image.isMainImage,
         imagePath: image.imagePath!==null? image.imagePath : null,
@@ -124,6 +128,7 @@ export class EditPaintingComponent implements OnInit {
       reader.onload = (e: any) => {
         const base64String = e.target.result.split(',')[1];
         const image: PaintingImage = {
+
           file: base64String,
           imagePath: '',
           isMainImage: null,

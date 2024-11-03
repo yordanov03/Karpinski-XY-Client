@@ -13,7 +13,7 @@ import { selectAllExhibitions } from './exhibitions.selectors';
 
 
 @Injectable()
-export class ExhibitionEffects {
+export class ExhibitionsEffects {
   constructor(
     private actions$: Actions,
     private exhibitionsService: ExhibitionsService,

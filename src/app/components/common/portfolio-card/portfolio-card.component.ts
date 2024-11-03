@@ -30,7 +30,7 @@ export class PortfolioCardComponent implements OnInit {
     this.portfolioPaintings$ = this.store.select(fromPainting.selectPortfolioPaintings)
     this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
     
-    new Masonry(this.masonryGrid.nativeElement, {});
+    new Masonry(this.masonryGrid?.nativeElement, {});
   }
 
   onDeleteClick(event: Event, id) {
