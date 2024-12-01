@@ -14,17 +14,21 @@ import { Observable } from 'rxjs';
 export class ContactComponent implements OnInit {
 contactForm: FormGroup;
 isSubmitted$: Observable<boolean>;
+formLoadTime!: number;
 
   constructor(private formBuilder: FormBuilder,
   private store: Store) { }
 
   ngOnInit(): void {
+    this.formLoadTime = Date.now();
+
     this.contactForm = this.formBuilder.group({
       name:['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: [''],
       subject:[''],
-      content:['', [Validators.required, Validators.minLength(10)]]
+      content:['', [Validators.required, Validators.minLength(10)]],
+      honeypot: ['']
     })
 
     this.isSubmitted$ = this.store.select(fromSelectors.selectIsSubmitted)
@@ -38,11 +42,15 @@ isSubmitted$: Observable<boolean>;
   }
 
   onSubmitForm(){
-    if (this.contactForm.invalid) {
+    const submissionTime = Date.now();
+    const timeDifference = submissionTime - this.formLoadTime;
+
+    if (this.contactForm.invalid || this.contactForm.value.honeypot || timeDifference < 2000) {
+      console.error('Bot detected or invalid form!');
       return;
     }
 
-    this.store.dispatch(ContactActions.submitContactForm( {payload: this.contactForm.value}));
+    this.store.dispatch(ContactActions.submitContactForm({payload: this.contactForm.value}));
     this.contactForm.reset();
   }
 
@@ -60,5 +68,8 @@ isSubmitted$: Observable<boolean>;
   }
   get content(){
     return this.contactForm.get('content')
+  }
+  get honeypot(){
+    return this.contactForm.get('honeypot')
   }
 }

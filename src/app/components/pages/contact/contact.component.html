@@ -62,6 +62,12 @@
                             </div>
                          </div>
 
+                         <!-- HoneyPot -->
+                         <input type="text" name="honeypot" formControlName="honeypot" style="display:none;">
+                         <div *ngIf="honeypot?.value" class="alert alert-danger">
+                           Form submission invalid.
+                         </div>
+
                          <div class="col-lg-12 col-md-12">
                             <div class="form-group">
                                 <textarea name="content" class="form-control" id="content" cols="30" rows="8" 
