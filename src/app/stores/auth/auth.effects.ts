@@ -21,19 +21,20 @@ export class AuthEffects {
   login$ = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.login),
     mergeMap(action =>
-      this.identityService.login({body: action.payload}).pipe(
+      this.identityService.login({ body: action.payload }).pipe(
         tap(user => {
-          // Handle the success case
-          this.jwtService.setToken(user.token);
+          // Store token and username in JwtService
+          this.jwtService.setToken(user.token, user.username, 3600);
+          
+          // Display success message and redirect
           popoverMessage().fire({
             icon: 'success',
-            text: 'Hello, my love'
+            text: `Hello, ${user.username}`
           });
           setTimeout(() => this.router.navigate(['']), 3000);
         }),
         map(user => AuthActions.loginSuccess({ user })),
         catchError(error => {
-          // Handle the error case
           popoverMessage().fire({
             icon: 'error',
             text: 'Could not log you in'
@@ -42,8 +43,7 @@ export class AuthEffects {
         })
       )
     )
-  ));
-
+));
 
   logout$ = createEffect(() =>
   this.actions$.pipe(

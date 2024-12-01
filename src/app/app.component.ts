@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart, NavigationCancel, NavigationEnd } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import * as AuthActions from './stores/auth/auth.actions';
+import { JwtService } from './shared/services/jwt.service';
 declare let $: any;
 
 @Component({
@@ -19,11 +22,22 @@ export class AppComponent implements OnInit {
     location: any;
     routerSubscription: any;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private store: Store, private jwtService: JwtService) {
     }
 
     ngOnInit(){
         this.recallJsFuntions();
+
+        if (this.jwtService.isTokenValid()) {
+          const token = this.jwtService.getToken();
+          const username = this.jwtService.getUsername();
+      
+          if (token && username) {
+            this.store.dispatch(AuthActions.loginSuccess({ user: { token, username } }));
+          }
+        } else {
+          this.jwtService.clearToken(); // Clear expired token
+        }
     }
 
     recallJsFuntions() {
