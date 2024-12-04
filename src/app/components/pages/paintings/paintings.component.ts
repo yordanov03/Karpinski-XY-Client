@@ -37,7 +37,6 @@ export class PaintingsComponent implements OnInit {
       );
      }
 
-
   ngOnInit(): void {
     this.paginatedPaintings$ = this.paintingsToSell$.pipe(
       map(paintings => {
@@ -46,8 +45,6 @@ export class PaintingsComponent implements OnInit {
       })
     );
     this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
-
-
 }
 
   onDeleteClick(id) {
@@ -81,7 +78,6 @@ export class PaintingsComponent implements OnInit {
     this.currentPage = page;
     this.ngOnInit();
   }
-
 }
 
 

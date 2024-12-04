@@ -90,7 +90,7 @@ export class PaintingsEffects {
     switchMap((action) =>
       this.paintingService.delete({ id: action.id }).pipe(
         tap(() => {
-          this.router.navigate(["/paintings"])
+          this.router.navigateByUrl(this.router.url);
           popoverMessage().fire({
             icon: 'success',
             text: 'Painting deleted successfully'
