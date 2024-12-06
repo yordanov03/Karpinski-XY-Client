@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PaintingsDetailsComponent implements OnInit {
 painting$: Observable<Painting>;
+painting: Painting;
 currentUrl: string;
 activeTab = 'additionalInfo';
 
@@ -36,6 +37,11 @@ apiUrl: string = environment.apiUrl;
       if (id) {
         this.store.dispatch(PaintingActions.loadPainting({ id: id }));
         this.painting$ = this.store.select(selectPainting);
+        this.painting$.subscribe(painting => {
+          if (painting) {
+              this.painting = painting;
+          }
+      });
       }
     });
   }
@@ -62,9 +68,36 @@ apiUrl: string = environment.apiUrl;
   openFullSizeImage(imageUrl: string): void {
     this.fullSizeImageUrl = imageUrl;
     this.showFullSizeImage = true;
+    window.addEventListener('keydown', this.handleKeyboardEvent);
   }
 
   closeFullSizeImage(): void {
     this.showFullSizeImage = false;
+    window.removeEventListener('keydown', this.handleKeyboardEvent);
   }
+
+  navigateFullSizeImage(direction: 'prev' | 'next'): void {
+    const paintingImages = this.painting?.paintingImages || [];
+    if (!paintingImages.length) return;
+
+    const currentIndex = paintingImages.findIndex(img => img.imagePath === this.fullSizeImageUrl);
+    let newIndex;
+    if (direction === 'prev') {
+        newIndex = (currentIndex - 1 + paintingImages.length) % paintingImages.length;
+    } else {
+        newIndex = (currentIndex + 1) % paintingImages.length;
+    }
+    this.fullSizeImageUrl = paintingImages[newIndex].imagePath;
+}
+
+handleKeyboardEvent = (event: KeyboardEvent): void => {
+  if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.navigateFullSizeImage('prev');
+  } else if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.navigateFullSizeImage('next');
+  }
+};
+
 }
