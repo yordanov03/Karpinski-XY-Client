@@ -7,6 +7,7 @@ import * as ExhibitionActions from '../../../stores/exhibitions/exhibitions.acti
 import * as fromExhibition from '../../../stores/exhibitions/exhibitions.selectors'
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-exhibition-details',
@@ -16,8 +17,11 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class ExhibitionDetailsComponent implements OnInit {
 
   exhibition$: Observable<Exhibition>;
+  exhibition: Exhibition;
   currentUrl: string;
   selectedImage: string;
+  showFullSizeImage: boolean = false;
+  fullSizeImageUrl: string;
   apiUrl: string = environment.apiUrl;
 
   constructor(private store: Store,
@@ -32,18 +36,61 @@ export class ExhibitionDetailsComponent implements OnInit {
       if (id) {
         this.store.dispatch(ExhibitionActions.getExhibition({ id: id }));
         this.exhibition$ = this.store.select(fromExhibition.selectExhibition);
-      }
-    });
-    this.exhibition$.subscribe(exhibition => {
-      if (exhibition && exhibition.exhibitionImages.length > 0) {
-        this.selectedImage = exhibition.exhibitionImages[0].imagePath;
+        this.exhibition$.subscribe(exhibition => {
+          if (exhibition) {
+              this.exhibition = exhibition;
+          }
+      });
       }
     });
   }
   
-  selectImage(imageUrl: string): void {
-    this.selectedImage = imageUrl;
+  selectImage(index: number): void {
+    const carouselElement = document.querySelector('#carouselExampleIndicators');
+
+    if (carouselElement) {
+      let bsCarousel = bootstrap.Carousel.getInstance(carouselElement);
+      if (!bsCarousel) {
+        bsCarousel = new bootstrap.Carousel(carouselElement);
+      }
+      bsCarousel.to(index);
+    }
   }
+
+  openFullSizeImage(imageUrl: string): void {
+    this.fullSizeImageUrl = imageUrl;
+    this.showFullSizeImage = true;
+    window.addEventListener('keydown', this.handleKeyboardEvent);
+  }
+
+  closeFullSizeImage(): void {
+    this.showFullSizeImage = false;
+    window.removeEventListener('keydown', this.handleKeyboardEvent);
+  }
+
+  navigateFullSizeImage(direction: 'prev' | 'next'): void {
+    const paintingImages = this.exhibition?.exhibitionImages || [];
+    if (!paintingImages.length) return;
+
+    const currentIndex = paintingImages.findIndex(img => img.imagePath === this.fullSizeImageUrl);
+    let newIndex;
+    if (direction === 'prev') {
+        newIndex = (currentIndex - 1 + paintingImages.length) % paintingImages.length;
+    } else {
+        newIndex = (currentIndex + 1) % paintingImages.length;
+    }
+    this.fullSizeImageUrl = paintingImages[newIndex].imagePath;
+}
+
+handleKeyboardEvent = (event: KeyboardEvent): void => {
+  if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.navigateFullSizeImage('prev');
+  } else if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.navigateFullSizeImage('next');
+  }
+};
 
   getFormattedDescription(description: string): SafeHtml {
     // Replace newlines with <br> tags and sanitize the HTML content

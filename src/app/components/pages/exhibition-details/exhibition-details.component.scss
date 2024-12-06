@@ -1,32 +1,183 @@
-.main-image-display img {
-    width: 100%; /* Full width of the container */
-    object-fit: contain; /* Ensures the whole image fits, might leave empty space */
-    max-height: 500px; /* Maximum height for the image */
-    margin-bottom: 20px; /* Space between the main image and thumbnails */
+.carousel {
+    display: flex;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    filter: invert(100%);
+    z-index: 2;
+    width: 5%;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev {
+    left: -30px;
+}
+
+.carousel-control-next {
+    right: -30px;
+}
+
+.carousel-item,
+.carousel-item img {
+    height: 500px;
+    object-fit: scale-down;
+}
+
+.carousel-item img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.carousel-indicators li {
+    background-color: #999;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    list-style-type: none;
+}
+
+.carousel-indicators .active {
+    background-color: #333;
 }
 
 .carousel-thumbnails {
     display: flex;
-    justify-content: center; /* Center thumbnails horizontally */
-    flex-wrap: wrap; /* Allow thumbnails to wrap to the next line */
-    gap: 5px; /* Spacing between thumbnails */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
     margin-top: 10px;
     overflow-x: auto;
 }
 
-/* Style for the thumbnail images */
-.carousel-thumbnails img.img-thumbnail {
-    width: 100px; /* Fixed width for thumbnails */
-    height: 60px; /* Fixed height for thumbnails */
-    object-fit: contain; /* Ensure entire image is visible */
-    cursor: pointer; /* Change cursor to indicate clickable */
-    opacity: 0.6; /* Slightly transparent to indicate inactive */
-    transition: opacity 0.3s ease; /* Smooth transition for hover effect */
-    background-color: #f0f0f0;
+.img-thumbnail {
+    width: 100px;
+    height: 60px;
+    object-fit: contain;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    background-color: #f0f0f0; ;
+  }
+
+  .img-thumbnail.active,
+  .img-thumbnail:hover {
+    opacity: 1;
+}    
+
+.centered-btn {
+    display: block; 
+    margin-top: 20px;     
+    margin-bottom: 20px;  
+    margin-left: auto;    
+    margin-right: auto;   
 }
 
-/* Style for the active or hovered thumbnail */
-.carousel-thumbnails img.img-thumbnail.active,
-.carousel-thumbnails img.img-thumbnail:hover {
-    opacity: 1; /* Fully opaque to indicate active or hovered */
+.product-detls-tab {
+  .nav-tabs {
+    cursor: pointer;
+    border: black;
+    .nav-item {
+      .nav-link {
+        &.tab-background {
+          background-color: #f0f0f0; 
+          color: #333333;
+          transition: background-color 0.3s ease, color 0.3s ease; // Smooth transition for color and background
+
+          &:hover {
+            background-color: #e0e0e0; // Slightly darker background on hover
+          }
+
+          &.active {
+            color: #f0f0f0;
+            background-color: #3cd1ff; // Background color for active tab
+            transition: background-color 0.3s ease, color 0.3s ease; // Ensure the transition applies to the active state as well
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    .tab-pane {
+      transition: opacity 0.3s ease; // Fade effect for tab content
+      opacity: 0; // Start with content hidden
+      &.active {
+        opacity: 1; // Fully visible when active
+      }
+    }
+  }
 }
+
+
+.full-size-image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.full-size-image-modal img {
+  max-height: 80%;
+  max-width: 100%;
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem; /* Large arrow size */
+    color: white;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1001; /* Above the image */
+    transition: background 0.3s ease;
+}
+
+.prev-button {
+    left: 5%; /* Position on the left */
+}
+
+.next-button {
+    right: 5%; /* Position on the right */
+}
+
+.prev-button:hover,
+.next-button:hover {
+    background: rgba(255, 255, 255, 0.8); /* Brighter hover effect */
+    color: black; /* Change arrow color on hover */
+}
+
+
+  
+  
+  
