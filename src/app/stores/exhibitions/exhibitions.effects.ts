@@ -51,23 +51,18 @@ export class ExhibitionsEffects {
   loadExhibitions$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ExhibitionActions.loadExhibitions), // Trigger on loadExhibitions action
-      withLatestFrom(this.store.pipe(select(selectAllExhibitions))), // Combine with the current state of exhibitions
-      switchMap(([action, exhibitions]) => {
-        if (exhibitions.length === 0) { // Only fetch from the backend if there are no exhibitions in the state
-          return this.exhibitionsService.getAllExhibitions().pipe(
-            map(exhibitions => 
-              ExhibitionActions.loadExhibitionsSuccess({ exhibitions }) // Dispatch success action with fetched exhibitions
-            ),
-            catchError(error => 
-              of(ExhibitionActions.loadExhibitionsFailure({ error })) // Dispatch failure action if API call fails
-            )
-          );
-        } else {
-          return EMPTY; // Do nothing if exhibitions are already in the state
-        }
-      })
+      switchMap(() =>
+        this.exhibitionsService.getAllExhibitions().pipe(
+          map(exhibitions => 
+            ExhibitionActions.loadExhibitionsSuccess({ exhibitions }) // Dispatch success action with fetched exhibitions
+          ),
+          catchError(error => 
+            of(ExhibitionActions.loadExhibitionsFailure({ error })) // Dispatch failure action if API call fails
+          )
+        )
+      )
     )
-  );
+  );  
   
   deleteExhibition$ = createEffect(() =>
     this.actions$.pipe(
