@@ -48,7 +48,7 @@ import { SubscriptionEffects } from './stores/subscription/subscription.effects'
 import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
 import { ExhibitionsEffects } from './stores/exhibitions/exhibitions.effects';
 import { exhibitionsReducer } from './stores/exhibitions/exhibitions.reducer';
-import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
+import { ExhibtionComponent } from './components/pages/exhibtions/exhibtions.component';
 import { ExhibitionCardComponent } from './components/common/exhibition-card/exhibition-card.component';
 import { ExhibitionDetailsComponent } from './components/pages/exhibition-details/exhibition-details.component';
 import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit-exhibition.component';

@@ -21,7 +21,7 @@ import { CreatePaintingComponent } from './components/pages/create-painting/crea
 import { EditPaintingComponent } from './components/pages/edit-painting/edit-painting.component';
 import { PortfolioComponent } from './components/pages/portfolio/portfolio.component';
 import { CreateExhibitionComponent } from './components/pages/create-exhibition/create-exhibition.component';
-import { ExhibtionComponent } from './components/pages/exhibtion/exhibtion.component';
+import { ExhibtionComponent } from './components/pages/exhibtions/exhibtions.component';
 import { ExhibitionDetailsComponent } from './components/pages/exhibition-details/exhibition-details.component';
 import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit-exhibition.component';
 
