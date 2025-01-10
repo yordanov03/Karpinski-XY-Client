@@ -44,52 +44,61 @@ export class EditExhibitionComponent implements OnInit {
     if (id) {
       this.store.dispatch(exhibitionActions.getExhibitionToEdit({ id }));
     }
-
+  
+    // Wait for the correct exhibition data
     this.store.select(fromSelectors.selectExhibition)
       .pipe(
-        filter(exhibition => exhibition !== null),
-        take(1))
+        filter(exhibition => exhibition !== null && exhibition.id === id), // Ensure correct exhibition
+        take(1)
+      )
       .subscribe(exhibition => {
         if (exhibition) {
-          this.exhibitionImages = [];
-          while (this.exhibitionImagesFormArray.length !== 0) {
-            this.exhibitionImagesFormArray.removeAt(0);
-          }
-
-          this.editExhibitionForm.patchValue({
-            id: exhibition.id,
-            title: exhibition.title,
-            startDate: this.formatDate(exhibition.startDate),
-            endDate: this.formatDate(exhibition.endDate),
-            location: exhibition.location,
-            longDescription: exhibition.longDescription,
-            organizer: exhibition.organizer,
-            link: exhibition.link
-          });
-
-          // this.exhibitionImages = exhibition.exhibitionImages;
-          // this.updateImagesFormArray();
-          // Load images
-        this.exhibitionImages = exhibition.exhibitionImages.map(img => ({
-          file: img.file,
-          imagePath: img.imagePath,
-          isMainImage: img.isMainImage,
-          fileName: img.fileName
-        }));
-        this.exhibitionImages.forEach(image => this.addImageFormGroup(image));
-      } 
+          this.populateForm(exhibition);
+        }
       });
-
-      this.exhibitionImagesFormArray.valueChanges.subscribe((images) => {
+  
+    // Track changes in image form array
+    this.exhibitionImagesFormArray.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((images) => {
         images.forEach((image, index) => {
           this.exhibitionImages[index].isMainImage = image.isMainImage;
         });
       });
   }
-
+  
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+  
+  private populateForm(exhibition: Exhibition): void {
+    // Reset images
+    this.exhibitionImages = [];
+    while (this.exhibitionImagesFormArray.length !== 0) {
+      this.exhibitionImagesFormArray.removeAt(0);
+    }
+  
+    // Populate form
+    this.editExhibitionForm.patchValue({
+      id: exhibition.id,
+      title: exhibition.title,
+      startDate: this.formatDate(exhibition.startDate),
+      endDate: this.formatDate(exhibition.endDate),
+      location: exhibition.location,
+      longDescription: exhibition.longDescription,
+      organizer: exhibition.organizer,
+      link: exhibition.link
+    });
+  
+    // Populate images
+    this.exhibitionImages = exhibition.exhibitionImages.map(img => ({
+      file: img.file,
+      imagePath: img.imagePath,
+      isMainImage: img.isMainImage,
+      fileName: img.fileName
+    }));
+    this.exhibitionImages.forEach(image => this.addImageFormGroup(image));
   }
 
   get exhibitionImagesFormArray() {

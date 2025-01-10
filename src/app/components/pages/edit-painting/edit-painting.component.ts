@@ -42,41 +42,22 @@ export class EditPaintingComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.store.dispatch(paintingActions.loadPaintingToEdit({ id }))
+      this.store.dispatch(paintingActions.loadPaintingToEdit({ id }));
     }
-
+  
+    // Wait for the correct painting data
     this.store.select(fromSelectors.selectPainting)
       .pipe(
-        filter(painting => painting !== null),
-        take(1))
+        filter(painting => painting !== null && painting.id === id), // Ensure the correct painting is loaded
+        take(1)
+      )
       .subscribe(painting => {
         if (painting) {
-          this.editPaintingForm.patchValue({
-            id: painting.id,
-            name: painting.name,
-            description: painting.description,
-            price: painting.price,
-            dimensions: painting.dimensions,
-            isAvailableToSell: painting.isAvailableToSell,
-            year: painting.year,
-            technique: painting.technique,
-            isOnFocus: painting.isOnFocus,
-            isAvailableForSale: painting.isAvailableToSell
-          });
-
-          // Load images
-          this.paintingImages = painting.paintingImages.map(img => ({
-            id: img?.id,
-            entityId: img?.entityId,
-            file: img.file,
-            imagePath: img.imagePath,
-            isMainImage: img.isMainImage,
-            fileName: img.fileName
-          }));
-          this.paintingImages.forEach(image => this.addImageFormGroup(image));
+          this.populateForm(painting);
         }
       });
-
+  
+    // Keep track of image changes
     this.paintingImagesFormArray.valueChanges.subscribe((images) => {
       images.forEach((image, index) => {
         this.paintingImages[index].isMainImage = image.isMainImage;
@@ -84,6 +65,33 @@ export class EditPaintingComponent implements OnInit {
     });
   }
 
+  private populateForm(painting: Painting): void {
+    this.editPaintingForm.patchValue({
+      id: painting.id,
+      name: painting.name,
+      description: painting.description,
+      price: painting.price,
+      dimensions: painting.dimensions,
+      isAvailableToSell: painting.isAvailableToSell,
+      year: painting.year,
+      technique: painting.technique,
+      isOnFocus: painting.isOnFocus,
+      isAvailableForSale: painting.isAvailableToSell
+    });
+  
+    // Populate painting images
+    this.paintingImages = painting.paintingImages.map(img => ({
+      id: img?.id,
+      entityId: img?.entityId,
+      file: img.file,
+      imagePath: img.imagePath,
+      isMainImage: img.isMainImage,
+      fileName: img.fileName
+    }));
+  
+    this.paintingImages.forEach(image => this.addImageFormGroup(image));
+  }
+  
   get paintingImagesFormArray() {
     return (this.editPaintingForm?.get('paintingImages') as FormArray);
   }
