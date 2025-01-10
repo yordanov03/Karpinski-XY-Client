@@ -854,7 +854,6 @@ About Area Style
 .about-content {
     margin: {
         left: 40px;
-        top: 187px;
         bottom: 30px;
     };
     span {
@@ -1021,6 +1020,9 @@ Service Area Style
 
             h3 {
                 font-size: 24px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap; /* Ensure text does not wrap */
             }
         }
         p {
@@ -1518,6 +1520,9 @@ Blog Area CSS
     }
     .blog-content {
         padding: 25px 20px;
+        word-wrap: break-word; /* Handle long text overflow gracefully */
+        max-width: 100%; /* Ensure it fits within the card */
+        display: block; /* Ensure it spans the card width */
 
         a {
             display: block;
@@ -1525,6 +1530,9 @@ Blog Area CSS
             h3 {
                 font-size: 23px;
                 transition: 0.7s;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
         }
         .blog-admin {
@@ -1533,7 +1541,8 @@ Blog Area CSS
             padding: 0;
 
             li {
-                display: inline-block;
+                display: flex; /* Use flexbox for proper alignment */
+                align-items: center; /* Align icon and text vertically */
                 color: $main-color;
                 font-weight: 500;
                 margin-right: 15px;
@@ -1543,6 +1552,9 @@ Blog Area CSS
                 }
                 a {
                     color: $main-color;
+                    text-overflow: ellipsis; /* Truncate text */
+                    overflow: hidden;
+                    white-space: nowrap; /* Prevent text from wrapping */
 
                     i {
                         margin-right: 5px;

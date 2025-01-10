@@ -22,11 +22,10 @@ export class EditPaintingComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store<{ painting: PaintingsState }>,
-    private route: ActivatedRoute) 
-    {
+    private route: ActivatedRoute) {
     this.paintingsState$ = this.store.select('painting');
     this.editPaintingForm = this.fb.group({
-      id:[''],
+      id: [''],
       name: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
@@ -47,42 +46,42 @@ export class EditPaintingComponent implements OnInit {
     }
 
     this.store.select(fromSelectors.selectPainting)
-    .pipe(
-      filter(painting => painting !== null),
-      take(1))
-    .subscribe(painting => {
-      if (painting) {
-        this.editPaintingForm.patchValue({
-          id: painting.id,
-          name: painting.name,
-          description: painting.description,
-          price: painting.price,
-          dimensions: painting.dimensions,
-          isAvailableToSell: painting.isAvailableToSell,
-          year: painting.year,
-          technique: painting.technique,
-          isOnFocus: painting.isOnFocus,
-          isAvailableForSale: painting.isAvailableToSell
-        });
+      .pipe(
+        filter(painting => painting !== null),
+        take(1))
+      .subscribe(painting => {
+        if (painting) {
+          this.editPaintingForm.patchValue({
+            id: painting.id,
+            name: painting.name,
+            description: painting.description,
+            price: painting.price,
+            dimensions: painting.dimensions,
+            isAvailableToSell: painting.isAvailableToSell,
+            year: painting.year,
+            technique: painting.technique,
+            isOnFocus: painting.isOnFocus,
+            isAvailableForSale: painting.isAvailableToSell
+          });
 
-        // Load images
-        this.paintingImages = painting.paintingImages.map(img => ({
-          id: img?.id,
-          entityId: img?.entityId,
-          file: img.file,
-          imagePath: img.imagePath,
-          isMainImage: img.isMainImage,
-          fileName: img.fileName
-        }));
-        this.paintingImages.forEach(image => this.addImageFormGroup(image));
-      }
-    });
+          // Load images
+          this.paintingImages = painting.paintingImages.map(img => ({
+            id: img?.id,
+            entityId: img?.entityId,
+            file: img.file,
+            imagePath: img.imagePath,
+            isMainImage: img.isMainImage,
+            fileName: img.fileName
+          }));
+          this.paintingImages.forEach(image => this.addImageFormGroup(image));
+        }
+      });
 
-  this.paintingImagesFormArray.valueChanges.subscribe((images) => {
-    images.forEach((image, index) => {
-      this.paintingImages[index].isMainImage = image.isMainImage;
+    this.paintingImagesFormArray.valueChanges.subscribe((images) => {
+      images.forEach((image, index) => {
+        this.paintingImages[index].isMainImage = image.isMainImage;
+      });
     });
-  });
   }
 
   get paintingImagesFormArray() {
@@ -101,11 +100,11 @@ export class EditPaintingComponent implements OnInit {
     const formValue = this.editPaintingForm.getRawValue();
     formValue.paintingImages = this.paintingImages.map(image => {
       return {
-        id: image.imagePath!==null? image.id : null,
+        id: image.imagePath !== null ? image.id : null,
         entityId: image.entityId,
         file: image.file,
-        isMainImage: image.isMainImage==null? false: image.isMainImage,
-        imagePath: image.imagePath!==null? image.imagePath : null,
+        isMainImage: image.isMainImage == null ? false : image.isMainImage,
+        imagePath: image.imagePath !== null ? image.imagePath : null,
         fileName: image.fileName
       };
     });
@@ -145,7 +144,7 @@ export class EditPaintingComponent implements OnInit {
     if (index >= 0 && index < this.paintingImages.length) {
       // Remove the image from the images array
       this.paintingImages.splice(index, 1);
-  
+
       // Remove the FormGroup for the image from the FormArray
       this.paintingImagesFormArray.removeAt(index);
       this.updateImagesFormArray();
@@ -157,7 +156,7 @@ export class EditPaintingComponent implements OnInit {
     while (this.paintingImagesFormArray.length !== 0) {
       this.paintingImagesFormArray.removeAt(0);
     }
-  
+
     // Repopulate the FormArray with FormGroup instances based on the current images array.
     this.paintingImages.forEach(image => this.addImageFormGroup(image));
   }
