@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart, NavigationCancel, NavigationEnd } from '@angular/router';
+import { Router, NavigationStart, NavigationCancel, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import * as AuthActions from './stores/auth/auth.actions';
 import { JwtService } from './shared/services/jwt.service';
+import { MetaService } from './shared/services/meta.service';
 declare let $: any;
 
 @Component({
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
     location: any;
     routerSubscription: any;
 
-    constructor(private router: Router, private store: Store, private jwtService: JwtService) {
+    constructor(private router: Router, private store: Store, private jwtService: JwtService, private metaService: MetaService, private route: ActivatedRoute) {
     }
 
     ngOnInit(){
@@ -57,6 +58,23 @@ export class AppComponent implements OnInit {
                 return;
             }
             window.scrollTo(0, 0);
+        });
+
+        this.router.events
+        .pipe(
+          filter((event) => event instanceof NavigationEnd), // Listen for navigation events
+          map(() => {
+            let child = this.route.firstChild;
+            while (child?.firstChild) {
+              child = child.firstChild;
+            }
+            return child?.snapshot.data; // Extract meta data from route
+          })
+        )
+        .subscribe((data) => {
+          if (data) {
+            this.metaService.updateMetaTags(data); // Update meta tags
+          }
         });
     }
 }

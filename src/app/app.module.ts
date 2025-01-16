@@ -21,10 +21,7 @@ import { TermsConditionsComponent } from './components/pages/terms-conditions/te
 import { PrivacyPolicyComponent } from './components/pages/privacy-policy/privacy-policy.component';
 import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.component';
 import { PaintingsComponent } from './components/pages/paintings/paintings.component';
-import { ServicesDetailsComponent } from './components/pages/services-details/services-details.component';
 import { ControlPanelComponent } from './components/pages/control-panel/control-panel.component';
-import { CartComponent } from './components/pages/cart/cart.component';
-import { CheckoutComponent } from './components/pages/checkout/checkout.component';
 import { PaintingsDetailsComponent } from './components/pages/paintings-details/paintings-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CreatePaintingComponent } from './components/pages/create-painting/create-painting.component';
@@ -70,10 +67,7 @@ import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit
     PrivacyPolicyComponent,
     ComingSoonComponent,
     PaintingsComponent,
-    ServicesDetailsComponent,
     ControlPanelComponent,
-    CartComponent,
-    CheckoutComponent,
     PaintingsDetailsComponent,
     ContactComponent,
     CreatePaintingComponent,

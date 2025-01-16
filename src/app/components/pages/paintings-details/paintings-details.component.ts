@@ -8,6 +8,7 @@ import { selectPainting } from 'src/app/stores/paintings/paintings.selectos';
 import * as PaintingActions from '../../../stores/paintings/paintings.actions'
 import * as bootstrap from 'bootstrap';
 import { environment } from 'src/environments/environment';
+import { MetaService } from 'src/app/shared/services/meta.service';
 
 
 @Component({
@@ -25,26 +26,42 @@ showFullSizeImage: boolean = false;
 fullSizeImageUrl: string;
 apiUrl: string = environment.apiUrl;
 
-  constructor(private store: Store,
-    private route: ActivatedRoute) {
+  constructor(private store: Store, private route: ActivatedRoute, private metaService: MetaService) {
   }
 
   ngOnInit(): void {
-    this.currentUrl = window.location.href
-
+    this.currentUrl = window.location.href;
+  
+    // Subscribe to route parameters
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
+        // Dispatch action to load painting
         this.store.dispatch(PaintingActions.loadPainting({ id: id }));
         this.painting$ = this.store.select(selectPainting);
+  
+        // Subscribe to the painting observable
         this.painting$.subscribe(painting => {
           if (painting) {
-              this.painting = painting;
+            this.painting = painting;
+  
+            // Metadata Configuration
+            const metaConfig = this.route.snapshot.data['metaConfig'] || {};
+  
+            // Fallback logic for ogImage
+            const ogImage = metaConfig.ogImage || (painting.paintingImages?.[0]?.imagePath 
+              ? `${environment.apiUrl}${painting.paintingImages[0].imagePath}` 
+              : `${environment.apiUrl}/assets/img/default.jpg`);
+  
+            // Update metadata
+            this.metaService.updateMetaTags({ property: 'og:image', content: ogImage });
+            this.metaService.updateMetaTags({ property: 'og:url', content: this.currentUrl });
           }
-      });
+        });
       }
     });
   }
+  
   selectImage(index: number): void {
     const carouselElement = document.querySelector('#carouselExampleIndicators');
 

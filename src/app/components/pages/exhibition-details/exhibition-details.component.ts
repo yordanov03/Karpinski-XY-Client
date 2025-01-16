@@ -8,6 +8,7 @@ import * as fromExhibition from '../../../stores/exhibitions/exhibitions.selecto
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import * as bootstrap from 'bootstrap';
+import { MetaService } from 'src/app/shared/services/meta.service';
 
 @Component({
   selector: 'app-exhibition-details',
@@ -26,24 +27,38 @@ export class ExhibitionDetailsComponent implements OnInit {
 
   constructor(private store: Store,
     private route: ActivatedRoute,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer,
+    private metaService: MetaService) { }
 
-  ngOnInit(): void {
-    this.currentUrl = window.location.href
-
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
-      if (id) {
-        this.store.dispatch(ExhibitionActions.getExhibition({ id: id }));
-        this.exhibition$ = this.store.select(fromExhibition.selectExhibition);
-        this.exhibition$.subscribe(exhibition => {
-          if (exhibition) {
+    ngOnInit(): void {
+      this.currentUrl = window.location.href;
+    
+      this.route.paramMap.subscribe(params => {
+        const id = params.get('id');
+        if (id) {
+          // Dispatch action to load the exhibition
+          this.store.dispatch(ExhibitionActions.getExhibition({ id }));
+          this.exhibition$ = this.store.select(fromExhibition.selectExhibition);
+    
+          // Subscribe to the exhibition observable
+          this.exhibition$.subscribe(exhibition => {
+            if (exhibition) {
               this.exhibition = exhibition;
-          }
+    
+              // Dynamic metadata updates
+              const ogImage = exhibition.exhibitionImages?.[0]?.imagePath
+                ? `${environment.apiUrl}${exhibition.exhibitionImages[0].imagePath}`
+                : `${environment.apiUrl}/assets/img/default-exhibition.jpg`;
+    
+              // Update metadata
+              this.metaService.updateMetaTags({ property: 'og:image', content: ogImage });
+              this.metaService.updateMetaTags({ property: 'og:url', content: this.currentUrl });
+            }
+          });
+        }
       });
-      }
-    });
-  }
+    }
+    
   
   selectImage(index: number): void {
     const carouselElement = document.querySelector('#carouselExampleIndicators');

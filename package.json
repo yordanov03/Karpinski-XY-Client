@@ -23,6 +23,7 @@
     "@ngrx/effects": "14.3",
     "@ngrx/store": "14.3",
     "@ngrx/store-devtools": "14.3",
+    "@nguniversal/express-engine": "^14.0.0",
     "@redux-devtools/extension": "^3.2.5",
     "bootstrap": "^5.2.0-beta1",
     "bootstrap-icons": "^1.10.2",
