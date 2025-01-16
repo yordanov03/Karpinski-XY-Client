@@ -1,66 +1,61 @@
 <div class="navbar-area">
+    <!-- Mobile Navigation -->
     <div class="mobile-nav">
-        <a routerLink="/" class="logo"><img src="assets/img/banner8.png" alt="Logo"></a>
+        <a routerLink="/" class="logo" aria-label="Go to homepage">
+            <img src="assets/img/banner8.png" alt="Karpinski XY Logo">
+        </a>
     </div>
 
+    <!-- Main Navigation -->
     <div class="main-nav">
         <div class="container" style="display: flex; max-height: 70px;">
-            <nav class="navbar navbar-expand-md navbar-light ">
-                <a class="navbar-brand" routerLink="/"><img src="assets/img/banner8.png" alt="Logo"></a>
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand" routerLink="/" aria-label="Go to homepage">
+                    <img src="assets/img/banner8.png" alt="Karpinski XY Logo">
+                </a>
 
+                <!-- Navbar Links -->
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link" routerLink="/">Home <i class='bx bx-plus'></i></a>
+                            <a href="javascript:void(0)" class="nav-link" routerLink="/" aria-label="Home">Home <i class="bx bx-plus"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link" routerLink="/paintings">Paintings <i class='bx bx-plus'></i></a>
+                            <a href="javascript:void(0)" class="nav-link" routerLink="/paintings" aria-label="View Paintings">Paintings <i class="bx bx-plus"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link" routerLink="/portfolio">Portfolio <i class='bx bx-plus'></i></a>
+                            <a href="javascript:void(0)" class="nav-link" routerLink="/portfolio" aria-label="View Portfolio">Portfolio <i class="bx bx-plus"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link" routerLink="/exhibitions">Exhibitions <i class='bx bx-plus'></i></a>
+                            <a href="javascript:void(0)" class="nav-link" routerLink="/exhibitions" aria-label="View Exhibitions">Exhibitions <i class="bx bx-plus"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link" routerLink="/about">About me <i class='bx bx-plus'></i></a>
+                            <a href="javascript:void(0)" class="nav-link" routerLink="/about" aria-label="Learn About Me">About Me <i class="bx bx-plus"></i></a>
                         </li>
-
-                        <!-- <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link">Blog <i class='bx bx-plus'></i></a>
-
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a routerLink="/blog" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Blog</a></li>
-
-                                <li class="nav-item"><a routerLink="/blog-details" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Blog Details</a></li>
-                            </ul>
-                        </li> -->
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link" routerLink="/contact">Contact<i class='bx bx-plus'></i></a>
+                            <a href="javascript:void(0)" class="nav-link" routerLink="/contact" aria-label="Contact Me">Contact <i class="bx bx-plus"></i></a>
                         </li>
+                        
+                        <!-- Control Panel Section for Logged-in Users -->
                         <li class="nav-item" *ngIf="(isLoggedIn$ | async)">
-                            <a href="javascript:void(0)" class="nav-link" routerLink="/control-panel">Control panel <i class='bx bx-plus'></i></a>
+                            <a href="javascript:void(0)" class="nav-link" routerLink="/control-panel" aria-label="Access Control Panel">Control Panel <i class="bx bx-plus"></i></a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a routerLink="/create-painting" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Create Paiting</a></li>
-                                <li class="nav-item"><a routerLink="/create-exhibition" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Create Exhibition</a></li>
+                                <li class="nav-item">
+                                    <a routerLink="/create-painting" class="nav-link" aria-label="Create a Painting">Create Painting</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/create-exhibition" class="nav-link" aria-label="Create an Exhibition">Create Exhibition</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
 
-                    <!-- <div class="menu-btn"  *ngIf="!(isLoggedIn$ | async)">
-                        <a routerLink="/sign-in" class="phone-btn">Sign in</a>
-                    </div>
-
-                    <div class="menu-btn" *ngIf="!(isLoggedIn$ | async)">
-                        <a routerLink="/sign-up" class="phone-btn">Register</a>
-                    </div> -->
-
+                    <!-- Logged-in User Info -->
                     <div class="menu-btn" *ngIf="(isLoggedIn$ | async)">
-                        <a>Hello {{(username$ | async)}}</a>
-                      </div>
-
+                        <a>Hello {{ (username$ | async) }}</a>
+                    </div>
                     <div class="menu-btn" (click)="logout()" *ngIf="(isLoggedIn$ | async)">
-                        <a class="phone-btn" type="submit">Logout</a>
+                        <a class="phone-btn" type="button" aria-label="Logout">Logout</a>
                     </div>
                 </div>
             </nav>

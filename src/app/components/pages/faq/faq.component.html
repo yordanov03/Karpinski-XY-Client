@@ -5,8 +5,8 @@
         <div class="inner-title">
             <h3>FAQ</h3>
             <ul>
-                <li><a routerLink="/">Home</a></li>
-                <li><i class='bx bxs-chevrons-right'></i></li>
+                <li><a routerLink="/" attr.aria-label="Go to home page">Home</a></li>
+                <li><i class='bx bxs-chevrons-right' aria-hidden="true"></i></li>
                 <li>FAQ</li>
             </ul>
         </div>
@@ -15,95 +15,121 @@
 
 <div class="faq-area-bg pt-100 pb-70">
     <div class="container">
-        <div class="scetion-title text-center">
+        <header class="section-title text-center">
             <span>FAQ</span>
             <h2>Frequently Asked Questions</h2>
-            <!-- <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p> -->
-        </div>
+        </header>
 
         <div class="row align-items-center pt-45">
+            <!-- First Column -->
             <div class="col-lg-6">
                 <div class="faq-accordion faq-accordion-width">
                     <ul class="accordion">
                         <li class="accordion-item">
-                            <a class="accordion-title" href="javascript:void(0)">
-                              <i class='bx bx-chevron-down'></i>An artist by night?</a>
+                            <a class="accordion-title" href="javascript:void(0)" attr.aria-expanded="false">
+                                <i class='bx bx-chevron-down' aria-hidden="true"></i> An artist by night?
+                            </a>
                             <div class="accordion-content">
-                              <p>I have a 9-5 job alongside my artistic practice. I have first graduated from the Wroclaw University of Economics and I am working in finance industry ever since.</p>
+                                <p>
+                                    I have a 9-5 job alongside my artistic practice. I graduated from Wroclaw University of Economics and have been working in the finance industry ever since.
+                                </p>
                             </div>
-                          </li>
-                          
-                          <li class="accordion-item">
-                            <a class="accordion-title" href="javascript:void(0)">
-                              <i class='bx bx-chevron-down'></i>Who is your favourite artist?</a>
+                        </li>
+
+                        <li class="accordion-item">
+                            <a class="accordion-title" href="javascript:void(0)" attr.aria-expanded="false">
+                                <i class='bx bx-chevron-down' aria-hidden="true"></i> Who is your favourite artist?
+                            </a>
                             <div class="accordion-content">
-                              <p>Edward Stachura, Piet Mondrian, Edward Hopper, Franz Kline.</p>
+                                <p>Edward Stachura, Piet Mondrian, Edward Hopper, and Franz Kline.</p>
                             </div>
-                          </li>
-                          
-                          <li class="accordion-item">
-                            <a class="accordion-title" href="javascript:void(0)">
-                              <i class='bx bx-chevron-down'></i>What is your favourite music?</a>
+                        </li>
+
+                        <li class="accordion-item">
+                            <a class="accordion-title" href="javascript:void(0)" attr.aria-expanded="false">
+                                <i class='bx bx-chevron-down' aria-hidden="true"></i> What is your favourite music?
+                            </a>
                             <div class="accordion-content">
-                              <p>Bjork and Katarzyna Nosowska are my absolute favourites. During a painting session I listen to Massive Attack and artists working with Ninja Tune label, in particular Skalpel, Cinematic Orchestra, Bonobo and Nicolas Jaar.</p>
+                                <p>
+                                    Bjork and Katarzyna Nosowska are my absolute favourites. During painting sessions, I listen to Massive Attack and artists from the Ninja Tune label, particularly Skalpel, Cinematic Orchestra, Bonobo, and Nicolas Jaar.
+                                </p>
                             </div>
-                          </li>
-                          
-                          <li class="accordion-item">
-                            <a class="accordion-title" href="javascript:void(0)">
-                              <i class='bx bx-chevron-down'></i>How do you come up with ideas for the paintings?</a>
+                        </li>
+
+                        <li class="accordion-item">
+                            <a class="accordion-title" href="javascript:void(0)" attr.aria-expanded="false">
+                                <i class='bx bx-chevron-down' aria-hidden="true"></i> How do you come up with ideas for the paintings?
+                            </a>
                             <div class="accordion-content">
-                              <p>I look for obscure contrasts, where people leave their marks. For more details see my artist statement in About Me page.</p>
+                                <p>
+                                    I look for obscure contrasts where people leave their marks. For more details, see my artist statement on the About Me page.
+                                </p>
                             </div>
-                          </li>
+                        </li>
                     </ul>
                 </div>
             </div>
 
+            <!-- Second Column -->
             <div class="col-lg-6">
                 <div class="faq-accordion faq-accordion-width">
                     <ul class="accordion">
                         <li class="accordion-item">
-                            <a class="accordion-title" href="javascript:void(0)">
-                              <i class='bx bx-chevron-down'></i>Do you sell your paintings?</a>
+                            <a class="accordion-title" href="javascript:void(0)" attr.aria-expanded="false">
+                                <i class='bx bx-chevron-down' aria-hidden="true"></i> Do you sell your paintings?
+                            </a>
                             <div class="accordion-content">
-                              <p>Yes, you can find available works in the Paintings section. Should you be interested, please make an enquiry via this website or send me a direct message on social media.</p>
+                                <p>
+                                    Yes, you can find available works in the Paintings section. If interested, please make an inquiry via this website or send me a direct message on social media.
+                                </p>
                             </div>
-                          </li>
-                          
-                          <li class="accordion-item">
-                            <a class="accordion-title" href="javascript:void(0)">
-                              <i class='bx bx-chevron-down'></i>Do you ship worldwide?</a>
-                            <div class="accordion-content">
-                              <p>Yes, paintings will be prepared for secure travel in a wooden frame. Contact me directly to discuss shipping options and cost.</p>
-                            </div>
-                          </li>
-                          
-                          <li class="accordion-item">
-                            <a class="accordion-title" href="javascript:void(0)">
-                              <i class='bx bx-chevron-down'></i>Where can I see your works?</a>
-                            <div class="accordion-content">
-                              <p>I am working on my exhibition in Zurich, more info soon! In the meantime you can view my works in person in my atelier in Zurich.</p>
-                            </div>
-                          </li>
-                          
-                          <li class="accordion-item">
-                            <a class="accordion-title" href="javascript:void(0)">
-                              <i class='bx bx-chevron-down'></i>Do you paint commissions?</a>
-                            <div class="accordion-content">
-                              <p>I prefer to chose my own subject, but I am flexible to certain extent.</p>
-                            </div>
-                          </li>
+                        </li>
 
-                          <li class="accordion-item">
-                            <a class="accordion-title" href="javascript:void(0)">
-                              <i class='bx bx-chevron-down'></i>Do you paint only abstract art?</a>
+                        <li class="accordion-item">
+                            <a class="accordion-title" href="javascript:void(0)" attr.aria-expanded="false">
+                                <i class='bx bx-chevron-down' aria-hidden="true"></i> Do you ship worldwide?
+                            </a>
                             <div class="accordion-content">
-                              <p>I believe that abstract art is a lot more universal and gives a large space for open interpretation. With a little effort it can be both entertaining and rewarding for the viewer. I focus my practice on basic elements of visual language and complex, figurative references with all their contexts would only divert the attention form the point. I am practicing figurative art from time to time, though.</p>
+                                <p>
+                                    Yes, paintings are prepared for secure travel in a wooden frame. Contact me directly to discuss shipping options and costs.
+                                </p>
                             </div>
-                          </li>
+                        </li>
+
+                        <li class="accordion-item">
+                            <a class="accordion-title" href="javascript:void(0)" attr.aria-expanded="false">
+                                <i class='bx bx-chevron-down' aria-hidden="true"></i> Where can I see your works?
+                            </a>
+                            <div class="accordion-content">
+                                <p>
+                                    I am working on my exhibition in Zurich—more info coming soon! In the meantime, you can view my works in person at my atelier in Zurich.
+                                </p>
+                            </div>
+                        </li>
+
+                        <li class="accordion-item">
+                            <a class="accordion-title" href="javascript:void(0)" attr.aria-expanded="false">
+                                <i class='bx bx-chevron-down' aria-hidden="true"></i> Do you paint commissions?
+                            </a>
+                            <div class="accordion-content">
+                                <p>
+                                    I prefer to choose my own subjects but am flexible to a certain extent.
+                                </p>
+                            </div>
+                        </li>
+
+                        <li class="accordion-item">
+                            <a class="accordion-title" href="javascript:void(0)" attr.aria-expanded="false">
+                                <i class='bx bx-chevron-down' aria-hidden="true"></i> Do you paint only abstract art?
+                            </a>
+                            <div class="accordion-content">
+                                <p>
+                                    I believe abstract art is universal and provides space for open interpretation. While I focus on basic elements of visual language, I occasionally practice figurative art.
+                                </p>
+                            </div>
+                        </li>
                     </ul>
-                </div>   
+                </div>
             </div>
         </div>
     </div>

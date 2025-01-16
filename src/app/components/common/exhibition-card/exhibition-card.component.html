@@ -1,25 +1,38 @@
 <div class="row pt-45">
     <div class="col-lg-4 col-md-6" *ngFor="let exhibition of (exhibitions$ | async)">
         <div class="blog-card">
-            <a routerLink="/exhibitions-details/{{exhibition.id}}">
-                <img [src]="apiUrl + exhibition.exhibitionImages[0]?.imagePath" alt="Blog Images" class="exhibition-image">
+            <!-- Exhibition Image -->
+            <a routerLink="/exhibitions-details/{{exhibition.id}}" attr.aria-label="View details of exhibition: {{ exhibition.title }}">
+                <img [src]="apiUrl + exhibition.exhibitionImages[0]?.imagePath" [attr.alt]="'Exhibition: ' + exhibition.title + ' at ' + exhibition.location" class="exhibition-image" loading="lazy">
             </a>
+
+            <!-- Exhibition Content -->
             <div class="blog-content">
-                <a routerLink="/exhibitions-details/{{exhibition.id}}">
+                <a routerLink="/exhibitions-details/{{exhibition.id}}" attr.aria-label="Read more about exhibition: {{ exhibition.title }}">
                     <h3>{{ exhibition.title }}</h3>
                 </a>
                 <ul class="blog-admin">
-                    <li><a routerLink="/"><i class='bi bi-geo-alt-fill'></i> {{ exhibition.location }}</a></li>
-                    <li><i class='bx bx-calendar-alt'></i> {{ exhibition.startDate | date:'dd/MM/yyyy' }}</li>
+                    <li>
+                        <a routerLink="/" attr.aria-label="Exhibition location: {{ exhibition.location }}">
+                            <i class="bi bi-geo-alt-fill"></i> {{ exhibition.location }}
+                        </a>
+                    </li>
+                    <li>
+                        <i class="bx bx-calendar-alt"></i> {{ exhibition.startDate | date: 'dd/MM/yyyy' }}
+                    </li>
                 </ul>
                 <p>{{ exhibition.dimensions }}</p>
-                <p *ngIf="(isLoggedIn$ | async)">
-                    <i class='bi bi-trash3' id="trashbutton" type="button" (click)="onDeleteClick(exhibition.id)"></i>
-                    <i class='bi bi-pencil' id="pencilbutton" type="button" (click)="onEdit(exhibition.id)"></i>
+
+                <!-- Action Buttons for Logged-in Users -->
+                <p *ngIf="(isLoggedIn$ | async)" class="action-icons">
+                    <button class="icon-button" id="trashbutton" type="button" (click)="onDeleteClick(exhibition.id)" attr.aria-label="Delete exhibition: {{ exhibition.title }}">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+                    <button class="icon-button" id="pencilbutton" type="button" (click)="onEdit(exhibition.id)" attr.aria-label="Edit exhibition: {{ exhibition.title }}">
+                        <i class="bi bi-pencil"></i>
+                    </button>
                 </p>
             </div>
         </div>
     </div>
 </div>
-
-

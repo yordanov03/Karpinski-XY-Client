@@ -5,10 +5,10 @@
         <div class="inner-title">
             <h3>Exhibition Details</h3>
             <ul>
-                <li><a routerLink="/">Home</a></li>
-                <li><i class='bx bxs-chevrons-right'></i></li>
-                <li><a routerLink="/exhibitions">Exhibitions</a></li>
-                <li><i class='bx bxs-chevrons-right'></i></li>
+                <li><a routerLink="/" aria-label="Navigate to the home page">Home</a></li>
+                <li><i class='bx bxs-chevrons-right' aria-hidden="true"></i></li>
+                <li><a routerLink="/exhibitions" aria-label="Navigate to the exhibitions page">Exhibitions</a></li>
+                <li><i class='bx bxs-chevrons-right' aria-hidden="true"></i></li>
                 <li>Exhibition Details</li>
             </ul>
         </div>
@@ -21,35 +21,38 @@
             <!-- Main Image and Thumbnails Section -->
             <div class="col-lg-6 col-md-12">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
+                    <div class="carousel-inner" role="listbox" aria-label="Exhibition Images Carousel">
                         <div *ngFor="let image of exhibition?.exhibitionImages; let i = index" class="carousel-item"
                             [class.active]="i === 0">
-                            <img [src]="apiUrl + image.imagePath" class="d-block w-100" alt="..." (click)="openFullSizeImage(image.imagePath)">
+                            <img [src]="apiUrl + image.imagePath" class="d-block w-100" alt="Exhibition Image {{ i + 1 }}"
+                                (click)="openFullSizeImage(image.imagePath)">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev">
+                        data-bs-slide="prev" aria-label="Previous slide">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next">
+                        data-bs-slide="next" aria-label="Next slide">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
 
+                <!-- Full-Size Image Modal -->
                 <div *ngIf="showFullSizeImage" class="full-size-image-modal">
-                    <button class="prev-button" (click)="navigateFullSizeImage('prev')">❮</button>
-                    <img [src]="apiUrl + fullSizeImageUrl" class="img-fluid" alt="Full size image" />
-                    <button class="next-button" (click)="navigateFullSizeImage('next')">❯</button>
-                    <button class="close-modal" (click)="closeFullSizeImage()">X</button>
+                    <button class="prev-button" (click)="navigateFullSizeImage('prev')" aria-label="Previous image">❮</button>
+                    <img [src]="apiUrl + fullSizeImageUrl" class="img-fluid" alt="Full size exhibition image" />
+                    <button class="next-button" (click)="navigateFullSizeImage('next')" aria-label="Next image">❯</button>
+                    <button class="close-modal" (click)="closeFullSizeImage()" aria-label="Close full-size image">X</button>
                 </div>
 
                 <!-- Thumbnails -->
-                <div class="carousel-thumbnails">
+                <div class="carousel-thumbnails" aria-label="Exhibition Image Thumbnails">
                     <img *ngFor="let image of exhibition.exhibitionImages; let i = index" [src]="apiUrl + image.imagePath"
-                        [class.active]="i == 0" (click)="selectImage(i)" class="img-thumbnail">
+                        [class.active]="i == 0" (click)="selectImage(i)" class="img-thumbnail"
+                        alt="Exhibition Thumbnail {{ i + 1 }}">
                 </div>
             </div>
 
@@ -61,9 +64,7 @@
                         <ul>
                             <li>
                                 <i class='bx bxs-calendar'></i>
-                                <a>
-                                    {{ exhibition.startDate | date:'dd/MM/yyyy' }} - {{ exhibition.endDate | date:'dd/MM/yyyy' }}
-                                </a> 
+                                <span>{{ exhibition.startDate | date:'dd/MM/yyyy' }} - {{ exhibition.endDate | date:'dd/MM/yyyy' }}</span>
                             </li>
                         </ul>
                     </div>
@@ -73,15 +74,15 @@
                         <ul>
                             <li>
                                 <i class='bx bxs-map'></i>
-                                {{exhibition.location}}
+                                <span>{{ exhibition.location }}</span>
                             </li>
                             <li>
                                 <i class='bx bxs-brush'></i>
-                                <a href="tel:+19876543210">{{exhibition.organizer}}</a>
+                                <a href="tel:+19876543210">{{ exhibition.organizer }}</a>
                             </li>
                             <li>
                                 <i class='bx bi bi-link'></i>
-                                <a href="{{exhibition.link}}">Link</a>
+                                <a href="{{ exhibition.link }}" target="_blank" rel="noopener noreferrer">Visit Exhibition Link</a>
                             </li>
                         </ul>
                     </div>
@@ -93,7 +94,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="service-dtls-title">
-                    <h3>{{exhibition.title}}</h3>
+                    <h3>{{ exhibition.title }}</h3>
                     <div [innerHTML]="getFormattedDescription(exhibition.longDescription)" style="text-align: justify;"></div>
                 </div>
             </div>

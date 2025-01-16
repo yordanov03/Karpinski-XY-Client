@@ -1,19 +1,25 @@
 <div class="portfolio-masonry">
     <ng-container *ngIf="(portfolioPaintings$ | async) as paintings">
+        <!-- Show Message if No Paintings -->
         <div *ngIf="paintings.length === 0">
-            <h4>Nothing to show here</h4>
+            <h4 aria-live="polite">Nothing to show here</h4>
         </div>
+
+        <!-- Display Paintings -->
         <div class="masonry-item" *ngFor="let painting of paintings">
             <div class="service-card">
-                <a routerLink="/paintings-details/{{painting.id}}">
-                    <img [src]="apiUrl + painting.paintingImages[0]?.imagePath">
+                <a routerLink="/paintings-details/{{painting.id}}" attr.aria-label="View details of {{ painting.name }}">
+                    <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" [alt]="'Painting: ' + painting.name" loading="lazy">
                 </a>
-                <p *ngIf="(isLoggedIn$ | async)">
-                    <i class='bi bi-trash3' id="trashbutton" type="button" (click)="onDeleteClick($event, painting.id)"></i>
-                    <i class='bi bi-pencil' id="pencilbutton" type="button" (click)="onEditPainting($event, painting.id)"></i>
+                <p *ngIf="(isLoggedIn$ | async)" class="action-icons">
+                    <button class="icon-button" id="trashbutton" type="button" (click)="onDeleteClick($event, painting.id)" attr.aria-label="Delete painting {{ painting.name }}">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+                    <button class="icon-button" id="pencilbutton" type="button" (click)="onEditPainting($event, painting.id)" attr.aria-label="Edit painting {{ painting.name }}">
+                        <i class="bi bi-pencil"></i>
+                    </button>
                 </p>
             </div>
         </div>
     </ng-container>
 </div>
-

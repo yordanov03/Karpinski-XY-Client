@@ -3,79 +3,69 @@
 <div class="main-banner">
     <div class="container-fluid">
         <div class="row align-items-center">
+            <!-- Text Content -->
             <div class="col-lg-6">
                 <div class="banner-content">
-                    <h1>Don’t change reality, create it</h1>
-                    <p>My reflections are not singular in nature, nor are they an attempt to give a solution. 
-                        Instead, they are a declaration of existence and a materialization of a state that, among its participants, is an everyday, unnoticed naturalness.</p>
-                    <!-- <div class="banner-btn">
-                        <a routerLink="/" class="default-btn">Know More</a>
-                        <a routerLink="/product" class="default-btn active">Our Products</a>
-                    </div> -->
+                    <h1>Don’t Change Reality, Create It</h1>
+                    <p>
+                        My reflections are not singular in nature, nor are they an attempt to give a solution.
+                        Instead, they are a declaration of existence and a materialization of a state that, among its participants,
+                        is an everyday, unnoticed naturalness.
+                    </p>
                 </div>
             </div>
 
+            <!-- Image and Carousel -->
             <div class="col-lg-6 pr-0">
                 <div class="banner-img">
-                    <img src="{{homePagePaitingsUrl}}1.jpg" alt="Banner Images">
-
-                    <!-- <div class="banner-into-slider owl-carousel owl-theme">
-                        <div class="banner-item" *ngFor="let painting of (portfolioPaintings$ | async)">
-                          <img [src]="painting.images[0].imagePath" alt="Banner Image" width="100" height="100">
-                        </div>
-                      </div> -->
-
+                    <img src="{{homePagePaitingsUrl}}1.jpg" alt="Featured artwork banner">
                     <div class="banner-into-slider owl-carousel owl-theme">
-                        <!-- <div class="banner-item">
-                            <img src="{{homePagePaitingsUrl}}2.jpg" alt="Banner Images">
-                        </div>
-
-                        <div class="banner-item">
-                            <img src="{{homePagePaitingsUrl}}3.jpg" alt="Banner Images">
-                        </div>
-
-                        <div class="banner-item">
-                            <img src="{{homePagePaitingsUrl}}4.jpg" alt="Banner Images">
-                        </div>
-
-                        <div class="banner-item">
-                            <img src="{{homePagePaitingsUrl}}5.jpg" alt="Banner Images">
-                        </div> -->
-
+                        <!-- Painting 1 -->
                         <div class="banner-item">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[0]?.paintingImages?.[0]?.imagePath as imagePath"
-                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[0]?.id}}" target="_blank">
-                                <img [src]="apiUrl +imagePath" alt="Portfolio Image" class="portfolio-image">
+                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[0]?.id}}" target="_blank"
+                                attr.aria-label="View details of painting 1">
+                                <img [src]="apiUrl + imagePath" alt="Painting 1: {{(paintingsOnFocus$ | async)?.[0]?.name}}" class="portfolio-image">
                             </a>
                         </div>
+                        <!-- Painting 2 -->
                         <div class="banner-item">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[1]?.paintingImages?.[0]?.imagePath as imagePath"
-                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[1]?.id}}" target="_blank">
-                                <img [src]="apiUrl +imagePath" alt="Portfolio Image" class="portfolio-image">
+                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[1]?.id}}" target="_blank"
+                                attr.aria-label="View details of painting 2">
+                                <img [src]="apiUrl + imagePath" alt="Painting 2: {{(paintingsOnFocus$ | async)?.[1]?.name}}" class="portfolio-image">
                             </a>
                         </div>
+                        <!-- Painting 3 -->
                         <div class="banner-item">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[2]?.paintingImages?.[0]?.imagePath as imagePath"
-                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[2]?.id}}" target="_blank">
-                                <img [src]="apiUrl +imagePath" alt="Portfolio Image" class="portfolio-image">
+                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[2]?.id}}" target="_blank"
+                                attr.aria-label="View details of painting 3">
+                                <img [src]="apiUrl + imagePath" alt="Painting 3: {{(paintingsOnFocus$ | async)?.[2]?.name}}" class="portfolio-image">
                             </a>
                         </div>
+                        <!-- Painting 4 -->
                         <div class="banner-item">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[3]?.paintingImages?.[0]?.imagePath as imagePath"
-                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[3]?.id}}" target="_blank">
-                                <img [src]="apiUrl +imagePath" alt="Portfolio Image" class="portfolio-image">
+                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[3]?.id}}" target="_blank"
+                                attr.aria-label="View details of painting 4">
+                                <img [src]="apiUrl + imagePath" alt="Painting 4: {{(paintingsOnFocus$ | async)?.[3]?.name}}" class="portfolio-image">
                             </a>
                         </div>
+                        <!-- Painting 5 -->
                         <div class="banner-item">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[4]?.paintingImages?.[0]?.imagePath as imagePath"
-                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[4]?.id}}" target="_blank">
-                                <img [src]="apiUrl +imagePath" alt="Portfolio Image" class="portfolio-image">
+                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[4]?.id}}" target="_blank"
+                                attr.aria-label="View details of painting 5">
+                                <img [src]="apiUrl + imagePath" alt="Painting 5: {{(paintingsOnFocus$ | async)?.[4]?.name}}" class="portfolio-image">
                             </a>
                         </div>
+                        <!-- Painting 6 -->
                         <div class="banner-item">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[5]?.paintingImages?.[0]?.imagePath as imagePath"
-                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[5]?.id}}" target="_blank">
-                                <img [src]="apiUrl + imagePath" alt="Portfolio Image" class="portfolio-image">
+                                href="/paintings-details/{{(paintingsOnFocus$ | async)?.[5]?.id}}" target="_blank"
+                                attr.aria-label="View details of painting 6">
+                                <img [src]="apiUrl + imagePath" alt="Painting 6: {{(paintingsOnFocus$ | async)?.[5]?.name}}" class="portfolio-image">
                             </a>
                         </div>
                     </div>
@@ -88,103 +78,114 @@
 <div class="about-area pb-70">
     <div class="container-fluid">
         <div class="row align-items-center">
+            <!-- About Image Section -->
             <div class="col-lg-5">
                 <div class="about-img">
-                    <img src="assets/img/about/Pawel.jpg" alt="About Images">
+                    <img src="assets/img/about/Pawel.jpg" alt="Portrait of Pawel Kaprinski, the artist">
 
                     <div class="about-bg-shape">
-                        <img src="assets/img/about/bg-shape.png" alt="About Shape">
+                        <img src="assets/img/about/bg-shape.png" alt="Decorative background shape">
                     </div>
                 </div>
             </div>
 
+            <!-- About Content Section -->
             <div class="col-lg-7">
                 <div class="about-content">
                     <span>About Me</span>
-                    <h2>Artist by night</h2>
-                    <p>I was born in Radom, Poland, and grew up in Tarnobrzeg. After earning my degree from Wroclaw
-                        University of Economics in 2011,
-                        I continued to expand my education and artistic horizons. In 2019, I graduated from the
-                        Eugeniusz Geppert Academy of Fine Arts and Design in Wroclaw,
-                        where I studied painting under the tutelage of Prof. Piotr Błażejewski and Dr. Anna
-                        Kołodziejczyk.</p>
-                    <!-- <p>My artistic work spans various mediums—from drawing and painting to scetches and architecturial
-                        design.
-                        In parallel to my life in art, I have built a career in finance, where I currently work as a
-                        financial controller for a multinational company.</p> -->
+                    <h2>Artist by Night</h2>
+                    <p>
+                        I was born in Radom, Poland, and grew up in Tarnobrzeg. After earning my degree from Wroclaw
+                        University of Economics in 2011, I continued to expand my education and artistic horizons.
+                        In 2019, I graduated from the Eugeniusz Geppert Academy of Fine Arts and Design in Wroclaw,
+                        where I studied painting under the tutelage of Prof. Piotr Błażejewski and Dr. Anna Kołodziejczyk.
+                    </p>
                     <div class="about-btn">
-                        <a routerLink="/about" class="know-more-btn">About me</a>
+                        <a routerLink="/about" class="know-more-btn" aria-label="Learn more about Pawel Kaprinski">About Me</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Decorative Shape -->
     <div class="about-shape">
-        <img src="assets/img/about/shape1.png" alt="About Shape">
+        <img src="assets/img/about/shape1.png" alt="Abstract decorative shape">
     </div>
 </div>
+
 
 <!-- Available Paintings (Stacked Grid) -->
 <section class="product-area pb-70">
     <div class="container" *ngIf="(availablePaintings$ | async)?.length">
-        <div class="scetion-title text-center">
+        <!-- Section Title -->
+        <header class="section-title text-center">
             <span>Paintings</span>
-            <h2>Available works</h2>
-            <p>I would like to share a brief representation of my current state of mind, giving you an inside look of mind with surgical precision.</p>
-        </div>
+            <h2>Available Works</h2>
+            <p>
+                I would like to share a brief representation of my current state of mind, giving you an inside look
+                with surgical precision.
+            </p>
+        </header>
         <br>
         <ng-container>
             <div class="row">
                 <!-- Display each painting in a stacked grid layout -->
                 <div class="col-lg-4 col-md-6" *ngFor="let painting of (availablePaintings$ | async)">
-                    <div class="service-card">
-                        <a routerLink="/paintings-details/{{painting.id}}">
-                            <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" width="400" height="380">
+                    <article class="service-card">
+                        <a routerLink="/paintings-details/{{painting.id}}" attr.aria-label="View details of painting: {{ painting.name }}">
+                            <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" 
+                                 alt="Painting: {{ painting.name }}" 
+                                 width="400" 
+                                 height="380">
                         </a>
                         <div class="service-content">
-                            <a routerLink="/paintings-details/{{painting.id}}">
+                            <a routerLink="/paintings-details/{{painting.id}}" attr.aria-label="View details of painting: {{ painting.name }}">
                                 <h3>{{ painting.name }}</h3>
                             </a>
                             <p><span>{{ painting.dimensions }}</span></p>
-                            <!-- The Make inquiry button only for Available Paintings -->
-                            <a routerLink="/contact" class="default-btn" (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
+                            <!-- The Make Inquiry button only for Available Paintings -->
+                            <a routerLink="/contact" class="default-btn" 
+                               (click)="onMakeinquiryClick(painting.name)" 
+                               attr.aria-label="Make an inquiry about painting: {{ painting.name }}">Make Inquiry</a>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </ng-container>
     </div>
 </section>
 
+
 <!-- Portfolio (Carousel) -->
 <section class="service-area pb-70">
     <div class="container" *ngIf="(portfolioPaintings$ | async)?.length">
-        <div class="scetion-title text-center">
+        <header class="section-title text-center">
             <span>Portfolio</span>
-            <h2>My work throughout the years</h2>
-            <p>I invite you to trace back how my painting style, my inspirations, my technique, and my perceptions have evolved over the years.</p>
-        </div>
+            <h2>My Work Throughout the Years</h2>
+            <p>
+                I invite you to trace back how my painting style, inspirations, technique, and perceptions have evolved over the years.
+            </p>
+        </header>
         <span>&nbsp;</span>
 
         <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- divide the portfolio paintings array into chunks of 3 for each slide -->
+                <!-- Divide the portfolio paintings array into chunks of 3 for each slide -->
                 <ng-container *ngFor="let chunk of (portfolioPaintings$ | async) | sliceArray:3; let isFirst = first">
                     <div class="carousel-item" [class.active]="isFirst">
                         <div class="row">
-                            <!-- display each painting in the chunk -->
+                            <!-- Display each painting in the chunk -->
                             <div class="col-lg-4" *ngFor="let painting of chunk">
                                 <div class="service-card">
-                                    <a routerLink="/paintings-details/{{painting.id}}">
-                                        <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" alt="Portfolio Image" style="height: 350px; width: 100%; object-fit: cover;">
+                                    <a routerLink="/paintings-details/{{painting.id}}" attr.aria-label="View details of {{ painting.name }}">
+                                        <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" alt="{{ painting.name }} - {{ painting.dimensions }}" style="height: 350px; width: 100%; object-fit: cover;">
                                     </a>
                                     <div class="service-content">
-                                        <a routerLink="/paintings-details/{{painting.id}}">
+                                        <a routerLink="/paintings-details/{{painting.id}}" attr.aria-label="Learn more about {{ painting.name }}">
                                             <h3>{{ painting.name }}</h3>
                                         </a>
                                         <p>{{ painting.dimensions }}</p>
-                                        <!-- No "Make inquiry" button here -->
                                     </div>
                                 </div>
                             </div>
@@ -205,32 +206,41 @@
 </section>
 
 
+
 <section class="blog-area pb-70">
-    <div class="container" *ngIf="(exhibitions$| async).length>0">
-        <div class="scetion-title text-center">
+    <div class="container" *ngIf="(exhibitions$ | async).length > 0">
+        <header class="section-title text-center">
             <span>Exhibitions</span>
-            <h2>A portion of the exhibitions I have been a part of</h2>
-            <p>Take a peak of the abstract art in real life form</p>
-        </div>
+            <h2>A Portion of the Exhibitions I Have Been a Part Of</h2>
+            <p>Take a peek at the abstract art showcased in real life.</p>
+        </header>
 
         <div class="row pt-45">
             <ng-container>
                 <div class="col-lg-4 col-md-6" *ngFor="let exhibition of (exhibitions$ | async)">
-                    <div class="blog-card">
-                        <a routerLink="/exhibitions-details/{{exhibition.id}}">
-                            <img [src]="apiUrl + exhibition.exhibitionImages[0]?.imagePath" alt="Blog Images" class="exhibition-image">
+                    <article class="blog-card">
+                        <a routerLink="/exhibitions-details/{{exhibition.id}}" attr.aria-label="View details of exhibition: {{ exhibition.title }}">
+                            <img [src]="apiUrl + exhibition.exhibitionImages[0]?.imagePath" alt="Exhibition: {{ exhibition.title }} in {{ exhibition.location }}" class="exhibition-image">
                         </a>
                         <div class="blog-content">
-                            <a routerLink="/exhibitions-details/{{exhibition.id}}">
+                            <a routerLink="/exhibitions-details/{{exhibition.id}}" attr.aria-label="Read about exhibition: {{ exhibition.title }}">
                                 <h3>{{ exhibition.title }}</h3>
                             </a>
                             <ul class="blog-admin">
-                                <li><a routerLink="/"><i class='bi bi-geo-alt-fill'></i> {{ exhibition.location }}</a></li>
-                                <li><i class='bx bx-calendar-alt'></i> {{ exhibition.startDate | date:'dd/MM/yyyy' }}</li>
+                                <li>
+                                    <a routerLink="/" attr.aria-label="Exhibition location: {{ exhibition.location }}">
+                                        <i class="bi bi-geo-alt-fill"></i> {{ exhibition.location }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <i class="bx bx-calendar-alt"></i> {{ exhibition.startDate | date: 'dd/MM/yyyy' }}
+                                </li>
                             </ul>
-                            <a routerLink="/exhibitions/{{exhibition.id}}" class="read-more-btn">Read More <i class='bx bxs-chevrons-right'></i></a>
+                            <a routerLink="/exhibitions/{{exhibition.id}}" class="read-more-btn" attr.aria-label="Read more about exhibition: {{ exhibition.title }}">
+                                Read More <i class="bx bxs-chevrons-right"></i>
+                            </a>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </ng-container>
         </div>

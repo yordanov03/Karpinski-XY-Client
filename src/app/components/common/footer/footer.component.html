@@ -1,53 +1,64 @@
 <footer class="footer-area">
     <div class="container">
+        <!-- Newsletter Subscription Section -->
         <div class="footer-contact">
             <div class="newsleter-area">
-                <h2>Subscribe To My Newsletter</h2>
+                <h2>Subscribe to My Newsletter</h2>
                 
                 <form [formGroup]="subscriptionForm" class="newsletter-form" (ngSubmit)="onSubmit()">
-                    <input type="email" class="form-control" placeholder="Enter your email" name="EMAIL" formControlName="email">
+                    <label for="email" class="visually-hidden">Enter your email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" name="EMAIL" formControlName="email" aria-label="Enter your email">
                     <button class="subscribe-btn" type="submit" 
-                    [disabled]="!subscriptionForm.valid" [ngClass]="{'disabled-btn': !subscriptionForm.valid}">Subscribe</button>
+                        [disabled]="!subscriptionForm.valid" [ngClass]="{'disabled-btn': !subscriptionForm.valid}" 
+                        aria-label="Subscribe to the newsletter">Subscribe</button>
                 </form>
             </div>
         </div>
 
+        <!-- Footer Links Section -->
         <div class="footer-top-list pb-70">
             <div class="row">
+                <!-- Social Media Links -->
                 <div class="col-lg-4 col-md-4">
                     <div class="footer-list">
                         <h3>Social Media</h3>
-
                         <ul>
-                            <li><a href="https://www.facebook.com/karpinskiXY/" target="_blank"><i class='bx bxl-facebook'></i>     karpinski.xy</a></li>
-                            <!-- <li><a href="#" target="_blank"><i class='bx bxl-twitter'></i>      Twitter</a></li> -->
-                            <li><a href="https://www.instagram.com/karpinski.xy" target="_blank"><i class='bx bxl-instagram'></i>      karpinski.xy</a></li>
+                            <li>
+                                <a href="https://www.facebook.com/karpinskiXY/" target="_blank" rel="noopener noreferrer" aria-label="Visit my Facebook page">
+                                    <i class="bx bxl-facebook"></i> karpinski.xy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/karpinski.xy" target="_blank" rel="noopener noreferrer" aria-label="Visit my Instagram profile">
+                                    <i class="bx bxl-instagram"></i> karpinski.xy
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
 
+                <!-- Quick Links -->
                 <div class="col-lg-4 col-md-4">
                     <div class="footer-list">
-
                         <h3>Quick Links</h3>
                         <ul>
-                            <li><i class='bx bxs-chevron-right'></i><a routerLink="/faq">FAQ</a></li>
-                            <li><i class='bx bxs-chevron-right'></i><a routerLink="/terms-conditions">Terms and Conditions</a></li>
-                            <li><i class='bx bxs-chevron-right'></i><a routerLink="/privacy-policy">Privacy Policy</a></li>
+                            <li><i class="bx bxs-chevron-right"></i> <a routerLink="/faq" aria-label="FAQ page">FAQ</a></li>
+                            <li><i class="bx bxs-chevron-right"></i> <a routerLink="/terms-conditions" aria-label="Terms and Conditions page">Terms and Conditions</a></li>
+                            <li><i class="bx bxs-chevron-right"></i> <a routerLink="/privacy-policy" aria-label="Privacy Policy page">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
 
+                <!-- Contact Information -->
                 <div class="col-lg-4 col-md-4">
                     <div class="footer-side-list">
                         <h3>Contact Me</h3>
                         <ul>
-                            <!-- <li><i class='bx bxl-telegram'></i> <a href="mailto:p.w.karpinski@gmail.com">karpinskixy&#64;gmail.com</a></li> -->
                             <li style="display: flex; align-items: center;">
-                                <i class='bx bxl-telegram' style="margin-right: 15px;"></i>
-                                <a href="mailto:p.w.karpinski@gmail.com">karpinskixy&#64;gmail.com</a>
-                              </li>
-                            <li><i class='bx bxs-map'></i> Zurich, Switzerland</li>
+                                <i class="bx bxl-telegram" style="margin-right: 15px;" aria-hidden="true"></i>
+                                <a href="mailto:p.w.karpinski@gmail.com" aria-label="Email me at karpinskixy@gmail.com">karpinskixy&#64;gmail.com</a>
+                            </li>
+                            <li><i class="bx bxs-map" aria-hidden="true"></i> Zurich, Switzerland</li>
                         </ul>
                     </div>
                 </div>
@@ -55,18 +66,18 @@
         </div>
     </div>
 
+    <!-- Footer Bottom Section -->
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-3">
                     <div class="footer-logo">
-                        <img src="assets/img/footer-logo8.png" alt="Footer Logo">
+                        <img src="assets/img/footer-logo8.png" alt="Karpinski XY Logo">
                     </div>
                 </div>
-
                 <div class="col-lg-8 col-md-9">
                     <div class="bottom-text">
-                        <p>© Karpinski XY</p>
+                        <p>&copy; Karpinski XY</p>
                     </div>
                 </div>
             </div>

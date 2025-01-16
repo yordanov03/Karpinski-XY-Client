@@ -1,84 +1,88 @@
 <app-navbar></app-navbar>
+
 <div class="container-fluid">
-    <form [formGroup]="editPaintingForm" (ngSubmit)="editPainting()" id="createPainting">
+    <form [formGroup]="editPaintingForm" (ngSubmit)="editPainting()" id="editPainting" aria-label="Edit Painting Form">
         <div class="row">
+            <!-- Left Column -->
             <div class="col-md-6">
                 <div class="contact-wrap pt-45">
                     <div class="contact-wrap-form">
                         <div class="row">
                             <div class="col-lg-6 col-sm-6">
+                                <!-- Name Field -->
                                 <div class="form-group">
+                                    <label for="name" class="visually-hidden">Name of the Painting</label>
                                     <input type="text" name="name" id="name" class="form-control"
-                                        placeholder="Name of the painting" formControlName="name">
+                                        placeholder="Name of the painting" formControlName="name" aria-required="true">
                                 </div>
                                 <div *ngIf="f.name?.touched && f.name?.errors?.['required']" class="alert alert-danger">
                                     This field is required
                                 </div>
 
+                                <!-- Price Field -->
                                 <div class="form-group">
-                                    <input type="text" name="price" id="price" class="form-control" required
-                                        placeholder="Price" formControlName="price">
+                                    <label for="price" class="visually-hidden">Price</label>
+                                    <input type="text" name="price" id="price" class="form-control"
+                                        placeholder="Price" formControlName="price" aria-required="true">
                                 </div>
                                 <div *ngIf="f.price?.touched && f.price?.errors?.['required']"
-                                    class="alert alert-danger">
-                                    This field is
-                                    required
-                                </div>
-                                <div *ngIf="f.price.errors?.pattern" class="alert alert-danger">Only numbers are
-                                    allowed!
-                                </div>
+                                    class="alert alert-danger">This field is required</div>
+                                <div *ngIf="f.price?.errors?.pattern" class="alert alert-danger">Only numbers are allowed!</div>
 
+                                <!-- Dimensions Field -->
                                 <div class="form-group">
+                                    <label for="dimensions" class="visually-hidden">Dimensions</label>
                                     <input type="text" name="dimensions" id="dimensions" class="form-control"
                                         placeholder="Dimensions" formControlName="dimensions">
                                 </div>
                                 <div *ngIf="f.dimensions?.touched && f.dimensions?.errors?.['required']"
-                                    class="alert alert-danger">This
-                                    field is required
-                                </div>
-
+                                    class="alert alert-danger">This field is required</div>
                             </div>
+
                             <div class="col-lg-6 col-sm-6">
+                                <!-- Technique Field -->
                                 <div class="form-group">
+                                    <label for="technique" class="visually-hidden">Technique</label>
                                     <input type="text" name="size" id="technique" class="form-control"
                                         placeholder="Technique" formControlName="technique">
                                 </div>
                                 <div *ngIf="f.technique?.touched && f.technique?.errors?.['required']"
-                                    class="alert alert-danger">This
-                                    field is required
-                                </div>
+                                    class="alert alert-danger">This field is required</div>
 
+                                <!-- Year Field -->
                                 <div class="form-group">
-                                    <input type="text" name="year" id="year" class="form-control" required
-                                        placeholder="Year" formControlName="year">
+                                    <label for="year" class="visually-hidden">Year</label>
+                                    <input type="text" name="year" id="year" class="form-control"
+                                        placeholder="Year" formControlName="year" aria-required="true">
                                 </div>
                                 <div *ngIf="f.year?.touched && f.year?.errors?.['required']" class="alert alert-danger">
-                                    This field is required
-                                </div>
-                                <div *ngIf="f.year.errors?.pattern" class="alert alert-danger">
-                                    Only numbers are allowed!
-                                </div>
+                                    This field is required</div>
+                                <div *ngIf="f.year?.errors?.pattern" class="alert alert-danger">Only numbers are allowed!</div>
+
+                                <!-- Availability -->
                                 <div class="form-group">
                                     <label>Is it available for sale</label>
                                     <div class="form-check-label">
                                         <label class="radio-inline">
                                             <input class="form-check-input" type="radio" name="isAvailableToSell"
-                                                formControlName="isAvailableToSell" [value]="true" selected>&nbsp;Yes
-                                        </label>&nbsp;
-                                        <label class="form-check-label">
+                                                formControlName="isAvailableToSell" [value]="true">&nbsp;Yes
+                                        </label>
+                                        <label class="radio-inline">
                                             <input class="form-check-input" type="radio" name="isAvailableToSell"
                                                 formControlName="isAvailableToSell" [value]="false">&nbsp;No
                                         </label>
                                     </div>
                                 </div>
+
+                                <!-- On Focus -->
                                 <div class="form-group">
                                     <label>Is painting on focus</label>
                                     <div class="form-check-label">
                                         <label class="radio-inline">
                                             <input class="form-check-input" type="radio" name="isOnFocus"
-                                                formControlName="isOnFocus" [value]="true" selected>&nbsp;Yes
-                                        </label>&nbsp;
-                                        <label class="form-check-label">
+                                                formControlName="isOnFocus" [value]="true">&nbsp;Yes
+                                        </label>
+                                        <label class="radio-inline">
                                             <input class="form-check-input" type="radio" name="isOnFocus"
                                                 formControlName="isOnFocus" [value]="false">&nbsp;No
                                         </label>
@@ -86,51 +90,57 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Description Field -->
                         <div class="row">
                             <div class="col-12">
-                              <div class="form-group">
-                                <textarea class="form-control" rows="8" name="description" id="description"
-                                  placeholder="Description of the painting" formControlName="description">
-                                </textarea>
-                              </div>
-                              <div *ngIf="f.description?.touched && f.description?.errors?.['required']" class="alert alert-danger">
-                                This field is required
-                              </div>
+                                <div class="form-group">
+                                    <label for="description" class="visually-hidden">Description of the Painting</label>
+                                    <textarea class="form-control" rows="8" name="description" id="description"
+                                        placeholder="Description of the painting" formControlName="description"></textarea>
+                                </div>
+                                <div *ngIf="f.description?.touched && f.description?.errors?.['required']"
+                                    class="alert alert-danger">This field is required</div>
                             </div>
-                          </div>
+                        </div>
+
                         <!-- Submit Button -->
                         <div class="row">
                             <div class="col-12 text-left">
                                 <button type="submit" class="default-btn page-btn text-center"
                                     [disabled]="!editPaintingForm.valid"
-                                    [ngClass]="{'disabled-btn': !editPaintingForm.valid}">Update</button>
+                                    [ngClass]="{'disabled-btn': !editPaintingForm.valid}" 
+                                    aria-label="Submit Edit Painting Form">Update</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- Right Column -->
             <div class="col-md-6">
                 <div class="contact-wrap pt-45">
                     <div class="contact-wrap-form">
                         <!-- Uploaded Images -->
-                        <div class="uploaded-images">
-                            <div formArrayName="paintingImages" class="uploaded-images">
-                                <div *ngFor="let image of paintingImages; let i = index" class="uploaded-image">
-                                    <div [formGroupName]="i">
-                                        <img [src]="'data:image/jpeg;base64,' + image?.file" alt="Uploaded Painting">
-                                        <div class="checkbox-container">
-                                            <input type="checkbox" formControlName="isMainImage">
-                                            <label>&nbsp;Set as Main</label>
-                                          </div>
-                                        <div class="delete-icon" (click)="onDeleteImage(i)">X</div>
+                        <div formArrayName="paintingImages" class="uploaded-images" aria-label="Uploaded Painting Images">
+                            <div *ngFor="let image of paintingImages; let i = index" class="uploaded-image">
+                                <div [formGroupName]="i">
+                                    <img [src]="'data:image/jpeg;base64,' + image?.file" alt="Uploaded Painting Image {{ i + 1 }}">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" formControlName="isMainImage" id="isMainImage{{ i }}">
+                                        <label for="isMainImage{{ i }}">&nbsp;Set as Main</label>
                                     </div>
+                                    <button type="button" class="delete-icon" (click)="onDeleteImage(i)"
+                                        attr.aria-label="Delete Image {{ i + 1 }}">X</button>
                                 </div>
                             </div>
                         </div>
+
                         <!-- Image Upload Button -->
                         <div class="image-upload-btn">
-                            <input type="file" id="multiImageUpload" (change)="onMultipleImageUpload($event)" multiple>
+                            <label for="multiImageUpload" class="visually-hidden">Upload Multiple Images</label>
+                            <input type="file" id="multiImageUpload" (change)="onMultipleImageUpload($event)" multiple 
+                                aria-label="Upload multiple images">
                         </div>
                     </div>
                 </div>
@@ -138,4 +148,5 @@
         </div>
     </form>
 </div>
+
 <app-footer></app-footer>

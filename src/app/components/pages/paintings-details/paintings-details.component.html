@@ -1,22 +1,21 @@
 <app-navbar></app-navbar>
+
 <div class="inner-banner inner-bg1">
     <div class="container">
         <div class="inner-title">
             <h3>Painting Details</h3>
             <ul>
-                <li><a routerLink="/">Home</a></li>
-                <li><i class='bx bxs-chevrons-right'></i></li>
+                <li><a routerLink="/" aria-label="Navigate to the home page">Home</a></li>
+                <li><i class="bx bxs-chevrons-right" aria-hidden="true"></i></li>
                 <ng-container *ngIf="painting$ | async as painting">
                     <li *ngIf="painting.isAvailableToSell">
-                        <a routerLink="/paintings">Paintings</a>
+                        <a routerLink="/paintings" aria-label="Navigate to Paintings">Paintings</a>
                     </li>
-                </ng-container>
-                <ng-container *ngIf="painting$ | async as painting">
                     <li *ngIf="!painting.isAvailableToSell">
-                        <a routerLink="/portfolio">Portoflio</a>
+                        <a routerLink="/portfolio" aria-label="Navigate to Portfolio">Portfolio</a>
                     </li>
                 </ng-container>
-                <li><i class='bx bxs-chevrons-right'></i></li>
+                <li><i class="bx bxs-chevrons-right" aria-hidden="true"></i></li>
                 <li>Painting Details</li>
             </ul>
         </div>
@@ -26,98 +25,98 @@
 <section class="product-detls ptb-100" *ngIf="painting$ | async as painting">
     <div class="container">
         <div class="row">
+            <!-- Carousel Section -->
             <div class="col-lg-6 col-md-12">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" aria-label="Painting Images Carousel">
                     <div class="carousel-inner" role="listbox">
                         <div *ngFor="let image of painting?.paintingImages; let i = index" class="carousel-item"
                             [class.active]="i === 0">
-                            <img [src]="apiUrl + image.imagePath" class="d-block w-100" alt="..."
+                            <img [src]="apiUrl + image.imagePath" class="d-block w-100" alt="Painting Image {{ i + 1 }}"
                                 (click)="openFullSizeImage(image.imagePath)">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev">
+                        data-bs-slide="prev" aria-label="Previous slide">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next">
+                        data-bs-slide="next" aria-label="Next slide">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
 
-                <div *ngIf="showFullSizeImage" class="full-size-image-modal">
-                    <button class="prev-button" (click)="navigateFullSizeImage('prev')">❮</button>
-                    <img [src]="apiUrl + fullSizeImageUrl" class="img-fluid" alt="Full size image" />
-                    <button class="next-button" (click)="navigateFullSizeImage('next')">❯</button>
-                    <button class="close-modal" (click)="closeFullSizeImage()">X</button>
+                <!-- Full-Size Image Modal -->
+                <div *ngIf="showFullSizeImage" class="full-size-image-modal" aria-label="Full-size Painting Image">
+                    <button class="prev-button" (click)="navigateFullSizeImage('prev')" aria-label="Previous image">❮</button>
+                    <img [src]="apiUrl + fullSizeImageUrl" class="img-fluid" alt="Full-size painting image" />
+                    <button class="next-button" (click)="navigateFullSizeImage('next')" aria-label="Next image">❯</button>
+                    <button class="close-modal" (click)="closeFullSizeImage()" aria-label="Close full-size image">X</button>
                 </div>
 
                 <!-- Thumbnails -->
-                <div class="carousel-thumbnails">
+                <div class="carousel-thumbnails" aria-label="Painting Image Thumbnails">
                     <img *ngFor="let image of painting.paintingImages; let i = index" [src]="apiUrl + image.imagePath"
-                        [class.active]="i == 0" (click)="selectImage(i)" class="img-thumbnail">
+                        [class.active]="i == 0" (click)="selectImage(i)" class="img-thumbnail"
+                        alt="Painting Thumbnail {{ i + 1 }}">
                 </div>
             </div>
 
+            <!-- Details Section -->
             <div class="col-lg-6 col-md-12" style="padding-left: 40px;">
                 <div class="product-desc">
                     <h3>{{ painting.name }}</h3>
 
+                    <!-- Share Links -->
                     <div class="product-share">
                         <ul>
                             <li><span>Share:</span></li>
-                            <li><a [href]="'https://www.facebook.com/sharer/sharer.php?u=' + currentUrl"
-                                    target="_blank"><i class='bx bxl-facebook'></i></a></li>
-                            <li><a [href]="'https://twitter.com/intent/tweet?url=' + currentUrl" target="_blank"><i
-                                        class='bx bxl-twitter'></i></a></li>
-                            <li><a [href]="'https://www.linkedin.com/sharing/share-offsite/?url=' + currentUrl"
-                                    target="_blank"><i class='bx bxl-linkedin'></i></a></li>
+                            <li><a [href]="'https://www.facebook.com/sharer/sharer.php?u=' + currentUrl" target="_blank" aria-label="Share on Facebook">
+                                <i class="bx bxl-facebook"></i></a></li>
+                            <li><a [href]="'https://twitter.com/intent/tweet?url=' + currentUrl" target="_blank" aria-label="Share on Twitter">
+                                <i class="bx bxl-twitter"></i></a></li>
+                            <li><a [href]="'https://www.linkedin.com/sharing/share-offsite/?url=' + currentUrl" target="_blank" aria-label="Share on LinkedIn">
+                                <i class="bx bxl-linkedin"></i></a></li>
                         </ul>
                     </div>
 
-                    <!-- Additional Information Tabs -->
+                    <!-- Tabs -->
                     <div class="product-detls-tab">
                         <ul class="nav nav-tabs tabs" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link tab-background" (click)="activeTab = 'additionalInfo'"
-                                    [class.active]="activeTab === 'additionalInfo'">Additional information</a>
+                                <a class="nav-link tab-background" (click)="activeTab = 'additionalInfo'" [class.active]="activeTab === 'additionalInfo'" aria-label="View Additional Information Tab">Additional information</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link tab-background" (click)="activeTab = 'description'"
-                                    [class.active]="activeTab === 'description'">Description</a>
+                                <a class="nav-link tab-background" (click)="activeTab = 'description'" [class.active]="activeTab === 'description'" aria-label="View Description Tab">Description</a>
                             </li>
                         </ul>
                         <div class="tab-content tab_content">
-                            <div class="tab-pane fade tabs_item" [class.show]="activeTab === 'additionalInfo'"
-                                [class.active]="activeTab === 'additionalInfo'">
-                                <div class="product-detls-tab-content">
-                                    <div class="product-detls-tab-content">
-                                        <ul class="additional-information">
-                                            <li><span>Technique:</span> {{ painting.technique }}</li>
-                                            <li><span>Year:</span> {{ painting.year }}</li>
-                                            <li><span>Dimensions:</span> {{ painting.dimensions }}</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <!-- Additional Info Tab -->
+                            <div class="tab-pane fade tabs_item" [class.show]="activeTab === 'additionalInfo'" [class.active]="activeTab === 'additionalInfo'" id="additional-info-tab">
+                                <ul class="additional-information">
+                                    <li><span>Technique:</span> {{ painting.technique }}</li>
+                                    <li><span>Year:</span> {{ painting.year }}</li>
+                                    <li><span>Dimensions:</span> {{ painting.dimensions }}</li>
+                                </ul>
                             </div>
-                            <div class="tab-pane fade tabs_item" [class.show]="activeTab === 'description'"
-                                [class.active]="activeTab === 'description'">
-                                <div class="product-detls-tab-content">
-                                    <p>{{ painting.description }}</p>
-                                </div>
+                            <!-- Description Tab -->
+                            <div class="tab-pane fade tabs_item" [class.show]="activeTab === 'description'" [class.active]="activeTab === 'description'" id="description-tab">
+                                <p>{{ painting.description }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Inquiry Button -->
                 <div class="row justify-content-center">
-                    <div  *ngIf="(painting$ | async)?.isAvailableToSell" class="col-lg-5 col-md-6">
-                        <a routerLink="/contact" class="default-btn centered-btn" (click)="onMakeinquiryClick(painting.name)">Make inquiry</a>
+                    <div *ngIf="painting.isAvailableToSell" class="col-lg-5 col-md-6">
+                        <a routerLink="/contact" class="default-btn centered-btn" (click)="onMakeinquiryClick(painting.name)" attr.aria-label="Make inquiry about {{ painting.name }}">Make Inquiry</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <app-footer></app-footer>

@@ -5,8 +5,8 @@
         <div class="inner-title">
             <h3>Portfolio</h3>
             <ul>
-                <li><a routerLink="/">Home</a></li>
-                <li><i class='bx bxs-chevrons-right'></i></li>
+                <li><a routerLink="/" aria-label="Navigate to the home page">Home</a></li>
+                <li><i class="bx bxs-chevrons-right" aria-hidden="true"></i></li>
                 <li>Portfolio</li>
             </ul>
         </div>
@@ -15,13 +15,14 @@
 
 <section class="service-area pt-100 pb-70">
     <div class="container">
-        <div class="scetion-title text-center">
+        <div class="section-title text-center">
             <span>Portfolio Paintings</span>
             <h2>Looking back on my paintings</h2>
-            <p>I invite you to trace back how my painting style, my inspirations, my technique, my perceptions have evolved over the years</p>
+            <p>Trace the evolution of my painting style, inspirations, techniques, and perceptions over the years.</p>
         </div>
         <br>
-      <app-portfolio-card></app-portfolio-card>
+        <!-- Portfolio Card Component -->
+        <app-portfolio-card></app-portfolio-card>
     </div>
 </section>
 
