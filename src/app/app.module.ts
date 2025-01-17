@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -82,7 +82,7 @@ import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit
     EditExhibitionComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -109,6 +109,7 @@ import { EditExhibitionComponent } from './components/pages/edit-exhibition/edit
   providers: [
   {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  Meta, Title
 ],
   bootstrap: [AppComponent]
 })
