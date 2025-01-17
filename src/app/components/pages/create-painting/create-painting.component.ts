@@ -109,6 +109,10 @@ export class CreatePaintingComponent implements OnInit {
     return this.createPaintingForm.controls;
   }
 
+  isMainImageSelected(): boolean {
+    return this.paintingImages.some(image => image.isMainImage);
+  }
+  
 }
 
 

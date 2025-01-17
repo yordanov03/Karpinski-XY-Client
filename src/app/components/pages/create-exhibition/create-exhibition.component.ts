@@ -100,6 +100,10 @@ onDeleteImage(index: number) {
   this.exhibitionImagesFormArray.removeAt(index);
 }
 
+isMainImageSelected(): boolean {
+  return this.exhibitionImages.some(image => image.isMainImage);
+}
+
 get f() {
   return this.createExhibitionForm.controls;
 }

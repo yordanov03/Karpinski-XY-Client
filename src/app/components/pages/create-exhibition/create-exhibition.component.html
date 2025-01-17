@@ -65,7 +65,8 @@
             <!-- Submit Button -->
             <div class="row">
               <div class="col-12 text-left">
-                <button type="submit" class="default-btn page-btn text-center" [disabled]="!createExhibitionForm.valid" [ngClass]="{'disabled-btn': !createExhibitionForm.valid}" aria-label="Submit Create Exhibition Form">Create Exhibition</button>
+                <button type="submit" class="default-btn page-btn text-center" [disabled]="!createExhibitionForm.valid || !isMainImageSelected()" 
+                [ngClass]="{'disabled-btn': !createExhibitionForm.valid  || !isMainImageSelected()}" aria-label="Submit Create Exhibition Form">Create Exhibition</button>
               </div>
             </div>
           </div>
