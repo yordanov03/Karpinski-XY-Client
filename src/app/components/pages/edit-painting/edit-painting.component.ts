@@ -169,6 +169,10 @@ export class EditPaintingComponent implements OnInit {
     this.paintingImages.forEach(image => this.addImageFormGroup(image));
   }
 
+  isMainImageSelected(): boolean {
+    return this.paintingImages.some(image => image.isMainImage);
+  }
+
   get f() {
     return this.editPaintingForm.controls;
   }

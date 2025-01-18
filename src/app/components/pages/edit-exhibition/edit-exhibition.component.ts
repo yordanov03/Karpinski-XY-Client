@@ -171,6 +171,10 @@ export class EditExhibitionComponent implements OnInit {
     this.exhibitionImages.forEach(image => this.addImageFormGroup(image));
   }
 
+  isMainImageSelected(): boolean {
+    return this.exhibitionImages.some(image => image.isMainImage);
+  }
+
   get f() {
     return this.editExhibitionForm.controls;
   }
