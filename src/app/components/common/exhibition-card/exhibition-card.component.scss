@@ -7,18 +7,24 @@
     background-size: auto;  /* or 'cover' to fill the space */
   }
 
-  #trashbutton{
-    font-size: 24px;
-    color: black;
-    margin-left: 25px;
-    float:right;
-    margin-top: -20px;
+/* General styles for icon buttons */
+.icon-button {
+  background: none; /* Remove button background */
+  border: none; /* Remove button border */
+  padding: 0; /* Remove default padding */
+  margin-right: 15px; /* Space between buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  display: inline-flex; /* Ensure proper icon alignment */
+  align-items: center;
 }
 
-#pencilbutton{
-    font-size: 24px;
-    color: black;
-    margin-left: 25px;
-    float:right;
-    margin-top: -20px;
+/* Icons within the buttons */
+.icon-button i {
+  font-size: 24px; /* Icon size */
+  color: black; /* Default icon color */
+}
+
+/* Hover effects for a better UX */
+.icon-button:hover i {
+  color: gray; /* Change color on hover */
 }

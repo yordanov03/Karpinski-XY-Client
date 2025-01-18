@@ -40,11 +40,11 @@
                             <p *ngIf="(isLoggedIn$ | async)">Price: {{painting.price}}</p>
                             <p *ngIf="(isLoggedIn$ | async)">
                                 <button class="btn-icon" (click)="onDeleteClick(painting.id)" attr.aria-label="Delete {{painting.name}}">
-                                    <i class='bi bi-trash3' id="trashbutton"></i>
+                                    <i class="bi bi-trash3 trash-icon"></i>
                                 </button>
                                 <button class="btn-icon" (click)="onEditPainting(painting.id)" attr.aria-label="Edit {{painting.name}}">
-                                    <i class='bi bi-pencil' id="pencilbutton"></i>
-                                </button>
+                                    <i class="bi bi-pencil pencil-icon"></i>
+                                </button>                                
                             </p>
                             <a routerLink="/contact" class="default-btn" (click)="onMakeinquiryClick(painting.name)" attr.aria-label="Make an inquiry about {{painting.name}}">
                                 Make Inquiry
