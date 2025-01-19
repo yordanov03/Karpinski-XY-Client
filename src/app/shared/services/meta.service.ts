@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class MetaService {
   updateMetaTags(data: any): void {
     const defaultTitle = 'Pawel Kaprinski - Art Portfolio';
     const defaultDescription = 'Explore the unique paintings and exhibitions of Pawel Kaprinski, a contemporary Polish artist.';
-    const defaultImage = 'https://example.com/assets/1.jpg'; 
+    const defaultImage = `${environment.apiUrl}/1.jpg`; 
     const defaultUrl = 'https://pawelkaprinski.com';
   
     this.title.setTitle(data.title || defaultTitle);
