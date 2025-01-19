@@ -29,7 +29,7 @@ submitContactForm$ = createEffect(() =>
       catchError(error => {
         popoverMessage().fire({
           icon: 'error',
-          text: 'Message not sent'
+          text: `Message not sent. ${error}`
         });
         return of(ContactActions.submitContactFormFailure({ error }));
       })

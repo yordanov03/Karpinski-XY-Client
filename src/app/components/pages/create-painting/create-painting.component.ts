@@ -25,7 +25,7 @@ export class CreatePaintingComponent implements OnInit {
     this.createPaintingForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      price: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]],
       dimensions: ['', Validators.required],
       isAvailableToSell: [true],
       year: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],

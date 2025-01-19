@@ -35,7 +35,7 @@ export class PaintingsEffects {
         catchError(error =>{
           popoverMessage().fire({
             icon: 'error',
-            text: 'Painting not saved'
+            text: `$Painting not saved. ${error}`
           });
           return of(PaintingActions.createPaintingFailure({ payload: error }))
         } )

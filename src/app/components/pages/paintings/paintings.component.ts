@@ -77,6 +77,7 @@ export class PaintingsComponent implements OnInit {
   goToPage(page: number) {
     this.currentPage = page;
     this.ngOnInit();
+    window.scrollTo(0, 0);
   }
 }
 
