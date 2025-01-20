@@ -3040,6 +3040,7 @@ Pagination Area Style
     }
     .page-item {
         padding: 0 8px 0;
+        cursor: pointer;
 
         &:first-child .page-link {
             border-radius: none;
