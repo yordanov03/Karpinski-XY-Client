@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as PaintingActions from './paintings.actions';
-import { catchError, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
-import { EMPTY, of } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { Painting } from 'src/app/api/models';
 import { Router } from '@angular/router';
 import { PaintingsService } from 'src/app/api/services';
-import { select, Store } from '@ngrx/store';
-import { selectAvailablePaintings, selectPaintingsToSell, selectPortfolioPaintings } from './paintings.selectos';
+import { Store } from '@ngrx/store';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class PaintingsEffects {
@@ -20,6 +20,16 @@ export class PaintingsEffects {
   createPainting$ = createEffect(() =>
     this.actions$.pipe(
       ofType(PaintingActions.createPainting),
+      tap(() => {
+        Swal.fire({
+          title: 'Saving',
+          html: 'Please wait',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+      }),
       switchMap(action => this.paintingService.create({ body: action.payload }).pipe(
         tap(() => {
         popoverMessage().fire({
@@ -35,7 +45,7 @@ export class PaintingsEffects {
         catchError(error =>{
           popoverMessage().fire({
             icon: 'error',
-            text: `$Painting not saved. ${error}`
+            text: `$Painting not saved. ${error.error}`
           });
           return of(PaintingActions.createPaintingFailure({ payload: error }))
         } )
@@ -46,12 +56,22 @@ export class PaintingsEffects {
   loadPaintingToEdit$ = createEffect(() =>
   this.actions$.pipe(
     ofType(PaintingActions.loadPaintingToEdit),
+    tap(() => {
+      Swal.fire({
+        title: 'Loading',
+        html: 'Please wait',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+    }),
     switchMap(action => this.paintingService.getPaintingToEdit({ id: action.id }).pipe(
       map((painting: Painting) => PaintingActions.loadPaintingToEditSuccess({ painting })),
       catchError(error => {
         popoverMessage().fire({
           icon: 'error',
-          text: 'Failed to load painting to edit'
+          text: `Failed to load painting to edit. ${error.error}`
         });
         return of(PaintingActions.loadPaintingToEditFailure({ error }));
       })
@@ -62,6 +82,16 @@ export class PaintingsEffects {
   updatePainting$ = createEffect(() =>
     this.actions$.pipe(
       ofType(PaintingActions.updatePainting),
+      tap(() => {
+        Swal.fire({
+          title: 'Saving',
+          html: 'Please wait',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+      }),
       switchMap(action => this.paintingService.update({ body: action.painting }).pipe(
         tap(() => {
           popoverMessage().fire({
@@ -76,7 +106,7 @@ export class PaintingsEffects {
         catchError(error => {
           popoverMessage().fire({
             icon: 'error',
-            text: 'Painting not updated'
+            text: `Painting not updated. ${error.error}`
           });
           return of(PaintingActions.updatePaintingFailure({ error }))
         })
@@ -87,6 +117,16 @@ export class PaintingsEffects {
   deletePainting$ = createEffect(() =>
   this.actions$.pipe(
     ofType(PaintingActions.deletePainting),
+    tap(() => {
+      Swal.fire({
+        title: 'Saving',
+        html: 'Please wait',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+    }),
     switchMap((action) =>
       this.paintingService.delete({ id: action.id }).pipe(
         tap(() => {
@@ -100,7 +140,7 @@ export class PaintingsEffects {
         catchError((error) => {
           popoverMessage().fire({
             icon: 'error',
-            text: 'Failed to delete painting'
+            text: `Failed to delete painting. ${error.error}`
           });
           return of(PaintingActions.deletePaintingFailure({ error }));
         })
@@ -111,14 +151,14 @@ export class PaintingsEffects {
 
 loadAvailablePaintings$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(PaintingActions.loadAvailablePaintings), // Trigger on loadAvailablePaintings action
+    ofType(PaintingActions.loadAvailablePaintings),
     switchMap(() =>
       this.paintingService.available().pipe(
         map(availablePaintings => 
-          PaintingActions.loadAvailablePaintingsSuccess({ availablePaintings }) // Dispatch success action
+          PaintingActions.loadAvailablePaintingsSuccess({ availablePaintings })
         ),
         catchError(error => 
-          of(PaintingActions.loadAvailablePaintingsFailure({ error })) // Dispatch failure action
+          of(PaintingActions.loadAvailablePaintingsFailure({ error }))
         )
       )
     )
@@ -157,14 +197,14 @@ loadPaintingsOnFocus$ = createEffect(() =>
 
 loadPortfolio$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(PaintingActions.loadPortfolioPaintings), // Trigger on loadPortfolioPaintings action
+    ofType(PaintingActions.loadPortfolioPaintings),
     switchMap(() =>
       this.paintingService.portfolio().pipe(
         map(portfolioPaintings => 
-          PaintingActions.loadPortfolioPaintingsSuccess({ portfolioPaintings }) // Dispatch success action
+          PaintingActions.loadPortfolioPaintingsSuccess({ portfolioPaintings })
         ),
         catchError(error => 
-          of(PaintingActions.loadPortfolioPaintingsFailure({ error })) // Dispatch failure action
+          of(PaintingActions.loadPortfolioPaintingsFailure({ error }))
         )
       )
     )
@@ -173,14 +213,14 @@ loadPortfolio$ = createEffect(() =>
 
 loadPaintingsToSell$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(PaintingActions.loadPaintingsToSell), // Trigger on loadPaintingsToSell action
+    ofType(PaintingActions.loadPaintingsToSell),
     switchMap(() =>
       this.paintingService.toSell().pipe(
         map(paintingsToSell => 
-          PaintingActions.loadPaintingsToSellSuccess({ paintingsToSell }) // Dispatch success action with fetched paintings
+          PaintingActions.loadPaintingsToSellSuccess({ paintingsToSell })
         ),
         catchError(error => 
-          of(PaintingActions.loadPaintingsToSellFailure({ error })) // Dispatch failure action if API call fails
+          of(PaintingActions.loadPaintingsToSellFailure({ error }))
         )
       )
     )

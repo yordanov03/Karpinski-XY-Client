@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import * as ExhibitionActions from './exhibitions.actions';
-
 import { popoverMessage } from 'src/app/shared/popover-messages';
 import { Exhibition } from 'src/app/api/models';
 import { ExhibitionsService } from 'src/app/api/services/exhibitions.service';
-import { select, Store } from '@ngrx/store';
-import { selectAllExhibitions } from './exhibitions.selectors';
+import { Store } from '@ngrx/store';
+import Swal from 'sweetalert2';
 
 
 @Injectable()
@@ -24,6 +23,16 @@ export class ExhibitionsEffects {
   createExhibition$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ExhibitionActions.createExhibition),
+            tap(() => {
+              Swal.fire({
+                title: 'Saving',
+                html: 'Please wait',
+                allowOutsideClick: false,
+                didOpen: () => {
+                  Swal.showLoading();
+                },
+              });
+            }),
       switchMap(action =>
         this.exhibitionsService.createExhibition({ body: action.payload }).pipe(
           tap(() => {
@@ -39,7 +48,7 @@ export class ExhibitionsEffects {
           catchError(error => {
             popoverMessage().fire({
               icon: 'error',
-              text: 'Exhibition not saved'
+              text: `Exhibition not saved. ${error.error}`
             });
             return of(ExhibitionActions.createExhibitionFailure({ error }))
           })
@@ -50,14 +59,14 @@ export class ExhibitionsEffects {
 
   loadExhibitions$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ExhibitionActions.loadExhibitions), // Trigger on loadExhibitions action
+      ofType(ExhibitionActions.loadExhibitions),
       switchMap(() =>
         this.exhibitionsService.getAllExhibitions().pipe(
           map(exhibitions => 
-            ExhibitionActions.loadExhibitionsSuccess({ exhibitions }) // Dispatch success action with fetched exhibitions
+            ExhibitionActions.loadExhibitionsSuccess({ exhibitions })
           ),
           catchError(error => 
-            of(ExhibitionActions.loadExhibitionsFailure({ error })) // Dispatch failure action if API call fails
+            of(ExhibitionActions.loadExhibitionsFailure({ error }))
           )
         )
       )
@@ -67,10 +76,19 @@ export class ExhibitionsEffects {
   deleteExhibition$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ExhibitionActions.deleteExhibition),
+            tap(() => {
+              Swal.fire({
+                title: 'Saving',
+                html: 'Please wait',
+                allowOutsideClick: false,
+                didOpen: () => {
+                  Swal.showLoading();
+                },
+              });
+            }),
       mergeMap(action =>
         this.exhibitionsService.deleteExhibition({ id: action.id }).pipe(
           tap(() => {
-            // Display success message
             popoverMessage().fire({
               icon: 'success',
               text: 'Exhibition successfully deleted'
@@ -78,10 +96,9 @@ export class ExhibitionsEffects {
           }),
           map(() => ExhibitionActions.deleteExhibitionSuccess({ id: action.id })),
           catchError(error => {
-            // Display error message
             popoverMessage().fire({
               icon: 'error',
-              text: 'Failed to delete exhibition'
+              text: `Failed to delete exhibition. ${error.error}`
             });
             return of(ExhibitionActions.deleteExhibitionFailure({ error }));
           })
@@ -98,7 +115,7 @@ export class ExhibitionsEffects {
       catchError(error => {
         popoverMessage().fire({
           icon: 'error',
-          text: 'Failed to load exhibition'
+          text: `Failed to load exhibition. ${error.error}`
         });
         return of(ExhibitionActions.getExhibitionFailure({ error }));
       })
@@ -110,12 +127,22 @@ export class ExhibitionsEffects {
   getExhibitionToEdit$ = createEffect(() =>
   this.actions$.pipe(
     ofType(ExhibitionActions.getExhibitionToEdit),
+          tap(() => {
+            Swal.fire({
+              title: 'Loading',
+              html: 'Please wait',
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading();
+              },
+            });
+          }),
     switchMap(action => this.exhibitionsService.getExhibitionToEdit({ id: action.id }).pipe(
       map((exhibition: Exhibition) => ExhibitionActions.getExhibitionToEditSuccess({ exhibition })),
       catchError(error => {
         popoverMessage().fire({
           icon: 'error',
-          text: 'Failed to load exhibition to edit'
+          text: `Failed to load exhibition to edit. ${error.error}`
         });
         return of(ExhibitionActions.getExhibitionToEditFailure({ error }));
       })
@@ -126,6 +153,16 @@ export class ExhibitionsEffects {
   updateExhibition$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ExhibitionActions.updateExhibition),
+            tap(() => {
+              Swal.fire({
+                title: 'Saving',
+                html: 'Please wait',
+                allowOutsideClick: false,
+                didOpen: () => {
+                  Swal.showLoading();
+                },
+              });
+            }),
       switchMap(action =>
         this.exhibitionsService.updateExhibition({
           body: action.exhibition
@@ -143,7 +180,7 @@ export class ExhibitionsEffects {
           catchError(error => {
             popoverMessage().fire({
               icon: 'error',
-              text: 'Exhibition not updated'
+              text: `Exhibition not updated. ${error.error}`
             });
             return of(ExhibitionActions.updateExhibitionFailure({ error }));
           })
