@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -25,7 +25,8 @@ export class EditExhibitionComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store<{ exhibition: ExhibitionsState }>,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, 
+    private cdr: ChangeDetectorRef) {
       this.exhibitionState$ = this.store.select('exhibition');
 
     this.editExhibitionForm = this.fb.group({
@@ -68,6 +69,7 @@ export class EditExhibitionComponent implements OnInit {
           this.exhibitionImages[index].isMainImage = image.isMainImage;
         });
       });
+      this.cdr.detectChanges();
   }
   
   ngOnDestroy(): void {

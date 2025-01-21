@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -23,7 +23,8 @@ export class EditPaintingComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store<{ painting: PaintingsState }>,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef) {
     this.paintingsState$ = this.store.select('painting');
     this.editPaintingForm = this.fb.group({
       id: [''],
@@ -65,6 +66,7 @@ export class EditPaintingComponent implements OnInit {
         this.paintingImages[index].isMainImage = image.isMainImage;
       });
     });
+    this.cdr.detectChanges();
   }
 
   private populateForm(painting: Painting): void {
