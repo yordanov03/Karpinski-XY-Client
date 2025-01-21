@@ -172,7 +172,11 @@ export class EditExhibitionComponent implements OnInit {
   }
 
   isMainImageSelected(): boolean {
-    return this.exhibitionImages.some(image => image.isMainImage);
+    const mainImageCount = this.exhibitionImages.filter(image => image.isMainImage).length;
+    if (mainImageCount > 1) {
+      return false
+    }
+    return true
   }
 
   get f() {

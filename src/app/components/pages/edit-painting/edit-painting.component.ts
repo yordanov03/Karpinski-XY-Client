@@ -170,7 +170,11 @@ export class EditPaintingComponent implements OnInit {
   }
 
   isMainImageSelected(): boolean {
-    return this.paintingImages.some(image => image.isMainImage);
+    const mainImageCount = this.paintingImages.filter(image => image.isMainImage).length;
+    if (mainImageCount > 1) {
+      return false
+    }
+    return true
   }
 
   get f() {
