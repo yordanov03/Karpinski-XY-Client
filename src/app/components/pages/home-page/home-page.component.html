@@ -92,7 +92,7 @@
             <div class="col-lg-7">
                 <div class="about-content">
                     <span>About Me</span>
-                    <h2>A corporate by night</h2>
+                    <h2>A corporate by day</h2>
                     <p>
                         My name is Pawel Karpinski, I was born in Radom, Poland, and grew up in Tarnobrzeg. 
                         I moved to Wroclaw in 2006 to study finance. After earning my degree from Wroclaw University of Economics in 2011, 
@@ -160,58 +160,98 @@
     </div>
 </section>
 
-
 <!-- Portfolio (Carousel) -->
 <section class="service-area pb-70">
-    <div class="container" *ngIf="(portfolioPaintings$ | async)?.length">
-        <header class="section-title text-center">
+    <div class="container" *ngIf="portfolioPaintings$ | async as paintings">
+        <div class="scetion-title text-center">
             <span>Portfolio</span>
             <h2>My Work Throughout the Years</h2>
-            <p>
-                I invite you to trace back how my painting style, inspirations, technique, and perceptions have evolved over the years.
-            </p>
-        </header>
-        <span>&nbsp;</span>
+            <p>I invite you to trace back how my painting style, inspirations, technique, and perceptions have evolved over the years.</p>
+        </div>
 
-        <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <!-- Divide the portfolio paintings array into chunks of 3 for each slide -->
-                <ng-container *ngFor="let chunk of (portfolioPaintings$ | async) | sliceArray:3; let isFirst = first">
-                    <div class="carousel-item" [class.active]="isFirst">
-                        <div class="row">
-                            <!-- Display each painting in the chunk -->
-                            <div class="col-lg-4" *ngFor="let painting of chunk">
-                                <div class="service-card">
-                                    <a routerLink="/paintings-details/{{painting.id}}" attr.aria-label="View details of {{ painting.name }}">
-                                        <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" alt="{{ painting.name }} - {{ painting.dimensions }}" 
-                                        style="height: 350px; width: 100%; object-fit: cover;" loading="lazy">
-                                    </a>
-                                    <div class="service-content">
-                                        <a routerLink="/paintings-details/{{painting.id}}" attr.aria-label="Learn more about {{ painting.name }}">
-                                            <h3>{{ painting.name }}</h3>
-                                        </a>
-                                        <p>{{ painting.dimensions }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
+        <div class="service-slider owl-carousel owl-theme pt-45">
+            <div class="service-card" [style.visibility]="paintings[0] ? 'visible' : 'hidden'" [style.opacity]="paintings[0] ? 1 : 0">
+                <a routerLink="/paintings-details/{{paintings[0]?.id}}">
+                    <img [src]="apiUrl + paintings[0]?.paintingImages[0]?.imagePath" alt="{{ paintings[0]?.name }}" style="height: 350px; width: 100%; object-fit: cover;">
+                </a>
+
+                <div class="service-content">
+                    <a routerLink="/paintings-details/{{paintings[0]?.id}}">
+                        <h3>{{ paintings[0]?.name }}</h3>
+                    </a>
+                    <p>{{ paintings[0]?.dimensions }}</p>
+                </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+
+            <div class="service-card" [style.visibility]="paintings[1] ? 'visible' : 'hidden'" [style.opacity]="paintings[1] ? 1 : 0">
+                <a routerLink="/paintings-details/{{paintings[1]?.id}}">
+                    <img [src]="apiUrl + paintings[1]?.paintingImages[0]?.imagePath" alt="{{ paintings[1]?.name }}" style="height: 350px; width: 100%; object-fit: cover;">
+                </a>
+
+                <div class="service-content">
+                    <a routerLink="/paintings-details/{{paintings[1]?.id}}">
+                        <h3>{{ paintings[1]?.name }}</h3>
+                    </a>
+                    <p>{{ paintings[1]?.dimensions }}</p>
+                </div>
+            </div>
+
+            <div class="service-card" [style.visibility]="paintings[2] ? 'visible' : 'hidden'" [style.opacity]="paintings[2] ? 1 : 0">
+                <a routerLink="/paintings-details/{{paintings[2]?.id}}">
+                    <img [src]="apiUrl + paintings[2]?.paintingImages[0]?.imagePath" alt="{{ paintings[2]?.name }}" style="height: 350px; width: 100%; object-fit: cover;">
+                </a>
+
+                <div class="service-content">
+                    <a routerLink="/paintings-details/{{paintings[2]?.id}}">
+                        <h3>{{ paintings[2]?.name }}</h3>
+                    </a>
+                    <p>{{ paintings[2]?.dimensions }}</p>
+                </div>
+            </div>
+
+            <div class="service-card" [style.visibility]="paintings[3] ? 'visible' : 'hidden'" [style.opacity]="paintings[3] ? 1 : 0">
+                <a routerLink="/paintings-details/{{paintings[3]?.id}}">
+                    <img [src]="apiUrl + paintings[3]?.paintingImages[0]?.imagePath" alt="{{ paintings[3]?.name }}" style="height: 350px; width: 100%; object-fit: cover;">
+                </a>
+
+                <div class="service-content">
+                    <a routerLink="/paintings-details/{{paintings[3]?.id}}">
+                        <h3>{{ paintings[3]?.name }}</h3>
+                    </a>
+                    <p>{{ paintings[3]?.dimensions }}</p>
+                </div>
+            </div>
+
+            <div class="service-card" [style.visibility]="paintings[4] ? 'visible' : 'hidden'" [style.opacity]="paintings[4] ? 1 : 0">
+                <a routerLink="/paintings-details/{{paintings[4]?.id}}">
+                    <img [src]="apiUrl + paintings[4]?.paintingImages[0]?.imagePath" alt="{{ paintings[4]?.name }}" style="height: 350px; width: 100%; object-fit: cover;">
+                </a>
+
+                <div class="service-content">
+                    <a routerLink="/paintings-details/{{paintings[4]?.id}}">
+                        <h3>{{ paintings[4]?.name }}</h3>
+                    </a>
+                    <p>{{ paintings[4]?.dimensions }}</p>
+                </div>
+            </div>
+
+            <div class="service-card" [style.visibility]="paintings[5] ? 'visible' : 'hidden'" [style.opacity]="paintings[5] ? 1 : 0">
+                <a routerLink="/paintings-details/{{paintings[5]?.id}}">
+                    <img [src]="apiUrl + paintings[5]?.paintingImages[0]?.imagePath" alt="{{ paintings[5]?.name }}" style="height: 350px; width: 100%; object-fit: cover;">
+                </a>
+
+                <div class="service-content">
+                    <a routerLink="/paintings-details/{{paintings[5]?.id}}">
+                        <h3>{{ paintings[5]?.name }}</h3>
+                    </a>
+                    <p>{{ paintings[5]?.dimensions }}</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-
-
+<!-- Exhibitions -->
 <section class="blog-area pb-70">
     <div class="container" *ngIf="(exhibitions$ | async).length > 0">
         <header class="section-title text-center">
