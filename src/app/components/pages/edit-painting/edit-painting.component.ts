@@ -173,11 +173,6 @@ export class EditPaintingComponent implements OnInit {
     this.paintingImages.forEach(image => this.addImageFormGroup(image));
   }
 
-  isMainImageSelected(): boolean {
-    const mainImageCount = this.paintingImages.filter(image => image.isMainImage).length;
-    return mainImageCount === 1;
-  }
-
   get f() {
     return this.editPaintingForm.controls;
   }

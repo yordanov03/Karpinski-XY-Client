@@ -103,11 +103,6 @@ onDeleteImage(index: number) {
   this.exhibitionImagesFormArray.removeAt(index);
 }
 
-isMainImageSelected(): boolean {
-  const mainImageCount = this.exhibitionImages.filter(image => image.isMainImage).length;
-  return mainImageCount === 1;
-}
-
 get f() {
   return this.createExhibitionForm.controls;
 }

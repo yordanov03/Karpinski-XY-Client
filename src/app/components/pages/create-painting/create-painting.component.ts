@@ -111,11 +111,6 @@ export class CreatePaintingComponent implements OnInit {
   get f() {
     return this.createPaintingForm.controls;
   }
-
-  isMainImageSelected(): boolean {
-    const mainImageCount = this.paintingImages.filter(image => image.isMainImage).length;
-    return mainImageCount === 1;
-  }
 }
 
 

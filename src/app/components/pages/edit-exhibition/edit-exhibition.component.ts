@@ -176,11 +176,6 @@ export class EditExhibitionComponent implements OnInit {
     this.exhibitionImages.forEach(image => this.addImageFormGroup(image));
   }
 
-  isMainImageSelected(): boolean {
-    const mainImageCount = this.exhibitionImages.filter(image => image.isMainImage).length;
-    return mainImageCount === 1;
-  }
-
   get f() {
     return this.editExhibitionForm.controls;
   }

@@ -17,15 +17,22 @@
 }
 
 .banner-item {
-    width: 300px;
-    height: 250px;
-    // border-radius: 25px; /* Rounded corners */
-    overflow: hidden;    /* Hides the overflow */
-    display: flex;       /* Ensures the child elements are centered */
-    justify-content: center;
-    align-items: center; 
-    object-fit: scale-down;
-  }
+  width: 250px;         /* Set width for square */
+  height: 250px;        /* Match height to width for square */
+  overflow: hidden;     /* Hide anything outside the container */
+  display: flex;        /* Use flexbox to center the content */
+  justify-content: center;
+  align-items: center;
+  // border-radius: 25px;  /* Optional: Rounded corners */
+  background-color: #f0f0f0; /* Optional: Background to fill empty space */
+}
+
+.portfolio-image {
+  max-width: 100%;      /* Ensure the image fits inside */
+  max-height: 100%;     /* Scale image while maintaining aspect ratio */
+  object-fit: contain;  /* Ensure the image scales properly */
+}
+
 
   .banner-img .banner-into-slider .banner-item img{
     object-fit: scale-down;

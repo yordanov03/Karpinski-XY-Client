@@ -21,7 +21,7 @@
                     <img src="{{homePagePaitingsUrl}}1.jpeg" alt="Featured artwork banner" >
                     <div class="banner-into-slider owl-carousel owl-theme">
                         <!-- Painting 1 -->
-                        <div class="banner-item">
+                        <div class="banner-item" [style.visibility]="(paintingsOnFocus$ | async)?.[0] ? 'visible' : 'hidden'" [style.opacity]="(paintingsOnFocus$ | async)?.[0] ? 1 : 0">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[0]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[0]?.id}}" target="_blank"
                                 attr.aria-label="View details of painting 1">
@@ -29,7 +29,7 @@
                             </a>
                         </div>
                         <!-- Painting 2 -->
-                        <div class="banner-item">
+                        <div class="banner-item"  [style.visibility]="(paintingsOnFocus$ | async)?.[1] ? 'visible' : 'hidden'" [style.opacity]="(paintingsOnFocus$ | async)?.[1] ? 1 : 0">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[1]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[1]?.id}}" target="_blank"
                                 attr.aria-label="View details of painting 2">
@@ -37,7 +37,7 @@
                             </a>
                         </div>
                         <!-- Painting 3 -->
-                        <div class="banner-item">
+                        <div class="banner-item"  [style.visibility]="(paintingsOnFocus$ | async)?.[2] ? 'visible' : 'hidden'" [style.opacity]="(paintingsOnFocus$ | async)?.[2] ? 1 : 0">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[2]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[2]?.id}}" target="_blank"
                                 attr.aria-label="View details of painting 3">
@@ -45,7 +45,7 @@
                             </a>
                         </div>
                         <!-- Painting 4 -->
-                        <div class="banner-item">
+                        <div class="banner-item" [style.visibility]="(paintingsOnFocus$ | async)?.[3] ? 'visible' : 'hidden'" [style.opacity]="(paintingsOnFocus$ | async)?.[3] ? 1 : 0">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[3]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[3]?.id}}" target="_blank"
                                 attr.aria-label="View details of painting 4">
@@ -53,7 +53,7 @@
                             </a>
                         </div>
                         <!-- Painting 5 -->
-                        <div class="banner-item">
+                        <div class="banner-item" [style.visibility]="(paintingsOnFocus$ | async)?.[4] ? 'visible' : 'hidden'" [style.opacity]="(paintingsOnFocus$ | async)?.[4] ? 1 : 0">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[4]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[4]?.id}}" target="_blank"
                                 attr.aria-label="View details of painting 5">
@@ -61,7 +61,7 @@
                             </a>
                         </div>
                         <!-- Painting 6 -->
-                        <div class="banner-item">
+                        <div class="banner-item" [style.visibility]="(paintingsOnFocus$ | async)?.[5] ? 'visible' : 'hidden'" [style.opacity]="(paintingsOnFocus$ | async)?.[5] ? 1 : 0">
                             <a *ngIf="(paintingsOnFocus$ | async)?.[5]?.paintingImages?.[0]?.imagePath as imagePath"
                                 href="/paintings-details/{{(paintingsOnFocus$ | async)?.[5]?.id}}" target="_blank"
                                 attr.aria-label="View details of painting 6">

@@ -108,8 +108,8 @@
             <div class="row">
               <div class="col-12 text-left">
                 <button type="submit" class="default-btn page-btn text-center"
-                  [disabled]="(loading$ | async) || !createPaintingForm.valid || !isMainImageSelected()"
-                  [ngClass]="{'disabled-btn': (loading$ | async) || !createPaintingForm.valid || !isMainImageSelected()}"
+                  [disabled]="(loading$ | async) || !createPaintingForm.valid"
+                  [ngClass]="{'disabled-btn': (loading$ | async) || !createPaintingForm.valid}"
                   aria-label="Submit Create Painting Form">
                   Create
                 </button>

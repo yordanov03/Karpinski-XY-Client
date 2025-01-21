@@ -82,8 +82,8 @@
                         <div class="row">
                             <div class="col-12 text-left">
                                 <button type="submit" class="default-btn page-btn text-center"
-                                    [disabled]="(loading$ | async) || !editExhibitionForm.valid || !isMainImageSelected()"
-                                    [ngClass]="{'disabled-btn': (loading$ | async) || !editExhibitionForm.valid || !isMainImageSelected()}" 
+                                    [disabled]="(loading$ | async) || !editExhibitionForm.valid"
+                                    [ngClass]="{'disabled-btn': (loading$ | async) || !editExhibitionForm.valid}" 
                                     aria-label="Submit Edit Exhibition Form">Update</button>
                             </div>
                         </div>
