@@ -20,7 +20,7 @@
         <div class="row">
             <!-- Main Image and Thumbnails Section -->
             <div class="col-lg-6 col-md-12">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
                     <div class="carousel-inner" role="listbox" aria-label="Exhibition Images Carousel">
                         <div *ngFor="let image of exhibition?.exhibitionImages; let i = index" class="carousel-item"
                             [class.active]="i === 0">
@@ -39,6 +39,8 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
+                
+                
 
                 <!-- Full-Size Image Modal -->
                 <div *ngIf="showFullSizeImage" class="full-size-image-modal">
