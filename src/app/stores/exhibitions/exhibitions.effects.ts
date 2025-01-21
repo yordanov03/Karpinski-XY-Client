@@ -127,16 +127,6 @@ export class ExhibitionsEffects {
   getExhibitionToEdit$ = createEffect(() =>
   this.actions$.pipe(
     ofType(ExhibitionActions.getExhibitionToEdit),
-          tap(() => {
-            Swal.fire({
-              title: 'Loading',
-              html: 'Please wait',
-              allowOutsideClick: false,
-              didOpen: () => {
-                Swal.showLoading();
-              },
-            });
-          }),
     switchMap(action => this.exhibitionsService.getExhibitionToEdit({ id: action.id }).pipe(
       map((exhibition: Exhibition) => ExhibitionActions.getExhibitionToEditSuccess({ exhibition })),
       catchError(error => {

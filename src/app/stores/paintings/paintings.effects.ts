@@ -56,16 +56,6 @@ export class PaintingsEffects {
   loadPaintingToEdit$ = createEffect(() =>
   this.actions$.pipe(
     ofType(PaintingActions.loadPaintingToEdit),
-    tap(() => {
-      Swal.fire({
-        title: 'Loading',
-        html: 'Please wait',
-        allowOutsideClick: false,
-        didOpen: () => {
-          Swal.showLoading();
-        },
-      });
-    }),
     switchMap(action => this.paintingService.getPaintingToEdit({ id: action.id }).pipe(
       map((painting: Painting) => PaintingActions.loadPaintingToEditSuccess({ painting })),
       catchError(error => {
@@ -186,7 +176,7 @@ loadPaintingsOnFocus$ = createEffect(() =>
         catchError(error => {
           popoverMessage().fire({
             icon: 'error',
-            title: 'Error fetching painting'
+            title: `Failed to load painting. ${error.error}`
           });
           return of(PaintingActions.loadPaintingFailure({ error }));
         })
