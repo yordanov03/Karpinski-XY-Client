@@ -7,6 +7,7 @@
   height: 500px; /* Fixed height for all images */
   width: 100%; /* Fixed width */
   object-fit: cover; /* Maintain aspect ratio */
+  margin-left: 30px
 }
 
 /* Add arrow styles here */
@@ -27,11 +28,11 @@
 }
 
 .carousel-control-prev {
-  left: 10px;
+  left: 30px;
 }
 
 .carousel-control-next {
-  right: 10px;
+  right: 30px;
 }
 
 .carousel-item {

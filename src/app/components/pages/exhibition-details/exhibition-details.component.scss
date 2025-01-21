@@ -1,15 +1,17 @@
 .carousel {
   display: flex;
   overflow: hidden; /* Prevent slides from showing outside the container */
+  position: relative; /* Ensure arrows are positioned relative to the carousel */
 }
 
 .carousel-item img {
   height: 500px; /* Fixed height for all images */
   width: 100%; /* Fixed width */
   object-fit: cover; /* Maintain aspect ratio */
+  margin-left: 30px
 }
 
-/* Add arrow styles here */
+/* Arrow styles */
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
@@ -26,14 +28,27 @@
   cursor: pointer;
 }
 
+/* Adjust positioning for the arrows */
 .carousel-control-prev {
-  left: 10px;
+  left: 30px; /* Adjust distance from the left */
 }
 
 .carousel-control-next {
-  right: 10px;
+  right: 30px; /* Adjust distance from the right */
 }
 
+/* Ensure arrows are within the image container */
+.carousel:hover .carousel-control-prev,
+.carousel:hover .carousel-control-next {
+  opacity: 1; /* Show arrows on hover if hidden */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-size: 20px 20px; /* Adjust arrow icon size */
+}
+
+/* Smooth fade-in effect for carousel items */
 .carousel-item {
   position: absolute; /* Layer all slides on top of each other */
   top: 0;
@@ -45,15 +60,8 @@
 }
 
 .carousel-item.active {
-  opacity: 1; /* Show the active slide */
-  position: relative; /* Keep the active slide in flow */
-  z-index: 2;
-}
-
-.carousel-item img {
-  height: 500px; /* Fixed height for all images */
-  width: 100%; /* Fixed width */
-  object-fit: cover; /* Maintain aspect ratio */
+  opacity: 1; /* Show active slide */
+  position: relative; /* Ensure active slide is properly displayed */
 }
 
 .carousel-indicators li {
