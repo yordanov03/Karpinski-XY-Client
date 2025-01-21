@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { PaintingsState } from 'src/app/stores/paintings/paintings.state';
 import * as paintingActions from '../../../stores/paintings/paintings.actions'
 import { Painting, PaintingImage } from 'src/app/api/models';
+import { selectLoading } from 'src/app/stores/paintings/paintings.selectos';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { Painting, PaintingImage } from 'src/app/api/models';
 export class CreatePaintingComponent implements OnInit {
   paintingsState$: Observable<PaintingsState>;
   formSubmitted$: Observable<boolean>
+  loading$: Observable<boolean>;
   createPaintingForm: FormGroup;
   paintingImages: PaintingImage[] = [];
 
@@ -34,6 +36,7 @@ export class CreatePaintingComponent implements OnInit {
       isAvailableForSale: [true],
       paintingImages: this.fb.array([], Validators.required)
     });
+    this.loading$ = this.store.select(selectLoading);
   }
 
   ngOnInit(): void {

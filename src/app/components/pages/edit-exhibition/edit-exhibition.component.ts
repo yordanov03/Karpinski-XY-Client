@@ -8,6 +8,7 @@ import { Exhibition, ExhibitionImage } from 'src/app/api/models';
 import { ExhibitionsState } from 'src/app/stores/exhibitions/exhibitions.state';
 import * as exhibitionActions from '../../../stores/exhibitions/exhibitions.actions';
 import * as fromSelectors from '../../../stores/exhibitions/exhibitions.selectors';
+import { selectLoading } from 'src/app/stores/paintings/paintings.selectos';
 
 @Component({
   selector: 'app-edit-exhibition',
@@ -16,6 +17,7 @@ import * as fromSelectors from '../../../stores/exhibitions/exhibitions.selector
 })
 export class EditExhibitionComponent implements OnInit {
   exhibitionState$: Observable<ExhibitionsState>;
+  loading$: Observable<boolean>;
   private destroy$ = new Subject<void>();
   editExhibitionForm: FormGroup;
   exhibitionImages: ExhibitionImage[] = [];
@@ -37,6 +39,7 @@ export class EditExhibitionComponent implements OnInit {
       link: [''],
       exhibitionImages: this.fb.array([], Validators.required)
     });
+     this.loading$ = this.store.select(selectLoading);
   }
 
   ngOnInit(): void {

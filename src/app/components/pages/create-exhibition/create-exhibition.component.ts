@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Exhibition, ExhibitionImage } from 'src/app/api/models';
 import * as exhibitionActions from '../../../stores/exhibitions/exhibitions.actions';
 import { ExhibitionsState } from 'src/app/stores/exhibitions/exhibitions.state';
+import { selectLoading } from 'src/app/stores/paintings/paintings.selectos';
 
 @Component({
   selector: 'app-create-exhibition',
@@ -14,6 +15,7 @@ import { ExhibitionsState } from 'src/app/stores/exhibitions/exhibitions.state';
 export class CreateExhibitionComponent implements OnInit {
   exhibitionState$: Observable<ExhibitionsState>;
   createExhibitionForm: FormGroup;
+  loading$: Observable<boolean>;
   exhibitionImages: ExhibitionImage[] = [];
 
   constructor(
@@ -30,6 +32,7 @@ export class CreateExhibitionComponent implements OnInit {
       link: [''],
       exhibitionImages: this.fb.array([], Validators.required)
     });
+    this.loading$ = this.store.select(selectLoading);
  }
 
  ngOnInit(): void {

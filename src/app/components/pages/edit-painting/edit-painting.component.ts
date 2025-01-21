@@ -16,6 +16,7 @@ import { filter, take } from 'rxjs/operators';
 })
 export class EditPaintingComponent implements OnInit {
   paintingsState$: Observable<PaintingsState>;
+  loading$: Observable<boolean>;
   editPaintingForm: FormGroup;
   paintingImages: PaintingImage[] = [];
 
@@ -37,6 +38,7 @@ export class EditPaintingComponent implements OnInit {
       isAvailableForSale: [true],
       paintingImages: this.fb.array([], Validators.required)
     });
+    this.loading$ = this.store.select(fromSelectors.selectLoading);
   }
 
   ngOnInit(): void {
