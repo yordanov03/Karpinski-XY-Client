@@ -50,7 +50,7 @@ apiUrl: string = environment.apiUrl;
   
             // Fallback logic for ogImage
             const ogImage = metaConfig.ogImage || (painting.paintingImages?.[0]?.imagePath 
-              ? `${environment.apiUrl}${painting.paintingImages[0].imagePath}` 
+              ? `${environment.apiUrl}/${painting.paintingImages[0].imagePath}` 
               : `${environment.apiUrl}/assets/img/default.jpg`);
   
             // Update metadata

@@ -47,7 +47,7 @@ export class ExhibitionDetailsComponent implements OnInit {
     
               // Dynamic metadata updates
               const ogImage = exhibition.exhibitionImages?.[0]?.imagePath
-                ? `${environment.apiUrl}${exhibition.exhibitionImages[0].imagePath}`
+                ? `${environment.apiUrl}/${exhibition.exhibitionImages[0].imagePath}`
                 : `${environment.apiUrl}/assets/img/default-exhibition.jpg`;
     
               // Update metadata
