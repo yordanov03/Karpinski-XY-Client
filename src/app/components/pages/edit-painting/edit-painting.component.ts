@@ -49,27 +49,24 @@ export class EditPaintingComponent implements OnInit {
     }
   
     // Wait for the correct painting data
-    this.store.select(fromSelectors.selectPainting)
+    this.store
+      .select(fromSelectors.selectPainting)
       .pipe(
-        filter(painting => painting !== null && painting.id === id),
+        filter((painting) => painting !== null && painting.id === id),
         take(1)
       )
-      .subscribe(painting => {
+      .subscribe((painting) => {
         if (painting) {
           this.populateForm(painting);
+  
+          // Trigger change detection after the form is fully populated
+          this.cdr.detectChanges();
         }
       });
-  
-    // Keep track of image changes
-    this.paintingImagesFormArray.valueChanges.subscribe((images) => {
-      images.forEach((image, index) => {
-        this.paintingImages[index].isMainImage = image.isMainImage;
-      });
-    });
-    this.cdr.detectChanges();
   }
-
+  
   private populateForm(painting: Painting): void {
+    // Patch the form with painting data
     this.editPaintingForm.patchValue({
       id: painting.id,
       name: painting.name,
@@ -80,21 +77,31 @@ export class EditPaintingComponent implements OnInit {
       year: painting.year,
       technique: painting.technique,
       isOnFocus: painting.isOnFocus,
-      isAvailableForSale: painting.isAvailableToSell
+      isAvailableForSale: painting.isAvailableToSell,
     });
   
-    // Populate painting images
-    this.paintingImages = painting.paintingImages.map(img => ({
+    // Clear the FormArray to prevent mismatch issues
+    while (this.paintingImagesFormArray.length > 0) {
+      this.paintingImagesFormArray.removeAt(0);
+    }
+  
+    // Map painting images and populate the FormArray
+    this.paintingImages = painting.paintingImages.map((img) => ({
       id: img?.id,
       entityId: img?.entityId,
       file: img.file,
       imagePath: img.imagePath,
       isMainImage: img.isMainImage,
-      fileName: img.fileName
+      fileName: img.fileName,
     }));
   
-    this.paintingImages.forEach(image => this.addImageFormGroup(image));
+    // Add FormGroup for each image
+    this.paintingImages.forEach((image) => this.addImageFormGroup(image));
+  
+    // Trigger change detection to update the view
+    this.cdr.markForCheck();
   }
+  
   
   get paintingImagesFormArray() {
     return (this.editPaintingForm?.get('paintingImages') as FormArray);
@@ -123,13 +130,14 @@ export class EditPaintingComponent implements OnInit {
     return formValue as Painting;
   }
 
-  addImageFormGroup(paintingImage: any) {
+  addImageFormGroup(paintingImage: any): void {
     const imageFormGroup = this.fb.group({
-      file: [paintingImage, Validators.required],
-      isMainImage: [paintingImage.isMainImage]
+      file: [paintingImage.file, Validators.required],
+      isMainImage: [paintingImage.isMainImage || false],
     });
     this.paintingImagesFormArray.push(imageFormGroup);
   }
+  
 
   onMultipleImageUpload(event: any) {
     const files: FileList = event.target.files;

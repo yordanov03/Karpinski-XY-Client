@@ -50,27 +50,34 @@ export class EditExhibitionComponent implements OnInit {
     }
   
     // Wait for the correct exhibition data
-    this.store.select(fromSelectors.selectExhibition)
+    this.store
+      .select(fromSelectors.selectExhibition)
       .pipe(
-        filter(exhibition => exhibition !== null && exhibition.id === id), // Ensure correct exhibition
+        filter((exhibition) => exhibition !== null && exhibition.id === id),
         take(1)
       )
-      .subscribe(exhibition => {
+      .subscribe((exhibition) => {
         if (exhibition) {
           this.populateForm(exhibition);
+  
+          // Trigger change detection after the form is fully populated
+          this.cdr.detectChanges();
         }
       });
   
-    // Track changes in image form array
+    // Track changes in the image FormArray
     this.exhibitionImagesFormArray.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((images) => {
         images.forEach((image, index) => {
           this.exhibitionImages[index].isMainImage = image.isMainImage;
         });
+  
+        // Trigger change detection if necessary
+        this.cdr.markForCheck();
       });
-      this.cdr.detectChanges();
   }
+  
   
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -78,13 +85,7 @@ export class EditExhibitionComponent implements OnInit {
   }
   
   private populateForm(exhibition: Exhibition): void {
-    // Reset images
-    this.exhibitionImages = [];
-    while (this.exhibitionImagesFormArray.length !== 0) {
-      this.exhibitionImagesFormArray.removeAt(0);
-    }
-  
-    // Populate form
+    // Patch the form with exhibition data
     this.editExhibitionForm.patchValue({
       id: exhibition.id,
       title: exhibition.title,
@@ -93,18 +94,29 @@ export class EditExhibitionComponent implements OnInit {
       location: exhibition.location,
       longDescription: exhibition.longDescription,
       organizer: exhibition.organizer,
-      link: exhibition.link
+      link: exhibition.link,
     });
   
-    // Populate images
-    this.exhibitionImages = exhibition.exhibitionImages.map(img => ({
+    // Clear the FormArray to prevent mismatch issues
+    while (this.exhibitionImagesFormArray.length > 0) {
+      this.exhibitionImagesFormArray.removeAt(0);
+    }
+  
+    // Map exhibition images and populate the FormArray
+    this.exhibitionImages = exhibition.exhibitionImages.map((img) => ({
       file: img.file,
       imagePath: img.imagePath,
       isMainImage: img.isMainImage,
-      fileName: img.fileName
+      fileName: img.fileName,
     }));
-    this.exhibitionImages.forEach(image => this.addImageFormGroup(image));
+  
+    // Add FormGroup for each image
+    this.exhibitionImages.forEach((image) => this.addImageFormGroup(image));
+  
+    // Trigger change detection to ensure the view updates
+    this.cdr.markForCheck();
   }
+  
 
   get exhibitionImagesFormArray() {
     return (this.editExhibitionForm.get('exhibitionImages') as FormArray);
@@ -130,13 +142,14 @@ export class EditExhibitionComponent implements OnInit {
     return formValue as Exhibition;
   }
 
-  addImageFormGroup(exhibitionImage: any) {
+  addImageFormGroup(exhibitionImage: any): void {
     const imageFormGroup = this.fb.group({
-      file: [exhibitionImage, Validators.required],
-      isMainImage: [exhibitionImage.isMainImage],
+      file: [exhibitionImage.file, Validators.required],
+      isMainImage: [exhibitionImage.isMainImage || false],
     });
     this.exhibitionImagesFormArray.push(imageFormGroup);
   }
+  
 
   onMultipleImageUpload(event: any) {
     const files: FileList = event.target.files;
