@@ -98,16 +98,28 @@
                         <!-- Uploaded Images -->
                         <div formArrayName="exhibitionImages" class="uploaded-images" aria-label="Uploaded Exhibition Images">
                             <div *ngFor="let image of exhibitionImages; let i = index" class="uploaded-image">
-                                <div [formGroupName]="i">
-                                    <img [src]="'data:image/jpeg;base64,' + image.file" alt="Uploaded Exhibition Image {{ i + 1 }}">
-                                    <div class="checkbox-container">
-                                        <input type="checkbox" formControlName="isMainImage" id="isMainImage{{ i }}">
-                                        <label for="isMainImage{{ i }}">&nbsp;Set as Main</label>
-                                    </div>
-                                    <button type="button" class="delete-icon" (click)="onDeleteImage(i)" attr.aria-label="Delete Image {{ i + 1 }}">X</button>
+                              <div [formGroupName]="i">
+                                <img [src]="'data:image/jpeg;base64,' + image.file" alt="Uploaded Exhibition Image {{ i + 1 }}">
+                                <div class="checkbox-container">
+                                  <input
+                                    type="checkbox"
+                                    formControlName="isMainImage"
+                                    id="isMainImage{{ i }}"
+                                    (change)="onMainImageChange(i)"
+                                  />
+                                  <label for="isMainImage{{ i }}">&nbsp;Set as Main</label>
                                 </div>
+                                <button
+                                  type="button"
+                                  class="delete-icon"
+                                  (click)="onDeleteImage(i)"
+                                  attr.aria-label="Delete Image {{ i + 1 }}"
+                                >
+                                  X
+                                </button>
+                              </div>
                             </div>
-                        </div>
+                          </div>                          
                         <!-- Image Upload Button -->
                         <div class="image-upload-btn">
                             <label for="multiImageUpload" class="visually-hidden">Upload Multiple Images</label>

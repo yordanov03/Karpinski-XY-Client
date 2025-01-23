@@ -176,6 +176,21 @@ export class EditExhibitionComponent implements OnInit {
     this.exhibitionImages.forEach(image => this.addImageFormGroup(image));
   }
 
+  onMainImageChange(index: number): void {
+    // Set all other images' isMainImage to false
+    this.exhibitionImagesFormArray.controls.forEach((control, i) => {
+      if (i !== index) {
+        control.get('isMainImage')?.setValue(false, { emitEvent: false });
+      }
+    });
+  
+    // Update the exhibitionImages array
+    this.exhibitionImages.forEach((image, i) => {
+      image.isMainImage = i === index;
+    });
+  }
+  
+
   get f() {
     return this.editExhibitionForm.controls;
   }

@@ -51,7 +51,7 @@ export class EditPaintingComponent implements OnInit {
     // Wait for the correct painting data
     this.store.select(fromSelectors.selectPainting)
       .pipe(
-        filter(painting => painting !== null && painting.id === id), // Ensure the correct painting is loaded
+        filter(painting => painting !== null && painting.id === id),
         take(1)
       )
       .subscribe(painting => {
@@ -171,6 +171,20 @@ export class EditPaintingComponent implements OnInit {
 
     // Repopulate the FormArray with FormGroup instances based on the current images array.
     this.paintingImages.forEach(image => this.addImageFormGroup(image));
+  }
+
+  onMainImageChange(index: number): void {
+    // Set all other images' isMainImage to false
+    this.paintingImagesFormArray.controls.forEach((control, i) => {
+      if (i !== index) {
+        control.get('isMainImage')?.setValue(false, { emitEvent: false });
+      }
+    });
+  
+    // Update the paintingImages array
+    this.paintingImages.forEach((image, i) => {
+      image.isMainImage = i === index;
+    });
   }
 
   get f() {
