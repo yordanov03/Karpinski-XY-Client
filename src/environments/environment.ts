@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // apiUrl:"https://localhost:5001",
-  apiUrl:"http://yordanov03-001-site1.gtempurl.com",
+  apiUrl:"https://yordanov03-001-site1.gtempurl.com",
   homePagePaitings: "../assets/img/paintings/homePagePaitings/"
 
 };

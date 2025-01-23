@@ -45,7 +45,9 @@ export class PaintingsEffects {
         catchError(error =>{
           popoverMessage().fire({
             icon: 'error',
-            text: `$Painting not saved. ${error.error}`
+            text: `$Painting not saved. ${error.error}`,
+            showConfirmButton: true,
+            timer: null
           });
           return of(PaintingActions.createPaintingFailure({ payload: error }))
         } )
@@ -96,7 +98,9 @@ export class PaintingsEffects {
         catchError(error => {
           popoverMessage().fire({
             icon: 'error',
-            text: `Painting not updated. ${error.error}`
+            text: `Painting not updated. ${error.error}`,
+            showConfirmButton: true,
+            timer: null
           });
           return of(PaintingActions.updatePaintingFailure({ error }))
         })
@@ -130,7 +134,9 @@ export class PaintingsEffects {
         catchError((error) => {
           popoverMessage().fire({
             icon: 'error',
-            text: `Failed to delete painting. ${error.error}`
+            text: `Failed to delete painting. ${error.error}`,
+            showConfirmButton: true,
+            timer: null
           });
           return of(PaintingActions.deletePaintingFailure({ error }));
         })
@@ -176,7 +182,9 @@ loadPaintingsOnFocus$ = createEffect(() =>
         catchError(error => {
           popoverMessage().fire({
             icon: 'error',
-            title: `Failed to load painting. ${error.error}`
+            title: `Failed to load painting. ${error.error}`,
+            showConfirmButton: true,
+            timer: null
           });
           return of(PaintingActions.loadPaintingFailure({ error }));
         })

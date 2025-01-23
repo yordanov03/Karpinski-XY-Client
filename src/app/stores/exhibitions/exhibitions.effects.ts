@@ -48,7 +48,9 @@ export class ExhibitionsEffects {
           catchError(error => {
             popoverMessage().fire({
               icon: 'error',
-              text: `Exhibition not saved. ${error.error}`
+              text: `Exhibition not saved. ${error.error}`,
+              showConfirmButton: true,
+              timer: null
             });
             return of(ExhibitionActions.createExhibitionFailure({ error }))
           })
@@ -98,7 +100,9 @@ export class ExhibitionsEffects {
           catchError(error => {
             popoverMessage().fire({
               icon: 'error',
-              text: `Failed to delete exhibition. ${error.error}`
+              text: `Failed to delete exhibition. ${error.error}`,
+              showConfirmButton: true,
+              timer: null
             });
             return of(ExhibitionActions.deleteExhibitionFailure({ error }));
           })
@@ -115,7 +119,9 @@ export class ExhibitionsEffects {
       catchError(error => {
         popoverMessage().fire({
           icon: 'error',
-          text: `Failed to load exhibition. ${error.error}`
+          text: `Failed to load exhibition. ${error.error}`,
+          showConfirmButton: true,
+          timer: null
         });
         return of(ExhibitionActions.getExhibitionFailure({ error }));
       })
@@ -132,7 +138,8 @@ export class ExhibitionsEffects {
       catchError(error => {
         popoverMessage().fire({
           icon: 'error',
-          text: `Failed to load exhibition to edit. ${error.error}`
+          text: `Failed to load exhibition to edit. ${error.error}`,
+          showConfirmButton: true,
         });
         return of(ExhibitionActions.getExhibitionToEditFailure({ error }));
       })
@@ -170,7 +177,9 @@ export class ExhibitionsEffects {
           catchError(error => {
             popoverMessage().fire({
               icon: 'error',
-              text: `Exhibition not updated. ${error.error}`
+              text: `Exhibition not updated. ${error.error}`,
+              showConfirmButton: true,
+              timer: null
             });
             return of(ExhibitionActions.updateExhibitionFailure({ error }));
           })
