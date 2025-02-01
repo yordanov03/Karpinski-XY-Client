@@ -161,9 +161,9 @@
 </section>
 
 <!-- Portfolio (Carousel) -->
-<section class="service-area pb-70" *ngIf="(portfolioPaintings$ | async)?.length > 0">
+<section class="service-area pb-70">
     <div class="container" *ngIf="portfolioPaintings$ | async as paintings">
-        <div class="scetion-title text-center">
+        <div class="scetion-title text-center" *ngIf="(portfolioPaintings$ | async)?.length > 0">
             <span>Portfolio</span>
             <h2>My Work Throughout the Years</h2>
             <p>I invite you to trace back how my painting style, inspirations, technique, and perceptions have evolved over the years.</p>
