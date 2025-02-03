@@ -139,8 +139,6 @@
                         <a routerLink="/paintings-details/{{painting.id}}" attr.aria-label="View details of painting: {{ painting.name }}">
                             <img [src]="apiUrl + painting.paintingImages[0]?.imagePath" 
                                  alt="Painting: {{ painting.name }}" 
-                                 width="400" 
-                                 height="380"
                                  loading="lazy">
                         </a>
                         <div class="service-content">

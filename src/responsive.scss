@@ -181,6 +181,19 @@
     }
 
     .service-card {
+        margin: 0 auto;
+        display: block;
+        width: 70%;
+        margin-bottom: 20px;
+        a {
+            display: block;
+            width:auto;
+            width: 100%;
+            object-fit: scale-down;
+            img {
+                object-fit: fill;
+            }
+        }
         .service-content {
             a {
                 h3 {
@@ -1919,9 +1932,18 @@
 
 }
 .carousel-control-prev {
-    left: 33px;
+    left: 0px;
   }
   
   .carousel-control-next {
-    right: 33px;
+    right: 0px;
   }
+
+  @media only screen and (max-width: 1024px) {
+    .blog-card {
+        width: 70%;
+        margin: 0 auto; /* Centers it horizontally */
+        display: block; /* Ensures margin auto works */
+        margin-bottom: 30px;
+    }
+}

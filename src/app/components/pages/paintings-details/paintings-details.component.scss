@@ -26,14 +26,6 @@
   cursor: pointer;
 }
 
-// .carousel-control-prev {
-//   left: 33px;
-// }
-
-// .carousel-control-next {
-//   right: 30px;
-// }
-
 .carousel-item {
   position: absolute; /* Layer all slides on top of each other */
   top: 0;
@@ -53,7 +45,7 @@
 .carousel-item img {
   height: 500px; /* Fixed height for all images */
   width: 100%; /* Fixed width */
-  object-fit: cover; /* Maintain aspect ratio */
+  object-fit: scale-down; /* Maintain aspect ratio */
 }
 
 .carousel-indicators li {
