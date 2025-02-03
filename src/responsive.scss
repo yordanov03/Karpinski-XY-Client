@@ -395,6 +395,8 @@
     .footer-logo {
         float: none;
         text-align: center;
+        display: flex;
+        justify-content: center;
     }
     .bottom-text {
         float: none;
@@ -1916,3 +1918,10 @@
     }
 
 }
+.carousel-control-prev {
+    left: 33px;
+  }
+  
+  .carousel-control-next {
+    right: 33px;
+  }

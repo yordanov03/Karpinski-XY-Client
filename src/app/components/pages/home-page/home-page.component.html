@@ -119,8 +119,8 @@
 
 
 <!-- Available Paintings (Stacked Grid) -->
-<section class="product-area pb-70">
-    <div class="container" *ngIf="(availablePaintings$ | async)?.length">
+<section class="product-area pb-70" *ngIf="(availablePaintings$ | async)?.length">
+    <div class="container">
         <!-- Section Title -->
         <header class="section-title text-center">
             <span>Paintings</span>
@@ -161,8 +161,8 @@
 </section>
 
 <!-- Portfolio (Carousel) -->
-<section class="service-area pb-70">
-    <div class="container" *ngIf="portfolioPaintings$ | async as paintings">
+<section class="service-area pb-70" *ngIf="portfolioPaintings$ | async as paintings">
+    <div class="container">
         <div class="scetion-title text-center" *ngIf="(portfolioPaintings$ | async)?.length > 0">
             <span>Portfolio</span>
             <h2>My Work Throughout the Years</h2>
@@ -252,8 +252,8 @@
 </section>
 
 <!-- Exhibitions -->
-<section class="blog-area pb-70">
-    <div class="container" *ngIf="(exhibitions$ | async).length > 0">
+<section class="blog-area pb-70"*ngIf="(exhibitions$ | async).length > 0">
+    <div class="container">
         <header class="section-title text-center">
             <span>Exhibitions</span>
             <h2>A Portion of the Exhibitions I Have Been a Part Of</h2>

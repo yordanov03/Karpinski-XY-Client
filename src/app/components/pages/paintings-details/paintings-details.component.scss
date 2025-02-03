@@ -1,13 +1,12 @@
 .carousel {
-  display: flex;
-  overflow: hidden; /* Prevent slides from showing outside the container */
+  display: flex; /* Prevent slides from showing outside the container */
+  overflow: hidden;
 }
 
 .carousel-item img {
   height: 500px; /* Fixed height for all images */
   width: 100%; /* Fixed width */
   object-fit: cover; /* Maintain aspect ratio */
-  margin-left: 30px
 }
 
 /* Add arrow styles here */
@@ -27,13 +26,13 @@
   cursor: pointer;
 }
 
-.carousel-control-prev {
-  left: 33px;
-}
+// .carousel-control-prev {
+//   left: 33px;
+// }
 
-.carousel-control-next {
-  right: 30px;
-}
+// .carousel-control-next {
+//   right: 30px;
+// }
 
 .carousel-item {
   position: absolute; /* Layer all slides on top of each other */
