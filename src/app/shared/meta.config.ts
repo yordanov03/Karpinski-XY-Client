@@ -1,11 +1,9 @@
-import { environment } from "src/environments/environment";
-
 export const metaConfig = {
     home: {
         title: 'Home - Pawel Kaprinski Art Portfolio',
         description: 'Explore Pawel Kaprinski\'s captivating art portfolio, including paintings, exhibitions, and his artistic journey.',
         keywords: 'art, abstract art, painting, artist, perception, illusion, Zurich, modern art, fine art, visual arts, abstract paintings on canvas, emerging artists, surrealism and perception, optical illusions, Zurich art scene, contemporary paintings',
-        ogImage: `${environment.apiUrl}/assets/img/about/Pawel.jpg`,
+        ogImage: `${window.location.origin}/assets/img/about/PawelStudio.jpg`,
         ogUrl: 'https://pawelkaprinski.com',
     },
 
@@ -13,7 +11,7 @@ export const metaConfig = {
         title: 'About Me - Pawel Karpinski',
         description: 'Learn about Pawel Karpinski, a Switzerland-based artist, his artistic journey, exhibitions, and unique painting process blending geometry and organic forms.',
         keywords: 'Pawel Karpinski, about the artist, art exhibitions, painting process, Swiss artist, abstract art, visual arts, geometry in painting, artistic inspiration, exhibitions in Zurich, artistic statement, art journey',
-        ogImage: `${environment.apiUrl}/assets/img/about/Pawel.jpg`,
+        ogImage: `${window.location.origin}/assets/img/about/Pawel.jpg`,
         ogUrl: 'https://pawelkaprinski.com/about',
     },
 
@@ -21,7 +19,7 @@ export const metaConfig = {
         title: 'FAQ - Pawel Karpinski',
         description: 'Find answers to frequently asked questions about Pawel Karpinski, including his artistic process, favorite artists, exhibitions, and painting sales.',
         keywords: 'FAQ, Pawel Karpinski, artistic process, exhibitions in Zurich, favorite artists, painting sales, abstract art, figurative art, shipping artwork, commissions, Swiss artist, Zurich atelier',
-        ogImage: `${environment.apiUrl}/assets/img/footer-logo8.png`,
+        ogImage: `${window.location.origin}assets/img/paintings/homePagePaitings/6.jpg`,
         ogUrl: 'https://pawelkaprinski.com/faq',
     },
 
@@ -29,7 +27,7 @@ export const metaConfig = {
         title: '404 Error - Page Not Found',
         description: 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Return to the home page for more information.',
         keywords: '404 error, page not found, error page, broken link, Karpinski XY, return to home page, art portfolio, Swiss artist',
-        ogImage: `${environment.apiUrl}/assets/img/footer-logo8.png`,
+        ogImage: `${window.location.origin}assets/img/paintings/homePagePaitings/7.jpg`,
         ogUrl: 'https://pawelkaprinski.com/error',
     },
 
@@ -37,7 +35,7 @@ export const metaConfig = {
         title: 'Terms & Conditions - Karpinski XY',
         description: 'Read the Terms & Conditions of Karpinski XY, outlining the use of the site, intellectual property rights, and other important details.',
         keywords: 'terms and conditions, Karpinski XY, intellectual property, site usage, governing law, Switzerland, art terms, user agreement',
-        ogImage: `${environment.apiUrl}/assets/img/footer-logo8.png`,
+        ogImage: `${window.location.origin}assets/img/paintings/homePagePaitings/2.jpg`,
         ogUrl: 'https://pawelkaprinski.com/terms-conditions',
     },
 
@@ -53,7 +51,7 @@ export const metaConfig = {
         title: 'Paintings - Pawel Karpinski',
         description: 'Browse available paintings by Pawel Karpinski. Explore recent artworks that showcase unique inspirations, techniques, and styles.',
         keywords: 'Pawel Karpinski paintings, available paintings, abstract art, contemporary art, Swiss artist, original artwork, art gallery, visual arts, art collection, painting dimensions, art for sale, Zurich artist, painting inquiries, modern art, art techniques',
-        ogImage: `${environment.apiUrl}/8.jpg`,
+        ogImage: `${window.location.origin}assets/img/paintings/homePagePaitings/5.jpg`,
         ogUrl: 'https://pawelkaprinski.com/paintings',
     },
 
@@ -61,7 +59,7 @@ export const metaConfig = {
         title: 'Portfolio - Pawel Karpinski',
         description: 'Explore the evolution of Pawel Karpinski\'s painting style, inspirations, techniques, and perceptions through his portfolio of artwork.',
         keywords: 'Pawel Karpinski portfolio, art portfolio, paintings, abstract art, Swiss artist, painting evolution, art techniques, artistic inspirations, visual perception, portfolio gallery, Zurich art, contemporary art, modern art, visual storytelling, canvas paintings, painting exhibitions, creative process, artistic expression, minimalist art, geometric abstraction, abstract expressionism, art collection, fine art, original paintings, art gallery Zurich, art showcase, visual arts Switzerland, European artist portfolio, art history in Zurich',
-        ogImage: `${environment.apiUrl}/assets/img/paintings/homePagePaitings/1.jpg`,
+        ogImage: `${window.location.origin}/assets/img/paintings/homePagePaitings/8.jpg`,
         ogUrl: 'https://pawelkaprinski.com/portfolio',
     },
 
@@ -78,7 +76,7 @@ export const metaConfig = {
         title: 'Contact Me - Pawel Karpinski',
         description: 'Get in touch with Pawel Karpinski to share your thoughts, ask questions, or inquire about his artwork. Reach out today!',
         keywords: 'contact Pawel Karpinski, contact form, art inquiries, Swiss artist, Zurich artist, message Pawel Karpinski, art portfolio contact, painting inquiries, feedback to artist',
-        ogImage: `${environment.apiUrl}/assets/img/paintings/homePagePaitings/1.jpg`,
+        ogImage: `${window.location.origin}/assets/img/paintings/homePagePaitings/3.jpg`,
         ogUrl: 'https://pawelkaprinski.com/contact',
     },
 
@@ -87,7 +85,7 @@ export const metaConfig = {
         title: 'Exhibitions - Pawel Karpinski',
         description: 'Explore a collection of exhibitions that have featured Pawel Karpinski\'s art. Discover the journey and impact of his artwork across various venues.',
         keywords: 'exhibitions, Pawel Karpinski, art exhibitions, Swiss artist, Zurich art, painting exhibitions, art gallery shows, contemporary art, featured artworks, art events, artistic journey, international exhibitions, gallery venues',
-        ogImage: `${environment.apiUrl}/assets/img/exhibitions/exhibitions-banner.jpg`, // Replace with an appropriate exhibitions image
+        ogImage: `${window.location.origin}/assets/img/paintings/homePagePaitings/2.jpg`, // Replace with an appropriate exhibitions image
         ogUrl: 'https://pawelkaprinski.com/exhibitions',
     },
 

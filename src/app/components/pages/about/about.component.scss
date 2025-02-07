@@ -1,0 +1,5 @@
+.about-img img {
+    height: auto; /* Maintains aspect ratio */
+    max-width: 450px; /* Adjust as needed */
+    display: block; /* Avoids inline spacing issues */
+}

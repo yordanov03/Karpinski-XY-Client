@@ -7,7 +7,8 @@
 .carousel-item img {
   height: 500px; /* Fixed height for all images */
   width: 100%; /* Fixed width */
-  object-fit: cover; /* Maintain aspect ratio */
+  object-fit: scale-down; /* Maintain aspect ratio */
+  max-width: 600px;
 }
 
 /* Arrow styles */

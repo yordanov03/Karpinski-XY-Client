@@ -143,7 +143,7 @@
         max-width: 100%;
 
         img {
-            max-width: 100%;
+            max-width: 450px;
         }
         .about-bg-shape {
             img {
@@ -191,7 +191,7 @@
             width: 100%;
             object-fit: scale-down;
             img {
-                object-fit: fill;
+                object-fit: cover;
             }
         }
         .service-content {
@@ -836,6 +836,7 @@
     }
 
     .product-detls-tab {
+        margin-top: 30px;
         .tabs {
             li {
                 a {
@@ -1747,7 +1748,7 @@
         max-width: 450px;
         margin-left: auto;
         img {
-            max-width: 400px;
+            max-width: 450px;
         }
         .about-bg-shape {
             img {

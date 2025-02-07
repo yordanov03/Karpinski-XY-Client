@@ -20,7 +20,7 @@
         <div class="row">
             <!-- Main Image and Thumbnails Section -->
             <div class="col-lg-6 col-md-12">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
+                <div id="carouselIndicators" class="carousel slide" data-bs-ride="false">
                     <div class="carousel-inner" role="listbox" aria-label="Exhibition Images Carousel">
                         <div *ngFor="let image of exhibition?.exhibitionImages; let i = index" class="carousel-item"
                             [class.active]="i === 0">
@@ -28,12 +28,12 @@
                                 (click)="openFullSizeImage(image.imagePath)">
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
                         data-bs-slide="prev" aria-label="Previous slide">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators"
                         data-bs-slide="next" aria-label="Next slide">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>

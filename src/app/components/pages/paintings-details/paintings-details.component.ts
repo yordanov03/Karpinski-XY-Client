@@ -63,7 +63,7 @@ apiUrl: string = environment.apiUrl;
   }
   
   selectImage(index: number): void {
-    const carouselElement = document.querySelector('#carouselExampleIndicators');
+    const carouselElement = document.querySelector('#carouselIndicators');
 
     if (carouselElement) {
       let bsCarousel = bootstrap.Carousel.getInstance(carouselElement);

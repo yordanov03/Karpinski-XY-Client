@@ -847,7 +847,7 @@ About Area Style
         z-index: -1;
 
         img {
-            max-width: 500px;
+            max-width: 450px;
             border: 1px solid #dadade;
             border-radius: 15px;
         }
@@ -4626,11 +4626,11 @@ Animation CSS
     }
 }
 .carousel-control-prev {
-    left: 60px;
+    left: 0px;
   }
   
   .carousel-control-next {
-    right: 60px;
+    right: 0px;
   }
 
   .blog-card{
