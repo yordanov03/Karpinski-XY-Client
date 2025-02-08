@@ -16,7 +16,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-homePagePaitingsUrl = environment.homePagePaitings;
+homePagePaintingsUrl = environment.homePagePaintings;
 paintingsOnFocus$: Observable<Painting[]>;
 availablePaintings$: Observable<Painting[]>;
 portfolioPaintings$: Observable<Painting[]>;

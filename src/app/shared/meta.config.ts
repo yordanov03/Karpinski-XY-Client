@@ -51,7 +51,7 @@ export const metaConfig = {
         title: 'Paintings - Pawel Karpinski',
         description: 'Browse available paintings by Pawel Karpinski. Explore recent artworks that showcase unique inspirations, techniques, and styles.',
         keywords: 'Pawel Karpinski paintings, available paintings, abstract art, contemporary art, Swiss artist, original artwork, art gallery, visual arts, art collection, painting dimensions, art for sale, Zurich artist, painting inquiries, modern art, art techniques',
-        ogImage: `${window.location.origin}assets/img/paintings/homePagePaitings/5.jpg`,
+        ogImage: `${window.location.origin}/assets/img/paintings/homePagePaitings/5.jpg`,
         ogUrl: 'https://pawelkaprinski.com/paintings',
     },
 
