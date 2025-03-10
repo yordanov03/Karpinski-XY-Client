@@ -30,6 +30,7 @@ apiUrl: string = environment.apiUrl;
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.currentUrl = window.location.href;
   
     // Subscribe to route parameters

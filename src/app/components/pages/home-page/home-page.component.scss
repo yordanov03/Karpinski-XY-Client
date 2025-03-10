@@ -23,8 +23,6 @@
   display: flex;        /* Use flexbox to center the content */
   justify-content: center;
   align-items: center;
-  // border-radius: 25px;  /* Optional: Rounded corners */
-  // background-color: #f0f0f0; /* Optional: Background to fill empty space */
 }
 
 .portfolio-image {
@@ -33,9 +31,12 @@
   object-fit: contain;  /* Ensure the image scales properly */
 }
 
-
   .banner-img .banner-into-slider .banner-item img{
     object-fit: scale-down;
+  }
+  
+  .service-card a img{
+    object-fit: cover;
   }
 
  
