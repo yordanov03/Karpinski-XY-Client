@@ -145,9 +145,43 @@
 }
 
 .full-size-image-modal img {
-  max-height: 80%;
-  max-width: 100%;
+  max-height: 80vh; /* Fixes image size */
+  max-width: 90vw; /* Ensures image doesn't overflow */
+  object-fit: contain; /* Maintains aspect ratio */
+  display: block;
+  position: relative;
 }
+
+/* ✅ Watermark Fix */
+.watermark {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.watermark-carousel {
+  position: absolute;
+  bottom: 5%;
+  right: 20%;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  pointer-events: none;
+  user-select: none;
+}
+
+
 
 .close-modal {
   position: absolute;
