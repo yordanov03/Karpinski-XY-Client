@@ -150,6 +150,7 @@
   object-fit: contain; /* Maintains aspect ratio */
   display: block;
   position: relative;
+  cursor: none;
 }
 
 /* ✅ Watermark Fix */
@@ -165,6 +166,10 @@
   border-radius: 5px;
   pointer-events: none;
   user-select: none;
+}
+
+.hidden-canvas {
+  display: none;
 }
 
 .watermark-carousel {
