@@ -71,46 +71,46 @@ export class PaintingsDetailsComponent implements OnInit, AfterViewInit {
 
     applyWatermark(imageElement: HTMLImageElement): void {
         if (!imageElement) return;
-
+    
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-
+    
         if (!ctx) return;
-
+    
         const img = new Image();
         img.crossOrigin = "anonymous"; // Prevents CORS issues
         img.src = imageElement.src;
-
+    
         img.onload = () => {
             canvas.width = img.width;
             canvas.height = img.height;
             ctx.drawImage(img, 0, 0);
-
+    
             // Watermark text settings
             const text = "© Karpinski XY";
-            const fontSize = img.width / 35;
+            const fontSize = img.width / 35; // Adjust dynamically based on image size
             ctx.font = `bold ${fontSize}px Poppins, sans-serif`;
             ctx.textBaseline = "middle";
             ctx.textAlign = "center";
             const textWidth = ctx.measureText(text).width;
-
+    
             // Padding and margins
             const paddingX = fontSize * 2;
             const paddingY = fontSize * 1.2;
             const borderRadius = fontSize * 0.5;
-
+    
             // Position calculation
             const boxWidth = textWidth + paddingX * 2;
             const boxHeight = fontSize + paddingY * 2;
             const x = img.width * 0.95 - boxWidth;
             const y = img.height * 0.95 - boxHeight;
-
-            // Smooth background gradient effect
+    
+            // Smooth background gradient effect (20% opacity)
             const gradient = ctx.createLinearGradient(x, y, x + boxWidth, y + boxHeight);
-            gradient.addColorStop(0, "rgba(0, 0, 0, 0.8)");
-            gradient.addColorStop(1, "rgba(0, 0, 0, 0.5)");
-
-            // Draw background rectangle
+            gradient.addColorStop(0, "rgba(0, 0, 0, 0.2)"); // Black at 20% opacity
+            gradient.addColorStop(1, "rgba(0, 0, 0, 0.1)"); // Even more transparent at bottom
+    
+            // Draw background rectangle with 20% opacity
             ctx.fillStyle = gradient;
             ctx.beginPath();
             ctx.moveTo(x + borderRadius, y);
@@ -124,15 +124,15 @@ export class PaintingsDetailsComponent implements OnInit, AfterViewInit {
             ctx.quadraticCurveTo(x, y, x + borderRadius, y);
             ctx.closePath();
             ctx.fill();
-
-            // Draw text
-            ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+    
+            // Draw text with 20% opacity
+            ctx.fillStyle = "rgba(255, 255, 255, 0.2)"; // White at 20% opacity
             ctx.fillText(text, x + boxWidth / 2, y + boxHeight / 2);
-
+    
             // Convert canvas to an image
             imageElement.src = canvas.toDataURL("image/png");
         };
-    }
+    }    
 
     selectImage(index: number): void {
         const carouselElement = document.querySelector('#carouselIndicators');

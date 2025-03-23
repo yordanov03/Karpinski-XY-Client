@@ -35,7 +35,7 @@
                             <a routerLink="/paintings-details/{{painting.id}}" attr.aria-label="View details of {{painting.name}}">
                                 <h3>{{painting.name}}</h3>
                             </a>
-                            <p class="short-description">{{painting.dimensions}}</p>
+                            <!-- <p class="short-description">{{painting.shortDescription}}</p> -->
                             <p>Dimensions: {{painting.dimensions}}</p>
                             <p *ngIf="(isLoggedIn$ | async)">Price: {{painting.price}}</p>
                             <p *ngIf="(isLoggedIn$ | async)">
