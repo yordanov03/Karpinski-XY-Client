@@ -11,7 +11,7 @@
     "gen-client": "ng-openapi-gen -i http://localhost:5000/swagger/v1/swagger.json -o ./src/app/api",
     "dev:ssr": "ng run dizo-ng:serve-ssr",
     "serve:ssr": "node dist/dizo-ng/server/main.js",
-    "build:ssr": "ng build && ng run dizo-ng:server",
+    "build:ssr": "ng build --configuration production && ng run dizo-ng:server:production",
     "prerender": "ng run dizo-ng:prerender"
   },
   "private": true,

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationStart, NavigationCancel, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { filter, map } from 'rxjs/operators';
@@ -23,7 +24,14 @@ export class AppComponent implements OnInit {
     location: any;
     routerSubscription: any;
 
-    constructor(private router: Router, private store: Store, private jwtService: JwtService, private metaService: MetaService, private route: ActivatedRoute) {
+    constructor(
+        private router: Router,
+        private store: Store,
+        private jwtService: JwtService,
+        private metaService: MetaService,
+        private route: ActivatedRoute,
+        @Inject(PLATFORM_ID) private platformId: object
+    ) {
     }
 
     ngOnInit(){
@@ -42,6 +50,7 @@ export class AppComponent implements OnInit {
     }
 
     recallJsFuntions() {
+        if (isPlatformBrowser(this.platformId)) {
         this.router.events
         .subscribe((event) => {
             if ( event instanceof NavigationStart ) {
@@ -59,6 +68,7 @@ export class AppComponent implements OnInit {
             }
             window.scrollTo(0, 0);
         });
+        }
 
         this.router.events
         .pipe(

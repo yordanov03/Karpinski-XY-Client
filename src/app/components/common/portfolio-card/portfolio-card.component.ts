@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -7,7 +8,6 @@ import * as PaintingActions from '../../../stores/paintings/paintings.actions'
 import * as fromPainting from '../../../stores/paintings/paintings.selectos'
 import * as fromAuth from '../../../stores/auth/auth.selectors'
 import Swal from 'sweetalert2';
-import * as Masonry from 'masonry-layout';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -23,14 +23,19 @@ export class PortfolioCardComponent implements OnInit {
   @ViewChild('masonryGrid', { static: true }) masonryGrid: ElementRef;
 
   constructor(private store: Store,
-    private router: Router) { }
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: object) { }
 
   ngOnInit(): void {
     this.store.dispatch(PaintingActions.loadPortfolioPaintings());
     this.portfolioPaintings$ = this.store.select(fromPainting.selectPortfolioPaintings)
     this.isLoggedIn$ = this.store.select(fromAuth.selectIsLoggedIn)
     
-    new Masonry(this.masonryGrid?.nativeElement, {});
+    if (isPlatformBrowser(this.platformId)) {
+      import('masonry-layout').then(({ default: Masonry }) => {
+        new Masonry(this.masonryGrid?.nativeElement, {});
+      });
+    }
   }
 
   onDeleteClick(event: Event, id) {

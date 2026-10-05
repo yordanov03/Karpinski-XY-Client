@@ -188,8 +188,17 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
+            "guessRoutes": false,
             "routes": [
-              "/"
+              "/",
+              "/about",
+              "/faq",
+              "/terms-conditions",
+              "/privacy-policy",
+              "/paintings",
+              "/portfolio",
+              "/contact",
+              "/exhibitions"
             ]
           },
           "configurations": {

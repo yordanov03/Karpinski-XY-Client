@@ -24,7 +24,7 @@
                     <div class="carousel-inner" role="listbox" aria-label="Exhibition Images Carousel">
                         <div *ngFor="let image of exhibition?.exhibitionImages; let i = index" class="carousel-item"
                             [class.active]="i === 0">
-                            <img [src]="apiUrl + image.imagePath" class="d-block w-100" alt="Exhibition Image {{ i + 1 }}"
+                            <img [src]="apiUrl + image.imagePath" class="d-block w-100" alt="{{ exhibition.title }} exhibition by Pawel Karpinski, image {{ i + 1 }}"
                                 (click)="openFullSizeImage(image.imagePath)">
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="carousel-thumbnails" aria-label="Exhibition Image Thumbnails">
                     <img *ngFor="let image of exhibition.exhibitionImages; let i = index" [src]="apiUrl + image.imagePath"
                         [class.active]="i == 0" (click)="selectImage(i)" class="img-thumbnail"
-                        alt="Exhibition Thumbnail {{ i + 1 }}">
+                        alt="{{ exhibition.title }} exhibition by Pawel Karpinski, thumbnail {{ i + 1 }}">
                 </div>
             </div>
 

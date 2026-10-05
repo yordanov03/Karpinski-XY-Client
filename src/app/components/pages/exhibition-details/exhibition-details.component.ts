@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Exhibition } from 'src/app/api/models';
@@ -7,7 +7,6 @@ import * as ExhibitionActions from '../../../stores/exhibitions/exhibitions.acti
 import * as fromExhibition from '../../../stores/exhibitions/exhibitions.selectors'
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import * as bootstrap from 'bootstrap';
 import { MetaService } from 'src/app/shared/services/meta.service';
 
 @Component({
@@ -27,11 +26,12 @@ export class ExhibitionDetailsComponent implements OnInit {
 
   constructor(private store: Store,
     private route: ActivatedRoute,
+    private router: Router,
     private sanitizer: DomSanitizer,
     private metaService: MetaService) { }
 
     ngOnInit(): void {
-      this.currentUrl = window.location.href;
+      this.currentUrl = `https://pawelkarpinski.com${this.router.url}`;
     
       this.route.paramMap.subscribe(params => {
         const id = params.get('id');
@@ -46,13 +46,19 @@ export class ExhibitionDetailsComponent implements OnInit {
               this.exhibition = exhibition;
     
               // Dynamic metadata updates
-              const ogImage = exhibition.exhibitionImages?.[0]?.imagePath
-                ? `${environment.apiUrl}/${exhibition.exhibitionImages[0].imagePath}`
-                : `${environment.apiUrl}/assets/img/default-exhibition.jpg`;
-    
-              // Update metadata
-              this.metaService.updateMetaTags({ property: 'og:image', content: ogImage });
-              this.metaService.updateMetaTags({ property: 'og:url', content: this.currentUrl });
+              const imagePath = exhibition.exhibitionImages?.[0]?.imagePath;
+              const ogImage = imagePath
+                ? `${environment.apiUrl.replace(/\/+$/, '')}/${imagePath.replace(/^\/+/, '')}`
+                : 'https://pawelkarpinski.com/assets/img/paintings/homePagePaitings/2.jpg';
+              const rawDescription = exhibition.longDescription || `View exhibition details for ${exhibition.title || 'this exhibition'} by Pawel Karpinski.`;
+              const description = rawDescription.slice(0, 157) + (rawDescription.length > 157 ? '...' : '');
+
+              this.metaService.updateMetaTags({
+                title: `${exhibition.title || 'Exhibition'} - Pawel Karpinski`,
+                description,
+                ogImage,
+                ogUrl: this.currentUrl,
+              });
             }
           });
         }
@@ -60,7 +66,8 @@ export class ExhibitionDetailsComponent implements OnInit {
     }
     
   
-  selectImage(index: number): void {
+  async selectImage(index: number): Promise<void> {
+    const bootstrap = await import('bootstrap');
     const carouselElement = document.querySelector('#carouselIndicators');
 
     if (carouselElement) {

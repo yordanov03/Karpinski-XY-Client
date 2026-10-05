@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Painting } from 'src/app/api/models';
 import { selectPainting } from 'src/app/stores/paintings/paintings.selectos';
 import * as PaintingActions from '../../../stores/paintings/paintings.actions';
-import * as bootstrap from 'bootstrap';
 import { environment } from 'src/environments/environment';
 import { MetaService } from 'src/app/shared/services/meta.service';
 
@@ -27,11 +27,19 @@ export class PaintingsDetailsComponent implements OnInit, AfterViewInit {
     @ViewChild('fullImage', { static: false }) fullImage!: ElementRef<HTMLImageElement>;
     @ViewChild('watermarkCanvas', { static: false }) canvas!: ElementRef<HTMLCanvasElement>;
 
-    constructor(private store: Store, private route: ActivatedRoute, private metaService: MetaService) {}
+    constructor(
+        private store: Store,
+        private route: ActivatedRoute,
+        private router: Router,
+        private metaService: MetaService,
+        @Inject(PLATFORM_ID) private platformId: object
+    ) {}
 
     ngOnInit(): void {
-        window.scrollTo(0, 0);
-        this.currentUrl = window.location.href;
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
+        this.currentUrl = `https://pawelkarpinski.com${this.router.url}`;
 
         this.route.paramMap.subscribe(params => {
             const id = params.get('id');
@@ -42,20 +50,28 @@ export class PaintingsDetailsComponent implements OnInit, AfterViewInit {
                 this.painting$.subscribe(painting => {
                     if (painting) {
                         this.painting = painting;
-                        const metaConfig = this.route.snapshot.data['metaConfig'] || {};
-                        const ogImage = metaConfig.ogImage || 
-                            (painting.paintingImages?.[0]?.imagePath 
-                                ? `${environment.apiUrl}/${painting.paintingImages[0].imagePath}` 
-                                : `${environment.apiUrl}/assets/img/default.jpg`);
+                        const imagePath = painting.paintingImages?.[0]?.imagePath;
+                        const ogImage = imagePath
+                            ? `${environment.apiUrl.replace(/\/+$/, '')}/${imagePath.replace(/^\/+/, '')}`
+                            : 'https://pawelkarpinski.com/assets/img/paintings/homePagePaitings/1.jpg';
+                        const description = painting.description
+                            ? painting.description.slice(0, 157) + (painting.description.length > 157 ? '...' : '')
+                            : `Explore ${painting.name || 'this artwork'} by Pawel Karpinski, including its technique, dimensions, and year of creation.`;
 
-                        this.metaService.updateMetaTags({ property: 'og:image', content: ogImage });
-                        this.metaService.updateMetaTags({ property: 'og:url', content: this.currentUrl });
+                        this.metaService.updateMetaTags({
+                            title: `${painting.name || 'Painting'} - Pawel Karpinski`,
+                            description,
+                            ogImage,
+                            ogUrl: this.currentUrl,
+                        });
 
                         // Apply watermark to all carousel images after they load
-                        setTimeout(() => {
-                            const images = document.querySelectorAll<HTMLImageElement>('.carousel-item img');
-                            images.forEach(img => this.applyWatermark(img));
-                        }, 500);
+                        if (isPlatformBrowser(this.platformId)) {
+                            setTimeout(() => {
+                                const images = document.querySelectorAll<HTMLImageElement>('.carousel-item img');
+                                images.forEach(img => this.applyWatermark(img));
+                            }, 500);
+                        }
                     }
                 });
             }
@@ -63,14 +79,16 @@ export class PaintingsDetailsComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        setTimeout(() => {
-            const images = document.querySelectorAll<HTMLImageElement>('.carousel-item img');
-            images.forEach(img => this.applyWatermark(img));
-        }, 500);
+        if (isPlatformBrowser(this.platformId)) {
+            setTimeout(() => {
+                const images = document.querySelectorAll<HTMLImageElement>('.carousel-item img');
+                images.forEach(img => this.applyWatermark(img));
+            }, 500);
+        }
     }
 
     applyWatermark(imageElement: HTMLImageElement): void {
-        if (!imageElement) return;
+        if (!isPlatformBrowser(this.platformId) || !imageElement) return;
     
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
@@ -134,7 +152,8 @@ export class PaintingsDetailsComponent implements OnInit, AfterViewInit {
         };
     }    
 
-    selectImage(index: number): void {
+    async selectImage(index: number): Promise<void> {
+        const bootstrap = await import('bootstrap');
         const carouselElement = document.querySelector('#carouselIndicators');
 
         if (carouselElement) {

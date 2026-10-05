@@ -43,14 +43,11 @@ RUN npm install
 # Copy the entire application code to the working directory
 COPY . .
 
-# Build the Angular application for production
-RUN npm run build --configuration=production
+# Build and prerender the public pages for production
+RUN npm run prerender
 
 # Step 2: Serve the app with NGINX
 FROM nginx:alpine
-
-# Remove the default NGINX configuration file
-RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy your custom NGINX configuration file if needed (optional)
 # COPY nginx.conf /etc/nginx/conf.d
@@ -63,6 +60,5 @@ EXPOSE 80
 
 # Start NGINX server
 CMD ["nginx", "-g", "daemon off;"]
-
 
 

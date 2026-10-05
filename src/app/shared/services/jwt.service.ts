@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class JwtService {
@@ -8,15 +9,24 @@ export class JwtService {
   private readonly usernameKey = 'username';
   private readonly tokenExpiryKey = 'authTokenExpiry';
 
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+
+  private get storage(): Storage | null {
+    return isPlatformBrowser(this.platformId) ? localStorage : null;
+  }
+
   // Set token with expiration logic
   setToken(token: string, username: string, expiresInSeconds: number): void {
     const expirationTime = Date.now() + expiresInSeconds * 1000; // Expiration time in milliseconds
     this.jwtToken = token;
     this.username = username;
 
-    localStorage.setItem(this.tokenKey, token);
-    localStorage.setItem(this.usernameKey, username);
-    localStorage.setItem(this.tokenExpiryKey, expirationTime.toString());
+    const storage = this.storage;
+    if (storage) {
+      storage.setItem(this.tokenKey, token);
+      storage.setItem(this.usernameKey, username);
+      storage.setItem(this.tokenExpiryKey, expirationTime.toString());
+    }
   }
 
   getToken(): string | null {
@@ -26,7 +36,7 @@ export class JwtService {
     }
 
     if (!this.jwtToken) {
-      this.jwtToken = localStorage.getItem(this.tokenKey);
+      this.jwtToken = this.storage?.getItem(this.tokenKey) || null;
     }
     return this.jwtToken;
   }
@@ -38,13 +48,13 @@ export class JwtService {
     }
 
     if (!this.username) {
-      this.username = localStorage.getItem(this.usernameKey);
+      this.username = this.storage?.getItem(this.usernameKey) || null;
     }
     return this.username;
   }
 
   isTokenValid(): boolean {
-    const expirationTime = localStorage.getItem(this.tokenExpiryKey);
+    const expirationTime = this.storage?.getItem(this.tokenExpiryKey);
     if (!expirationTime) {
       return false;
     }
@@ -55,8 +65,11 @@ export class JwtService {
   clearToken(): void {
     this.jwtToken = null;
     this.username = null;
-    localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.usernameKey);
-    localStorage.removeItem(this.tokenExpiryKey);
+    const storage = this.storage;
+    if (storage) {
+      storage.removeItem(this.tokenKey);
+      storage.removeItem(this.usernameKey);
+      storage.removeItem(this.tokenExpiryKey);
+    }
   }
 }
