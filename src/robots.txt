@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /control-panel
+Disallow: /create-painting
+Disallow: /create-exhibition
+Disallow: /paintings/*/edit
+Disallow: /exhibitions/*/edit
+
+Sitemap: https://pawelkarpinski.com/sitemap.xml

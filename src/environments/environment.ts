@@ -3,11 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  // apiUrl:"https://localhost:5001",
-  apiUrl:"https://yordanov03-001-site1.gtempurl.com",
-  homePagePaintings: "../assets/img/paintings/homePagePaitings/"
-
+    production: false,
+    apiUrl: "https://localhost:5001",
+    // apiUrl:"https://yordanov03-001-site1.gtempurl.com",
+    homePagePaintings: "../assets/img/paintings/homePagePaitings/",
 };
 
 /*
