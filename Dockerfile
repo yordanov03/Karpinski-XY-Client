@@ -43,22 +43,21 @@ RUN npm install
 # Copy the entire application code to the working directory
 COPY . .
 
-# Build and prerender the public pages for production
-RUN npm run prerender
+# Build the browser and server bundles for production
+RUN npm run build:ssr
 
-# Step 2: Serve the app with NGINX
-FROM nginx:alpine
+# Step 2: Run the Angular Universal server
+FROM node:16-alpine AS runtime
 
-# Copy your custom NGINX configuration file if needed (optional)
-# COPY nginx.conf /etc/nginx/conf.d
+WORKDIR /app
 
-# Copy the built Angular files from the previous stage to the NGINX HTML directory
-COPY --from=build /app/dist/dizo-ng /usr/share/nginx/html
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY --from=build /app/dist/dizo-ng ./dist/dizo-ng
 
-# Expose port 80 to the outside world
-EXPOSE 80
+ENV PORT=4000
+EXPOSE 4000
 
-# Start NGINX server
-CMD ["nginx", "-g", "daemon off;"]
-
+# Start the server-rendered application
+CMD ["node", "dist/dizo-ng/server/main.js"]
 

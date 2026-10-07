@@ -18,9 +18,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `npm run prerender` to build and prerender the homepage and public informational/listing pages. The generated files are written to `dist/dizo-ng/`, with route pages such as `about/index.html` and `paintings/index.html`. Deploy the full output directory so these pre-rendered pages, assets, `robots.txt`, and `sitemap.xml` are available.
 
-Run `npm run build:ssr` to build the Angular browser and server bundles. Run `npm run serve:ssr` to serve the server-rendered app locally on port 4000.
+The Docker image builds and runs the Angular Universal server, which renders requested pages—including painting and exhibition details—on the server. It listens on port 4000 by default; configure the hosting platform to route web traffic to that port.
 
-Routes containing painting or exhibition IDs are not build-time prerendered; their IDs come from the API and are not enumerated by the current prerender configuration.
+For local checks, run `npm run build:ssr` and then `npm run serve:ssr`.
 
 ## Running unit tests
 
