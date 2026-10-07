@@ -18,7 +18,7 @@ export const metaConfig = {
         keywords:
             "Pawel Karpinski, about the artist, art exhibitions, painting process, Swiss artist, abstract art, visual arts, geometry in painting, artistic inspiration, exhibitions in Zurich, artistic statement, art journey",
         ogImage: `${siteOrigin}/assets/img/about/Pawel.jpg`,
-        ogUrl: `${siteOrigin}/about`,
+        ogUrl: `${siteOrigin}/about/`,
     },
 
     faq: {
@@ -28,7 +28,7 @@ export const metaConfig = {
         keywords:
             "FAQ, Pawel Karpinski, artistic process, exhibitions in Zurich, favorite artists, painting sales, abstract art, figurative art, shipping artwork, commissions, Swiss artist, Zurich atelier",
         ogImage: `${siteOrigin}/assets/img/paintings/homePagePaitings/6.jpg`,
-        ogUrl: `${siteOrigin}/faq`,
+        ogUrl: `${siteOrigin}/faq/`,
     },
 
     error: {
@@ -38,7 +38,7 @@ export const metaConfig = {
         keywords:
             "404 error, page not found, error page, broken link, Karpinski XY, return to home page, art portfolio, Swiss artist",
         ogImage: `${siteOrigin}/assets/img/paintings/homePagePaitings/7.jpg`,
-        ogUrl: `${siteOrigin}/error`,
+        ogUrl: `${siteOrigin}/error/`,
     },
 
     termsConditions: {
@@ -48,7 +48,7 @@ export const metaConfig = {
         keywords:
             "terms and conditions, Karpinski XY, intellectual property, site usage, governing law, Switzerland, art terms, user agreement",
         ogImage: `${siteOrigin}/assets/img/paintings/homePagePaitings/2.jpg`,
-        ogUrl: `${siteOrigin}/terms-conditions`,
+        ogUrl: `${siteOrigin}/terms-conditions/`,
     },
 
     privacyPolicy: {
@@ -57,7 +57,7 @@ export const metaConfig = {
             "Read Pawel Karpinski's privacy policy to learn how personal information is collected, used, and protected on this website.",
         keywords: "",
         ogImage: `${siteOrigin}/assets/img/paintings/homePagePaitings/2.jpg`,
-        ogUrl: `${siteOrigin}/privacy-policy`,
+        ogUrl: `${siteOrigin}/privacy-policy/`,
     },
 
     paintings: {
@@ -67,7 +67,7 @@ export const metaConfig = {
         keywords:
             "Pawel Karpinski paintings, available paintings, abstract art, contemporary art, Swiss artist, original artwork, art gallery, visual arts, art collection, painting dimensions, art for sale, Zurich artist, painting inquiries, modern art, art techniques",
         ogImage: `${siteOrigin}/assets/img/paintings/homePagePaitings/5.jpg`,
-        ogUrl: `${siteOrigin}/paintings`,
+        ogUrl: `${siteOrigin}/paintings/`,
     },
 
     portfolio: {
@@ -77,7 +77,7 @@ export const metaConfig = {
         keywords:
             "Pawel Karpinski portfolio, art portfolio, paintings, abstract art, Swiss artist, painting evolution, art techniques, artistic inspirations, visual perception, portfolio gallery, Zurich art, contemporary art, modern art, visual storytelling, canvas paintings, painting exhibitions, creative process, artistic expression, minimalist art, geometric abstraction, abstract expressionism, art collection, fine art, original paintings, art gallery Zurich, art showcase, visual arts Switzerland, European artist portfolio, art history in Zurich",
         ogImage: `${siteOrigin}/assets/img/paintings/homePagePaitings/8.jpg`,
-        ogUrl: `${siteOrigin}/portfolio`,
+        ogUrl: `${siteOrigin}/portfolio/`,
     },
 
     paintingDetails: {
@@ -97,7 +97,7 @@ export const metaConfig = {
         keywords:
             "contact Pawel Karpinski, contact form, art inquiries, Swiss artist, Zurich artist, message Pawel Karpinski, art portfolio contact, painting inquiries, feedback to artist",
         ogImage: `${siteOrigin}/assets/img/paintings/homePagePaitings/3.jpg`,
-        ogUrl: `${siteOrigin}/contact`,
+        ogUrl: `${siteOrigin}/contact/`,
     },
 
     exhibitions: {
@@ -107,7 +107,7 @@ export const metaConfig = {
         keywords:
             "exhibitions, Pawel Karpinski, art exhibitions, Swiss artist, Zurich art, painting exhibitions, art gallery shows, contemporary art, featured artworks, art events, artistic journey, international exhibitions, gallery venues",
         ogImage: `${siteOrigin}/assets/img/paintings/homePagePaitings/2.jpg`,
-        ogUrl: `${siteOrigin}/exhibitions`,
+        ogUrl: `${siteOrigin}/exhibitions/`,
     },
 
     exhibitionDetails: {

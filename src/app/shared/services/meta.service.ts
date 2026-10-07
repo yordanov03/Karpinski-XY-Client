@@ -30,7 +30,13 @@ export class MetaService {
         const title = data.title || defaultTitle;
         const description = data.description || defaultDescription;
         const image = data.ogImage || defaultImage;
-        const url = data.ogUrl || defaultUrl;
+        const url = new URL(data.ogUrl || defaultUrl);
+        url.search = "";
+        url.hash = "";
+        if (!url.pathname.endsWith("/")) {
+            url.pathname += "/";
+        }
+        const canonicalUrl = url.toString();
 
         this.title.setTitle(title);
         this.meta.updateTag({ name: "description", content: description });
@@ -40,7 +46,7 @@ export class MetaService {
         this.meta.updateTag({ property: "og:title", content: title });
         this.meta.updateTag({ property: "og:description", content: description });
         this.meta.updateTag({ property: "og:image", content: image });
-        this.meta.updateTag({ property: "og:url", content: url });
+        this.meta.updateTag({ property: "og:url", content: canonicalUrl });
         this.meta.updateTag({ property: "og:type", content: data.ogType || "website" });
         this.meta.updateTag({ name: "twitter:card", content: "summary_large_image" });
         this.meta.updateTag({ name: "twitter:title", content: title });
@@ -55,6 +61,6 @@ export class MetaService {
             canonical.rel = "canonical";
             this.document.head.appendChild(canonical);
         }
-        canonical.href = url;
+        canonical.href = canonicalUrl;
     }
 }
